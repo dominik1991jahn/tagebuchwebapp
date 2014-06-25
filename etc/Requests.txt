@@ -1,0 +1,5 @@
+GET /stundenplan
+					(von=2014-01-01)
+					(bis=2014-01-01)
+					(klasse=IT1215A)
+					(lehrer=BAR)

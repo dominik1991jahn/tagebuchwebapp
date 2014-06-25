@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Faecher>
+	<Fach>
+		<Kurzbezeichnung>IKWWW</Kurzbezeichnung> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Langbezeichnung>Informations- und Kommunikationssysteme WWW</Langbezeichnung>
+	</Fach>
+	
+	<Fach>
+		<Kurzbezeichnung>IKKS</Kurzbezeichnung> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Langbezeichnung>Informations- und Kommunikationssysteme</Langbezeichnung>
+	</Fach>
+</Faecher>
