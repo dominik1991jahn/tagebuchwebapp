@@ -5,10 +5,10 @@
 			<!-- Stunde 1 - 2 -->
 			<Fach>
 				<Bezeichnung>TFC#</Bezeichnung>
+				<Klasse>IT1215a</Klasse>
 				
 				<Lehrkraefte>
-					<Lehrkraft>RIP</Lehrkraft>
-					<Lehrkraft>BAR</Lehrkraft>
+					<Lehrkraft>BAR</Lehrkraft> <!-- Zusaetzliche Lehrkraft!! -->
 				</Lehrkraefte>
 				
 				<Start>0</Start>
@@ -24,22 +24,21 @@
 			
 			<!-- Freistunde von 3 - 4 -->
 			<Fach>
-				<Bezeichnung>IKWWW</Bezeichnung>
+				<Bezeichnung>TFC#</Bezeichnung>
+				<Klasse>IT1316b</Klasse>
 				
 				<Lehrkraefte>
-					<Lehrkraft status="entfaellt">BET</Lehrkraft>
-					<Lehrkraft status="entfaellt">KOE</Lehrkraft>
+					<Lehrkraft status="entfaellt">KOE</Lehrkraft> <!-- Zusaetliche Lehrkraft entfaellt; aktueller Lehrer haelt Stunde alleine -->
 				</Lehrkraefte>
 			</Fach>
 			
 			<!-- Stunde 5 - 6 (Vertretungsstunden) -->
 			<Fach>
 				<Bezeichnung>JAVA</Bezeichnung>
+				<Klasse>IT1215a</Klasse>
 				
 				<Lehrkraefte>
-					<Lehrkraft status="entfaellt">RIP</Lehrkraft>
-					<Lehrkraft>BAR</Lehrkraft>
-					<Lehrkraft status="ersatz">KOE</Lehrkraft>
+					<Lehrkraft status="entfaellt">BAR</Lehrkraft> <!-- Heiszt: Stunde entfaellt fuer den aktuellen Lehrer (und in diesem Fall auch fuer die gesamte Klasse) -->
 				</Lehrkraefte>
 				
 				<Start>5</Start>
@@ -51,8 +50,6 @@
 					<Raum status="belegt">208</Raum>
 					<Raum>204</Raum>
 				</Raeume>
-				
-				<Typ>Vertretung</Typ>
 			</Fach>
 			
 			<!-- Stunde 7 -->
@@ -74,34 +71,8 @@
 			</Fach>
 		</Tag>
 		
-		<Tag datum="2014-01-02">
-			<!-- Freistunde 1 - 2 (Fach muss nicht gegeben sein, ist regulär frei -->
-			
-			<Fach>
-				<Bezeichnung>TFBAN</Bezeichnung>
-				
-				<Lehrkraefte>
-					<Lehrkraft>FOE</Lehrkraft>
-					<Lehrkraft>DOTG</Lehrkraft>
-				</Lehrkraefte>
-				
-				<Start>3</Start>
-				<Dauer>3</Dauer>
-				
-				<!-- <Beschreibung> entfaellt, da nichts eingetragen -->
-				
-				<Raeume>
-					<Raum>208</Raum>
-				</Raeume>
-				
-			</Fach>
-		</Tag>
-		
 		<Tag datum="2014-01-03" typ="feiertag" />
 	</Woche>
-	
-	<Woche von="2014-01-08" bis="2014-01-15" typ="ferien" />
-	<Woche von="2014-01-17" bis="2014-01-22" typ="ferien" />
 	
 	
 </Stundenplan>

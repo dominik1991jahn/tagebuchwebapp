@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Lehrer>
+	<Lehrer>
+		<Kurz>RIP</Kurz> <!-- Muss identisch sein mit <Lehrkraft/> von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Name>Rippert</Name>
+	</Lehrer>
+	
+	<Lehrer>
+		<Kurz>BAR</Kurz>
+		<Name>Bareuther</Name>
+	</Lehrer>
+</Lehrer>

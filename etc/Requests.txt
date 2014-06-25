@@ -1,5 +1,12 @@
 GET /stundenplan
 					(von=2014-01-01)
 					(bis=2014-01-01)
-					(klasse=IT1215A)
 					(lehrer=BAR)
+					
+GET /stundenplan/IT11a (Stundenplan fuer bestimmte Klasse [egal ob aus Lehrer- oder Schuelersicht])
+GET /stundenplan/BAR	(Stundenplan fuer bestimmte Lehrkraft)
+					
+GET /fach
+
+GET /lehrer
+
