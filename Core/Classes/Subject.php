@@ -3,7 +3,7 @@
 	 * Repräsentiert ein Fach
 	 */
 	 
-	class Digikabu_Subject
+	class Digikabu_Subject extends Digikabu_Object
 	{
 		  //
 		 // ATTRIBUTES
@@ -13,7 +13,7 @@
 		private /*(string)*/ $description;
 			  
 		  //
-		 // CONSTRUCTORS
+		 // CONSTRUCTOR
 		//		
 		
 		public function Digikabu_Subject()
@@ -24,6 +24,7 @@
 		  //
 		 // METHODS
 		//
+		
 		public function __get($name)
 		{
 			switch($name)
@@ -48,8 +49,10 @@
 		  
 		  
 		  //
-		 // GETTERS & SETTERS
+		 // GETTERS / SETTERS
 		//
+		
+		# Name
 		
 		public function getName()
 		{
@@ -60,6 +63,8 @@
 		{
 			return $this->name = $name;
 		}
+		
+		# Description
 		
 		public function getDescription()
 		{

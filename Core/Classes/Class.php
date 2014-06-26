@@ -3,25 +3,28 @@
 	 * Repräsentiert eine Schulklasse
 	 */
 	 
-	class Digikabu_Class
+	class Digikabu_Class extends Digikabu_Object
 	{
-		private /*(string)*/ $bez;//
-		// Constructor
+		private /*(string)*/ $description;
+		
+		  //
+		 // CONSTRUCTOR
 		//
+		
 		public function Digikabu_Class()
 		{
 			
 		}
 		
-		//
-		// Methoden
+		  //
+		 // METHODS
 		//
 		
 		public function __get($name)
 		{
 			switch($name)
 			{
-				case "Bez": return $this->getBez(); break;
+				case "Description": return $this->getDescription(); break;
 			}
 		}
 		
@@ -29,7 +32,7 @@
 		{
 			switch($name)
 			{
-				case "Bez": $this->setBez($value); break;
+				case "Description": $this->setDescription($value); break;
 			}
 		}
 		
@@ -39,20 +42,20 @@
 		
 		public static function doSomething() {}
 		
-		//
-		// Getter / Setter
-		//
+		  //
+		 // GETTERS / SETTERS
+	    //
 		
-		# Bez
+		# Description
 		
-		public function getBez()
+		public function getDescription()
 		{
-			return $this->bez;
+			return $this->description;
 		}
 		
-		public function setBez(/*(string)*/ $bez)
+		public function setDescription(/*(string)*/ $description)
 		{
-			$this->bez = $bez;
+			$this->description = $description;
 		}
 	}
 ?>

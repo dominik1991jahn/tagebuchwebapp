@@ -3,28 +3,28 @@
 	 * Repräsentiert einen Lehrer
 	 */
 	 
-	class Digikabu_Teacher
+	class Digikabu_Teacher extends Digikabu_Object
 	{
-		private /*(string)*/ $kurz;
+		private /*(string)*/ $abbreviation;
 		private /*(string)*/ $name;
 		
-		//
-		// Constructor
+		  //
+		 // CONSTRUCTOR
 		//
 		public function Digikabu_Teacher()
 		{
 			
 		}
 		
-		//
-		// Methoden
+		  //
+		 // METHODS
 		//
 		
 		public function __get($name)
 		{
 			switch($name)
 			{
-				case "Kurz": return $this->getKurz(); break;
+				case "Abbreviation": return $this->getAbbreviation(); break;
 				case "Name": return $this->getName(); break;
 			}
 		}
@@ -33,7 +33,7 @@
 		{
 			switch($name)
 			{
-				case "Kurz": $this->setKurz($value); break;
+				case "abbreviation": $this->setAbbreviation($value); break;
 				case "Name": $this->setName($value); break;
 			}
 		}
@@ -44,20 +44,20 @@
 		
 		public static function doSomething() {}
 		
-		//
-		// Getter / Setter
+		  //
+		 // GETTERS / SETTERS
 		//
 		
-		# Kurz
+		# Abbreviation
 		
-		public function getKurz()
+		public function getAbbreviation()
 		{
-			return $this->kurz;
+			return $this->abbreviation;
 		}
 		
-		public function setKurz(/*(string)*/ $kurz)
+		public function setAbbreviation(/*(string)*/ $abbreviation)
 		{
-			$this->kurz = $kurz;
+			$this->abbreviation = $abbreviation;
 		}
 		
 		# Name
