@@ -7,5 +7,13 @@
 	{
 		private /*(string)*/ $kurz;
 		private /*(string)*/ $name;
+		
+		//
+		// Methoden
+		//
+		
+		//
+		// Getter / Setter
+		//
 	}
 ?>
