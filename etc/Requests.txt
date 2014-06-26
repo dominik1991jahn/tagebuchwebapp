@@ -6,7 +6,6 @@ GET /stundenplan
 GET /stundenplan/IT11a (Stundenplan fuer bestimmte Klasse [egal ob aus Lehrer- oder Schuelersicht])
 GET /stundenplan/BAR	(Stundenplan fuer bestimmte Lehrkraft)
 					
-GET /fach
+GET /fach/IT11a -> Liste aller Fächer für eine bestimmte Klasse laden
 
-GET /lehrer
-
+GET /lehrer     -> Liste aller Lehrer laden
