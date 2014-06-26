@@ -5,6 +5,16 @@
 	 
 	class Digikabu_Subject
 	{
-		
+		   //
+		  // ATTRIBUTES
+		 //
+		 	   
+		   //
+		  // METHODS
+		 //
+		  
+		   //
+		  // GETTERS & SETTERS
+		 //
 	}
 ?>
