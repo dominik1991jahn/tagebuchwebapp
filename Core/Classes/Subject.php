@@ -24,7 +24,23 @@
 		  //
 		 // METHODS
 		//
-		 
+		public function __get($name)
+		{
+			switch($name)
+			{
+				case "Name": return $this->getName(); break;
+				case "Description": return $this->getDescription(); break;
+			}
+		}
+		
+		public function __set($name,$value)
+		{
+			switch($name)
+			{
+				case "Name": $this->setName($value);  break;
+				case "Description": $this->setDescription($value); break;
+			}
+		}
 		 
 		  //
 		 // FUNCTIONS
