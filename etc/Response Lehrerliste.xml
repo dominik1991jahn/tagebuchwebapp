@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lehrer>
-	<!-- SELECT ... FROM lehrer -->
+	<!-- SELECT ... FROM lehrer WHERE Id IN (SELECT idlehrer FROM abteilunglehrer WHERE idabteilung = 1) (1 = EDV-Schulen Wiesau) -->
 	<Lehrer>
 		<Kurz>RIP</Kurz> <!-- Muss identisch sein mit <Lehrkraft/> von Response Woechentlich (a.k.a. Primärschlüssel) -->
 		<Name>Rippert</Name>
