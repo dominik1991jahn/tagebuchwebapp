@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Stundenplan>
 	<Woche von="2014-01-01" bis="2014-01-07">
+	
+	<!--
+		SELECT ... FROM tagebuch
+		WHERE idlehrer1 = ID OR idlehrer2 = ID OR idVlehrer1 = ID OR idVlehrer2 = ID
+	-->
 		<Tag datum="2014-01-01">
 			<!-- Stunde 1 - 2 -->
 			<Fach>
 				<Bezeichnung>TFC#</Bezeichnung>
-				<Klasse>IT1215a</Klasse>
+				<Klasse>IT1215a</Klasse> <!-- tagebuch.idklasse -> join -> klasse.kname -->
 				
 				<Lehrkraefte>
 					<Lehrkraft>BAR</Lehrkraft> <!-- Zusaetzliche Lehrkraft!! -->
