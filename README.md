@@ -17,4 +17,5 @@ Wechsel zwischen Tages- und Wochenansicht durch Drehen des Geräts (nur bei Smar
 
 Response Mapping
 
-Die Daten, die wir von der API erhalten sind in Deutsch, wir programmieren aber mit englischen Bezeichnungen und wandeln deshalb die Bezeichnungen durch das Response Mapping um
+Die Daten, die wir von der API erhalten sind in Deutsch, 
+wir programmieren aber mit englischen Bezeichnungen und wandeln deshalb die Bezeichnungen durch das Response Mapping um.
