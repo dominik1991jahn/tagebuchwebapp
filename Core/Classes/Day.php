@@ -3,5 +3,6 @@
 	{
 		//$status (frei/feiertag)
 		//$date
+		//$period
 	}
 ?>

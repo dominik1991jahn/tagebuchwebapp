@@ -4,5 +4,6 @@
 		//$status (ferien)
 		//$from
 		//$to
+		//$days
 	}
 ?>

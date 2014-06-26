@@ -3,7 +3,7 @@
 	 * Repräsentiert eine Stunde
 	 */
 	 
-	class Digikabu_Schedule
+	class Digikabu_Period
 	{
 		  //
 		 // ATTRIBUTES
@@ -21,7 +21,7 @@
 		 // CONSTRUCTOR
 		//
 		
-		public function Digikabu_Schedule()
+		public function Digikabu_Period()
 		{
 			
 		}
