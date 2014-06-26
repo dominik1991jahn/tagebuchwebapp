@@ -4,7 +4,6 @@
 		public static function Main()
 		{
 			echo "<h1>Hello App!</h1>";
-			echo "<h3>Hans!</h3>";	
 		}
 	}
 ?>
