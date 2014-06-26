@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResponseMapping>
+	<Response name="Woche" mapto="Week" />
+	<Response name="Woche.von" mapto="FromDate" />
+	<Response name="Woche.bis" mapto="ToDate" />
+	<Response name="Woche.Tag" mapto="Day" />
+	<Response name="Woche.Tag.datum" mapto="Date" />
+	<Response name="Woche.Tag.Fach" mapto="Subject" />
+</ResponseMapping>
