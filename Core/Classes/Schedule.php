@@ -13,6 +13,9 @@
 		private /*(Digikabu_Subject)*/ $subject;
 		private /*(int)*/ $start;
 		private /*(int)*/ $duration;
+		private /*(array:Digikabu_TeacherStatus)*/ $teachers;
+		private /*(array:Digikabu_Room)*/ $rooms;
+		private /*(string)*/ $information;
 		
 		  //
 		 // CONSTRUCTOR
