@@ -5,6 +5,6 @@
 	 
 	class Digikabu_Class
 	{
-		
+		private /*(string)*/ $bez;
 	}
 ?>
