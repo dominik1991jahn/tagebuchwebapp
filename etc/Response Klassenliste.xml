@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Klassen>
+  <!--
+    SELECT ... FROM klasse
+    WHERE idabteilung = 1 (1 = EDV-Schulen)
+  -->
+  
+  <Klasse>IT11a</Klasse> <!-- klasse.kname -->
+  <Klasse>IT12b</Klasse>
+</Klassen>
