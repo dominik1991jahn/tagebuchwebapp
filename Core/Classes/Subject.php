@@ -16,5 +16,9 @@
 		   //
 		  // GETTERS & SETTERS
 		 //
+		public function __toString()
+		{
+			return "I'm a subject";
+		}
 	}
 ?>

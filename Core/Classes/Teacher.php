@@ -5,6 +5,15 @@
 	 
 	class Digikabu_Teacher
 	{
+		private /*(string)*/ $kurz;
+		private /*(string)*/ $name;
 		
+		//
+		// Methoden
+		//
+		
+		//
+		// Getter / Setter
+		//
 	}
 ?>
