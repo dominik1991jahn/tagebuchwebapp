@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Faecher>
+	<!-- SELECT ... FROM ufach
+	     WHERE idklasse = (SELECT idklasse FROM klasse WHERE kname = 'IT1215a')
+	     
+	     Liste muss fuer jede Klasse neu angefordert werden
+	     (Besonders wichtig falls andere Schulen des BSZ die (Web-)App nutzen wollen (sind in der gleichen Datenbank gespeichert)
+	-->
+	
 	<Fach>
+		<!-- ufach.ufach -->
 		<Kurzbezeichnung>IKWWW</Kurzbezeichnung> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<!-- Muss selbst bereitgestellt werden, keine Entsprechung in der Datenbank -->
 		<Langbezeichnung>Informations- und Kommunikationssysteme WWW</Langbezeichnung>
 	</Fach>
 	
