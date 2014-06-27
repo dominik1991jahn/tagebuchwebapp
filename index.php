@@ -7,6 +7,7 @@
 	include("Core/Classes/Room.php");
 	include("Core/Classes/Week.php");
 	include("Core/Classes/Day.php");
+	include("Core/Tools/HttpRequest.php");
 	
 	App::Main();
 ?>
