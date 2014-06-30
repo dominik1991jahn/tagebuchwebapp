@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Faecher>
+<Subjects>
 	<!-- SELECT ... FROM ufach
 	     WHERE idklasse = (SELECT idklasse FROM klasse WHERE kname = 'IT1215a')
 	     
@@ -7,15 +7,15 @@
 	     (Besonders wichtig falls andere Schulen des BSZ die (Web-)App nutzen wollen (sind in der gleichen Datenbank gespeichert)
 	-->
 	
-	<Fach>
+	<Subject>
 		<!-- ufach.ufach -->
-		<Kurzbezeichnung>IKWWW</Kurzbezeichnung> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>IKWWW</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
 		<!-- Muss selbst bereitgestellt werden, keine Entsprechung in der Datenbank -->
-		<Langbezeichnung>Informations- und Kommunikationssysteme WWW</Langbezeichnung>
-	</Fach>
+		<Description>Informations- und Kommunikationssysteme WWW</Description>
+	</Subject>
 	
-	<Fach>
-		<Kurzbezeichnung>IKKS</Kurzbezeichnung> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
-		<Langbezeichnung>Informations- und Kommunikationssysteme</Langbezeichnung>
-	</Fach>
-</Faecher>
+	<Subject>
+		<Abbreviation>IKKS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Langbezeichnung>Informations- und Kommunikationssysteme</Description>
+	</Subject>
+</Subjects>

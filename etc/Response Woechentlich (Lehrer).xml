@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Stundenplan>
-	<Woche von="2014-01-01" bis="2014-01-07">
+<Schedule>
+	<Week from="2014-01-01" to="2014-01-07">
 	
 	<!--
-		SELECT ... FROM tagebuch
+		SELECT ... FROM Tagebuch
 		WHERE idlehrer1 = ID OR idlehrer2 = ID OR idVlehrer1 = ID OR idVlehrer2 = ID
 	-->
-		<Tag datum="2014-01-01">
+		<Day date="2014-01-01">
 			<!-- Stunde 1 - 2 -->
-			<Fach>
-				<Bezeichnung>TFC#</Bezeichnung>
-				<Klasse>IT1215a</Klasse> <!-- tagebuch.idklasse -> join -> klasse.kname -->
+			<Subject>
+				<Abbreviation>TFC#</Abbreviation>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
 				
-				<Lehrkraefte>
-					<Lehrkraft>RIP</Lehrkraft> <!-- Zusaetzliche Lehrkraft!! -->
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher>RIP</Teacher> <!-- Zusaetzliche Lehrer!! -->
+				</Teachers>
 				
 				<Start>0</Start>
-				<Dauer>2</Dauer>
+				<Duration>2</Duration>
 				
 				<!--
 					Alternative:
 				<Start>08:30</Start>
-				<Ende>10:00</Ende>
+				<End>10:00</End>
 				-->
 				
-				<Beschreibung>Beschreibung der Stunde</Beschreibung>
+				<Description>Beschreibung der Stunde</Description>
 				
-				<Raeume>
-					<Raum>208</Raum>
-					<Raum>209</Raum>
-				</Raeume>
-			</Fach>
+				<Rooms>
+					<Room>208</Room>
+					<Room>209</Room>
+				</Rooms>
+			</Subject>
 			
-			<!-- Freistunde von 3 - 4 -->
-			<Fach>
-				<Bezeichnung>TFC#</Bezeichnung>
-				<Klasse>IT1316b</Klasse>
+			<!-- Freistunde from 3 - 4 -->
+			<Subject>
+				<Abbreviation>TFC#</Abbreviation>
+				<Class>IT1316b</Class>
 				
-				<Lehrkraefte>
-					<Lehrkraft status="entfaellt">KOE</Lehrkraft> <!-- Zusaetliche Lehrkraft entfaellt; aktueller Lehrer haelt Stunde alleine -->
-				</Lehrkraefte>
-			</Fach>
+				<Teachers>
+					<Teacher status="absent">KOE</Teacher> <!-- Zusaetliche Lehrer entfallen; aktueller Lehrer haelt Stunde alleine -->
+				</Teachers>
+			</Subject>
 			
 			<!-- Stunde 5 - 6 (Vertretungsstunden) -->
-			<Fach>
-				<Bezeichnung>JAVA</Bezeichnung>
-				<Klasse>IT1215a</Klasse>
+			<Subject>
+				<Abbreviation>JAVA</Abbreviation>
+				<Class>IT1215a</Class>
 				
-				<Lehrkraefte>
-					<Lehrkraft status="entfaellt">BAR</Lehrkraft> <!-- Heiszt: Stunde entfaellt fuer den aktuellen Lehrer (und in diesem Fall auch fuer die gesamte Klasse) -->
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher status="absent">BAR</Teacher> <!-- Heiszt: Stunde entfaellt fuer den aktuellen Lehrer (und in diesem Fall auch fuer die gesamte Klasse) -->
+				</Teachers>
 				
 				<Start>5</Start>
-				<Dauer>2</Dauer>
+				<Duration>2</Duration>
 				
-				<Beschreibung>Beschreibung der Stunde</Beschreibung>
+				<Description>Beschreibung der Stunde</Description>
 				
-				<Raeume>
-					<Raum status="belegt">208</Raum>
-					<Raum>204</Raum>
-				</Raeume>
-			</Fach>
+				<Rooms>
+					<Room status="occupied">208</Room>
+					<Room>204</Room>
+				</Rooms>
+			</Subject>
 			
 			<!-- Stunde 7 -->
-			<Fach>
-				<Bezeichnung>WMS</Bezeichnung>
+			<Subject>
+				<Abbreviation>WMS</Abbreviation>
 				
-				<Lehrkraefte>
-					<Lehrkraft>DOTL</Lehrkraft>
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher>DOTL</Teacher>
+				</Teachers>
 				
 				<!-- <Start> entfaellt, wird hier berechnet -->
-				<!-- <Dauer> entfaellt, da nur eine Stunde (wegen Datenverkehr bei Android) -->
+				<!-- <Duration> entfaellt, da nur eine Stunde (wegen Datenverkehr bei Android) -->
 				
-				<Beschreibung>Beschreibung der Stunde</Beschreibung>
+				<Description>Description der Stunde</Description>
 				
-				<Raeume>
-					<Raum>204</Raum>
-				</Raeume>
-			</Fach>
-		</Tag>
+				<Rooms>
+					<Room>204</Room>
+				</Rooms>
+			</Subject>
+		</Day>
 		
-		<Tag datum="2014-01-03" typ="feiertag" />
-	</Woche>
+		<Day date="2014-01-03" type="holiday" />
+	</Week>
 	
 	
-</Stundenplan>
+</Schedule>

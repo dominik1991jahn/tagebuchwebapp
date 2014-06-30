@@ -1,111 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Stundenplan>
+<Schedule>
 	<!--
-		<Woche/> entspricht einer KALENDERwoche, also NICHT sieben Tage am Stück,
+		<Week/> entspricht einer KALENDERWOCHE, also NICHT sieben Tage am Stück,
 		sondern z.B. Montag - Freitag, Montag - Samstag, Mittwoch - Freitag,
 		aber !NICHT! Donnerstag - Dienstag (der naechsten Woche)
 	-->
-	<Woche von="2014-01-01" bis="2014-01-07"> <!-- date("W",strtotime("2014-01-01")) == Woche des Jahres (z.B. 1),  -->
-		<Tag datum="2014-01-01">
+	<Week from="2014-01-01" to="2014-01-07"> <!-- date("W",strtotime("2014-01-01")) == Week des Jahres (z.B. 1),  -->
+		<Day date="2014-01-01">
 			<!-- Stunde 1 - 2 -->
-			<Fach>
-				<Bezeichnung>TFC#</Bezeichnung>
-				<!-- tagebuch.ufach ODER tagebuch.idufach -> join -> ufach.ufach -->
+			<Subject>
+				<Abbreviation>TFC#</Abbreviation>
+				<!-- Tagebuch.uSubject ODER Tagebuch.iduSubject -> join -> uSubject.uSubject -->
 				
-				<Lehrkraefte>
-					<Lehrkraft>RIP</Lehrkraft> <!-- tagebuch.idlehrer1 -> join -> lehrer.Kname -->
-					<Lehrkraft>BAR</Lehrkraft> <!-- tagebuch.idlehrer2 -> join -> lehrer.Kname -->
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher>RIP</Teacher> <!-- Tagebuch.idlehrer1 -> join -> lehrer.Kname -->
+					<Teacher>BAR</Teacher> <!-- Tagebuch.idlehrer2 -> join -> lehrer.Kname -->
+				</Teachers>
 				
-				<Start>0</Start> <!-- tagebuch.anfStunde -->
-				<Dauer>2</Dauer> <!-- tagebuch.endStunde - tagebuch.anfStunde + 1 -->
+				<Start>0</Start> <!-- Tagebuch.anfStunde -->
+				<Duration>2</Duration> <!-- Tagebuch.endStunde - Tagebuch.anfStunde + 1 -->
 				
-				<Beschreibung>Beschreibung der Stunde</Beschreibung> <!-- tagebuch.hinweis -->
+				<Description>Description der Stunde</Description> <!-- Tagebuch.hinweis -->
 				
-				<Raeume>
-					<Raum>208</Raum> <!-- tagebuch.raum1 -->
-					<Raum>209</Raum> <!-- tagebuch.raum2 -->
-				</Raeume>
-			</Fach>
+				<Rooms>
+					<Room>208</Room> <!-- Tagebuch.Room1 -->
+					<Room>209</Room> <!-- Tagebuch.Room2 -->
+				</Rooms>
+			</Subject>
 			
-			<!-- Freistunde von 3 - 4 -->
-			<Fach>
-				<Bezeichnung>IKWWW</Bezeichnung>
+			<!-- Freistunde from 3 - 4 -->
+			<Subject>
+				<Abbreviation>IKWWW</Abbreviation>
 				
-				<Lehrkraefte>
-					<Lehrkraft status="entfaellt">BET</Lehrkraft> <!-- IF tagebuch.idVlehrer1 <> 0 (Vertretung) ODER tagebuch.idVlehrer = -1 (entfaellt) -->
-					<Lehrkraft status="entfaellt">KOE</Lehrkraft>
-				</Lehrkraefte>
-			</Fach>
+				<Teachers>
+					<Teacher status="absent">BET</Teacher> <!-- IF Tagebuch.idVlehrer1 <> 0 (Vertretung) ODER Tagebuch.idVlehrer = -1 (cancelled) -->
+					<Teacher status="absent">KOE</Teacher>
+				</Teachers>
+			</Subject>
 			
 			<!-- Stunde 5 - 6 (Vertretungsstunden) -->
-			<Fach>
-				<Bezeichnung>JAVA</Bezeichnung>
+			<Subject>
+				<Abbreviation>JAVA</Abbreviation>
 				
-				<Lehrkraefte>
-					<Lehrkraft status="entfaellt">RIP</Lehrkraft> <!-- IF tagebuch.idVlehrer <> 0 (Vertretung) -->
-					<Lehrkraft>BAR</Lehrkraft>
-					<Lehrkraft status="ersatz">KOE</Lehrkraft> <!-- tagebuch.idVLehrer <> 0 (ID des Ersatzlehrers) -->
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher status="absent">RIP</Teacher> <!-- IF Tagebuch.idVlehrer <> 0 (Vertretung) -->
+					<Teacher>BAR</Teacher>
+					<Teacher status="substitution">KOE</Teacher> <!-- Tagebuch.idVLehrer <> 0 (ID des Ersatzlehrers) -->
+				</Teachers>
 				
 				<Start>5</Start>
-				<Dauer>2</Dauer>
+				<Duration>2</Duration>
 				
-				<Beschreibung>Beschreibung der Stunde</Beschreibung>
+				<Description>Description der Stunde</Description>
 				
-				<Raeume>
-					<Raum>208</Raum>
-					<Raum>204</Raum>
-				</Raeume>
-			</Fach>
+				<Rooms>
+					<Room>208</Room>
+					<Room>204</Room>
+				</Rooms>
+			</Subject>
 			
 			<!-- Stunde 7 -->
-			<Fach>
-				<Bezeichnung>WMS</Bezeichnung>
+			<Subject>
+				<Abbreviation>WMS</Abbreviation>
 				
-				<Lehrkraefte>
-					<Lehrkraft>DOTL</Lehrkraft>
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher>DOTL</Teacher>
+				</Teachers>
 				
 				<!-- <Start> entfaellt, wird hier berechnet -->
-				<!-- <Dauer> entfaellt, da nur eine Stunde (wegen Datenverkehr bei Android) -->
+				<!-- <Duration> entfaellt, da nur eine Stunde (wegen Datenverkehr bei Android) -->
 				
-				<Beschreibung>Beschreibung der Stunde</Beschreibung>
+				<Description>Beschreibung der Stunde</Description>
 				
-				<Raeume>
-					<Raum>204</Raum>
-				</Raeume>
-			</Fach>
-		</Tag>
+				<Rooms>
+					<Room>204</Room>
+				</Rooms>
+			</Subject>
+		</Day>
 		
-		<Tag datum="2014-01-02">
-			<!-- Freistunde 1 - 2 (Fach muss nicht gegeben sein, ist regulär frei -->
+		<Day date="2014-01-02">
+			<!-- Freistunde 1 - 2 (Subject muss nicht gegeben sein, ist regulär frei -->
 			
-			<Fach>
-				<Bezeichnung>TFBAN</Bezeichnung>
+			<Subject>
+				<Abbreviation>TFBAN</Abbreviation>
 				
-				<Lehrkraefte>
-					<Lehrkraft>FOE</Lehrkraft>
-					<Lehrkraft>DOTG</Lehrkraft>
-				</Lehrkraefte>
+				<Teachers>
+					<Teacher>FOE</Teacher>
+					<Teacher>DOTG</Teacher>
+				</Teachers>
 				
 				<Start>3</Start>
-				<Dauer>3</Dauer>
+				<Duration>3</Duration>
 				
-				<!-- <Beschreibung> entfaellt, da nichts eingetragen -->
+				<!-- <Description> entfaellt, da nichts eingetragen -->
 				
-				<Raeume>
-					<Raum>208</Raum>
-				</Raeume>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
 				
-			</Fach>
-		</Tag>
+			</Subject>
+		</Day>
 		
-		<Tag datum="2014-01-03" typ="feiertag" /> <!-- ferien.Start && ferien.Ende = selbes Datum -->
-	</Woche>
+		<Day date="2014-01-03" typ="holiday" /> <!-- ferien.Start && ferien.Ende = selbes date -->
+	</Week>
 	
-	<Woche von="2014-01-08" bis="2014-01-15" typ="ferien" /> <!-- ferien.Start <= von && ferien.Ende >= bis -->
-	<Woche von="2014-01-17" bis="2014-01-22" typ="ferien" />
+	<Week from="2014-01-08" to="2014-01-15" typ="vacations" /> <!-- ferien.Start <= from && ferien.Ende >= to -->
+	<Week from="2014-01-17" to="2014-01-22" typ="vacations" />
 	
 	
-</Stundenplan>
+</Schedule>

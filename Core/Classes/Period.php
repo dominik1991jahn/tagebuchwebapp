@@ -81,5 +81,14 @@
 		{
 			$this->subject = $subject;
 		}
+		
+		  //
+		 // FUNCTIONS
+		//
+		
+		public static function FromXMLNode(SimpleXMLElement $node)
+		{
+			var_dump($node);
+		}
 	}
 ?>
