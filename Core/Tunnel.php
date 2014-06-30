@@ -28,9 +28,12 @@
 			
 			$request->SetAuthorization($this->username.": ".md5($this->password));
 			
-			$result = $request->SendRequest();
+			$xresponse = simplexml_load_string($request->SendRequest());
 			
-			echo $result;
+			foreach($xresponse->children() as $xweek)
+			{
+				$week = Digikabu_Week::FromXMLNode($xweek);
+			}
 		}
 		
 		public function GetClassList()
