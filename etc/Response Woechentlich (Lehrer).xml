@@ -8,8 +8,8 @@
 	-->
 		<Day date="2014-01-01">
 			<!-- Stunde 1 - 2 -->
-			<Subject>
-				<Abbreviation>TFC#</Abbreviation>
+			<Period>
+				<Subject>TFC#</Subject>
 				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
 				
 				<Teachers>
@@ -31,21 +31,21 @@
 					<Room>208</Room>
 					<Room>209</Room>
 				</Rooms>
-			</Subject>
+			</Period>
 			
 			<!-- Freistunde from 3 - 4 -->
-			<Subject>
-				<Abbreviation>TFC#</Abbreviation>
+			<Period>
+				<Subject>TFC#</Subject>
 				<Class>IT1316b</Class>
 				
 				<Teachers>
 					<Teacher status="absent">KOE</Teacher> <!-- Zusaetliche Lehrer entfallen; aktueller Lehrer haelt Stunde alleine -->
 				</Teachers>
-			</Subject>
+			</Period>
 			
 			<!-- Stunde 5 - 6 (Vertretungsstunden) -->
-			<Subject>
-				<Abbreviation>JAVA</Abbreviation>
+			<Period>
+				<Subject>JAVA</Subject>
 				<Class>IT1215a</Class>
 				
 				<Teachers>
@@ -61,11 +61,11 @@
 					<Room status="occupied">208</Room>
 					<Room>204</Room>
 				</Rooms>
-			</Subject>
+			</Period>
 			
 			<!-- Stunde 7 -->
-			<Subject>
-				<Abbreviation>WMS</Abbreviation>
+			<Period>
+				<Subject>WMS</Subject>
 				
 				<Teachers>
 					<Teacher>DOTL</Teacher>
@@ -79,7 +79,7 @@
 				<Rooms>
 					<Room>204</Room>
 				</Rooms>
-			</Subject>
+			</Period>
 		</Day>
 		
 		<Day date="2014-01-03" type="holiday" />

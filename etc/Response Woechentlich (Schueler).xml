@@ -8,9 +8,9 @@
 	<Week from="2014-01-01" to="2014-01-07"> <!-- date("W",strtotime("2014-01-01")) == Week des Jahres (z.B. 1),  -->
 		<Day date="2014-01-01">
 			<!-- Stunde 1 - 2 -->
-			<Subject>
-				<Abbreviation>TFC#</Abbreviation>
-				<!-- Tagebuch.uSubject ODER Tagebuch.iduSubject -> join -> uSubject.uSubject -->
+			<Period>
+				<Subject>TFC#</Subject>
+				<!-- Tagebuch.uPeriod ODER Tagebuch.iduPeriod -> join -> uPeriod.uPeriod -->
 				
 				<Teachers>
 					<Teacher>RIP</Teacher> <!-- Tagebuch.idlehrer1 -> join -> lehrer.Kname -->
@@ -26,21 +26,21 @@
 					<Room>208</Room> <!-- Tagebuch.Room1 -->
 					<Room>209</Room> <!-- Tagebuch.Room2 -->
 				</Rooms>
-			</Subject>
+			</Period>
 			
 			<!-- Freistunde from 3 - 4 -->
-			<Subject>
-				<Abbreviation>IKWWW</Abbreviation>
+			<Period>
+				<Subject>IKWWW</Subject>
 				
 				<Teachers>
 					<Teacher status="absent">BET</Teacher> <!-- IF Tagebuch.idVlehrer1 <> 0 (Vertretung) ODER Tagebuch.idVlehrer = -1 (cancelled) -->
 					<Teacher status="absent">KOE</Teacher>
 				</Teachers>
-			</Subject>
+			</Period>
 			
 			<!-- Stunde 5 - 6 (Vertretungsstunden) -->
-			<Subject>
-				<Abbreviation>JAVA</Abbreviation>
+			<Period>
+				<Subject>JAVA</Subject>
 				
 				<Teachers>
 					<Teacher status="absent">RIP</Teacher> <!-- IF Tagebuch.idVlehrer <> 0 (Vertretung) -->
@@ -57,11 +57,11 @@
 					<Room>208</Room>
 					<Room>204</Room>
 				</Rooms>
-			</Subject>
+			</Period>
 			
 			<!-- Stunde 7 -->
-			<Subject>
-				<Abbreviation>WMS</Abbreviation>
+			<Period>
+				<Subject>WMS</Subject>
 				
 				<Teachers>
 					<Teacher>DOTL</Teacher>
@@ -75,14 +75,14 @@
 				<Rooms>
 					<Room>204</Room>
 				</Rooms>
-			</Subject>
+			</Period>
 		</Day>
 		
 		<Day date="2014-01-02">
-			<!-- Freistunde 1 - 2 (Subject muss nicht gegeben sein, ist regulär frei -->
+			<!-- Freistunde 1 - 2 (Period muss nicht gegeben sein, ist regulär frei -->
 			
-			<Subject>
-				<Abbreviation>TFBAN</Abbreviation>
+			<Period>
+				<Subject>TFBAN</Subject>
 				
 				<Teachers>
 					<Teacher>FOE</Teacher>
@@ -98,7 +98,7 @@
 					<Room>208</Room>
 				</Rooms>
 				
-			</Subject>
+			</Period>
 		</Day>
 		
 		<Day date="2014-01-03" typ="holiday" /> <!-- ferien.Start && ferien.Ende = selbes date -->
