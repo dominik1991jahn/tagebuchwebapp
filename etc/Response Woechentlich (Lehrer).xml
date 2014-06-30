@@ -13,7 +13,7 @@
 				<Klasse>IT1215a</Klasse> <!-- tagebuch.idklasse -> join -> klasse.kname -->
 				
 				<Lehrkraefte>
-					<Lehrkraft>BAR</Lehrkraft> <!-- Zusaetzliche Lehrkraft!! -->
+					<Lehrkraft>RIP</Lehrkraft> <!-- Zusaetzliche Lehrkraft!! -->
 				</Lehrkraefte>
 				
 				<Start>0</Start>
