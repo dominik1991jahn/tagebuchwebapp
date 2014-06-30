@@ -5,12 +5,9 @@
 		{
 			echo "<h1>Hello App!</h1>";
 			
-			$s = new Digikabu_Period;
+			$tunnel = new Tunnel("dominik","o!saycanyouseemypasswordintheclear");
 			
-			$s->Date = time();
-			$s->Subject = new Digikabu_Subject;
-			
-			echo $s->Date.": ".$s->Subject;
+			$tunnel->GetSchedule();
 		}
 	}
 ?>

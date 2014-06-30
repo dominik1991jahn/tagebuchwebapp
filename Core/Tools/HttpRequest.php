@@ -9,7 +9,6 @@
 		private /*(string)*/ $verb;
 		private /*(RequestData)*/ $data;
 		private /*(HeaderData)*/ $headers;
-		private /*(string)*/ $useragent;
 		
 		  //
 		 // CONSTRUCTOR
@@ -30,7 +29,6 @@
 		public function HttpRequest()
 		{
 			$this->verb = "GET";
-			$this->useragent = "Digikabu Web-App 0.1a";
 			
 			switch(func_num_args())
 			{
@@ -151,13 +149,55 @@
 		 // METHODS
 		//
 		
+		public function __get($field)
+		{
+			switch($field)
+			{
+				case "Verb":
+					return $this->getVerb();
+					
+				case "URL":
+					return $this->getURL();
+					
+				case "Data":
+					return $this->getData();
+					
+				case "Header":
+					return $this->getHeader();
+					
+				default:
+					throw new InvalidArgumentException("Field '".$field."' not defined");
+			}
+		}
+		
+		public function __set($field, $value)
+		{
+			switch($field)
+			{
+				case "Verb":
+					return $this->setVerb($value);
+					
+				case "URL":
+					return $this->setURL($value);
+					
+				case "Data":
+					throw new InvalidArgumentException("Field 'Data' cannot directly be overwritten");
+					
+				case "Header":
+					throw new InvalidArgumentException("Field 'Header' cannot directly be overwritten");
+					
+				default:
+					throw new InvalidArgumentException("Field '".$field."' not defined");
+			}
+		}
+		
 		public function SendRequest()
 		{
 			
 			$streamContext = stream_context_create();
 			
 			stream_context_set_option($streamContext, 'http', "method", $this->verb);
-			stream_context_set_option($streamContext, 'http', "user_agent", $this->useragent);
+			#stream_context_set_option($streamContext, 'http', "user_agent", $this->Headers["UserAgent"]);
 			stream_context_set_option($streamContext, 'http', "follow_location", true);
 			stream_context_set_option($streamContext, 'http', "max_redirects", 10);
 			stream_context_set_option($streamContext, 'http', "timeout", 15.0);
@@ -205,20 +245,54 @@
 			return $result;
 		}
 
-		public function SetHttpHeader($name, $value)
+		public function SetAuthorization($authorization)
 		{
-			if(!($this->header instanceof HeaderData))
-				$this->header = new HeaderData;
+			if(is_null($this->headers))
+				$this->headers = new HeaderData;
 			
-			return $this->header->AddHeader($name, $value);
+			return $this->Header->AddHeader("Authorization",$authorization);
 		}
-
-		public function AddDataParameter($name, $value)
+		
+		  //
+		 // GETTERS/SETTERS
+		//
+		
+		# Verb
+		
+		private function getVerb()
 		{
-			if(!($this->data instanceof RequestData))
-				$this->data = new RequestData;
-			
-			return $this->data->AddParameter($name, $value);
+			return $this->verb;
+		}
+		
+		private function setVerb($verb)
+		{
+			$this->verb = $verb;
+		}
+		
+		# URL
+		
+		private function getURL()
+		{
+			return $this->url;
+		}
+		
+		private function setURL($url)
+		{
+			$this->url = $url;
+		}
+		
+		# Data
+		
+		private function getData()
+		{
+			return $this->data;
+		}
+		
+		# Header
+		
+		private function getHeader()
+		{
+			return $this->headers;
 		}
 		
 		  //

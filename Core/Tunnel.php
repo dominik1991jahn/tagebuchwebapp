@@ -24,7 +24,13 @@
 		
 		public function GetSchedule()
 		{
+			$request = new HttpRequest("GET", "http://bsz0/~jahnd/digikabuwebapp/ResponseExamples/Schedule/Students/Response%20Woechentlich%20%28Schueler%29.xml");
 			
+			$request->SetAuthorization($this->username.": ".md5($this->password));
+			
+			$result = $request->SendRequest();
+			
+			echo $result;
 		}
 		
 		public function GetClassList()

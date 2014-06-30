@@ -33,7 +33,7 @@
 		{
 			switch($name)
 			{
-				case "abbreviation": $this->setAbbreviation($value); break;
+				case "Abbreviation": $this->setAbbreviation($value); break;
 				case "Name": $this->setName($value); break;
 			}
 		}
