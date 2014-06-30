@@ -42,6 +42,11 @@
 				case "Description": $this->setDescription($value); break;
 			}
 		}
+		
+		public function toJSON()
+		{
+			
+		}
 		 
 		  //
 		 // FUNCTIONS

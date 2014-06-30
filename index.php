@@ -1,5 +1,6 @@
 <?php
 	include("Core/App.php");
+	include("Core/Classes/Object.php");
 	include("Core/Classes/Period.php");
 	include("Core/Classes/Subject.php");
 	include("Core/Classes/Teacher.php");

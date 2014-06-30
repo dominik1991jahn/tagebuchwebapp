@@ -1,5 +1,5 @@
 <?php
-	class Digikabu_Week
+	class Digikabu_Day
 	{
 		//$status (frei/feiertag)
 		//$date

@@ -7,8 +7,8 @@
 		
 		private /*(string)*/ $url;
 		private /*(string)*/ $verb;
-		private /*(array:string:string)*/ $data;
-		private /*(array:string:string)*/ $headers;
+		private /*(RequestData)*/ $data;
+		private /*(HeaderData)*/ $headers;
 		private /*(string)*/ $useragent;
 		
 		  //
@@ -20,10 +20,11 @@
 		 * 
 		 * Request(String $url)
 		 * Request(String $verb, String $url)
-		 * Request(String $url, Array<String, String> data)
-		 * Request(String $verb, String $url, Array<String, String> $data)
-		 * Request(String $url, Array<String, String> data, Array<String, String> header)
-		 * Request(String $verb, String $url, Array<String, String> data, Array<String, String> $header)
+		 * Request(String $url, RequestData data)
+		 * Request(String $verb, String $url, RequestData $data)
+		 * Request(String $verb, String $url, HeaderData $data)
+		 * Request(String $url, RequestData data, HeaderData header)
+		 * Request(String $verb, String $url, RequestData data, HeaderData header)
 		 */
 		 
 		public function HttpRequest()
@@ -33,33 +34,107 @@
 			
 			switch(func_num_args())
 			{
+				/*
+				 * Request(String $url)
+				 */
+				
 				case 1:
 					
 					$url = func_get_arg(0);
 					
-					$this->GETRequest($url);
+					if(is_string($url))
+					{
+						$this->url = $url;
+					}
+					else
+					{
+						throw new InvalidArgumentException("Overload (".gettype($url).") not defined");
+					}
 					
 					break;
+				
+				/*
+				 * Request(String $verb, String $url)
+		 		 * Request(String $url, RequestData data)
+				 */
 				
 				case 2:
 					
-					$verb = func_get_arg(0);
-					$url = func_get_arg(1);
+					$verb_url = func_get_arg(0);
+					$url_data = func_get_arg(1);
 					
-					$this->RequestWithVerbAndURL($verb,$url);
+					if(HttpRequest::IsHTTPVerb($verb_url) && is_string($url_data))
+					{
+						$this->verb = $verb_url;
+						$this->url = $url_data;
+					}
+					else if(is_string($verb_url) && $url_data instanceof RequestData)
+					{
+						$this->url = $verb_url;
+						$this->data = $url_data;
+					}
+					else
+					{
+						throw new InvalidArgumentException("Overload (".gettype($verb_url).", ".gettype($url_data).") not defined");
+					}
 					
 					break;
 				
+				/*
+				 * Request(String $verb, String $url, RequestData $data)
+				 * Request(String $verb, String $url, HeaderData $data)
+		 	     * Request(String $url, RequestData data, HeaderData header)
+				 */
+				 
 				case 3:
+					
+					$verb_url = func_get_arg(0);
+					$url_data = func_get_arg(1);
+					$data_header = func_get_arg(2);
+					
+					
+					if(HttpRequest::IsHTTPVerb($verb_url) && is_string($url_data) && ($data_header instanceof RequestData || $data_header instanceof HeaderData))
+					{
+						$this->verb = $verb_url;
+						$this->url = $url_data;
+						
+						if($data_header instanceof RequestData)
+						{
+							$this->data = $data_header;
+						}
+						else if($data_header instanceof HeaderData)
+						{
+							$this->header = $data_header;
+						}
+					}
+					else if(is_string($verb_url) && $url_data instanceof RequestData && $data_header instanceof HeaderData)
+					{
+						$this->url = $verb_url;
+						$this->data = $url_data;
+						$this->header = $data_header;
+					}
+					else
+					{
+						throw new InvalidArgumentException("Overload (".gettype($verb_url).", ".gettype($url_data).", ".gettype($data_header).") not defined");
+					}
 					
 					break;
 					
+				/*
+				 * Request(String $verb, String $url, RequestData data, HeaderData header)
+				 */
+				
 				case 4:
 					
 					$verb = func_get_arg(0);
 					$url = func_get_arg(1);
 					$data = func_get_arg(2);
 					$headers = func_get_arg(3);
+					
+					if(!HttpRequest::IsHTTPVerb($verb) || !is_string($url) || !($data instanceof RequestData) || !($headers instanceof HeaderData))
+					{
+						throw new InvalidArgumentException("Overload (".gettype($verb).", ".gettype($url).", ".gettype($data).", ".gettype($headers).") not defined");
+					}
 					
 					$this->verb = $verb;
 					$this->url = $url;
@@ -70,22 +145,6 @@
 					
 				default: throw new InvalidArgumentException('Too many arguments passed');
 			}
-		}
-		
-		private function GETRequest($url)
-		{
-			$this->url = $url;
-			$this->verb = "GET";
-			$this->data = array();
-			$this->headers = array();
-		}
-		
-		private function RequestWithVerbAndURL($verb, $url)
-		{
-			$this->url = $url;
-			$this->verb = $verb;
-			$this->data = array();
-			$this->headers = array();
 		}
 		
 		  //
@@ -106,9 +165,9 @@
 			
 			$url = $this->url;
 			
-			if(count($this->data))
+			if(!is_null($this->data))
 			{
-				$data = http_build_query($this->data);
+				$data = http_build_query($this->data->Parameters);
 				
 				if($this->verb <> 'GET')
 				{
@@ -120,11 +179,13 @@
 				}
 			}
 			
-			if(count($this->headers))
+			if(!is_null($this->headers))
 			{
 				$header = "";
 				
-				foreach($this->headers as $name => $value)
+				$headers = $this->headers->Headers;
+				
+				foreach($headers as $name => $value)
 				{
 					$header .= $name.": ".$name."\r\n";
 				}
@@ -144,9 +205,32 @@
 			return $result;
 		}
 
-		public function addHttpHeader($name, $value)
+		public function SetHttpHeader($name, $value)
 		{
-			$this->headers[$name] = $value;
+			if(!($this->header instanceof HeaderData))
+				$this->header = new HeaderData;
+			
+			return $this->header->AddHeader($name, $value);
+		}
+
+		public function AddDataParameter($name, $value)
+		{
+			if(!($this->data instanceof RequestData))
+				$this->data = new RequestData;
+			
+			return $this->data->AddParameter($name, $value);
+		}
+		
+		  //
+		 // FUNCTIONS
+		//
+		
+		public function IsHTTPVerb($verb)
+		{
+			if(in_array($verb, array(HttpRequest::HTTP_VERB_GET, HttpRequest::HTTP_VERB_POST, HttpRequest::HTTP_VERB_PUT, HttpRequest::HTTP_VERB_DELETE)))
+				return true;
+			
+			return false;
 		}
 		
 		  //
@@ -157,5 +241,107 @@
 		const HTTP_VERB_POST = "POST";
 		const HTTP_VERB_PUT = "PUT";
 		const HTTP_VERB_DELETE = "DELETE";
+	}
+
+	class RequestData
+	{
+		  //
+		 // ATTRIBUTES
+		//
+		
+		private /*(array<String,String>)*/ $data;
+		
+		  //
+		 // CONSTRUCTOR
+		//
+		
+		public function RequestData()
+		{
+			$this->data = array();
+		}
+		
+		  //
+		 // METHODS
+		//
+		
+		public function AddParameter($name, $value)
+		{
+			$this->data[$name] = $value;
+		}
+		
+		public function __get($field)
+		{
+			switch($field)
+			{
+				case "Parameters":
+					return $this->data;
+					
+				default:
+					throw new InvalidArgumentException("Field '".$field."' not defined");
+			}
+		}
+		
+		public function __set($field, $value)
+		{
+			switch($field)
+			{
+				case "Parameters":
+					throw new InvalidArgumentException("Field 'Parameters' is read-only");
+				
+				default:
+					throw new InvalidArgumentException("Field '".$field."' not defined");
+			}
+		}
+	}
+	
+	class HeaderData
+	{
+		  //
+		 // ATTRIBUTES
+		//
+		
+		private /*(array<String,String>)*/ $data;
+		
+		  //
+		 // CONSTRUCTOR
+		//
+		
+		public function HeaderData()
+		{
+			$this->data = array();
+		}
+		
+		  //
+		 // METHODS
+		//
+		
+		public function AddHeader($name, $value)
+		{
+			$this->data[$name] = $value;
+		}
+		
+		public function __get($field)
+		{
+			switch($field)
+			{
+				case "Headers":
+					return $this->data;
+					
+				default:
+					throw new InvalidArgumentException("Field '".$field."' not defined");
+			}
+		}
+		
+		public function __set($field, $value)
+		{
+			switch($field)
+			{
+				case "Headers":
+					throw new InvalidArgumentException("Field 'Headers' is read-only");
+				
+				default:
+					throw new InvalidArgumentException("Field '".$field."' not defined");
+			}
+		}
 	}
 ?>

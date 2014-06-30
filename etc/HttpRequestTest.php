@@ -25,12 +25,13 @@
 		</form>
 		
 		<?php
+				
 			if(isset($_POST["submit"]))
 			{
 				$url = "http://localhost/tagebuchwebapp/etc/HttpRequestTest2.php?".$url;
 				
 				$data_raw = explode("\n",$data);
-				$data = array();
+				$data = new RequestData;
 				
 				if(count($data_raw))
 				{
@@ -41,12 +42,12 @@
 						$name = $line[0];
 						$value = trim($line[1]);
 						
-						$data[$name] = $value;
+						$data->AddParameter($name, $value);
 					}
 				}
 				
 				$headers_raw = explode("\n",$headers);
-				$headers = array();
+				$headers = new HeaderData;
 				
 				if(count($headers_raw))
 				{
@@ -57,7 +58,7 @@
 						$name = $line[0];
 						$value = rtrim($line[1]);
 						
-						$headers[$name] = $value;
+						$headers->AddHeader($name, $value);
 					}
 				}
 				

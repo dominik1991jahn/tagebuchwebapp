@@ -36,6 +36,11 @@
 			}
 		}
 		
+		public function toJSON()
+		{
+			
+		}
+		
 		  //
 		 // FUNCTIONS
 		//

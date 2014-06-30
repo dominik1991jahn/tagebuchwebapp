@@ -5,7 +5,7 @@
 		{
 			echo "<h1>Hello App!</h1>";
 			
-			$s = new Digikabu_Schedule;
+			$s = new Digikabu_Period;
 			
 			$s->Date = time();
 			$s->Subject = new Digikabu_Subject;

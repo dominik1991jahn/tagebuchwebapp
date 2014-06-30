@@ -38,6 +38,11 @@
 			}
 		}
 		
+		public function toJSON()
+		{
+			
+		}
+		
 		  //
 		 // FUNCTIONS
 		//
