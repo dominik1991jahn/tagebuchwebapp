@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Classes>
+  <Class>BFI10a</Class>
+  <Class>BFI10b</Class>
+  <Class>BFI11a</Class>
+  <Class>BFI11b</Class>
+  <Class>BFI12a</Class>
+  <Class>BFI12b</Class>
+  <Class>FWI1</Class> <!-- klasse.kname -->
+  <Class>FWI2</Class>
+</Classes>

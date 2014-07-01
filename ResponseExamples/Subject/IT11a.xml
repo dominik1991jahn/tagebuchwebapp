@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Subjects>
+	<!-- SELECT ... FROM ufach
+	     WHERE idklasse = (SELECT idklasse FROM klasse WHERE kname = 'IT1215a')
+	     
+	     Liste muss fuer jede Klasse neu angefordert werden
+	     (Besonders wichtig falls andere Schulen des BSZ die (Web-)App nutzen wollen (sind in der gleichen Datenbank gespeichert)
+	-->
+	
+	<Subject>
+		<!-- ufach.ufach -->
+		<Abbreviation>IKWWW</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<!-- Muss selbst bereitgestellt werden, keine Entsprechung in der Datenbank -->
+		<Description>Informations- und Kommunikationssysteme WWW</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>IKKS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Informations- und Kommunikationssysteme</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>IKBS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Informations- und Kommunikationssysteme BS</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>D</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Deutsch</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>E</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Englisch</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>DBA</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Datenbank Anwendungen</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>MSE</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Methoden der Softwareentwicklung</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>Java</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Anwendungsentwicklung Java</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>DBS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Datenbank Systeme</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>TFBAN</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Trainingsfirma BAN</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>TFCSHARP</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Trainingsfirma C#</Description>
+	</Subject>
+	<Subject>
+		<Abbreviation>SK</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Sozialkunde</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>TFBAN1</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Trainingsfirma BAN1</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>TFBAN2</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Trainingsfirma BAN2</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>RK</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Religion Katholisch</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>RV</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Religion Evangelisch</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>SP</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Sport</Description>
+	</Subject>
+	
+	<Subject>
+		<Abbreviation>WMS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Description>Wirtschaftsmathematik und Statistik</Description>
+	</Subject>
+	
+</Subjects>
