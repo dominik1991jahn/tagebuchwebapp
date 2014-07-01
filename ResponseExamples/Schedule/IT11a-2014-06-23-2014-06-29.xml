@@ -87,12 +87,32 @@
 					<Teacher>RIP</Teacher>
 					<Teacher status="absent">SCHA</Teacher>
 				</Teachers>
-				<Start>0</Start>
 				<Duration>3</Duration>
 				<Description>BeschreibungDBS</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
+			</Period>
+			<Period>
+				<Subject>JAVA</Subject>
+				<Teachers>
+					<Teacher>KOEH</Teacher>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<Duration>2</Duration>
+				<Description>BeschreibungJAVA</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>RELI/SPORT</Subject>
+				<Teachers>
+					<Teacher>LEI</Teacher>
+					<Teacher>JAN</Teacher>
+				</Teachers>
+				<Duration>2</Duration>
+				<Description></Description>
 			</Period>
 		</Day>
 	</Week>
