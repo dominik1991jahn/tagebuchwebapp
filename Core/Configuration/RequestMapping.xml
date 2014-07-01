@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequestMapping>
+	<Schedule>
+		<RetrieveForClass>{Configuration:ServerURL}/Schedule/{Class}-{From}-{To}.xml</RetrieveForClass>
+		<RetrieveForTeacher>{Configuration:ServerURL}/Schedule/{Teacher}-{From}-{To}.xml</RetrieveForTeacher>	
+	</Schedule>
+	<RetrieveClassList>{Configuration:ServerURL}/Classes.xml</RetrieveClassList>
+	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>
+</RequestMapping>

@@ -17,7 +17,7 @@
 		<style type="text/css">
 			div.normal
 			{
-				width:400px;
+				width:200px;
 				margin:4px;
 				background-color:#A8A8A8;
 				border: 2px solid #000000;
@@ -25,7 +25,7 @@
 			}
 			div.warning
 			{
-				width:400px;
+				width:200px;
 				margin:4px;
 				background-color:#A8A8A8;
 				background-image:url(img/warning.png);
@@ -35,23 +35,41 @@
 				border: 2px solid #EE3B3B;
 				position: relative;
 			}
+			div.cancelled
+			{
+				width:200px;
+				margin:4px;
+				background-color:#A8A8A8;
+				background-image:url(img/schraffurROT.png);
+				background-repeat: repeat-x;
+				text-decoration: blink;
+				border: 2px solid #EE3B3B;
+				position: relative;
+			}
+			div.cancelled *
+			{
+				/*background-color: RGBA(255,255,255,0.5);*/
+				/*font-weight: 700;*/
+				text-shadow: black 1px 1px 1px;
+			}
 			div.day
 			{
 				border: 2px solid #000000;
 				margin: 4px;
-				width: 412px;
+				width: 212px;
 				float: left;
+				height: 592px;
 			}
 			div.leftCol
 			{
 				float: left;
-				width: 300px;
+				width: 150px;
 				/* background: red; */
 			}
 			div.rightCol
 			{
 				float: right;
-				width: 100px;
+				width: 50px;
 				text-align:right;
 				/*background: yellow; */
 			}
@@ -66,14 +84,14 @@
 			{
 				clear:both;
 				/*background: lightblue; */
-				width: 400px;
+				width: 200px;
 				position: absolute;
 				bottom: 0;
 				text-align:right;
 			}
 			div.littleP
 			{
-				width: 404px;
+				width: 204px;
 				background-image:url(img/schraffur.png);
 				background-repeat: repeat-x;
 				height: 10px;
@@ -81,7 +99,7 @@
 			}
 			div.bigP
 			{
-				width: 404px;
+				width: 204px;
 				background-image:url(img/schraffur.png);
 				background-repeat: repeat-x;
 				height: 50px;
@@ -95,9 +113,10 @@
 		<div id="info">
 			<!-- Klasse und akt datum -->
 		</div>
+		
+		<!-- eine std hat heigth=50px + margin=4px -->
 		<div class="day">
 			<div class="normal" style="height:104px">
-				<!-- 100 px hch weil eine std -->
 				<div class="leftCol"  > FEH: D </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
@@ -105,14 +124,12 @@
 			</div>
 			<div class="littleP"> </div>
 			<div class="normal" style="height:104px">
-				<!-- 100 px hch weil eine std -->
 				<div class="leftCol"  > BET/KOEH: IKWWW </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
 				<div class="bottomCol"> 10:15 - 11:45 </div>
 			</div>
 			<div class="normal" style="height:50px;">
-				<!-- 100 px hch weil eine std -->
 				<div class="leftCol"  > RIER: E </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
@@ -120,7 +137,6 @@
 			</div>
 			<div class="bigP"> </div>
 			<div class="normal" style="height:104px;">
-				<!-- 300 px hoch weil drei std -->
 				<div class="leftCol"  > RIP/BAR: DBA </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
@@ -128,7 +144,6 @@
 			</div>
 			<div class="littleP"> </div>
 			<div class="normal" style="height:104px">
-				<!-- 200 px hoch weil zwei std -->
 				<div class="leftCol"  > BAR: MSE </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
@@ -137,7 +152,6 @@
 		</div>
 		<div class="day">
 			<div class="warning" style="height:104px;">
-				<!-- 100 px hch weil eine std -->
 				<div class="leftCol"  > BAR für KOEH/BAR: JAVA </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
@@ -145,7 +159,6 @@
 			</div>
 			<div class="littleP"> </div>
 			<div class="normal" style="height:162px;">
-				<!-- 100 px hch weil eine std -->
 				<div class="leftCol"  > SCHA/RIP: DBS </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
@@ -153,49 +166,92 @@
 			</div>
 			<div class="bigP"> </div>
 			<div class="normal" style="height:104px;">
-				<!-- 300 px hoch weil drei std -->
 				<div class="leftCol"  > KOEH/BAR: JAVA </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
 				<div class="bottomCol"> 13:15 - 14:40 </div>
 			</div>
 			<div class="littleP"> </div>
-			<div class="warning" style="height:104px">
-				<!-- 200 px hoch weil zwei std -->
-				<div class="leftCol"  > LEI entfällt</div>
+			<div class="cancelled" style="height:104px">
+				<div class="leftCol"  > LEI entfällt </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
 				<div class="bottomCol"> 14:50 - 16:15 </div>
 			</div>
 		</div>
 		<div class="day">
-			<div class="warning" style="height:104px;margin-bottom:24px">
-				<!-- 100 px hch weil eine std -->
-				<div class="leftCol"  > BAR für KOEH/BAR: JAVA </div>
+			<div class="normal" style="height:104px">
+				<div class="leftCol"  > FOE/DOTG: TFBAN </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
 				<div class="bottomCol"> 08:30 - 10:00 </div>
 			</div>
-			<div class="normal" style="height:150px;margin-bottom:58px;">
-				<!-- 100 px hch weil eine std -->
-				<div class="leftCol"  > SCHA/RIP: DBS </div>
+			<div class="littleP"> </div>
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > FOE/DOTG: TFBAN  </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 10:15 - 11:00 </div>
+			</div>
+			<div class="normal" style="height:104px;">
+				<div class="leftCol"  > RIP/BAR: TFCSHARP </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 11:00 - 12:30 </div>
+			</div>
+			<div class="bigP"> </div>
+			<div class="normal" style="height:104px">
+				<div class="leftCol"  > MAT: IKBS </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 13:15 - 14:40 </div>
+			</div>
+		</div>
+		<div class="day">
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > RIP/BAR:TFCSHARP </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 08:30 - 09:15 </div>
+			</div>
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > FEH: SK </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 09:15 - 10:00 </div>
+			</div>
+			<div class="littleP"> </div>
+			<div class="normal" style="height:158px">
+				<div class="leftCol"  > KOEH/BAR: JAVA  </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
 				<div class="bottomCol"> 10:15 - 12:30 </div>
 			</div>
-			<div class="normal" style="height:104px;">
-				<!-- 300 px hoch weil drei std -->
-				<div class="leftCol"  > KOEH/BAR: JAVA </div>
+			<div class="bigP"> </div>
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > RIP:TFCSHARP </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
-				<div class="bottomCol"> 08:30 - 10:00 </div>
+				<div class="bottomCol"> 13:15 - 14:00 </div>
 			</div>
-			<div class="warning" style="height:104px">
-				<!-- 200 px hoch weil zwei std -->
-				<div class="leftCol"  > LEI entfällt</div>
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > DOTG:TFBAN1 </div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
-				<div class="bottomCol"> 08:30 - 10:00 </div>
+				<div class="bottomCol"> 14:00 - 14:40 </div>
+			</div>
+			<div class="littleP"> </div>
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > RIER:E </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 14:50 - 15:30 </div>
+			</div>
+			<div class="normal" style="height:50px">
+				<div class="leftCol"  > DORG:TFBAN2 </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 15:30 - 16:15 </div>
 			</div>
 		</div>
 	</body>

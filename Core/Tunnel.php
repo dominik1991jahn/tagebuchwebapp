@@ -24,7 +24,8 @@
 		
 		public function GetSchedule()
 		{
-			$request = new HttpRequest("GET", "http://bsz0/~jahnd/digikabuwebapp/ResponseExamples/Schedule/Students/Response%20Woechentlich%20%28Schueler%29.xml");
+			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class" => "IT11a", "From" => "2014-06-23", "To" => "2014-06-29"));
+			$request = new HttpRequest("GET", $url);
 			
 			$request->SetAuthorization($this->username.": ".md5($this->password));
 			

@@ -6,6 +6,6 @@
   <Class>BFI11b</Class>
   <Class>BFI12a</Class>
   <Class>BFI12b</Class>
-  <Class>FWI1</Class> <!-- klasse.kname -->
+  <Class>FWI1</Class>
   <Class>FWI2</Class>
 </Classes>
