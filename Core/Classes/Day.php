@@ -20,6 +20,15 @@
 		}
 		
 		  //
+		 // METHODS
+		//
+		
+		public function AddPeriod(Digikabu_Period $period)
+		{
+			$this->periods[] = $period;
+		}
+		
+		  //
 		 // FUNCTIONS
 		//
 		
@@ -30,6 +39,13 @@
 			$date = strtotime((string) $attributes["date"]);
 			
 			$day = new Digikabu_Day($date);
+			
+			foreach($node->children() as $xperiod)
+			{
+				$period = Digikabu_Period::FromXMLNode($xperiod);
+				
+				$day->AddPeriod($period);
+			}
 			
 			return $day;
 		}

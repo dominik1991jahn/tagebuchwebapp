@@ -37,7 +37,7 @@
 		public static function FromXMLNode(SimpleXMLElement $node)
 		{
 			$attributes = $node->attributes();
-				var_dump($attributes);
+			
 			$from = strtotime((string) $attributes["from"]);
 			$to = strtotime((string) $attributes["to"]);
 			

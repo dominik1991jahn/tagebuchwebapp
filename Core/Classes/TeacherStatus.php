@@ -6,7 +6,7 @@
 		//
 		
 		private /*(Digikabu_Teacher)*/ $teacher;
-		private /*(int)*/ $status;
+		private /*(Digikabu_TeacherStatus_Abstract)*/ $status;
 		
 		  //
 		 // CONSTRUCTOR
@@ -26,8 +26,8 @@
 		{
 			switch($name)
 			{
-				case "Teacher": return $this->getTeacher(); break;
-				case "Status": return $this->getStatus(); break;
+				case "Teacher": return $this->GetTeacher(); break;
+				case "Status": return $this->GetStatus(); break;
 			}
 		}
 		
@@ -35,8 +35,8 @@
 		{
 			switch($name)
 			{
-				case "Teacher": $this->setTeacher($value);  break;
-				case "Status": $this->setStatus($value); break;
+				case "Teacher": $this->SetTeacher($value);  break;
+				case "Status": $this->SetStatus($value); break;
 			}
 		}
 		
@@ -46,24 +46,24 @@
 		
 		# Teacher
 		
-		public function getTeacher()
+		private function GetTeacher()
 		{
 			return $this->teacher;
 		}
 		
-		public function setTeacher(Digikabu_Teacher $teacher)
+		private function SetTeacher(Digikabu_Teacher $teacher)
 		{
 			$this->teacher = $teacher;
 		}
 		
 		# Status
 		
-		public function /*(int)*/ getStatus()
+		private function /*(int)*/ GetStatus()
 		{
 			return $this->status;
 		}
 		
-		public function /*(void)*/ setStatus(Digikabu_TeacherStatus_Abstract $status)
+		private function /*(void)*/ SetStatus(Digikabu_TeacherStatus_Abstract $status)
 		{
 			$this->status = $status;
 		}
@@ -83,15 +83,30 @@
 			}
 		}
 		
-		public static function /*(int)*/ GetStatusForName(/*(string)*/ $name)
+		public static function GetStatusForName($name)
 		{
 			switch($name)
 			{
-				case "NORMAL": return self::STATUS_NORMAL;
-				case "SUBSTITUTION": return self::STATUS_SUBSTITUTION;
-				case "ABSENCE": return self::STATUS_ABSENCE;
-				default: return null;
+				case "NORMAL": return new Digikabu_TeacherStatus_Normal;
+				case "ABSENT": return new Digikabu_TeacherStatus_Absent;
+				case "SUBSTITUTION": return new Digikabu_TeacherStatus_Substitution;
+				default: throw new Exception("Invalid Teacher Status '".$name."'");
 			}
+		}
+		
+		public static function FromXMLNode(SimpleXMLElement $node)
+		{
+			$attributes = $node->attributes();
+			
+			$teacher = (string) $node;
+			$teacher = new Digikabu_Teacher($teacher);
+			
+			$status = (isset($attributes["status"]) ? strtoupper((string) $attributes["status"]) : "NORMAL");
+			$status = self::GetStatusForName($status);
+			
+			$tstatus = new Digikabu_TeacherStatus($teacher, $status);
+			
+			return $tstatus;
 		}
 		
 		  //
@@ -100,7 +115,7 @@
 		
 		const /*(int)*/ STATUS_NORMAL = 1;
 		const /*(int)*/ STATUS_SUBSTITUTION = 2;
-		const /*(int)*/ STATUS_ABSENCE = 4;
+		const /*(int)*/ STATUS_ABSENT = 4;
 	}
 
 	abstract class Digikabu_TeacherStatus_Abstract
@@ -137,11 +152,11 @@
 		}
 	}
 	
-	class Digikabu_TeacherStatus_Absence extends Digikabu_TeacherStatus_Abstract
+	class Digikabu_TeacherStatus_Absent extends Digikabu_TeacherStatus_Abstract
 	{
-		public function Digikabu_TeacherStatus_Absence()
+		public function Digikabu_TeacherStatus_Absenr()
 		{
-			$this->status = Digikabu_TeacherStatus::STATUS_ABSENCE;
+			$this->status = Digikabu_TeacherStatus::STATUS_ABSENT;
 		}
 	}
 ?>
