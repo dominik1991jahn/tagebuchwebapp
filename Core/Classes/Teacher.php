@@ -47,7 +47,6 @@
 		 // FUNCTIONS
 		//
 		
-		public static function doSomething() {}
 		
 		  //
 		 // GETTERS / SETTERS
