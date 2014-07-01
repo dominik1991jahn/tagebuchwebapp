@@ -35,6 +35,23 @@
 				border: 2px solid #EE3B3B;
 				position: relative;
 			}
+			div.cancelled
+			{
+				width:400px;
+				margin:4px;
+				background-color:#A8A8A8;
+				background-image:url(img/schraffurROT.png);
+				background-repeat: repeat-x;
+				text-decoration: blink;
+				border: 2px solid #EE3B3B;
+				position: relative;
+			}
+			div.cancelled *
+			{
+				/*background-color: RGBA(255,255,255,0.5);*/
+				/*font-weight: 700;*/
+				text-shadow: black 1px 1px 1px;
+			}
 			div.day
 			{
 				border: 2px solid #000000;
@@ -160,9 +177,9 @@
 				<div class="bottomCol"> 13:15 - 14:40 </div>
 			</div>
 			<div class="littleP"> </div>
-			<div class="warning" style="height:104px">
+			<div class="cancelled" style="height:104px">
 				<!-- 200 px hoch weil zwei std -->
-				<div class="leftCol"  > LEI entfällt</div>
+				<div class="leftCol"  > LEI entfällt</span></div>
 				<div class="rightCol" > 208 </div>
 				<div class="centerCol"> Beschreibung Beispieltext </div>
 				<div class="bottomCol"> 14:50 - 16:15 </div>
