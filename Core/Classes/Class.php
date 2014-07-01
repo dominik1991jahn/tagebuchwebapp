@@ -20,19 +20,19 @@
 		 // METHODS
 		//
 		
-		public function __get($name)
+		public function __Get($name)
 		{
 			switch($name)
 			{
-				case "Description": return $this->getDescription(); break;
+				case "Description": return $this->GetDescription(); break;
 			}
 		}
 		
-		public function __set($name,$value)
+		public function __Set($name,$value)
 		{
 			switch($name)
 			{
-				case "Description": $this->setDescription($value); break;
+				case "Description": $this->SetDescription($value); break;
 			}
 		}
 		
@@ -43,17 +43,17 @@
 		public static function doSomething() {}
 		
 		  //
-		 // GETTERS / SETTERS
+		 // GetTERS / SetTERS
 	    //
 		
 		# Description
 		
-		public function getDescription()
+		public function GetDescription()
 		{
 			return $this->description;
 		}
 		
-		public function setDescription(/*(string)*/ $description)
+		public function SetDescription(/*(string)*/ $description)
 		{
 			$this->description = $description;
 		}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Teachers>
+	<Teacher>
+		<Code>BAR</Code> <!-- lehrer.kname -->
+		<Name>Bareuther</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>RIP</Code> <!-- lehrer.kname -->
+		<Name>Rippert</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>BET</Code> <!-- lehrer.kname -->
+		<Name>Betz</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>KOEH</Code> <!-- lehrer.kname -->
+		<Name>Körner</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>RIER</Code> <!-- lehrer.kname -->
+		<Name>Rieger</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>FEH</Code> <!-- lehrer.kname -->
+		<Name>Fehr</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>VIE</Code> <!-- lehrer.kname -->
+		<Name>Vieselthaler</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>SCHA</Code> <!-- lehrer.kname -->
+		<Name>Schenkel</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>LEI</Code> <!-- lehrer.kname -->
+		<Name>Leipold</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>FOE</Code> <!-- lehrer.kname -->
+		<Name>Födisch</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>DOTG</Code> <!-- lehrer.kname -->
+		<Name>Dotzler</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>DOTL</Code> <!-- lehrer.kname -->
+		<Name>Dotzler</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>MAT</Code> <!-- lehrer.kname -->
+		<Name>Mattes</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+</Teachers>
