@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Schedule>
-	<Week from="2014-06-30" to="2014-07-04">
-		<Day date="2014-06-30">
+	<Week from="2014-07-07" to="2014-07-11">
+		<Day date="2014-07-07">
 			<Period>
 				<Subject>D</Subject>
 				<Teachers>
@@ -41,33 +41,33 @@
 				</Rooms>
 			</Period>
 			<Period>
-				<Subject>DBA</Subject>
+				<Subject>MSE</Subject>
 				<Teachers>
-					<Teacher>RIP</Teacher>
 					<Teacher>BAR</Teacher>
 				</Teachers>
 				<Start>6</Start>
 				<Duration>2</Duration>
-				<Description>BeschreibungDBA</Description>
+				<Description>BeschreibungMSE</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
 			</Period>
 			<Period>
-				<Subject>MSE</Subject>
+				<Subject>DBA</Subject>
 				<Teachers>
 					<Teacher>BAR</Teacher>
+					<Teacher>RIP</Teacher>
 				</Teachers>
 				<Start>8</Start>
 				<Duration>2</Duration>
-				<Description>BeschreibungMSE</Description>
+				<Description>BeschreibungDBA</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>	
 			</Period>
 		</Day>
 		
-		<Day date="2014-07-01">
+		<Day date="2014-07-08">
 			<Period>
 				<Subject>JAVA</Subject>
 				<Teachers>
@@ -117,7 +117,7 @@
 				</Rooms>
 			</Period>
 		</Day>
-		<Day date = "2014-07-02">
+		<Day date = "2014-07-09">
 			<Period>
 				<Subject>TFBAN</Subject>
 				<Teachers>
@@ -157,7 +157,7 @@
 				</Rooms>
 			</Period>
 		</Day>	
-		<Day date="2014-07-03">
+		<Day date="2014-07-10">
 			<Period>
 				<Subject>TFCSHARP</Subject>
 				<Teachers>
@@ -250,7 +250,7 @@
 				</Rooms>
 			</Period>
 		</Day>
-		<Day date="2014-07-04">
+		<Day date="2014-07-11">
 			<Period>
 				<Subject>WMS</Subject>
 				<Teachers>
@@ -270,7 +270,7 @@
 					<Teacher>VIE</Teacher>
 				</Teachers>
 				<Start>3</Start>
-				<Duration>2</Duration>
+				<Duration>3</Duration>
 				<Description>BeschreibungIKKS</Description>
 				<Rooms>
 					<Room>208</Room>
