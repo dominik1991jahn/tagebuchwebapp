@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Digikabu.App</title>
+		
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-mobile.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/jquery-mobile.css" />
+		
+		<style type="text/css">
+			.period
+			{
+				border: 2px solid #000;
+				margin-bottom: 4px;
+				height: 80px;
+			}
+			
+			.double
+			{
+				height: 160px;
+			}
+			
+			.triple
+			{
+				height: 240px;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page">
+			<div data-role="header"><h1>Digikabu.App</h1></div>
+			
+			
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#monday" data-role="button" data-iconpos="left">Montag (30.06)</a></li>
+					<li><a href="#tuesday">Dienstag (01.07)</a></li>
+					<li><a href="#wednesday" data-role="button" data-iconpos="right">Mittwoch (02.07)</a></li>
+				</ul>
+			</div>
+			
+			<div data-role="content" id="content">
+				
+				<div class="period double">
+					<p class="subject">IKWWW</p>
+					
+					<p class="room">208</p>
+					
+					<p class="time">08:30 - 10:00</p>
+				</div>
+				
+				<div class="break">&#160;</div>
+				
+				<div class="period single">
+					<p class="subject">TFC#</p>
+					
+					<p class="room">208</p>
+					
+					<p class="time">10:15 - 11:00</p>
+				</div>
+				
+				<div class="period double">
+					<p class="subject">TFC#</p>
+					
+					<p class="room">208</p>
+					
+					<p class="time">10:15 - 11:00</p>
+				</div>
+				
+				<div class="break long"></div>
+				
+				<div class="period triple">
+					<p class="subject">TFC#</p>
+					
+					<p class="room">208</p>
+					
+					<p class="time">10:15 - 11:00</p>
+				</div>
+				
+				<div class="period single">
+					<p class="subject">TFC#</p>
+					
+					<p class="room">208</p>
+					
+					<p class="time">10:15 - 11:00</p>
+				</div>
+				
+			</div>
+			
+			<div data-role="footer" style="text-align:center">
+				<select id="ClassTeacherList" data-native-menu="false">
+					<optgroup label="Klassen">
+						<option>IT10a</option>
+						<option>IT11a</option>
+					</optgroup>
+					
+					<optgroup label="Lehrer">
+						<option>BAR</option>
+						<option>RIP</option>
+					</optgroup>
+				</select>
+			</div>
+		</div>
+	</body>
+</html>

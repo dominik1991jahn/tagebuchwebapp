@@ -31,17 +31,28 @@
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			
+			$weeks = array();
 			foreach($xresponse->children() as $xweek)
 			{
 				$week = Digikabu_Week::FromXMLNode($xweek);
-				echo "<pre>";
-				var_dump($week);
-				echo "</pre><hr/>";
+				
+				$weeks[] = $week;
 			}
+			print_r($weeks);
+			//print json_encode($weeks);
 		}
 		
 		public function GetClassList()
 		{
+			$url = RequestMapping::GetURLForRequest("RetrieveClassList");
+			$request = new HttpRequest("GET", $url);
+			
+			$xresponse = simplexml_load_string($request->SendRequest());
+			
+			$classes = array();
+			
+			
+			
 			
 		}
 		

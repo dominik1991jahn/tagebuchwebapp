@@ -1,5 +1,5 @@
 <?php
-	class Digikabu_Week
+	class Digikabu_Week# implements JSONSerializable
 	{
 		  //
 		 // ATTRIBUTES
@@ -31,6 +31,15 @@
 		public function AddDay(Digikabu_Day $day)
 		{
 			$this->days[] = $day;
+		}
+		
+		public function jsonSerialize()
+		{
+			return array(
+				"Type" => $this->Type,
+				"From" => $this->From,
+				"To" => $this->To
+			);
 		}
 		
 		  //
