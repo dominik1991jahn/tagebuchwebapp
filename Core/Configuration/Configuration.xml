@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<UserAgent>DigiKabu WebApp 0.1/a</UserAgent>
-	<ServerLocation>http://bsz0/~jahnd/tagebuchwebapp/ResponseExamples</ServerLocation>
+	<ServerURL>http://bsz0/~jahnd/tagebuchwebapp/ResponseExamples</ServerURL>
+	
+	<Branch>
+		<Test>!Foo!Bar!</Test>
+	</Branch>
 </Configuration>
