@@ -101,11 +101,11 @@
 			</Period>
 		</Day>
 		
-		<Day date="2014-01-03" typ="holiday" /> <!-- ferien.Start && ferien.Ende = selbes date -->
+		<Day date="2014-01-03" type="holiday" /> <!-- ferien.Start && ferien.Ende = selbes date -->
 	</Week>
 	
-	<Week from="2014-01-08" to="2014-01-15" typ="vacations" /> <!-- ferien.Start <= from && ferien.Ende >= to -->
-	<Week from="2014-01-17" to="2014-01-22" typ="vacations" />
+	<Week from="2014-01-08" to="2014-01-15" type="vacations" /> <!-- ferien.Start <= from && ferien.Ende >= to -->
+	<Week from="2014-01-17" to="2014-01-22" type="vacations" />
 	
 	
 </Schedule>

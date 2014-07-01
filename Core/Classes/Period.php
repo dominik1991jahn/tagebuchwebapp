@@ -9,7 +9,7 @@
 		 // ATTRIBUTES
 		//
 		
-		private /*(int)*/ $date;
+		private /*(Digikabu_PeriodType)*/ $type;
 		private /*(Digikabu_Subject)*/ $subject;
 		private /*(int)*/ $start;
 		private /*(int)*/ $duration;
@@ -34,12 +34,12 @@
 		 // METHODS
 		//
 		
-		public function __get($name)
+		public function __Get($name)
 		{
 			switch($name)
 			{
-				case "Date": return $this->getDate(); break;
-				case "Subject": return $this->getSubject(); break;
+				case "Date": return $this->GetDate(); break;
+				case "Subject": return $this->GetSubject(); break;
 				case "Previous": return $this->GetPrevious(); break;
 				case "Next": return $this->GetNext(); break;
 			}
@@ -73,12 +73,12 @@
 		public static function doSomething() {}
 		
 		  //
-		 // GETTERS / SETTERS
+		 // GetTERS / SETTERS
 		//
 		
 		# Date
 		
-		public function getDate()
+		public function GetDate()
 		{
 			return $this->date;
 		}
@@ -90,7 +90,7 @@
 		
 		# Subject
 		
-		public function getSubject()
+		public function GetSubject()
 		{
 			return $this->subject;
 		}

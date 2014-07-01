@@ -25,21 +25,21 @@
 		 // METHODS
 		//
 		
-		public function __get($name)
+		public function __Get($name)
 		{
 			switch($name)
 			{
-				case "Name": return $this->getName(); break;
-				case "Description": return $this->getDescription(); break;
+				case "Name": return $this->GetName(); break;
+				case "Description": return $this->GetDescription(); break;
 			}
 		}
 		
-		public function __set($name,$value)
+		public function __Set($name,$value)
 		{
 			switch($name)
 			{
-				case "Name": $this->setName($value);  break;
-				case "Description": $this->setDescription($value); break;
+				case "Name": $this->SetName($value);  break;
+				case "Description": $this->SetDescription($value); break;
 			}
 		}
 		
@@ -54,29 +54,29 @@
 		  
 		  
 		  //
-		 // GETTERS / SETTERS
+		 // GetTERS / SetTERS
 		//
 		
 		# Name
 		
-		public function getName()
+		public function GetName()
 		{
 			return $this->name;
 		}
 		
-		public function setName(/*(string)*/ $name)
+		public function SetName(/*(string)*/ $name)
 		{
 			return $this->name = $name;
 		}
 		
 		# Description
 		
-		public function getDescription()
+		public function GetDescription()
 		{
 			return $this->description;
 		}
 		
-		public function setDescription(/*(string)*/ $description)
+		public function SetDescription(/*(string)*/ $description)
 		{
 			$this->description = $description;
 		}

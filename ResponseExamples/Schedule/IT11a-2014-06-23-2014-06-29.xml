@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schedule>
+	<Week from="2014-6-23" to="2014-6-27">
+		<Day date="2014-6-23">
+			<Period>
+				<Subject>D</Subject>
+				<Teachers>
+					<Teacher>FEH</Teacher>
+				</Teachers>
+				<Start>0</Start>
+				<Duration>2</Duration>
+				<Description>BeschreibungD</Description>				
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>IKWWW</Subject>
+				<Teachers>
+					<Teacher>BET</Teacher>
+					<Teacher>KOEH</Teacher>
+				</Teachers>
+				<Start>2</Start>
+				<Duration>2</Duration>
+				<Description>BeschreibungIKWWW</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>E</Subject>
+				<Teachers>
+					<Teacher>RIER</Teacher>
+				</Teachers>
+				<Start>4</Start>
+				<Duration>1</Duration>
+				<Description>BeschreibungE</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>DBA</Subject>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<Start>6</Start>
+				<Duration>2</Duration>
+				<Description>BeschreibungDBA</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>MSE</Subject>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<Start>8</Start>
+				<Duration>2</Duration>
+				<Description>BeschreibungMSE</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>	
+			</Period>
+		</Day>
+		
+		<Day date="2014-06-24">
+			<Period>
+				<Subject>JAVA</Subject>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+					<Teacher status="absent">KOEH</Teacher>
+				</Teachers>
+				<Start>0</Start>
+				<Duration>2</Duration>
+				<Description>BeschreibungJAVA</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>DBS</Subject>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+					<Teacher status="absent">SCHA</Teacher>
+				</Teachers>
+				<Start>0</Start>
+				<Duration>3</Duration>
+				<Description>BeschreibungDBS</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+	</Week>
+	<Week from="2014-01-08" to="2014-01-15" typ="vacations" />
+	<Week from="2014-01-17" to="2014-01-22" typ="vacations" />
+</Schedule>

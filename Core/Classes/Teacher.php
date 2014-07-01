@@ -11,30 +11,30 @@
 		  //
 		 // CONSTRUCTOR
 		//
-		public function Digikabu_Teacher()
+		public function Digikabu_Teacher($abbreviation)
 		{
-			
+			$this->abbreviation = $abbreviation;
 		}
 		
 		  //
 		 // METHODS
 		//
 		
-		public function __get($name)
+		public function __Get($name)
 		{
 			switch($name)
 			{
-				case "Abbreviation": return $this->getAbbreviation(); break;
-				case "Name": return $this->getName(); break;
+				case "Abbreviation": return $this->GetAbbreviation(); break;
+				case "Name": return $this->GetName(); break;
 			}
 		}
 		
-		public function __set($name,$value)
+		public function __Set($name,$value)
 		{
 			switch($name)
 			{
-				case "Abbreviation": $this->setAbbreviation($value); break;
-				case "Name": $this->setName($value); break;
+				case "Abbreviation": $this->SetAbbreviation($value); break;
+				case "Name": $this->SetName($value); break;
 			}
 		}
 		
@@ -49,29 +49,29 @@
 		
 		
 		  //
-		 // GETTERS / SETTERS
+		 // GetTERS / SetTERS
 		//
 		
 		# Abbreviation
 		
-		public function getAbbreviation()
+		public function GetAbbreviation()
 		{
 			return $this->abbreviation;
 		}
 		
-		public function setAbbreviation(/*(string)*/ $abbreviation)
+		public function SetAbbreviation(/*(string)*/ $abbreviation)
 		{
 			$this->abbreviation = $abbreviation;
 		}
 		
 		# Name
 		
-		public function getName()
+		public function GetName()
 		{
 			return $this->name;
 		}
 		
-		public function setName(/*(string)*/ $name)
+		public function SetName(/*(string)*/ $name)
 		{
 			$this->name = $name;
 		}
