@@ -10,6 +10,7 @@
 	include("Core/Classes/Day.php");
 	include("Core/Tools/HttpRequest.php");
 	include("Core/Tools/Configuration.php");
+	include("Core/Tools/RequestMapping.php");
 	include("Core/Tunnel.php");
 	
 	App::Main();

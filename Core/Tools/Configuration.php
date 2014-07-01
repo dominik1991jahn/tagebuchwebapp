@@ -65,5 +65,12 @@
 			
 			return self::$parameters[$parameter];
 		}
+		
+		public static function GetAllParameters()
+		{
+			self::InitializeConfiguration();
+			
+			return self::$parameters;
+		}
 	}
 ?>

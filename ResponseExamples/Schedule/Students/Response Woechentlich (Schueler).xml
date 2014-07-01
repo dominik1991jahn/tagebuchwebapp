@@ -107,5 +107,4 @@
 	<Week from="2014-01-08" to="2014-01-15" type="vacations" /> <!-- ferien.Start <= from && ferien.Ende >= to -->
 	<Week from="2014-01-17" to="2014-01-22" type="vacations" />
 	
-	
 </Schedule>

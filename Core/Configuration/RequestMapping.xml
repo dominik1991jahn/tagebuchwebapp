@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RequestMapping>
-	<Request name="RetrieveScheduleForClass" type="GET" url="{ServerURL}/Schedule/{Class}-{From}-{To}.xml" />
-	<Request name="RetrieveScheduleForTeacher" type="GET" url="{ServerURL}/Schedule/{Teacher}-{From}-{To}.xml" />
-	<Request name="RetrieveClassList" type="GET" url="{ServerURL}/Classes.xml" />
-	<Request name="RetrieveSubjectListForClass" type="GET" url="{ServerURL}/Subject/{Class}.xml" />
+	<Schedule>
+		<RetrieveForClass>{Configuration:ServerURL}/Schedule/{Class}-{From}-{To}.xml</RetrieveForClass>
+		<RetrieveForTeacher>{Configuration:ServerURL}/Schedule/{Teacher}-{From}-{To}.xml</RetrieveForTeacher>	
+	</Schedule>
+	<RetrieveClassList>{Configuration:ServerURL}/Classes.xml</RetrieveClassList>
+	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>
 </RequestMapping>

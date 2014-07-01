@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<UserAgent>DigiKabu WebApp 0.1/a</UserAgent>
-	<ServerURL>http://bsz0/~jahnd/tagebuchwebapp/ResponseExamples</ServerURL>
+	<ServerURL>http://bsz0/~jahnd/digikabuwebapp/ResponseExamples</ServerURL>
 	
-	<Branch>
-		<Test>!Foo!Bar!</Test>
-	</Branch>
+	<FileMapping>
+		<RequestMapping>Core/Configuration/RequestMapping.xml</RequestMapping>
+	</FileMapping>
 </Configuration>
