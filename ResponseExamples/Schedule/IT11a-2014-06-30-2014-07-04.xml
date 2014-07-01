@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Schedule>
-	<Week from="2014-6-23" to="2014-6-27">
-		<Day date="2014-6-23">
+	<Week from="2014-06-30" to="2014-07-04">
+		<Day date="2014-06-30">
 			<Period>
 				<Subject>D</Subject>
 				<Teachers>
@@ -67,7 +67,7 @@
 			</Period>
 		</Day>
 		
-		<Day date="2014-06-24">
+		<Day date="2014-07-1">
 			<Period>
 				<Subject>JAVA</Subject>
 				<Teachers>
@@ -85,8 +85,9 @@
 				<Subject>DBS</Subject>
 				<Teachers>
 					<Teacher>RIP</Teacher>
-					<Teacher status="absent">SCHA</Teacher>
+					<Teacher>SCHA</Teacher>
 				</Teachers>
+				<Start>3</Start>
 				<Duration>3</Duration>
 				<Description>BeschreibungDBS</Description>
 				<Rooms>
@@ -94,32 +95,29 @@
 				</Rooms>
 			</Period>
 			<Period>
-				<Subject>JAVA</Subject>
+				<Subject>Java</Subject>
 				<Teachers>
-					<Teacher>KOEH</Teacher>
 					<Teacher>BAR</Teacher>
+					<Teacher>KOEH</Teacher>
 				</Teachers>
+				<Start>7</Start>
 				<Duration>2</Duration>
-				<Description>BeschreibungJAVA</Description>
+				<Description>BeschreibungJava</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
 			</Period>
 			<Period>
-				<Subject>RK/SPORT</Subject>
+				<Subject>SP</Subject>
 				<Teachers>
-					<Teacher>LEI</Teacher>
-					<Teacher>JAN</Teacher>
+					<Teacher status="absent">LEI</Teacher>
 				</Teachers>
-				<Duration>2</Duration>
-				<Description>BeschreibungRK/SPORT</Description>
 				<Rooms>
 					<Room>208</Room>
-					<Room>Sporthalle</Room>
 				</Rooms>
 			</Period>
 		</Day>
-		<Day date="2014-06-25">
+		<Day date = "2014-07-02">
 			<Period>
 				<Subject>TFBAN</Subject>
 				<Teachers>
@@ -136,11 +134,12 @@
 			<Period>
 				<Subject>TFCSHARP</Subject>
 				<Teachers>
+					<Teacher>RIP</Teacher>
 					<Teacher>BAR</Teacher>
-					<Teacher status="absent">RIP</Teacher>
 				</Teachers>
+				<Start>4</Start>
 				<Duration>2</Duration>
-				<Description>BeschreibungC#</Description>
+				<Description>BeschreibungTFCSHARP</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
@@ -150,20 +149,22 @@
 				<Teachers>
 					<Teacher>MAT</Teacher>
 				</Teachers>
+				<Start>7</Start>
 				<Duration>2</Duration>
 				<Description>BeschreibungIKBS</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
 			</Period>
-		</Day>
-		<Day date="2014-06-26">
+		</Day>	
+		<Day date="2014-07-03">
 			<Period>
 				<Subject>TFCSHARP</Subject>
 				<Teachers>
+					<Teacher>RIP</Teacher>
 					<Teacher>BAR</Teacher>
-					<Teacher status="absent">RIP</Teacher>
 				</Teachers>
+				<Start>0</Start>
 				<Duration>1</Duration>
 				<Description>BeschreibungTFCSHARP</Description>
 				<Rooms>
@@ -175,24 +176,108 @@
 				<Teachers>
 					<Teacher>FEH</Teacher>
 				</Teachers>
+				<Start>2</Start>
 				<Duration>1</Duration>
 				<Description>BeschreibungSK</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
 			</Period>
+			
 			<Period>
-				<Subject>JAVA</Subject>
+				<Subject>Java</Subject>
 				<Teachers>
 					<Teacher>KOEH</Teacher>
 					<Teacher>BAR</Teacher>
 				</Teachers>
+				<Start>3</Start>
 				<Duration>3</Duration>
-				<Description>BescheibungJAVA</Description>
+				<Description>BeschreibungJava</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+				</Teachers>
+				<Start>7</Start>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFCSHARP</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>TFBAN1</Subject>
+				<Teachers>
+					<Teacher>DOTG</Teacher>
+				</Teachers>
+				<Start>8</Start>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFBAN1</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>E</Subject>
+				<Teachers>
+					<Teacher>RIER</Teacher>
+				</Teachers>
+				<Start>9</Start>
+				<Duration>1</Duration>
+				<Description>BeschreibungE</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>TFBAN2</Subject>
+				<Teachers>
+					<Teacher>DOTG</Teacher>
+				</Teachers>
+				<Start>10</Start>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFBAN2</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-07-04">
+			<Period>
+				<Subject>WMS</Subject>
+				<Teachers>
+					<Teacher>DOTL</Teacher>
+				</Teachers>
+				<Start>0</Start>
+				<Duration>2</Duration>
+				<Description>BeschreibungWMS</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>IKKS</Subject>
+				<Teachers>
+					<Teacher>VIE</Teacher>
+				</Teachers>
+				<Start>0</Start>
+				<Duration>3</Duration>
+				<Description>BeschreibungIKKS</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
 			</Period>
 		</Day>
 	</Week>
+	<Week from="2014-01-08" to="2014-01-15" typ="vacations" />
+	<Week from="2014-01-17" to="2014-01-22" typ="vacations" />
 </Schedule>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Teachers>
-	
 	<Teacher>
 		<Code>WAG</Code> <!-- lehrer.kname -->
 		<Name>Wagner</Name>  
@@ -80,4 +79,30 @@
 		<Code>PAEC</Code>  
 		<Name>Pätzold</Name>  
 	</Teacher>
+	
+	<Teacher>
+		<Code>MAT</Code>  
+		<Name>Mattes</Name>  
+	</Teacher>
+	
+	<Teacher>
+		<Code>BAR</Code>  
+		<Name>Bareuther</Name>  
+	</Teacher>
+	
+	<Teacher>
+		<Code>RIP</Code>  
+		<Name>Rippert</Name>  
+	</Teacher>
+	
+	<Teacher>
+		<Code>SCHI</Code>  
+		<Name>????</Name>  
+	</Teacher>
+	
+	<Teacher>
+		<Code>MIH</Code>  
+		<Name>????</Name>  
+	</Teacher>
+		
 </Teachers>

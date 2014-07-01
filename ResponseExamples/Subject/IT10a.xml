@@ -9,113 +9,113 @@
 	
 	<Subject>
 		<!-- ufach.ufach -->
-		<Abbreviation>PHPP</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>PHPP</Abbreviation>  
 		<!-- Muss selbst bereitgestellt werden, keine Entsprechung in der Datenbank -->
 		<Description>PHP Praktisch</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>C#T</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>C#T</Abbreviation>  
 		<Description>C# Theorie</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>C#P</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>C#P</Abbreviation>  
 		<Description>C# Praktisch</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>D</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>D</Abbreviation>  
 		<Description>Deutsch</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>E</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>E</Abbreviation>  
 		<Description>Englisch</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>BPRW1</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>BPRW1</Abbreviation>  
 		<Description>Betriebliche Prozesse RW1</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>IKBS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>IKBS</Abbreviation>  
 		<Description>Informations- und Kommunikationssysteme BS</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>TFRPG</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>TFRPG</Abbreviation>  
 		<Description>Trainingsfirma RPG</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>DBS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>DBS</Abbreviation>  
 		<Description>Datenbank Systeme</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>BPRW2</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>BPRW2</Abbreviation>  
 		<Description>Betriebliche Prozesse RW2</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>TFPHP</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>TFPHP</Abbreviation>  
 		<Description>Trainingsfirma PHP</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>SK</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>SK</Abbreviation>  
 		<Description>Sozialkunde</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>BPBWL</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>BPBWL</Abbreviation>  
 		<Description>Betriebliche Prozesse BWL</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>IDB</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>IDB</Abbreviation>  
 		<Description>????</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>IKTDV2</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>IKTDV2</Abbreviation>  
 		<Description>Informations- und Kommunikationssysteme TDV2</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>IKTDV1</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>IKTDV1</Abbreviation>  
 		<Description>Informations- und Kommunikationssysteme TDV1</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>RK</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>RK</Abbreviation>  
 		<Description>Religion Katholisch</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>RV</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>RV</Abbreviation>  
 		<Description>Religion Evangelisch</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>SP</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>SP</Abbreviation>  
 		<Description>Sport</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>WMS</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>WMS</Abbreviation>  
 		<Description>Wirtschaftsmathematik und Statistik</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>MSE</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>MSE</Abbreviation>  
 		<Description>Methoden der Softwareentwicklung</Description>
 	</Subject>
 	
 	<Subject>
-		<Abbreviation>WU-OFF</Abbreviation> <!-- Muss identisch sein mit Kurzbezeichnung von Response Woechentlich (a.k.a. Primärschlüssel) -->
+		<Abbreviation>WU-OFF</Abbreviation>  
 		<Description>Office</Description>
 	</Subject>
 	
