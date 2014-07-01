@@ -113,9 +113,9 @@
 		 // CONSTANTS
 		//
 		
-		const /*(int)*/ STATUS_NORMAL = 1;
-		const /*(int)*/ STATUS_SUBSTITUTION = 2;
-		const /*(int)*/ STATUS_ABSENT = 4;
+		const /*(int)*/ STATUS_NORMAL = "NORMAL";
+		const /*(int)*/ STATUS_SUBSTITUTION = "SUBSTITUTION";
+		const /*(int)*/ STATUS_ABSENT = "ABSENT";
 	}
 
 	abstract class Digikabu_TeacherStatus_Abstract

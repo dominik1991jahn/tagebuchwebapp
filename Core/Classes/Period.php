@@ -9,7 +9,7 @@
 		 // ATTRIBUTES
 		//
 		
-		private /*(int)*/ $date;
+		private /*(Digikabu_PeriodType)*/ $type;
 		private /*(Digikabu_Subject)*/ $subject;
 		private /*(int)*/ $start;
 		private /*(int)*/ $duration;
