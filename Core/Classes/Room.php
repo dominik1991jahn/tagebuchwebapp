@@ -5,13 +5,13 @@
 	 
 	class Digikabu_Room extends Digikabu_Object
 	{
-		private /*(int)*/ $number;
+		private /*(string)*/ $room;
 		
 		  //
 		 // CONSTRUCTOR
 		//
 		
-		public function Digikabu_Room()
+		public function Digikabu_Room($room)
 		{
 			
 		}
@@ -24,7 +24,7 @@
 		{
 			switch($name)
 			{
-				case "Number": return $this->getNumber(); break;
+				case "Room": return $this->GetRoom(); break;
 			}
 		}
 		
@@ -32,7 +32,7 @@
 		{
 			switch($name)
 			{
-				case "Number": $this->setNumber($value);  break;
+				case "Room": $this->SetRoom($value);  break;
 			}
 		}
 		
@@ -45,21 +45,29 @@
 		 // FUNCTIONS
 		//
 		
+		public static function FromXMLNode(SimpleXMLElement $node)
+		{
+			$room = (string) $node;
+			$room = new Digikabu_Room($room);
+			
+			return $room;
+		}
+		
 		
 		  //
 		 // GETTERS / SETTERS
 		//
 		
-		# Number
+		# Room
 		
-		public function getNumber()
+		public function GetRoom()
 		{
-			return $this->number;
+			return $this->room;
 		}
 		
-		public function setDate(/*(int)*/ $number)
+		public function SetRoom(/*(int)*/ $room)
 		{
-			$this->number = $number;
+			$this->room = $room;
 		}
 		
 	}

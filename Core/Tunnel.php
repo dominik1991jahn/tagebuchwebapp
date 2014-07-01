@@ -33,6 +33,9 @@
 			foreach($xresponse->children() as $xweek)
 			{
 				$week = Digikabu_Week::FromXMLNode($xweek);
+				echo "<pre>";
+				var_dump($week);
+				echo "</pre><hr/>";
 			}
 		}
 		
