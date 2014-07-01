@@ -106,13 +106,92 @@
 				</Rooms>
 			</Period>
 			<Period>
-				<Subject>RELI/SPORT</Subject>
+				<Subject>RK/SPORT</Subject>
 				<Teachers>
 					<Teacher>LEI</Teacher>
 					<Teacher>JAN</Teacher>
 				</Teachers>
 				<Duration>2</Duration>
-				<Description></Description>
+				<Description>BeschreibungRK/SPORT</Description>
+				<Rooms>
+					<Room>208</Room>
+					<Room>Sporthalle</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-06-25">
+			<Period>
+				<Subject>TFBAN</Subject>
+				<Teachers>
+					<Teacher>FOE</Teacher>
+					<Teacher>DOTG</Teacher>
+				</Teachers>
+				<Start>0</Start>
+				<Duration>3</Duration>
+				<Description>BeschreibungTFBAN</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+					<Teacher status="absent">RIP</Teacher>
+				</Teachers>
+				<Duration>2</Duration>
+				<Description>BeschreibungC#</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>IKBS</Subject>
+				<Teachers>
+					<Teacher>MAT</Teacher>
+				</Teachers>
+				<Duration>2</Duration>
+				<Description>BeschreibungIKBS</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-06-26">
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+					<Teacher status="absent">RIP</Teacher>
+				</Teachers>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFCSHARP</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>SK</Subject>
+				<Teachers>
+					<Teacher>FEH</Teacher>
+				</Teachers>
+				<Duration>1</Duration>
+				<Description>BeschreibungSK</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>JAVA</Subject>
+				<Teachers>
+					<Teacher>KOEH</Teacher>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<Duration>3</Duration>
+				<Description>BescheibungJAVA</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
 			</Period>
 		</Day>
 	</Week>
