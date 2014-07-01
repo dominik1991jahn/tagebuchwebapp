@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Teachers>
+	
+	<Teacher>
+		<Code>WAG</Code> <!-- lehrer.kname -->
+		<Name>Wagner</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>REII</Code> <!-- lehrer.kname -->
+		<Name>Reiter</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>BET</Code> <!-- lehrer.kname -->
+		<Name>Betz</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>KOEH</Code> <!-- lehrer.kname -->
+		<Name>Körner</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>RIER</Code> <!-- lehrer.kname -->
+		<Name>Rieger</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>FEH</Code> <!-- lehrer.kname -->
+		<Name>Fehr</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>VIE</Code> <!-- lehrer.kname -->
+		<Name>Vieselthaler</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>SCHA</Code> <!-- lehrer.kname -->
+		<Name>Schenkel</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>LEI</Code> <!-- lehrer.kname -->
+		<Name>Leipold</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>FOE</Code> <!-- lehrer.kname -->
+		<Name>Födisch</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>DOTG</Code> <!-- lehrer.kname -->
+		<Name>Dotzler</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>DOTL</Code> <!-- lehrer.kname -->
+		<Name>Dotzler</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>RIC</Code> <!-- lehrer.kname -->
+		<Name>?????</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>MEIJ</Code> <!-- lehrer.kname -->
+		<Name>Meissner</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>	
+		<Code>SPA</Code> <!-- lehrer.kname -->
+		<Name>Sparrer</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+	
+	<Teacher>
+		<Code>PAEC</Code> <!-- lehrer.kname -->
+		<Name>Pätzold</Name> <!-- CONCAT lehrer.Name, lehrer.Vname -->
+	</Teacher>
+</Teachers>
