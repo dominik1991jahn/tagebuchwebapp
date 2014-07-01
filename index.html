@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>index</title>
+		<meta name="description" content="" />
+		<meta name="author" content="hollmanf" />
+		<script type="text/javascript" src="js/jquery-mobile.js"></script>
+		<script type="text/javascript" src="css/jquery-mobile.css"></script>
+		
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<style type="text/css">
+			div.normal
+			{
+				width:400px;
+				margin:4px;
+				background-color:#A8A8A8;
+				border: 2px solid #000000;
+				position: relative;
+			}
+			div.warning
+			{
+				width:400px;
+				margin:4px;
+				background-color:#A8A8A8;
+				background-image:url(img/warning.png);
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size:20%;
+				border: 2px solid #EE3B3B;
+				position: relative;
+			}
+			div.day
+			{
+				border: 2px solid #000000;
+				margin: 4px;
+				width: 412px;
+				float: left;
+			}
+			div.leftCol
+			{
+				float: left;
+				width: 300px;
+				/* background: red; */
+			}
+			div.rightCol
+			{
+				float: right;
+				width: 100px;
+				text-align:right;
+				/*background: yellow; */
+			}
+			div.centerCol
+			{
+				clear: both;
+				left:0;
+				right:0;
+				/* background: green; */
+			}
+			div.bottomCol
+			{
+				clear:both;
+				/*background: lightblue; */
+				width: 400px;
+				position: absolute;
+				bottom: 0;
+				text-align:right;
+			}
+			div.littleP
+			{
+				width: 404px;
+				background-image:url(img/schraffur.png);
+				background-repeat: repeat-x;
+				height: 10px;
+				margin: 4px;
+			}
+			div.bigP
+			{
+				width: 404px;
+				background-image:url(img/schraffur.png);
+				background-repeat: repeat-x;
+				height: 50px;
+				margin: 4px;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="info">
+			<!-- Klasse und akt datum -->
+		</div>
+		<div class="day">
+			<div class="normal" style="height:104px">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > FEH: D </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 08:30 - 10:00 </div>
+			</div>
+			<div class="littleP"> </div>
+			<div class="normal" style="height:104px">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > BET/KOEH: IKWWW </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 10:15 - 11:45 </div>
+			</div>
+			<div class="normal" style="height:50px;">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > RIER: E </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 11:45 - 12:30 </div>
+			</div>
+			<div class="bigP"> </div>
+			<div class="normal" style="height:104px;">
+				<!-- 300 px hoch weil drei std -->
+				<div class="leftCol"  > RIP/BAR: DBA </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 13:15 - 14:40 </div>
+			</div>
+			<div class="littleP"> </div>
+			<div class="normal" style="height:104px">
+				<!-- 200 px hoch weil zwei std -->
+				<div class="leftCol"  > BAR: MSE </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 14:50 - 16:15 </div>
+			</div>
+		</div>
+		<div class="day">
+			<div class="warning" style="height:104px;">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > BAR für KOEH/BAR: JAVA </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 08:30 - 10:00 </div>
+			</div>
+			<div class="littleP"> </div>
+			<div class="normal" style="height:162px;">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > SCHA/RIP: DBS </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 10:15 - 12:30 </div>
+			</div>
+			<div class="bigP"> </div>
+			<div class="normal" style="height:104px;">
+				<!-- 300 px hoch weil drei std -->
+				<div class="leftCol"  > KOEH/BAR: JAVA </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 13:15 - 14:40 </div>
+			</div>
+			<div class="littleP"> </div>
+			<div class="warning" style="height:104px">
+				<!-- 200 px hoch weil zwei std -->
+				<div class="leftCol"  > LEI entfällt</div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 14:50 - 16:15 </div>
+			</div>
+		</div>
+		<div class="day">
+			<div class="warning" style="height:104px;margin-bottom:24px">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > BAR für KOEH/BAR: JAVA </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 08:30 - 10:00 </div>
+			</div>
+			<div class="normal" style="height:150px;margin-bottom:58px;">
+				<!-- 100 px hch weil eine std -->
+				<div class="leftCol"  > SCHA/RIP: DBS </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 10:15 - 12:30 </div>
+			</div>
+			<div class="normal" style="height:104px;">
+				<!-- 300 px hoch weil drei std -->
+				<div class="leftCol"  > KOEH/BAR: JAVA </div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 08:30 - 10:00 </div>
+			</div>
+			<div class="warning" style="height:104px">
+				<!-- 200 px hoch weil zwei std -->
+				<div class="leftCol"  > LEI entfällt</div>
+				<div class="rightCol" > 208 </div>
+				<div class="centerCol"> Beschreibung Beispieltext </div>
+				<div class="bottomCol"> 08:30 - 10:00 </div>
+			</div>
+		</div>
+	</body>
+</html>
