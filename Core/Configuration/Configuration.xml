@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<UserAgent>DigiKabu WebApp 0.1/a</UserAgent>
+	<LocalURL>/digikabuwebapp/tunnel</LocalURL>
 	<ServerURL>http://bsz0/~jahnd/digikabuwebapp/ResponseExamples</ServerURL>
 	
 	<FileMapping>
 		<RequestMapping>Core/Configuration/RequestMapping.xml</RequestMapping>
+		<RequestHandlerMapping>Core/Configuration/RequestHandlerMapping.xml</RequestHandlerMapping>
 	</FileMapping>
 </Configuration>

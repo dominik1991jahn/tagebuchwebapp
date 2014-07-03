@@ -1,0 +1,4 @@
+#RewriteEngine on
+
+#RewriteCond %/tunnel/{REQUEST_FILENAME} !index.php
+#RewriteRule .* request.php [QSA,L]

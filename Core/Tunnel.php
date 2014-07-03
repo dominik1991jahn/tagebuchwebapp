@@ -31,6 +31,7 @@
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			
+			
 			$weeks = array();
 			foreach($xresponse->children() as $xweek)
 			{

@@ -11,6 +11,8 @@
 	include("Core/Tools/HttpRequest.php");
 	include("Core/Tools/Configuration.php");
 	include("Core/Tools/RequestMapping.php");
+	include("Core/Tools/RequestHandlerMapping.php");
+	include("Core/Tools/ArrayTools.php");
 	include("Core/Tunnel.php");
 	
 	App::Main();
