@@ -37,5 +37,17 @@
 			
 			return $result;
 		}
+		
+		public static function ReorderElements($order, $elements)
+		{
+			$result = array();
+			
+			foreach($order as $key)
+			{
+				$result[$key] = $elements[$key];
+			}
+			
+			return $result;
+		}
 	}
 ?>

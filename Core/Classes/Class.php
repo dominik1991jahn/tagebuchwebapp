@@ -20,6 +20,17 @@
 		 // METHODS
 		//
 		
+		public function jsonSerialize()
+		{
+			return array(
+				"Name" => $this->name
+			);
+		}
+		
+		  //
+		 // PROPERTIES
+		//
+		
 		public function __Get($name)
 		{
 			switch($name)
@@ -42,15 +53,10 @@
 		
 		public static function FromXMLNode(SimpleXMLElement $node)
 		{
-			$class = null;
+			$name = (string) $node;
 			
-			$nodes = $node->children();
+			$class = new Digikabu_Class($name);
 			
-			foreach($nodes as $childnode)
-			{
-				$name = (string) $childnode;
-				$class = new Digikabu_Class($name);
-			}
 			return $class;
 		}
 		

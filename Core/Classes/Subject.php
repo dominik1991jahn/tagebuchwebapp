@@ -25,6 +25,14 @@
 		 // METHODS
 		//
 		
+		public function jsonSerialize()
+		{
+			return array(
+				"Name" => $this->Name,
+				"Description" => $this->description
+			);
+		}
+		
 		public function __Get($name)
 		{
 			switch($name)

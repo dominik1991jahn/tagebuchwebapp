@@ -1,6 +1,5 @@
 <?php
-	abstract class Digikabu_Object
+	abstract class Digikabu_Object implements JSONSerializable
 	{
-		public abstract function toJSON();	
 	}
 ?>

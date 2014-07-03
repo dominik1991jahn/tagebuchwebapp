@@ -36,14 +36,11 @@
 			}
 		</style>
 		
-		<script type="text/javascript">
-			
-		</script>
+		<script type="text/javascript" src="js/app.mobile.js"></script>
 	</head>
 	<body>
-		<div data-role="page" id="Display">
+		<div data-role="page">
 			<div data-role="header"><h1>Digikabu.App</h1></div>
-			
 			
 			<div data-role="navbar">
 				<ul>
@@ -102,11 +99,8 @@
 			</div>
 			
 			<div data-role="footer" style="text-align:center">
-				<select id="ClassTeacherList" data-native-menu="false">
-					<optgroup label="Klassen">
-						<option>IT10a</option>
-						<option>IT11a</option>
-					</optgroup>
+				<select data-native-menu="false" id="ClassTeacherList">
+					<optgroup id="ClassList" label="Klassen"></optgroup>
 					
 					<optgroup label="Lehrer">
 						<option>BAR</option>
@@ -116,69 +110,10 @@
 			</div>
 		</div>
 		
-		<div data-role="page" id="Previous">
-			<div data-role="header"><h1>Digikabu.App</h1></div>
-			
-			
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#monday" data-role="button" data-iconpos="left">Montag (30.06)</a></li>
-					<li><a href="#tuesday">Dienstag (01.07)</a></li>
-					<li><a href="#wednesday" data-role="button" data-iconpos="right">Mittwoch (02.07)</a></li>
-				</ul>
-			</div>
-			
-			<div data-role="content" id="PreviousContent">
-				
-				<p>Previous Day</p>
-				
-			</div>
-			
-			<div data-role="footer" style="text-align:center">
-				<select id="ClassTeacherList" data-native-menu="false">
-					<optgroup label="Klassen">
-						<option>IT10a</option>
-						<option>IT11a</option>
-					</optgroup>
-					
-					<optgroup label="Lehrer">
-						<option>BAR</option>
-						<option>RIP</option>
-					</optgroup>
-				</select>
-			</div>
-		</div>
-		
-		<div data-role="page" id="Next">
-			<div data-role="header"><h1>Digikabu.App</h1></div>
-			
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#Previous" data-role="button" data-iconpos="left">Montag (30.06)</a></li>
-					<li><a href="#Current">Dienstag (01.07)</a></li>
-					<li><a href="#Next" data-role="button" data-iconpos="right">Mittwoch (02.07)</a></li>
-				</ul>
-			</div>
-			
-			<div data-role="content" id="NextContent">
-				
-				<p>Next Day</p>
-				
-			</div>
-			
-			<div data-role="footer" style="text-align:center">
-				<select id="ClassTeacherList" data-native-menu="false">
-					<optgroup label="Klassen">
-						<option>IT10a</option>
-						<option>IT11a</option>
-					</optgroup>
-					
-					<optgroup label="Lehrer">
-						<option>BAR</option>
-						<option>RIP</option>
-					</optgroup>
-				</select>
-			</div>
-		</div>
+		<script type="text/javascript">
+			$(function() {
+				FillClassList();
+			});
+		</script>
 	</body>
 </html>

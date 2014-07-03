@@ -25,6 +25,31 @@
 		}
 		
 		  //
+		 // METHODS
+		//
+		
+		public function PerformRequest(Tunnel $tunnel)
+		{
+			$ClassMethod = explode(".",$this->handler);
+			
+			$class = $ClassMethod[0];
+			$method = $ClassMethod[1];
+			
+			$fields = array();
+			
+			$reflectionMethod = new ReflectionMethod($class, $method);
+			
+			foreach($reflectionMethod->getParameters() as $param)
+			{
+				$fields[] = $param->getName();
+			}
+			
+			$parameters = ArrayTools::ReorderElements($fields, $this->parameters);
+			
+			return $reflectionMethod->invokeArgs($tunnel, $parameters);
+		}
+		
+		  //
 		 // PROPERTIES
 		//
 		
@@ -140,8 +165,6 @@
 				}
 			}
 			
-			var_dump($matchingHandler);
-			
 			return $matchingHandler;
 		}
 		
@@ -171,7 +194,7 @@
 					$fieldIndex = 0;
 					foreach($xmlFields as $xmlField)
 					{
-						$name = (string) $xmlField;
+						$name = strtolower((string) $xmlField);
 						
 						$fields[$fieldIndex] = $name;
 						
