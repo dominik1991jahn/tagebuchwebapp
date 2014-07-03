@@ -11,14 +11,43 @@
 		  //
 		 // CONSTRUCTOR
 		//
-		public function Digikabu_Teacher($abbreviation=null,$name=null)
+
+		public function Digikabu_Teacher()
 		{
-			$this->abbreviation = $abbreviation;
-			$this->name = $name;
+			switch(func_num_args())
+			{
+				case 0: break;
+				case 2:
+					$abbreviation = func_get_arg(0);
+					$name = func_get_arg(1);
+					
+					if(!is_string($abbreviation) || !is_string($name))
+					{
+						throw new InvalidArgumentException("Overload (".gettype($abbreviation).", ".gettype($name).") not defined");
+					}
+			
+					$this->abbreviation = $abbreviation;
+					$this->name = $name;
+					break;
+				
+				default: throw new InvalidArgumentException("Unsupported method call");
+			}
 		}
 		
 		  //
 		 // METHODS
+		//
+		
+		public function jsonSerialize()
+		{
+			return array(
+				"Abbreviation" => $this->Abbreviation,
+				"Name" => $this->Name
+			);
+		}
+		
+		  //
+		 // PROPERTIES
 		//
 		
 		public function __Get($name)
@@ -37,11 +66,6 @@
 				case "Abbreviation": $this->SetAbbreviation($value); break;
 				case "Name": $this->SetName($value); break;
 			}
-		}
-		
-		public function toJSON()
-		{
-			
 		}
 		
 		  //

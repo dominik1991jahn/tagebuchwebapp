@@ -49,16 +49,15 @@
 			$request = new HttpRequest("GET", $url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
-			
 			$classes = array();
 			
-			foreach ($xresponse->children()as $xclass) 
+			foreach ($xresponse as $xclass) 
 			{
 				$class = Digikabu_Class::FromXMLNode($xclass);
 				$classes[] = $class;
 			}
-			print_r($classes);
 			
+			return json_encode($classes);
 		}
 		
 		public function GetTeacherList()
@@ -93,6 +92,11 @@
 				$subjects[] = $subject;
 			}
 			print_r($subjects);
+		}
+		
+		public function GetSubjectsForClass($class)
+		{
+			return "Invoked with '".$class."'";
 		}
 	}
 ?>

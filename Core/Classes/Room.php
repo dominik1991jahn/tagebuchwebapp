@@ -20,6 +20,11 @@
 		 // METHODS
 		//
 		
+		public function jsonSerialize()
+		{
+			return "JSON_NOT_IMPLEMENTED_FOR_(".__CLASS__.")";
+		}
+		
 		public function __get($name)
 		{
 			switch($name)

@@ -3,17 +3,17 @@
 	{
 		public static function Main()
 		{
-			echo "<h1>Hello App!</h1>";
+			header("Content-Type: application/json");
 			
-			var_dump(Configuration::GetConfigurationParameter("ServerURL"));
-			var_dump(RequestMapping::GetURLForRequest("Schedule.RetrieveForClass"));
-			
+			// Get the requested function
 			$queryString = $_SERVER["QUERY_STRING"];
-			
 			$requestHandler = RequestHandler::GetHandlerForRequestURI("GET", $queryString);
+			
+			// Establish a connection to the API-Server
 			$tunnel = new Tunnel("dominik","o!saycanyouseemypasswordintheclear");
 			
-			$tunnel->GetSchedule();
+			// Merge Request and Connection
+			print $requestHandler->PerformRequest($tunnel);
 		}
 	}
 ?>
