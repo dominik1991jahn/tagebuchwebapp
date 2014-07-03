@@ -14,7 +14,6 @@
 					<Room>208</Room>
 				</Rooms>
 			</Period>
-			
 			<Period>
 				<Subject>IKWWW</Subject>
 				<Teachers>
@@ -188,7 +187,75 @@
 					<Teacher>BAR</Teacher>
 				</Teachers>
 				<Duration>3</Duration>
-				<Description>BescheibungJAVA</Description>
+				<Description>BeschreibungJAVA</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>TFCSHARPT</Subject>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+				</Teachers>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFCSHARPT</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>TFBAN1</Subject>
+				<Teachers>
+					<Teacher>PUT</Teacher>
+				</Teachers>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFBAN1</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>E</Subject>
+				<Teachers>
+					<Teacher>RIER</Teacher>
+				</Teachers>
+				<Duration>1</Duration>
+				<Description>BeschreibungE</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-06-27">
+			<Period>
+				<Subject>WMS</Subject>
+				<Teachers>
+					<Teacher>DOTL</Teacher>
+				</Teachers>
+				<Duration>2</Duration>
+				<Description>BeschreibungWMS</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>IKKS</Subject>
+				<Teachers>
+					<Teacher>VIE</Teacher>
+				</Teachers>
+				<Duration>2</Duration>
+				<Description>BeschreibungIKKS</Description>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>TFBAN2</SubjectY>
+				<Teachers>
+					<Teacher>DOTG</Teacher>
+				</Teachers>
+				<Duration>1</Duration>
+				<Description>BeschreibungTFBAN2</Description>
 				<Rooms>
 					<Room>208</Room>
 				</Rooms>
