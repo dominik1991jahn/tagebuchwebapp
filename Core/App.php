@@ -10,12 +10,7 @@
 			
 			$queryString = $_SERVER["QUERY_STRING"];
 			
-			echo var_dump($queryString)."<hr/>";
-			
-			RequestHandler::GetHandlerForRequestURI($queryString);
-			
-			echo "<hr/>";
-			
+			$requestHandler = RequestHandler::GetHandlerForRequestURI("GET", $queryString);
 			$tunnel = new Tunnel("dominik","o!saycanyouseemypasswordintheclear");
 			
 			$tunnel->GetSchedule();
