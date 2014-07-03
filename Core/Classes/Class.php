@@ -5,15 +5,15 @@
 	 
 	class Digikabu_Class extends Digikabu_Object
 	{
-		private /*(string)*/ $description;
+		private /*(string)*/ $name;
 		
 		  //
 		 // CONSTRUCTOR
 		//
 		
-		public function Digikabu_Class()
+		public function Digikabu_Class(/*(string)*/$name)
 		{
-			
+			$this->name = $name;
 		}
 		
 		  //
@@ -24,7 +24,7 @@
 		{
 			switch($name)
 			{
-				case "Description": return $this->GetDescription(); break;
+				case "Name": return $this->GetName(); break;
 			}
 		}
 		
@@ -32,7 +32,7 @@
 		{
 			switch($name)
 			{
-				case "Description": $this->SetDescription($value); break;
+				case "Name": $this->SetName($value); break;
 			}
 		}
 		
@@ -40,22 +40,34 @@
 		 // FUNCTIONS
 		//
 		
-		public static function doSomething() {}
+		public static function FromXMLNode(SimpleXMLElement $node)
+		{
+			$class = null;
+			
+			$nodes = $node->children();
+			
+			foreach($nodes as $childnode)
+			{
+				$name = (string) $childnode;
+				$class = new Digikabu_Class($name);
+			}
+			return $class;
+		}
 		
 		  //
 		 // GetTERS / SetTERS
 	    //
 		
-		# Description
+		# name
 		
-		public function GetDescription()
+		public function GetName()
 		{
-			return $this->description;
+			return $this->name;
 		}
 		
-		public function SetDescription(/*(string)*/ $description)
+		public function SetName(/*(string)*/ $name)
 		{
-			$this->description = $description;
+			$this->name = $name;
 		}
 	}
 ?>

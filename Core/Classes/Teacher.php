@@ -11,9 +11,14 @@
 		  //
 		 // CONSTRUCTOR
 		//
-		public function Digikabu_Teacher($abbreviation)
+		public function Digikabu_Teacher($abbreviation,$name)
 		{
 			$this->abbreviation = $abbreviation;
+			$this->name = $name;
+		}
+		public function Digikabu_Teacher()
+		{
+			
 		}
 		
 		  //
@@ -47,6 +52,29 @@
 		 // FUNCTIONS
 		//
 		
+		public static function FromXMLNode(SimpleXMLElement $node)
+		{
+			$teacher = new Digikabu_Teacher();
+			
+			$nodes = $node->children();
+			
+			foreach($nodes as $childnode)
+			{
+				switch($childnode->getName())
+				{
+					case "Abbreviation":
+						$abbreviation = (string) $childnode;
+						$teacher->abbreviation = $abbreviation;						
+						break;
+					
+					case "Name":
+						$name = (string) $childnode;
+						$teacher->name = $name;
+						break;
+				}
+			}		
+			return $teacher;
+		}
 		
 		  //
 		 // GetTERS / SetTERS

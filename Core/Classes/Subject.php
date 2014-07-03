@@ -51,7 +51,29 @@
 		  //
 		 // FUNCTIONS
 		//		  
-		  
+		  public static function FromXMLNode(SimpleXMLElement $node)
+		{
+			$subject = Digikabu_Subject();
+			
+			$nodes = $node->children();
+			
+			foreach($nodes as $childnode)
+			{
+				switch($childnode->getName())
+				{
+					case "Description":
+						$description = (string) $childnode;
+						$subject->description = $description;
+						break;
+					
+					case "Name":
+						$name = (string) $childnode;
+						$subject->name = $name;
+						break;
+				}
+			}		
+			return $subject;
+		}
 		  
 		  //
 		 // GetTERS / SetTERS
