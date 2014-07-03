@@ -119,7 +119,7 @@
 		 // FUNCTIONS
 		//
 		
-		public static function GetHandlerForRequestURI($url)
+		public static function GetHandlerForRequestURI($method, $url)
 		{
 			self::InitializeRequestHandlerMapping();
 			
@@ -128,7 +128,7 @@
 			foreach(self::$handlers as $handler)
 			{
 				$parameters = array();
-				if(preg_match("#^".$handler->URL."\$#", $url, $parameters))
+				if($handler->Method == $method && preg_match("#^".$handler->URL."\$#", $url, $parameters))
 				{
 					$matchingHandler = $handler;
 					
