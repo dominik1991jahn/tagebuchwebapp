@@ -11,14 +11,10 @@
 		  //
 		 // CONSTRUCTOR
 		//
-		public function Digikabu_Teacher($abbreviation,$name)
+		public function Digikabu_Teacher($abbreviation=null,$name=null)
 		{
 			$this->abbreviation = $abbreviation;
 			$this->name = $name;
-		}
-		public function Digikabu_Teacher()
-		{
-			
 		}
 		
 		  //
