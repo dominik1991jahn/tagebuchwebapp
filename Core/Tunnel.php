@@ -51,19 +51,47 @@
 			
 			$classes = array();
 			
-			
-			
+			foreach ($xresponse->children()as $xclass) 
+			{
+				$class = Digikabu_Class::FromXMLNode($xclass);
+				$classes[] = $class;
+			}
+			print_r($classes);
 			
 		}
 		
 		public function GetTeacherList()
 		{
+			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>"BAR","From" => "2014-06-23", "To"=>"2014-06-29"));
+			$request = new HttpRequest("GET", $url);
 			
+			$xresponse = simplexml_load_string($request->SendRequest());
+			
+			$teachers = array();
+			
+			foreach ($xresponse->children()as $xteacher) 
+			{
+				$teacher = Digikabu_Class::FromXMLNode($xteacher);
+				$teachers[] = $teacher;
+			}
+			print_r($teachers);
 		}
 		
 		public function GetSubjectList()
 		{
+			$url = RequestMapping::GetURLForRequest("RetrieveSubjectListForClass",array("Class"=>"BFI11a"));
+			$request = new HttpRequest("GET", $url);
 			
+			$xresponse = simplexml_load_string($request->SendRequest());
+			
+			$subjects = array();
+			
+			foreach ($xresponse->children()as $xsubject) 
+			{
+				$subject = Digikabu_Class::FromXMLNode($xsubject);
+				$subjects[] = $subject;
+			}
+			print_r($subjects);
 		}
 	}
 ?>
