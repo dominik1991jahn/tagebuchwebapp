@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<UserAgent>DigiKabu WebApp 0.1/a</UserAgent>
-	<LocalURL>/digikabuwebapp/tunnel</LocalURL>
-	<ServerURL>http://localhost/digikabuwebapp/ResponseExamples</ServerURL>
+	<LocalURL>/digikabu/tunnel</LocalURL>
+	<ServerURL>http://localhost/digikabu/ResponseExamples</ServerURL>
 	
 	<FileMapping>
 		<RequestMapping>Core/Configuration/RequestMapping.xml</RequestMapping>

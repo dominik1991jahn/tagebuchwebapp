@@ -39,11 +39,10 @@
 		<script type="text/javascript" src="js/app.mobile.js"></script>
 	</head>
 	<body>
-		<!-- TEST -->
 		<div data-role="page">
-			<div data-role="header"><h1>Digikabu.App</h1></div>
+			<div data-role="header" data-position="fixed"><h1>Digikabu.App</h1></div>
 			
-			<div data-role="navbar">
+			<div data-role="navbar" data-position="fixed">
 				<ul>
 					<li><a href="#Previous" data-role="button" data-iconpos="left">Montag (30.06)</a></li>
 					<li><a href="#Current">Dienstag (01.07)</a></li>
@@ -63,7 +62,7 @@
 				
 				<div class="break">&#160;</div>
 				
-				<div class="period single">
+				<div class="ui-body ui-body-a single">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
@@ -71,7 +70,7 @@
 					<p class="time">10:15 - 11:00</p>
 				</div>
 				
-				<div class="period double">
+				<div class="ui-body ui-body-a double">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
@@ -81,7 +80,7 @@
 				
 				<div class="break long"></div>
 				
-				<div class="period triple">
+				<div class="ui-body ui-body-a triple">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
@@ -89,7 +88,7 @@
 					<p class="time">10:15 - 11:00</p>
 				</div>
 				
-				<div class="period single">
+				<div class="ui-body ui-body-a single">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
@@ -99,22 +98,12 @@
 				
 			</div>
 			
-			<div data-role="footer" style="text-align:center">
+			<div data-role="footer" style="text-align:center" data-position="fixed">
 				<select data-native-menu="false" id="ClassTeacherList">
 					<optgroup id="ClassList" label="Klassen"></optgroup>
-					
-					<optgroup label="Lehrer">
-						<option>BAR</option>
-						<option>RIP</option>
-					</optgroup>
+					<optgroup id="TeacherList" label="Lehrer"></optgroup>
 				</select>
 			</div>
 		</div>
-		
-		<script type="text/javascript">
-			$(function() {
-				FillClassList();
-			});
-		</script>
 	</body>
 </html>

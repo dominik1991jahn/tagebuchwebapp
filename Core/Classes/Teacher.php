@@ -82,7 +82,7 @@
 			{
 				switch($childnode->getName())
 				{
-					case "Abbreviation":
+					case "Code":
 						$abbreviation = (string) $childnode;
 						$teacher->abbreviation = $abbreviation;						
 						break;

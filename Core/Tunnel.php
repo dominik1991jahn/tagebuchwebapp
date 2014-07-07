@@ -60,9 +60,9 @@
 			return json_encode($classes);
 		}
 		
-		public function GetTeacherList()
+		public function GetTeacherList($class)
 		{
-			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>"BAR","From" => "2014-06-23", "To"=>"2014-06-29"));
+			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass", array("Class" => $class));
 			$request = new HttpRequest("GET", $url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
@@ -71,10 +71,29 @@
 			
 			foreach ($xresponse->children()as $xteacher) 
 			{
-				$teacher = Digikabu_Class::FromXMLNode($xteacher);
+				$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
 				$teachers[] = $teacher;
 			}
-			print_r($teachers);
+			
+			return json_encode($teachers);
+		}
+		
+		public function GetTeacherListForTeacher()
+		{
+			$url = RequestMapping::GetURLForRequest("RetrieveTeacherList");
+			$request = new HttpRequest("GET", $url);
+			
+			$xresponse = simplexml_load_string($request->SendRequest());
+			
+			$teachers = array();
+			
+			foreach ($xresponse->children()as $xteacher) 
+			{
+				$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
+				$teachers[] = $teacher;
+			}
+			
+			return json_encode($teachers);
 		}
 		
 		public function GetSubjectList()
