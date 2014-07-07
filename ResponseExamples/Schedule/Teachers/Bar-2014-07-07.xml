@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schedule>
+	<Week from="2014-07-07" to="2014-07-13">
+	
+	<!--
+		SELECT ... FROM Tagebuch
+		WHERE idlehrer1 = ID OR idlehrer2 = ID OR idVlehrer1 = ID OR idVlehrer2 = ID
+	-->
+		<Day date="2014-07-07">
+			<!-- Stunde 1 - 2 -->
+			<Period>
+				<Subject>MSE</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungMSE</Description>
+				
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>DBA</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungDBA</Description>
+				
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Date>
+		<Day date="2014-07-08">
+			<Period>
+				<Subject>JAVA</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungJAVA</Description>
+				<Teachers>
+					<Teacher>KOEH</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>	
+			<Period>
+				<Subject>JAVA</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungJAVA</Description>
+				<Teachers>
+					<Teacher>KOEH</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>MSE</Subject>
+				<Class>IT1215b</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungMSE</Description>
+				<Rooms>
+					<Room>209</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-07-09">
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARP</Description>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-07-10">
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>1</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARP</Description>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>JAVA</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>3</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungJAVA</Description>
+				<Teachers>
+					<Teacher>KOEH</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+	</Week>
+</Schedule>
+
+			
