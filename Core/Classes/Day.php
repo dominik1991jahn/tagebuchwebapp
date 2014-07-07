@@ -115,7 +115,7 @@
 		const TYPE_HOLIDAY = "HOLIDAY";
 	}
 	
-	abstract class Digikabu_DayType
+	abstract class Digikabu_DayType implements JSONSerializable
 	{
 		  //
 		 // ATTRIBUTES
@@ -129,7 +129,12 @@
 		
 		public function __toString()
 		{
-			return $this->type;
+			return (string) $this->type;
+		}
+		
+		public function jsonSerialize()
+		{
+			return (string) $this;
 		}
 	}
 	

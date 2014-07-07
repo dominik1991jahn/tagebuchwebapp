@@ -106,8 +106,9 @@
 		{
 			$attributes = $node->attributes();
 			
-			$teacher = (string) $node;
-			$teacher = new Digikabu_Teacher($teacher);
+			$abbreviation = (string) $node;
+			$teacher = new Digikabu_Teacher();
+			$teacher->Abbreviation = $abbreviation;
 			
 			$status = (isset($attributes["status"]) ? strtoupper((string) $attributes["status"]) : "NORMAL");
 			$status = self::GetStatusForName($status);
@@ -126,7 +127,7 @@
 		const /*(int)*/ STATUS_ABSENT = "ABSENT";
 	}
 
-	abstract class Digikabu_TeacherStatus_Abstract
+	abstract class Digikabu_TeacherStatus_Abstract implements JSONSerializable
 	{
 		  //
 		 // ATTRIBUTES
@@ -140,7 +141,12 @@
 		
 		public function __toString()
 		{
-			return $this->status;
+			return (string) $this->status;
+		}
+		
+		public function jsonSerialize()
+		{
+			return (string) $this;
 		}
 	}
 	

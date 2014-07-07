@@ -1,5 +1,5 @@
 <?php
-	class Digikabu_Week# implements JSONSerializable
+	class Digikabu_Week extends Digikabu_Object
 	{
 		  //
 		 // ATTRIBUTES
@@ -38,8 +38,42 @@
 			return array(
 				"Type" => $this->Type,
 				"From" => $this->From,
-				"To" => $this->To
+				"Days" => $this->Days
 			);
+		}
+		
+		  //
+		 // METHODS
+		//
+		
+		public function __get($field)
+		{
+			switch($field)
+			{
+				case "Type": return $this->GetType();
+				case "From": return $this->GetFrom();
+				case "Days": return $this->GetDays();
+				default: throw new InvalidArgumentException("Field ".__CLASS__.".".$field." not defined");
+			}
+		}
+		
+		  //
+		 // GETTERS/SETTERS
+		//
+		
+		private function GetType()
+		{
+			return $this->type;
+		}
+		
+		private function GetFrom()
+		{
+			return $this->from;
+		}
+		
+		private function GetDays()
+		{
+			return $this->days;
 		}
 		
 		  //
@@ -85,7 +119,7 @@
 		const TYPE_VACATIONS = "VACATIONS";
 	}
 	
-	abstract class Digikabu_WeekType
+	abstract class Digikabu_WeekType implements JSONSerializable
 	{
 		  //
 		 // ATTRIBUTES
@@ -99,7 +133,12 @@
 		
 		public function __toString()
 		{
-			return $this->type;
+			return (string) $this->type;
+		}
+		
+		public function jsonSerialize()
+		{
+			return (string) $this;
 		}
 	}
 	

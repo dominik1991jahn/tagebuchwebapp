@@ -22,26 +22,6 @@
 		 // METHODS
 		//
 		
-		public function GetSchedule()
-		{
-			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class" => "IT11a", "From" => "2014-06-23", "To" => "2014-06-29"));
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
-			
-			$xresponse = simplexml_load_string($request->SendRequest());
-			
-			$weeks = array();
-			foreach($xresponse->children() as $xweek)
-			{
-				$week = Digikabu_Week::FromXMLNode($xweek);
-				
-				$weeks[] = $week;
-			}
-			
-			print json_encode($weeks);
-		}
-		
 		public function GetClassList()
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveClassList");
@@ -119,6 +99,46 @@
 			}
 			
 			return json_encode($subjects);
+		}
+		
+		public function GetScheduleForClass($class, $from)
+		{
+			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "From" => $from));
+			$request = new HttpRequest("GET", $url);
+			
+			$request->SetAuthorization($this->username.": ".md5($this->password));
+			
+			$xresponse = simplexml_load_string($request->SendRequest());
+			
+			$weeks = array();
+			foreach($xresponse->children() as $xweek)
+			{
+				$week = Digikabu_Week::FromXMLNode($xweek);
+				
+				$weeks[] = $week;
+			}
+			
+			print json_encode($weeks);
+		}
+		
+		public function GetScheduleForTeacher($teacher, $from)
+		{
+			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>$teacher, "From" => $from));
+			$request = new HttpRequest("GET", $url);
+			
+			$request->SetAuthorization($this->username.": ".md5($this->password));
+			
+			$xresponse = simplexml_load_string($request->SendRequest());
+			
+			$weeks = array();
+			foreach($xresponse->children() as $xweek)
+			{
+				$week = Digikabu_Week::FromXMLNode($xweek);
+				
+				$weeks[] = $week;
+			}
+			
+			print json_encode($weeks);
 		}
 	}
 ?>
