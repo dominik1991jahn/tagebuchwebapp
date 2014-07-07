@@ -50,7 +50,7 @@
 		 // PROPERTIES
 		//
 		
-		public function __Get($name)
+		public function __get($name)
 		{
 			switch($name)
 			{
@@ -59,7 +59,7 @@
 			}
 		}
 		
-		public function __Set($name,$value)
+		public function __set($name,$value)
 		{
 			switch($name)
 			{

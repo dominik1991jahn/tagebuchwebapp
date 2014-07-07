@@ -1,5 +1,5 @@
 <?php
-	class Digikabu_TeacherStatus
+	class Digikabu_TeacherStatus extends Digikabu_Object
 	{
 		  //
 		 // ATTRIBUTES
@@ -21,6 +21,14 @@
 		  //
 		 // METHODS
 		//
+		
+		public function jsonSerialize()
+		{
+			return array(
+				"Teacher" => $this->Teacher,
+				"Status" => $this->Status
+			);
+		}
 		
 		public function __get($name)
 		{

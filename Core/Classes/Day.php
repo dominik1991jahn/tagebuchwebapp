@@ -1,5 +1,5 @@
 <?php
-	class Digikabu_Day
+	class Digikabu_Day extends Digikabu_Object
 	{
 		  //
 		 // ATTRIBUTES
@@ -29,6 +29,48 @@
 		public function AddPeriod(Digikabu_Period $period)
 		{
 			$this->periods[] = $period;
+		}
+		
+		public function jsonSerialize()
+		{
+			return array(
+				"Type" => $this->Type,
+				"Date" => $this->Date,
+				"Periods" => $this->Periods
+			);
+		}
+		
+		  //
+		 // PROPERTIES
+		//
+		
+		public function __get($field)
+		{
+			switch($field)
+			{
+				case "Type": return $this->GetType();
+				case "Date": return $this->GetDate();
+				case "Periods": return $this->GetPeriods();
+			}
+		}
+		
+		  //
+		 // GETTERS / SETTERS
+		//
+		
+		private function GetType()
+		{
+			return $this->type;
+		}
+		
+		private function GetDate()
+		{
+			return $this->date;
+		}
+		
+		private function GetPeriods()
+		{
+			return $this->periods;
 		}
 		
 		  //
