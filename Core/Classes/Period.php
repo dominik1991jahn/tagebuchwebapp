@@ -3,7 +3,7 @@
 	 * Repräsentiert eine Stunde
 	 */
 	 
-	class Digikabu_Period
+	class Digikabu_Period extends Digikabu_Object
 	{
 		  //
 		 // ATTRIBUTES
@@ -34,7 +34,7 @@
 		 // METHODS
 		//
 		
-		public function __Get($name)
+		public function __get($name)
 		{
 			switch($name)
 			{
@@ -42,6 +42,11 @@
 				case "Subject": return $this->GetSubject(); break;
 				case "Previous": return $this->GetPrevious(); break;
 				case "Next": return $this->GetNext(); break;
+				case "Start": return $this->GetStart();
+				case "Duration": return $this->GetDuration();
+				case "Teachers": return $this->GetTeachers();
+				case "Rooms": return $this->GetRooms();
+				case "Information": return $this->GetInformation();
 			}
 		}
 		
@@ -66,11 +71,18 @@
 			$this->rooms[] = $room;
 		}
 		
-		  //
-		 // FUNCTIONS
-		//
-		
-		public static function doSomething() {}
+		public function jsonSerialize()
+		{
+			return array(
+				"Type" => $this->Type,
+				"Subject" => $this->Subject,
+				"Start" => $this->Start,
+				"Duration" => $this->Duration,
+				"Teachers" => $this->Teachers,
+				"Rooms" => $this->Rooms,
+				"Information" => $this->Information
+			);
+		}
 		
 		  //
 		 // GetTERS / SETTERS
@@ -122,6 +134,41 @@
 		public function SetNext(Digikabu_Period $next)
 		{
 			$this->next = $next;
+		}
+		
+		# Start
+		
+		public function GetStart()
+		{
+			return $this->start;
+		}
+		
+		# Duration
+		
+		public function GetDuration()
+		{
+			return $this->duration;
+		}
+		
+		# Teachers
+		
+		public function GetTeachers()
+		{
+			return $this->teachers;
+		}
+		
+		# Rooms
+		
+		public function GetRooms()
+		{
+			return $this->rooms;
+		}
+		
+		# Information
+		
+		public function GetInformation()
+		{
+			return $this->information;
 		}
 		
 		  //

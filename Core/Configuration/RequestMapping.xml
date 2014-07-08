@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RequestMapping>
 	<Schedule>
-		<RetrieveForClass>{Configuration:ServerURL}/Schedule/{Class}-{From}-{To}.xml</RetrieveForClass>
-		<RetrieveForTeacher>{Configuration:ServerURL}/Schedule/{Teacher}-{From}-{To}.xml</RetrieveForTeacher>	
+		<RetrieveForClass>{Configuration:ServerURL}/Schedule/Students/{Class}-{From}.xml</RetrieveForClass>
+		<RetrieveForTeacher>{Configuration:ServerURL}/Schedule/Teachers/{Teacher}-{From}.xml</RetrieveForTeacher>	
 	</Schedule>
 	<RetrieveClassList>{Configuration:ServerURL}/Classes.xml</RetrieveClassList>
 	<RetrieveTeacherListForClass>{Configuration:ServerURL}/Teacher/{Class}.xml</RetrieveTeacherListForClass>
