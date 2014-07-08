@@ -6,6 +6,6 @@
 	</Schedule>
 	<RetrieveClassList>{Configuration:ServerURL}/Classes.xml</RetrieveClassList>
 	<RetrieveTeacherListForClass>{Configuration:ServerURL}/Teacher/{Class}.xml</RetrieveTeacherListForClass>
-	<RetrieveTeacherList>{Configuration:ServerURL}/Teacher/TeacherListForTeachers.xml</RetrieveTeacherList>
+	<RetrieveTeacherListForTeachers>{Configuration:ServerURL}/Teacher/TeacherListForTeachers.xml</RetrieveTeacherListForTeachers>
 	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>
 </RequestMapping>
