@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schedule>
+	<Week from="2014-07-07" to="2014-07-13">
+	
+	<!--
+		SELECT ... FROM Tagebuch
+		WHERE idlehrer1 = ID OR idlehrer2 = ID OR idVlehrer1 = ID OR idVlehrer2 = ID
+	-->
+		<Day date="2014-07-07">
+			<!-- Stunde 1 - 2 -->
+			<Period>
+				<Subject>DBA</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungDBA</Description>
+				
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			
+			<Period>
+				<Subject>TF4</Subject>
+				<Class>IT1215b</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTF4</Description>
+				
+				<Rooms>
+					<Room>209</Room>
+				</Rooms>
+			</Period>
+		</Date>
+		<Day date="2014-07-08">
+			<Period>
+				<Subject>WMS</Subject>
+				<Class>IT1215b</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungWMS</Description>
+				<Rooms>
+					<Room>209</Room>
+				</Rooms>
+			</Period>	
+			<Period>
+				<Subject>C#</Subject>
+				<Class>FWI1</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>1</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungC#</Description>
+
+				<Rooms>
+					<Room>205</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-07-09">
+			<Period>
+				<Subject>DBS</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>3</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungDBS</Description>
+				<Teachers>
+					<Teacher>SCHA</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARP</Description>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+		</Day>
+		<Day date="2014-07-10">
+			<Period>
+				<Subject>TFCSHARP</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>1</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARP</Description>
+				<Teachers>
+					<Teacher>BAR</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>TFCSHARPt</Subject>
+				<Class>IT1215a</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARPt</Description>
+
+				<Rooms>
+					<Room>208</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>DBS</Subject>
+				<Class>IT1215b</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>1</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungDBS</Description>
+
+				<Rooms>
+					<Room>209</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>C#</Subject>
+				<Class>FWI1</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARP</Description>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>205</Room>
+				</Rooms>
+			</Period>
+			<Period>
+				<Subject>SC#</Subject>
+				<Class>FWI1</Class> <!-- Tagebuch.idKlasse -> join -> Klasse.kname -->
+				
+				<Duration>2</Duration>
+				
+				<!--
+					Alternative:
+				<Start>08:30</Start>
+				<End>10:00</End>
+				-->
+				
+				<Description>BeschreibungTFCSHARP</Description>
+				<Teachers>
+					<Teacher>RIP</Teacher>
+				</Teachers>
+				<Rooms>
+					<Room>205</Room>
+				</Rooms>
+			</Period>
+		</Day>
+	</Week>
+</Schedule>
+
+			
