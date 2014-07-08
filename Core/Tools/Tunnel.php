@@ -22,12 +22,18 @@
 		 // METHODS
 		//
 		
+		private function PassThroughTunnel($verb, $url)
+		{
+			$request = new HttpRequest($verb, $url);
+			$request->SetAuthorization($this->username.": ".md5($this->password));
+			
+			return $request;
+		}
+		
 		public function GetClassList()
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveClassList");
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			$classes = array();
@@ -44,9 +50,7 @@
 		public function GetTeacherList($class)
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass", array("Class" => $class));
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			
@@ -64,9 +68,7 @@
 		public function GetTeacherListForTeachers()
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForTeachers");
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			
@@ -84,9 +86,7 @@
 		public function GetSubjectListForClass($class)
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveSubjectListForClass",array("Class"=>$class));
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			
@@ -104,9 +104,7 @@
 		public function GetScheduleForClass($class, $from)
 		{
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "From" => $from));
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			
@@ -124,9 +122,7 @@
 		public function GetScheduleForTeacher($teacher, $from)
 		{
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>$teacher, "From" => $from));
-			$request = new HttpRequest("GET", $url);
-			
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$xresponse = simplexml_load_string($request->SendRequest());
 			

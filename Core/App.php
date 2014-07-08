@@ -6,14 +6,34 @@
 			header("Content-Type: application/json");
 			
 			// Get the requested function
+			# HTTP-Verb (GET/POST/PUT/DELETE)
+			$httpMethod = $_SERVER["REQUEST_METHOD"];
+			
+			# Query-String (contains the URI)
 			$queryString = $_SERVER["QUERY_STRING"];
-			$requestHandler = RequestHandler::GetHandlerForRequestURI("GET", $queryString);
 			
-			// Establish a connection to the API-Server
-			$tunnel = new Tunnel("dominik","o!saycanyouseemypasswordintheclear");
+			# Request the corresponding Request Handler
+			$requestHandler = RequestHandler::GetHandlerForRequestURI($httpMethod, $queryString);
 			
-			// Merge Request and Connection
-			print $requestHandler->PerformRequest($tunnel);
+			/*
+			 * Login Information
+			 */
+			 
+			$username = "dominik";
+			$password = "o!saycanyouseemypasswordintheclear";
+			
+			// Establish a connection to the API-Server with the login credentials
+			$tunnel = new Tunnel($username, $password);
+			
+			// Merge Request and Connection and perform the request
+			$response = $requestHandler->PerformRequest($tunnel);
+			
+			// Print to response
+			print $response;
+			
+			/*
+			 * That's all there is to do...
+			 */
 		}
 	}
 ?>
