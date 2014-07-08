@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RequestHandlerMapping>
+	<Request method="GET" url="/Login" handler="Tunnel.CheckLoginCredentials" />
+	
 	<Request method="GET" url="/Class" handler="Tunnel.GetClassList" />
 	
 	<Request method="GET" url="/Subject/([a-zA-Z0-9]+)" handler="Tunnel.GetSubjectsForClass">

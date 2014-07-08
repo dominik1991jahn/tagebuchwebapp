@@ -9,6 +9,8 @@
 		private /*(string)*/ $verb;
 		private /*(RequestData)*/ $data;
 		private /*(HeaderData)*/ $headers;
+		private /*(string)*/ $responsebody;
+		private /*(array<String>)*/ $responseheaders;
 		
 		  //
 		 // CONSTRUCTOR
@@ -165,6 +167,12 @@
 				case "Header":
 					return $this->getHeader();
 					
+				case "ResponseBody":
+					return $this->GetResponseBody();
+					
+				case "ResponseHeaders":
+					return $this->GetResponseHeaders();
+					
 				default:
 					throw new InvalidArgumentException("Field '".$field."' not defined");
 			}
@@ -242,7 +250,10 @@
 			
 			$result = stream_get_contents($stream);
 			
-			return $result;
+			$this->responsebody = $result;
+			$this->responseheaders = $http_response_header; // Do NOT ask me where this is from!!!
+			
+			return true;
 		}
 
 		public function SetAuthorization($authorization)
@@ -293,6 +304,16 @@
 		private function getHeader()
 		{
 			return $this->headers;
+		}
+
+		private function GetResponseBody()
+		{
+			return $this->responsebody;
+		}
+		
+		private function GetResponseHeaders()
+		{
+			return $this->responseheaders;
 		}
 		
 		  //
