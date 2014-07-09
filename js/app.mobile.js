@@ -63,14 +63,32 @@ function CreateScheduleForDay(data)
 	page = document.createElement("div");
 	page = $(page);
 	
-	
-	
 	page.attr('data-role','page').attr('id',pageid);
+	
+	header = document.createElement('div');
+	header = $(header);
+	
+	header.attr('data-role','header').append('<h1>Hallo</h1>');
+	
+	footer = document.createElement('div');
+	footer = $(footer);
+	
+	footer.attr('data-role','footer').append('lol');
+	
+	content = document.createElement('div');
+	content = $(content);
+	
+	content.attr('data-role','content');
+	
+	page.append(header);
+	page.append(content);
+	page.append(footer);
+	
 	page.page();
 	
 	page.appendTo($.mobile.pageContainer);
 	
-	page.pagecontainer("change");
+	$.mobile.changePage("#"+pageid);
 }
 
 /*
