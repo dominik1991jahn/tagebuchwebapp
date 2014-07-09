@@ -1,3 +1,4 @@
+
 <?xml version="1.0" ?>
 <!DOCTYPE html>
 <html>
@@ -20,21 +21,74 @@
 		<link rel="stylesheet" href="css/digikabuThemeRoller.css" />
 		
 		<style type="text/css">
-			.period
+			.single
 			{
-				border: 2px solid #000;
-				margin-bottom: 4px;
 				height: 80px;
+				margin: 1px;
 			}
 			
 			.double
 			{
 				height: 160px;
+				margin: 1px;
 			}
 			
 			.triple
 			{
 				height: 240px;
+				margin: 1px;
+			}
+			
+			div.hr
+			{
+				position: relative;
+			}
+			div.breakShort
+			{
+				margin: 4px;
+				height: 20px;
+				background-image: url(img/schraffur.png);
+				background-repeat: repeat;
+				background-position: bottom left;
+				background-size:15%;
+			}
+			div.breakLong
+			{
+				margin: 4px;
+				height: 80px;
+				background-image: url(img/schraffur.png);
+				background-repeat: repeat;
+				background-position: bottom left;
+				background-size:15%;
+			}
+			
+			p.lesson
+			{
+				position: absolute;
+				left: 15px;
+				top: 0;
+				display: inline;
+			}
+			p.room
+			{
+				position: absolute;
+				right: 15px;
+				top: 0;
+				display: inline;
+			}
+			p.text
+			{
+				position: absolute;
+				left: 15px;
+				top: 30px;
+				display: inline;
+			}
+			p.time
+			{
+				position: absolute;
+				right: 15px;
+				bottom: 0;
+				display: inline;
 			}
 		</style>
 		
@@ -56,48 +110,58 @@
 			
 			<div data-role="content" id="DisplayContent">
 				
-				<div class="ui-body ui-body-black double">
-					<p class="subject">IKWWW</p>
+				<div class="ui-body ui-body-gray double hr">
+					<p class="lesson">IKWWW</p>
 					
 					<p class="room">208</p>
+					
+					<p class="text">BspText</p>
 					
 					<p class="time">08:30 - 10:00</p>
 				</div>
 				
-				<div class="break">&#160;</div>
+				<div class="breakShort"></div>
 				
 				<div class="ui-body ui-body-gray single">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
 					
-					<p class="time">10:15 - 11:00</p>
-				</div>
-				
-				<div class="ui-body ui-body-c double">
-					<p class="subject">TFC#</p>
-					
-					<p class="room">208</p>
+					<p class="text">BspText</p>
 					
 					<p class="time">10:15 - 11:00</p>
 				</div>
 				
-				<div class="break long"></div>
-				
-				<div class="ui-body ui-body-d triple">
+				<div class="ui-body ui-body-gray double">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
 					
-					<p class="time">10:15 - 11:00</p>
+					<p class="text">BspText</p>
+					
+					<p class="time">11:00 - 12:30</p>
 				</div>
 				
-				<div class="ui-body ui-body-e single">
+				<div class="breakLong"></div>
+				
+				<div class="ui-body ui-body-gray double">
 					<p class="subject">TFC#</p>
 					
 					<p class="room">208</p>
 					
-					<p class="time">10:15 - 11:00</p>
+					<p class="text">BspText</p>
+					
+					<p class="time">13:15 - 14:40</p>
+				</div>
+				
+				<div class="ui-body ui-body-gray single">
+					<p class="subject">TFC#</p>
+					
+					<p class="room">208</p>
+					
+					<p class="text">BspText</p>
+					
+					<p class="time">14:50 - 15:30</p>
 				</div>
 				
 			</div>
