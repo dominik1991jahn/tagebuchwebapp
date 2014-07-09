@@ -17,7 +17,7 @@
 		{
 			if($type == null) $type = new Digikabu_DayType_Normal;
 			
-			$this->date = $date;
+			$this->date = date("Y-m-d",$date);
 			$this->type = $type;
 			$this->periods = array();
 		}
