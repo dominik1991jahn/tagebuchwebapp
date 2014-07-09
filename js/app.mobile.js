@@ -34,13 +34,20 @@ function FillTeacherList()
 
 function LoadScheduleDataForDate(classcode, startdate)
 {
-	var url = "request.php?/Schedule/" + classcode + "-" + startdate + ".xml";
+	var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
 	
 	$.getJSON(
 		url,
 		function(response)
 		{
-			
+			// Weeks
+			$.each(response, function(key, value)
+			{
+				for(d = 0; d < value.Days.length; d++)
+				{
+					CreateScheduleForDay(value.Days[d]);
+				}
+			});
 		}
 	)
 }
@@ -56,9 +63,14 @@ function CreateScheduleForDay(data)
 	page = document.createElement("div");
 	page = $(page);
 	
-	page.attr('data-role','page').attr('id',pageid);
 	
-	$(document).append(page);
+	
+	page.attr('data-role','page').attr('id',pageid);
+	page.page();
+	
+	page.appendTo($.mobile.pageContainer);
+	
+	page.pagecontainer("change");
 }
 
 /*
@@ -68,5 +80,5 @@ function CreateScheduleForDay(data)
 $(function() {
 	FillClassList();
 	FillTeacherList();
-	CreateScheduleForDay({Date:'2014-07-08'});
+	LoadScheduleDataForDate("IT11a","2014-07-07");
 });
