@@ -18,8 +18,8 @@
 		{
 			if($type == null) $type = new Digikabu_WeekType_Normal;
 			
-			$this->from = $from;
-			$this->to = $to;
+			$this->from = date("Y-m-d",$from);
+			$this->to = date("Y-m-d",$to);
 			$this->type = $type;
 			$this->days = array();
 		}

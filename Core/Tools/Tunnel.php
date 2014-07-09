@@ -30,12 +30,20 @@
 			return $request;
 		}
 		
+		public function CheckLoginCredentials()
+		{
+			return json_encode(array("DataCorrect" => (bool) mt_rand(0,1)));
+		}
+		
 		public function GetClassList()
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveClassList");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
-			$xresponse = simplexml_load_string($request->SendRequest());
+			$request->SendRequest();
+			
+			$xresponse = simplexml_load_string($response->ResponseBody);
+			
 			$classes = array();
 			
 			foreach ($xresponse as $xclass) 
@@ -52,7 +60,9 @@
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass", array("Class" => $class));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
-			$xresponse = simplexml_load_string($request->SendRequest());
+			$request->SendRequest();
+			
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$teachers = array();
 			
@@ -70,7 +80,9 @@
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForTeachers");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
-			$xresponse = simplexml_load_string($request->SendRequest());
+			$request->SendRequest();
+			
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$teachers = array();
 			
@@ -88,7 +100,9 @@
 			$url = RequestMapping::GetURLForRequest("RetrieveSubjectListForClass",array("Class"=>$class));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
-			$xresponse = simplexml_load_string($request->SendRequest());
+			$request->SendRequest();
+			
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$subjects = array();
 			
@@ -106,7 +120,9 @@
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "From" => $from));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
-			$xresponse = simplexml_load_string($request->SendRequest());
+			$request->SendRequest();
+			
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$weeks = array();
 			foreach($xresponse->children() as $xweek)
@@ -124,7 +140,9 @@
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>$teacher, "From" => $from));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
-			$xresponse = simplexml_load_string($request->SendRequest());
+			$request->SendRequest();
+			
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$weeks = array();
 			foreach($xresponse->children() as $xweek)
