@@ -57,8 +57,7 @@ function LoadScheduleDataForDate(classcode, startdate)
  */
 function CreateScheduleForDay(data)
 {
-	date = Date.parse(data.Date);
-	pageid = "schedule-"+date;
+	pageid = "schedule-"+data.Date.replace(/-/g,'');
 	
 	page = document.createElement("div");
 	page = $(page);
@@ -68,7 +67,7 @@ function CreateScheduleForDay(data)
 	header = document.createElement('div');
 	header = $(header);
 	
-	header.attr('data-role','header').append('<h1>Hallo</h1>');
+	header.attr('data-role','header').append('<h1>Digikabu.App</h1>');
 	
 	footer = document.createElement('div');
 	footer = $(footer);
