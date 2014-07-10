@@ -89,7 +89,42 @@ function CreateScheduleForDay(data)
 	
 	$.mobile.changePage("#"+pageid);
 }
-
+ 
+ function CreateFooter(currentDate)
+ {
+ 	prevID="schedule-";
+ 	footer=$(document.createElement("div")); 	
+ 	footer.attr("data-role","footer").attr("data-position","fixed");
+ 	
+	 	datnavbar=$(document.createElement("div"));	 	
+	 	datnavbar.attr("data-role","navbar");
+	 	
+		 	datnavbarlist=$(document.createElement("ul"));
+		 		datnavbarprev=$(document.createElement("li"));
+		 		datnavbarprev.append("<a></a>").attr("href","#"+prevID).attr("data-role","button");
+ 	
+ 		datnavbar.append(datnavbarlist);
+ 	footer.append(datnavbar);
+ 	/*
+ 	<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#Previous" data-role="button" data-iconpos="left">Montag (30.06)</a></li>
+						<li><a href="#schedule-20140707">Dienstag (01.07)</a></li>
+						<li><a href="#Next" data-role="button" data-iconpos="right">Mittwoch (02.07)</a></li>
+					</ul>
+				</div>
+				
+				<div style="text-align:center">
+					<select data-native-menu="false" id="ClassTeacherList">
+						<option data-placeholder="true">Klasse oder Lehrer ausw&auml;hlen</option>
+						<optgroup id="ClassList" label="Klassen"></optgroup>
+						<optgroup id="TeacherList" label="Lehrer"></optgroup>
+					</select>
+				</div>
+			</div>
+			*/
+ }
 /*
  * Auto-Start
  */
