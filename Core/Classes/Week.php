@@ -61,19 +61,52 @@
 		 // GETTERS/SETTERS
 		//
 		
+		#Type
+		
 		private function GetType()
 		{
 			return $this->type;
 		}
+		
+		private function SetType(/*(Digikabu_WeekType)*/ $type)
+		{
+			$this->type = $type;
+		}
+		
+		#From
 		
 		private function GetFrom()
 		{
 			return $this->from;
 		}
 		
+		private function SetFrom(/*(int)*/$from)
+		{
+			$this->from = $from;
+		}
+		
+		#Days
+		
 		private function GetDays()
 		{
 			return $this->days;
+		}
+		
+		private function SetDays(/*(array:Digikabu_Day)*/ $days)
+		{
+			$this->days = $days;
+		}
+		
+		#To
+		
+		private function GetTo()
+		{
+			return $this->to;
+		}
+		
+		private function SetTo(/*(int)*/$to)
+		{
+			$this->to = $to;
 		}
 		
 		  //

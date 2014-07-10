@@ -90,87 +90,108 @@
 		
 		# Date
 		
-		public function GetDate()
+		private function GetDate()
 		{
 			return $this->date;
 		}
 		
-		public function setDate(/*(int)*/ $date)
+		private function SetDate(/*(int)*/ $date)
 		{
 			$this->date = $date;
 		}
 		
 		# Subject
 		
-		public function GetSubject()
+		private function GetSubject()
 		{
 			return $this->subject;
 		}
 		
-		public function setSubject(Digikabu_Subject $subject)
+		private function SetSubject(Digikabu_Subject $subject)
 		{
 			$this->subject = $subject;
 		}
 		
 		# Previous
 		
-		public function GetPrevious()
+		private function GetPrevious()
 		{
 			return $this->previous;
 		}
 		
-		public function SetPrevious(Digikabu_Period $previous)
+		private function SetPrevious(Digikabu_Period $previous)
 		{
 			$this->previous = $previous;
 		}
 		
 		# Next
 		
-		public function GetNext()
+		private function GetNext()
 		{
 			return $this->next;
 		}
 		
-		public function SetNext(Digikabu_Period $next)
+		private function SetNext(Digikabu_Period $next)
 		{
 			$this->next = $next;
 		}
 		
 		# Start
 		
-		public function GetStart()
+		private function GetStart()
 		{
 			return $this->start;
 		}
+		private function SetStart(/*(int)*/$start)
+		{
+			$this->start=$start;
+		}
+		
 		
 		# Duration
 		
-		public function GetDuration()
+		private function GetDuration()
 		{
 			return $this->duration;
 		}
 		
+		private function SetDuration(/*(int)*/ $duration)
+		{
+			$this->duration=$duration;
+		}
 		# Teachers
 		
-		public function GetTeachers()
+		private function GetTeachers()
 		{
 			return $this->teachers;
 		}
 		
+		private function SetTeachers(/*(array:Digikabu_TeacherStatus)*/ $teachers)
+		{
+			$this->teachers=$teachers;
+		}
 		# Rooms
 		
-		public function GetRooms()
+		private function GetRooms()
 		{
 			return $this->rooms;
 		}
 		
+		private function SetRooms(/*(array:Digikabu_Room)*/ $rooms)
+		{
+			$this->rooms=$rooms;
+		}
 		# Information
 		
-		public function GetInformation()
+		private function GetInformation()
 		{
 			return $this->information;
 		}
 		
+		private function SetInformation(/*(string)*/$information)
+		{
+			$this->information=$information;
+		}
 		  //
 		 // FUNCTIONS
 		//

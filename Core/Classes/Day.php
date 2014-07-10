@@ -63,14 +63,28 @@
 			return $this->type;
 		}
 		
+		private function SetType(/*(Digikabu_DayType)*/ $type)
+		{
+			$this->type = $type;
+		}
+		
 		private function GetDate()
 		{
 			return $this->date;
+		}
+		private function SetDate(/*(int)*/ $date)
+		{
+			$this->date = $date;
 		}
 		
 		private function GetPeriods()
 		{
 			return $this->periods;
+		}
+		
+		private function SetPeriods(/*(array:Digikabu_Period)*/ $periods)
+		{
+			$this->periods = $periods;
 		}
 		
 		  //
