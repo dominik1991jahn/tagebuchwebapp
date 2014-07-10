@@ -1,6 +1,5 @@
-
-<?xml version="1.0" ?>
 <!DOCTYPE html>
+<?xml version="1.0" ?>
 <html>
 	<head>
 		<title>Digikabu.App</title>
@@ -26,13 +25,11 @@
 				height: 80px;
 				margin: 1px;
 			}
-			
 			.double
 			{
 				height: 160px;
 				margin: 1px;
 			}
-			
 			.triple
 			{
 				height: 240px;
@@ -62,10 +59,19 @@
 				background-size:15%;
 			}
 			
-			p.lesson
+			p.teacher
 			{
 				position: absolute;
 				left: 15px;
+				top: 0;
+				display: inline;
+			}
+			p.lesson
+			{
+				position: absolute;
+				text-align: center;
+				left: 0px;
+				right: 0px;
 				top: 0;
 				display: inline;
 			}
@@ -79,9 +85,17 @@
 			p.text
 			{
 				position: absolute;
-				left: 15px;
-				top: 30px;
+				left :  15px;
+				top  :  30px;
+				right: 130px;
+				bottom:  0px;
 				display: inline;
+				padding: 5px;
+				border-top-style: solid;
+				border-right-style: solid;
+				border-width: 2px;
+				border-color: #A8A8A8;
+				overflow: hidden;
 			}
 			p.time
 			{
@@ -89,6 +103,15 @@
 				right: 15px;
 				bottom: 0;
 				display: inline;
+			}
+			
+			div.customPopup
+			{
+				padding:25px;
+			}
+			div.customPopup *
+			{
+				text-align: center;
 			}
 		</style>
 		
@@ -110,60 +133,136 @@
 			
 			<div data-role="content" id="DisplayContent">
 				
-				<div class="ui-body ui-body-gray double hr">
-					<p class="lesson">IKWWW</p>
-					
-					<p class="room">208</p>
-					
-					<p class="text">BspText</p>
-					
-					<p class="time">08:30 - 10:00</p>
-				</div>
+				<a href="#popupIKWWW" data-rel="popup" data-position-to="window" data-transition="flip">
+					<div class="ui-body ui-body-gray double hr">
+						<p class="teacher">Bet/Koeh</p>
+						
+						<p class="lesson">IKWWW</p>
+						
+						<p class="room">208</p>
+						
+						<p class="text">Besprechung der letzen Stunde (Lehrvideo json) und vollenden des aktuellen programms</p>
+						
+						<p class="time">08:30 - 10:00</p>
+					</div>
+				</a>
 				
 				<div class="breakShort"></div>
 				
-				<div class="ui-body ui-body-gray single">
-					<p class="subject">TFC#</p>
-					
-					<p class="room">208</p>
-					
-					<p class="text">BspText</p>
-					
-					<p class="time">10:15 - 11:00</p>
-				</div>
+				<a href="#popupTFC#" data-rel="popup" data-position-to="window" data-transition="flip">
+					<div class="ui-body ui-body-gray single">
+						<p class="teacher">Bar/Rip</p>
+						
+						<p class="lesson">TFC#</p>
+						
+						<p class="room">208</p>
+						
+						<p class="text">BspText</p>
+						
+						<p class="time">10:15 - 11:00</p>
+					</div>
+				</a>
 				
-				<div class="ui-body ui-body-gray double">
-					<p class="subject">TFC#</p>
-					
-					<p class="room">208</p>
-					
-					<p class="text">BspText</p>
-					
-					<p class="time">11:00 - 12:30</p>
-				</div>
+				<a href="#popupD" data-rel="popup" data-position-to="window" data-transition="flip">
+					<div class="ui-body ui-body-gray double">
+						<p class="teacher">Feh</p>
+						
+						<p class="lesson">D</p>
+						
+						<p class="room">208</p>
+						
+						<p class="text">BspText</p>
+						
+						<p class="time">11:00 - 12:30</p>
+					</div>
+				</a>
 				
 				<div class="breakLong"></div>
 				
-				<div class="ui-body ui-body-gray double">
-					<p class="subject">TFC#</p>
-					
-					<p class="room">208</p>
-					
-					<p class="text">BspText</p>
-					
-					<p class="time">13:15 - 14:40</p>
-				</div>
+				<a href="#popupAPJAVA" data-rel="popup" data-position-to="window" data-transition="flip">
+					<div class="ui-body ui-body-gray double">
+						<p class="teacher">Bar/Koeh</p>
+						
+						<p class="lesson">APJAVA</p>
+						
+						<p class="room">208</p>
+						
+						<p class="text">BspText</p>
+						
+						<p class="time">13:15 - 14:40</p>
+					</div>
+				</a>
 				
-				<div class="ui-body ui-body-gray single">
-					<p class="subject">TFC#</p>
-					
-					<p class="room">208</p>
-					
-					<p class="text">BspText</p>
-					
-					<p class="time">14:50 - 15:30</p>
-				</div>
+				<a href="#popupReli" data-rel="popup" data-position-to="window" data-transition="flip">
+					<div class="ui-body ui-body-gray single">
+						<p class="teacher">Lei</p>
+						
+						<p class="lesson">Reli</p>
+						
+						<p class="room">208</p>
+						
+						<p class="text">BspText</p>
+						
+						<p class="time">14:50 - 15:30</p>
+					</div>
+				</a>
 				
+			</div>
+			
+			<div data-role="popup" id="popupIKWWW" class="customPopup">
+				
+				<h2> Informations und Kommunikationssysteme - Webentwicklung<br> </h2>
+				<h3> Herr Betz / Herr Dr. Koerner </h3>
+				<br>
+				<p> Besprechung der letzen Stunde (Lehrvideo json) und vollenden des aktuellen programms </p>
+				
+				<a href="#" data-rel="back" data-role="button"
+				            data-theme="a" data-icon="delete"
+				            data-iconpos="notext" class="ui-btn-right">Close</a>
+			</div>
+			<div data-role="popup" id="popupTFC#" class="customPopup">
+				
+				<h2> Trainingsfirma - Csharp<br> </h2>
+				<h3> Herr Rippert / Herr Bareuther </h3>
+				<br>
+				<p> BspText </p>
+				
+				<a href="#" data-rel="back" data-role="button"
+				            data-theme="a" data-icon="delete"
+				            data-iconpos="notext" class="ui-btn-right">Close</a>
+			</div>
+			<div data-role="popup" id="popupD" class="customPopup">
+				
+				<h2> Deutsch<br> </h2>
+				<h3> Herr Fehr </h3>
+				<br>
+				<p> BspText </p>
+				
+				<a href="#" data-rel="back" data-role="button"
+				            data-theme="a" data-icon="delete"
+				            data-iconpos="notext" class="ui-btn-right">Close</a>
+			</div>
+			<div data-role="popup" id="popupAPJAVA" class="customPopup">
+				
+				<h2> Anwendungsprogrammierung - Java<br> </h2>
+				<h3> Herr Bareuther / Herr Dr. Koerner </h3>
+				<br>
+				<p> BspText </p>
+				
+				<a href="#" data-rel="back" data-role="button"
+				            data-theme="a" data-icon="delete"
+				            data-iconpos="notext" class="ui-btn-right">Close</a>
+			</div>
+			<div data-role="popup" id="popupReli" class="customPopup">
+				
+				<h2> Religion (Katholisch/Evangelisch)<br> </h2>
+				<h3> Herr Fehr </h3>
+				<br>
+				<p> BspText </p>
+				
+				<a href="#" data-rel="back" data-role="button"
+				            data-theme="a" data-icon="delete"
+				            data-iconpos="notext" class="ui-btn-right">Close</a>
 			</div>
 			
 			<div data-role="footer" data-position="fixed">
