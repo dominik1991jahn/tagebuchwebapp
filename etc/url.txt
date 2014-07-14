@@ -1,0 +1,2 @@
+http://192.168.101.3/dmc_v1/api/index.php?timetable/bfi11a/2014-07-08/1
+http://bszw.selfhost.bz:8888/api/v1/timetable/bfi11a/2014-07-11
