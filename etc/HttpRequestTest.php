@@ -22,7 +22,7 @@
 										<option <?php echo ($verb == "DELETE" ? "selected=\"selected\"" : null); ?>>DELETE</option>
 									</select></p>
 			<p><strong>Data:</strong> (name=value, separate with \n):<br/><textarea name="data" style="width:300px;height:150px"><?php echo $data; ?></textarea></p>
-			<p><strong>Headers:</strong> (name=value, separate with \n):<br/><textarea name="headers" style="width:300px;height:150px"><?php echo $headers; ?></textarea></p>
+			<p><strong>Headers:</strong> (name: value, separate with \n):<br/><textarea name="headers" style="width:300px;height:150px"><?php echo $headers; ?></textarea></p>
 			<p><strong>Username:</strong> <input type="text" name="username" value="<?php echo $username; ?>" /></p>
 			<p><strong>Password:</strong> <input type="password" name="password" value="<?php echo $password; ?>" /></p>
 			<p><input type="submit" name="submit" value="Submit Request" /></p>
@@ -63,6 +63,7 @@
 					{
 						$line = explode(":",$line);
 						
+						if(count($line)<2) continue;
 						$name = $line[0];
 						$value = rtrim($line[1]);
 						
@@ -72,9 +73,31 @@
 				
 				$request = new HttpRequest($verb, $url, $data, $headers);
 				
-				$result = $request->SendRequest();
+				$request->SendRequest();
 				
-				echo "<pre style=\"border: 2px solid #d00;background-color:#fd0\"><code>".$result."</code></pre>";
+				echo "<pre style=\"border: 2px solid #d00;background-color:#fd0\"><code>".wordwrap($request->ResponseBody,150,"\n")."</code></pre>";
+				
+				echo "<h4>Response Headers</h4>
+				
+				<ul>";
+				
+				foreach($request->ResponseHeaders as $header)
+				{
+					echo '<li>'.$header.'</li>';
+				}
+				
+				echo '</ul>';
+				
+				echo "<h4>Request Headers</h4>
+				
+				<ul>";
+				
+				foreach($request->Header->Headers as $header => $value)
+				{
+					echo '<li><strong>'.$header.':</strong> '.$value.'</li>';
+				}
+				
+				echo '</ul>';
 			}
 		?>
 	</body>
