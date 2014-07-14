@@ -1,5 +1,4 @@
 <?php
-	error_reporting(E_ALL);
 	class HttpRequest
 	{
 		  //
@@ -236,27 +235,24 @@
 				
 				foreach($headers as $name => $value)
 				{
-					$header .= $name.": ".$value;
+					$header .= $name.": ".$value."\r\n";
 				}
 				
 				stream_context_set_option($streamContext, 'http', "header", $header);
 			}
 			
 			$stream = fopen($url, 'r', false, $streamContext);
-			var_dump($stream);
-			echo $url;
 			
 			if(!$stream)
 			{
-				echo "FAILED!";
-				#throw new HttpRequestFailedException();
+				throw new HttpRequestFailedException();
 			}
-			var_dump($stream);
+			
 			$result = stream_get_contents($stream);
 			
 			$this->responsebody = $result;
 			$this->responseheaders = $http_response_header; // Do NOT ask me where this is from!!!
-			var_dump($this->responseheaders);
+			
 			return true;
 		}
 
