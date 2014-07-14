@@ -61,6 +61,7 @@ function LoadScheduleDataForDate(classcode, startdate)
 function CreateScheduleForDay(data)
 {
 	schedule[data.Date]=data;
+	currentDate=new Date(data.Date);
 	
 	pageid = "schedule-"+data.Date.replace(/-/g,'');
 	
@@ -74,54 +75,37 @@ function CreateScheduleForDay(data)
 	
 	header.attr('data-role','header').append('<h1>Digikabu.App</h1>');
 	
-	footer = document.createElement('div');
-	footer = $(footer);
-	
-	footer.attr('data-role','footer').append('lol');
+	footer = CreateFooter(currentDate);
 	
 	content = document.createElement('div');
 	content = $(content);
 	
 	content.attr('data-role','content');
+	content.html('<p>Hallo</p>');
 	
 	page.append(header);
 	page.append(content);
 	page.append(footer);
 	
 	page.page();
-	
 	page.appendTo($.mobile.pageContainer);
 	
+	alert(page.html());
 	$.mobile.changePage("#"+pageid);
-	currentDate=new Date(data.Date);
-	CreateFooter(currentDate);
+	
+	
 }
  
  function CreateFooter(currentDate)
  {
- 	download=false;
- 	//Prüfen ob akt. Tag == Montag
- 	if(currentDate.getDay()==1)
- 	{
- 		prevdate = new Date(currentDate-86400000);
- 		prevdate=DateToUTC(prevdate);
- 		if(!(prevdate in schedule))
- 		{
- 			download=new Date(currentDate-86400000*7);
- 		}
- 	}
- 	//Prüfen ob Freitag
- 	else if(currentDate.getDay()==5)
- 	{
- 		
- 	}
- 	else
- 	{
- 		
- 	}
+ 	prevdate = new Date(currentDate-86400000);
+ 	prevdate_id=DateToUTC(prevdate);
  	
+ 	nextdate = new Date(currentDate+86400000);
+ 	nextdate_id=DateToUTC(nextdate);
  	
- 	prevID="schedule-";
+ 	nextID="schedule-"+nextdate_id;
+ 	prevID="schedule-"+prevdate_id;
  	footer=$(document.createElement("div")); 	
  	footer.attr("data-role","footer").attr("data-position","fixed");
  	
@@ -130,10 +114,14 @@ function CreateScheduleForDay(data)
 	 	
 		 	datnavbarlist=$(document.createElement("ul"));
 		 		datnavbarprev=$(document.createElement("li"));
-		 		datnavbarprev.append("<a></a>").attr("href","#"+prevID).attr("data-role","button");
- 	
+		 			datnavbarprev.append("<a></a>").attr("href","#"+prevID).attr("data-role","button").html(prevdate.getUTCDate());
+		 		datnavbarnext=$(document.createElement("li"));
+		 			datnavbarnext.append("<a></a>").attr("href","#"+nextID).attr("data-role","button").html(nextdate.getUTCDate());
+ 			datnavbarlist.append(datnavbarprev);
+ 			datnavbarlist.append(datnavbarnext);
  		datnavbar.append(datnavbarlist);
  	footer.append(datnavbar);
+ 	return footer;
  	/*
  	<div data-role="footer" data-position="fixed">
 				<div data-role="navbar">
@@ -163,6 +151,7 @@ $(function() {
 	FillTeacherList();
 	LoadScheduleDataForDate("IT11a","2014-07-07");
 });
+
 function DateToUTC(date)
 {
 	utc = date.getFullYear()+"-";
