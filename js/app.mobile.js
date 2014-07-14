@@ -1,3 +1,5 @@
+var schedule = new Array();
+
 function FillClassList()
 {
 	var url = "request.php?/Class";
@@ -46,6 +48,7 @@ function LoadScheduleDataForDate(classcode, startdate)
 				for(d = 0; d < value.Days.length; d++)
 				{
 					CreateScheduleForDay(value.Days[d]);
+					break; // REMOVE! Only for testing!
 				}
 			});
 		}
@@ -57,6 +60,8 @@ function LoadScheduleDataForDate(classcode, startdate)
  */
 function CreateScheduleForDay(data)
 {
+	schedule[data.Date]=data;
+	
 	pageid = "schedule-"+data.Date.replace(/-/g,'');
 	
 	page = document.createElement("div");
@@ -88,10 +93,34 @@ function CreateScheduleForDay(data)
 	page.appendTo($.mobile.pageContainer);
 	
 	$.mobile.changePage("#"+pageid);
+	currentDate=new Date(data.Date);
+	CreateFooter(currentDate);
 }
  
  function CreateFooter(currentDate)
  {
+ 	download=false;
+ 	//Prüfen ob akt. Tag == Montag
+ 	if(currentDate.getDay()==1)
+ 	{
+ 		prevdate = new Date(currentDate-86400000);
+ 		prevdate=DateToUTC(prevdate);
+ 		if(!(prevdate in schedule))
+ 		{
+ 			download=new Date(currentDate-86400000*7);
+ 		}
+ 	}
+ 	//Prüfen ob Freitag
+ 	else if(currentDate.getDay()==5)
+ 	{
+ 		
+ 	}
+ 	else
+ 	{
+ 		
+ 	}
+ 	
+ 	
  	prevID="schedule-";
  	footer=$(document.createElement("div")); 	
  	footer.attr("data-role","footer").attr("data-position","fixed");
@@ -134,3 +163,19 @@ $(function() {
 	FillTeacherList();
 	LoadScheduleDataForDate("IT11a","2014-07-07");
 });
+function DateToUTC(date)
+{
+	utc = date.getFullYear()+"-";
+	month=date.getMonth();
+	day=date.getDate();
+	if(date.getMonth()<10)
+	{
+		month="0"+month;
+	}
+	if(date.getDate()<10)
+	{
+		day = "0"+day;
+	}
+	utc+=month+"-"+day;
+	return utc;
+}
