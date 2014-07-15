@@ -11,9 +11,9 @@
 		 // CONSTRUCTOR
 		//
 		
-		public function Digikabu_Room($room)
+		public function Digikabu_Room($room = NULL)
 		{
-			
+			$this->Room = $room;
 		}
 		
 		  //
@@ -53,6 +53,7 @@
 		public static function FromXMLNode(SimpleXMLElement $node)
 		{
 			$room = (string) $node;
+			if (empty($room)) { return NULL; }
 			$room = new Digikabu_Room($room);
 			
 			return $room;

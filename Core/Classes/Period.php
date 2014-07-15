@@ -60,6 +60,7 @@
 				case "Duration": $this->SetDuration($value); break;
 				case "Previous": $this->SetPrevious($value); break;
 				case "Next": $this->SetNext($value); break;
+				case "Information": $this->SetInformation($value); break;
 			}
 		}
 		
@@ -229,8 +230,8 @@
 						break;
 					
 					case "Description":
-						$description = (string) $childnode;
-						$period->Description = $description;
+						$information = (string) $childnode;
+						$period->Information = $information;
 						break;
 					
 					case "Teachers":
@@ -278,6 +279,8 @@
 						foreach($childnode->children() as $xroom)
 						{
 							$room = Digikabu_Room::FromXMLNode($xroom);
+							
+							if ($room == NULL) { continue; }
 							
 							$period->AddRoom($room);
 						}

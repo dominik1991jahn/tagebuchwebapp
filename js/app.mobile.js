@@ -137,7 +137,7 @@ function CreateScheduleForDay(data)
  	lesson.append(pRoom);
  	
  	pText = $(document.createElement("p"));
- 	pText.html(data.Subject.Description);
+ 	pText.html(data.Subject.Information);
  	lesson.append(pText);
  	
  	return lesson;
