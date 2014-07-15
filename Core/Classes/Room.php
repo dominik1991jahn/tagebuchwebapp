@@ -32,7 +32,6 @@
 				case "Room": return $this->GetRoom(); break;
 			}
 		}
-		
 		public function __set($name,$value)
 		{
 			switch($name)
@@ -59,13 +58,11 @@
 			return $room;
 		}
 		
-		
 		  //
 		 // GETTERS / SETTERS
 		//
 		
 		# Room
-		
 		public function GetRoom()
 		{
 			return $this->room;
@@ -75,6 +72,5 @@
 		{
 			$this->room = $room;
 		}
-		
 	}
 ?>
