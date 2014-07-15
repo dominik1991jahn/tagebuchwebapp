@@ -90,8 +90,8 @@
 		
 		page.page();
 		page.appendTo($.mobile.pageContainer);
-		
-		alert(page.html());
+		alert($("body").html());
+		//alert(page.html());
 		$.mobile.changePage("#"+pageid);
 	}
 	 
@@ -139,10 +139,10 @@
 	 
 	function CreateFooter(currentDate)
 	{
-	 	prevdate = new Date(currentDate-86400000);
+	 	prevdate = new Date(currentDate.getTime()-86400000);
 	 	prevdate_id=DateToUTC(prevdate);
 	 	
-	 	nextdate = new Date(currentDate+86400000);
+	 	nextdate = new Date(currentDate.getTime()+86400000);
 	 	nextdate_id=DateToUTC(nextdate);
 	 	
 	 	nextID="schedule-"+nextdate_id;
@@ -155,10 +155,13 @@
 		 	
 			 	datnavbarlist=$(document.createElement("ul"));
 			 		datnavbarprev=$(document.createElement("li"));
-			 			datnavbarprev.append("<a></a>").attr("href","#"+prevID).attr("data-role","button").html(prevdate.getUTCDate());
+			 			datnavbarprev.append("<a></a>").attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")");
+			 		datnavbarcurr=$(document.createElement("li"));
+			 			datnavbarcurr.append("<a></a>").attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(currentDate.getDay()) + " (" + Zero(currentDate.getDate()) + "." + Zero((currentDate.getMonth()+1))  + ")");
 			 		datnavbarnext=$(document.createElement("li"));
-			 			datnavbarnext.append("<a></a>").attr("href","#"+nextID).attr("data-role","button").html(nextdate.getUTCDate());
+			 			datnavbarnext.append("<a></a>").attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
 	 			datnavbarlist.append(datnavbarprev);
+	 			datnavbarlist.append(datnavbarcurr);
 	 			datnavbarlist.append(datnavbarnext);
 	 		datnavbar.append(datnavbarlist);
 	 	footer.append(datnavbar);
@@ -194,17 +197,33 @@
 	
 	function DateToUTC(date)
 	{
-		utc = date.getFullYear()+"-";
-		month=date.getMonth();
-		day=date.getDate();
-		if(date.getMonth()<10)
+		utc = date.getUTCFullYear()+"-";
+		
+		month=date.getUTCMonth();
+		day=date.getUTCDate();
+		
+		if(month<10)
 		{
 			month="0"+month;
 		}
-		if(date.getDate()<10)
+		if(day<10)
 		{
 			day = "0"+day;
 		}
 		utc+=month+"-"+day;
 		return utc;
+	}
+	
+	function DayOfWeekToName(day)
+	{
+		days = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+		
+		return days[day];
+	}
+	
+	function Zero(num)
+	{
+		if(num < 10) num = "0"+num;
+		
+		return num;
 	}
