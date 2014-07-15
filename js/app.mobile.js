@@ -45,11 +45,8 @@ function LoadScheduleDataForDate(classcode, startdate)
 			// Weeks
 			$.each(response, function(key, value)
 			{
-				for(d = 0; d < value.Days.length; d++)
-				{
-					CreateScheduleForDay(value.Days[d]);
-					//break; // REMOVE! Only for testing!
-				}
+				CreateScheduleForDay(value);
+				//break; // REMOVE! Only for testing!
 			});
 		}
 	)
@@ -201,14 +198,14 @@ $(function() {
 
 function DateToUTC(date)
 {
-	utc = date.getFullYear()+"-";
-	month=date.getMonth();
-	day=date.getDate();
-	if(date.getMonth()<10)
+	utc = date.getUTCFullYear()+"-";
+	month=date.getUTCMonth();
+	day=date.getUTCDate();
+	if(month<10)
 	{
 		month="0"+month;
 	}
-	if(date.getDate()<10)
+	if(day<10)
 	{
 		day = "0"+day;
 	}
