@@ -27,7 +27,7 @@
 			{
 				$.each(response, function(key, value)
 				{
-					$("#TeacherList").append("<option value=\"" +value.Abbreviation+"\">["+value.Abbreviation+"] "+value.Name+"</option>");
+					$("#TeacherList").append("<option value=\""+value.Abbreviation+"\">["+value.Abbreviation+"] "+value.Name+"</option>");
 				});
 				
 				$("#ClassTeacherList").selectmenu('refresh');
@@ -45,11 +45,8 @@
 				// Weeks
 				$.each(response, function(key, value)
 				{
-					for(d = 0; d < value.Days.length; d++)
-					{
-						CreateScheduleForDay(value.Days[d]);
-						//break; // REMOVE! Only for testing!
-					}
+					CreateScheduleForDay(value);
+					//break; // REMOVE! Only for testing!
 				});
 			}
 		)
@@ -186,6 +183,7 @@
 		</div>
 		*/
 	}
+	
 	/*
 	 * Auto-Start
 	 */
