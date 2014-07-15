@@ -48,7 +48,7 @@ function LoadScheduleDataForDate(classcode, startdate)
 				for(d = 0; d < value.Days.length; d++)
 				{
 					CreateScheduleForDay(value.Days[d]);
-					break; // REMOVE! Only for testing!
+					//break; // REMOVE! Only for testing!
 				}
 			});
 		}
@@ -85,7 +85,7 @@ function CreateScheduleForDay(data)
 	{
 		lesson = CreateLesson(data.Periods[p]);
 		
-		content.appendChild(lesson)
+		content.append(lesson)
 	}
 	
 	page.append(header);
@@ -103,14 +103,13 @@ function CreateScheduleForDay(data)
  
  function CreateLesson(data)
  {
- 	schedule[data.Data] = data;
- 	
  	lesson = $(document.createElement("div"));
- 	if (data.subject.duration = 3)
+ 	
+ 	if (data.Subject.Duration = 3)
  	{
  		lesson.attr("class", "ui-body ui-body-gray triple hr");
  	}
- 	else if (data.subject.duration = 2)
+ 	else if (data.Subject.Duration = 2)
  	{
  		lesson.attr("class", "ui-body ui-body-gray double hr");
  	}
@@ -124,22 +123,22 @@ function CreateScheduleForDay(data)
  	for(i = 0; i < data.Teachers.length; i++)
  	{
  		if (i > 1) { teachers += "/"; }
- 		teachers += data.Subject.Teachers.Abbreviation;
+ 		teachers += data.Teachers.Abbreviation;
  	}
  	pTeach.html(teachers);
- 	lesson.appendChild(pTeach);
+ 	lesson.append(pTeach);
  	
  	pName = $(document.createElement("p"));
  	pName.html(data.Subject.Name);
- 	lesson.appendChild(pName);
+ 	lesson.append(pName);
  	
  	pRoom = $(document.createElement("p"));
  	pRoom.html(data.Subject.Rooms);
- 	lesson.appendChild(pRoom);
+ 	lesson.append(pRoom);
  	
  	pText = $(document.createElement("p"));
  	pText.html(data.Subject.Description);
- 	lesson.appendChild(pText);
+ 	lesson.append(pText);
  	
  	return lesson;
  }
