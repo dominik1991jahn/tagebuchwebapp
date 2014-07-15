@@ -95,6 +95,16 @@
 			}		
 			return $teacher;
 		}
+		public static function FromXMLNodeFromSchedule(SimpleXMLElement $node)
+		{
+			$teacher = new Digikabu_Teacher();
+			
+			$name = (string)$node;
+			
+			$teacher->Name=$name;
+			
+			return $teacher;
+		}
 		
 		  //
 		 // GetTERS / SetTERS

@@ -236,12 +236,16 @@
 					case "Teachers":
 						
 						$teachers = array();
-						$t = 0;
+						$t = -1;
 						
 						foreach($childnode->children() as $xteacher)
 						{
 							
-							$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
+							$teacher = Digikabu_Teacher::FromXMLNodeFromSchedule($xteacher);
+							
+							$t++;
+							
+							if ($teacher->Name == "admin") { continue; }
 							
 							switch ($t)
 							{
@@ -260,8 +264,6 @@
 									$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
 									break;
 							}
-							
-							$t++;
 						}
 						
 						foreach($teachers as $teacher)
