@@ -196,7 +196,7 @@ function CreateScheduleForDay(data)
 $(function() {
 	FillClassList();
 	FillTeacherList();
-	LoadScheduleDataForDate("IT11a","2014-07-07");
+	LoadScheduleDataForDate("bfi11a","2014-07-07");
 });
 
 function DateToUTC(date)

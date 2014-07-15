@@ -16,8 +16,9 @@
 		 // CONSTRUCTOR
 		//		
 		
-		public function Digikabu_Subject()
+		public function Digikabu_Subject($name = null)
 		{
+			$this->name = $name;
 		}
 
 		 	  

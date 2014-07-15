@@ -75,7 +75,7 @@
 				
 				$request->SendRequest();
 				
-				echo "<pre style=\"border: 2px solid #d00;background-color:#fd0\"><code>".wordwrap($request->ResponseBody,150,"\n")."</code></pre>";
+				echo "<pre style=\"border: 2px solid #d00;background-color:#fd0\"><code>".htmlentities(wordwrap($request->ResponseBody,150,"\n"))."</code></pre>";
 				
 				echo "<h4>Response Headers</h4>
 				

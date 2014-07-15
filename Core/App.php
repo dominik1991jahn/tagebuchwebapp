@@ -19,8 +19,8 @@
 			 * Login Information
 			 */
 			 
-			$username = "dominik";
-			$password = "o!saycanyouseemypasswordintheclear";
+			$username = "jahnd";
+			$password = base64_decode("cEhtaDI1bmE=");
 			
 			// Establish a connection to the API-Server with the login credentials
 			$tunnel = new Tunnel($username, $password);

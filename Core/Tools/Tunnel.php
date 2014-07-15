@@ -25,7 +25,8 @@
 		private function PassThroughTunnel($verb, $url)
 		{
 			$request = new HttpRequest($verb, $url);
-			$request->SetAuthorization($this->username.": ".md5($this->password));
+			$request->SetAuthorization("Basic ".base64_encode($this->username.":".$this->password));
+			$request->SetAccept("application/xml");
 			
 			return $request;
 		}
@@ -115,24 +116,24 @@
 			return json_encode($subjects);
 		}
 		
-		public function GetScheduleForClass($class, $from)
+		public function GetScheduleForClass($class, $date)
 		{
-			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "From" => $from));
+			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "Date" => $date));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
 			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
-			$weeks = array();
-			foreach($xresponse->children() as $xweek)
+			$days = array();
+			foreach($xresponse->children() as $xday)
 			{
-				$week = Digikabu_Week::FromXMLNode($xweek);
+				$day = Digikabu_Day::FromXMLNode($xday);
 				
-				$weeks[] = $week;
+				$days[] = $day;
 			}
 			
-			print json_encode($weeks);
+			print json_encode($days, JSON_PRETTY_PRINT);
 		}
 		
 		public function GetScheduleForTeacher($teacher, $from)

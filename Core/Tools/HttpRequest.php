@@ -217,13 +217,16 @@
 			{
 				$data = http_build_query($this->data->Parameters);
 				
-				if($this->verb <> 'GET')
+				if(strlen($data))
 				{
-					stream_context_set_option($streamContext, 'http', "content", $data);
-				}
-				else
-				{
-					$url .= '?'.$data;
+					if($this->verb <> 'GET')
+					{
+						stream_context_set_option($streamContext, 'http', "content", $data);
+					}
+					else
+					{
+						$url .= '?'.$data;
+					}
 				}
 			}
 			
@@ -262,6 +265,14 @@
 				$this->headers = new HeaderData;
 			
 			return $this->Header->AddHeader("Authorization",$authorization);
+		}
+
+		public function SetAccept($accept)
+		{
+			if(is_null($this->headers))
+				$this->headers = new HeaderData;
+			
+			return $this->Header->AddHeader("Accept",$accept);
 		}
 		
 		  //

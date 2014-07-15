@@ -16,7 +16,7 @@
 	
 	<Request method="GET" url="/Schedule/Class/([A-Za-z0-9]+)-(([0-9]{4})-([0-9]{2})-([0-9]{2}))" handler="Tunnel.GetScheduleForClass">
 		<Field>Class</Field>
-		<Field>From</Field>
+		<Field>Date</Field>
 	</Request>
 	
 	<Request method="GET" url="/Schedule/Teacher/([A-Za-z0-9]+)-(([0-9]{4})-([0-9]{2})-([0-9]{2}))" handler="Tunnel.GetScheduleForTeacher">

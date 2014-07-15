@@ -56,6 +56,8 @@
 			{
 				case "Date": $this->setDate($value);  break;
 				case "Subject": $this->setSubject($value); break;
+				case "Start": $this->SetStart($value); break;
+				case "Duration": $this->SetDuration($value); break;
 				case "Previous": $this->SetPrevious($value); break;
 				case "Next": $this->SetNext($value); break;
 			}
@@ -218,8 +220,11 @@
 						$period->Start = $start;
 						break;
 					
-					case "Duration":
-						$duration = (int) $childnode;
+					case "End":
+						$end = (int) $childnode;
+						
+						$duration = $end-$period->start+1;
+						
 						$period->Duration = $duration;
 						break;
 					

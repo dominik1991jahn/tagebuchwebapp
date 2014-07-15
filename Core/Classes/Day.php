@@ -94,7 +94,7 @@
 		public static function FromXMLNode(SimpleXMLElement $node)
 		{
 			$attributes = $node->attributes();
-				
+			
 			$date = strtotime((string) $attributes["date"]);
 			$type = (isset($attributes["type"]) ? strtoupper((string) $attributes["type"]) : "NORMAL");
 			$type = Digikabu_Day::GetTypeFromName($type);
@@ -103,9 +103,18 @@
 			
 			foreach($node->children() as $xperiod)
 			{
-				$period = Digikabu_Period::FromXMLNode($xperiod);
+				switch($xperiod->getName())
+				{
+					case "Period":
+						$period = Digikabu_Period::FromXMLNode($xperiod);
+						$day->AddPeriod($period);
+						break;
+						
+					case "Info":
+						
+						break;
+				}
 				
-				$day->AddPeriod($period);
 			}
 			
 			return $day;
