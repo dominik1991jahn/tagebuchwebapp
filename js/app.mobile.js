@@ -90,7 +90,7 @@
 		
 		page.page();
 		page.appendTo($.mobile.pageContainer);
-		alert($("body").html());
+		//alert($("body").html());
 		//alert(page.html());
 		$.mobile.changePage("#"+pageid);
 	}
@@ -155,16 +155,23 @@
 		 	
 			 	datnavbarlist=$(document.createElement("ul"));
 			 		datnavbarprev=$(document.createElement("li"));
-			 			datnavbarprev.append("<a></a>").attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")");
+			 			link = $(document.createElement("a"));
+			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")");
+			 			datnavbarprev.append(link);
 			 		datnavbarcurr=$(document.createElement("li"));
-			 			datnavbarcurr.append("<a></a>").attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(currentDate.getDay()) + " (" + Zero(currentDate.getDate()) + "." + Zero((currentDate.getMonth()+1))  + ")");
+			 			link = $(document.createElement("a"));
+			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(currentDate.getDay()) + " (" + Zero(currentDate.getDate()) + "." + Zero((currentDate.getMonth()+1))  + ")");
+			 			datnavbarcurr.append(link);
 			 		datnavbarnext=$(document.createElement("li"));
-			 			datnavbarnext.append("<a></a>").attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
+			 			link = $(document.createElement("a"));
+			 			link.attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
+	 					datnavbarnext.append(link);
 	 			datnavbarlist.append(datnavbarprev);
 	 			datnavbarlist.append(datnavbarcurr);
 	 			datnavbarlist.append(datnavbarnext);
 	 		datnavbar.append(datnavbarlist);
 	 	footer.append(datnavbar);
+	 	
 	 	return footer;
 	 	/*
 	 	<div data-role="footer" data-position="fixed">
