@@ -84,12 +84,12 @@
 				{
 					case "Code":
 						$abbreviation = (string) $childnode;
-						$teacher->abbreviation = $abbreviation;						
+						$teacher->Abbreviation = $abbreviation;						
 						break;
 					
 					case "Name":
 						$name = (string) $childnode;
-						$teacher->name = $name;
+						$teacher->Name = $name;
 						break;
 				}
 			}		
@@ -101,7 +101,7 @@
 			
 			$name = (string)$node;
 			
-			$teacher->Name=$name;
+			$teacher->Abbreviation=$name;
 			
 			return $teacher;
 		}

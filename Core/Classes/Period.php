@@ -245,7 +245,7 @@
 							
 							$t++;
 							
-							if ($teacher->Name == "admin") { continue; }
+							if ($teacher->Abbreviation == "admin") { continue; }
 							
 							switch ($t)
 							{
