@@ -27,7 +27,7 @@
 		public function Digikabu_Period()
 		{
 			$this->teachers = array();
-			$this->rooms = array();
+			$this->rooms 	= array();
 		}
 		
 		  //
@@ -38,14 +38,14 @@
 		{
 			switch($name)
 			{
-				case "Date": return $this->GetDate(); break;
-				case "Subject": return $this->GetSubject(); break;
-				case "Previous": return $this->GetPrevious(); break;
-				case "Next": return $this->GetNext(); break;
-				case "Start": return $this->GetStart();
-				case "Duration": return $this->GetDuration();
-				case "Teachers": return $this->GetTeachers();
-				case "Rooms": return $this->GetRooms();
+				case "Date"		  : return $this->GetDate(		 ); break;
+				case "Subject"	  : return $this->GetSubject( 	 ); break;
+				case "Previous"	  : return $this->GetPrevious(	 ); break;
+				case "Next"		  : return $this->GetNext(		 ); break;
+				case "Start"	  : return $this->GetStart(	     );
+				case "Duration"	  : return $this->GetDuration(	 );
+				case "Teachers"	  : return $this->GetTeachers(	 );
+				case "Rooms"	  : return $this->GetRooms(		 );
 				case "Information": return $this->GetInformation();
 			}
 		}
@@ -54,12 +54,12 @@
 		{
 			switch($name)
 			{
-				case "Date": $this->setDate($value);  break;
-				case "Subject": $this->setSubject($value); break;
-				case "Start": $this->SetStart($value); break;
-				case "Duration": $this->SetDuration($value); break;
-				case "Previous": $this->SetPrevious($value); break;
-				case "Next": $this->SetNext($value); break;
+				case "Date"		  : $this->setDate(		  $value); break;
+				case "Subject"	  : $this->setSubject(	  $value); break;
+				case "Start"	  : $this->SetStart(	  $value); break;
+				case "Duration"	  : $this->SetDuration(	  $value); break;
+				case "Previous"   : $this->SetPrevious(	  $value); break;
+				case "Next"		  : $this->SetNext(		  $value); break;
 				case "Information": $this->SetInformation($value); break;
 			}
 		}
@@ -77,12 +77,12 @@
 		public function jsonSerialize()
 		{
 			return array(
-				"Type" => $this->Type,
-				"Subject" => $this->Subject,
-				"Start" => $this->Start,
-				"Duration" => $this->Duration,
-				"Teachers" => $this->Teachers,
-				"Rooms" => $this->Rooms,
+				"Type"	      => $this->Type,
+				"Subject"	  => $this->Subject,
+				"Start" 	  => $this->Start,
+				"Duration"	  => $this->Duration,
+				"Teachers"	  => $this->Teachers,
+				"Rooms" 	  => $this->Rooms,
 				"Information" => $this->Information
 			);
 		}
