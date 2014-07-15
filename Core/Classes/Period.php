@@ -235,11 +235,38 @@
 					
 					case "Teachers":
 						
+						$teachers = array();
+						$t = 0;
+						
 						foreach($childnode->children() as $xteacher)
 						{
-							$teacherstatus = Digikabu_TeacherStatus::FromXMLNode($xteacher);
 							
-							$period->AddTeacher($teacherstatus);
+							$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
+							
+							switch ($t)
+							{
+								case 0:
+									$teachers[0] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+									break;
+								case 1:
+									$teachers[1] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+									break;
+								case 2: 
+									$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+									$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
+									break;
+								case 3:
+									$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+									$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
+									break;
+							}
+							
+							$t++;
+						}
+						
+						foreach($teachers as $teacher)
+						{
+							$period->AddTeacher($teacher);
 						}
 						
 						break;
