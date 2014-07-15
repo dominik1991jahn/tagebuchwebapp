@@ -37,7 +37,7 @@ function FillTeacherList()
 function LoadScheduleDataForDate(classcode, startdate)
 {
 	var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
-	
+	//alert(url);
 	$.getJSON(
 		url,
 		function(response)
@@ -79,9 +79,14 @@ function CreateScheduleForDay(data)
 	
 	content = document.createElement('div');
 	content = $(content);
-	
 	content.attr('data-role','content');
-	content.html('<p>Hallo</p>');
+	
+	for(p = 0; p < data.Periods.length; p++)
+	{
+		lesson = CreateLesson(data.Periods[p]);
+		
+		content.appendChild(lesson)
+	}
 	
 	page.append(header);
 	page.append(content);
@@ -95,6 +100,49 @@ function CreateScheduleForDay(data)
 	
 	
 }
+ 
+ function CreateLesson(data)
+ {
+ 	schedule[data.Data] = data;
+ 	
+ 	lesson = $(document.createElement("div"));
+ 	if (data.subject.duration = 3)
+ 	{
+ 		lesson.attr("class", "ui-body ui-body-gray triple hr");
+ 	}
+ 	else if (data.subject.duration = 2)
+ 	{
+ 		lesson.attr("class", "ui-body ui-body-gray double hr");
+ 	}
+ 	else
+ 	{
+ 		lesson.attr("class", "ui-body ui-body-gray single hr");
+ 	}
+ 	
+ 	pTeach = $(document.createElement("p"));
+ 	teachers = "";
+ 	for(i = 0; i < data.Teachers.length; i++)
+ 	{
+ 		if (i > 1) { teachers += "/"; }
+ 		teachers += data.Subject.Teachers.Abbreviation;
+ 	}
+ 	pTeach.html(teachers);
+ 	lesson.appendChild(pTeach);
+ 	
+ 	pName = $(document.createElement("p"));
+ 	pName.html(data.Subject.Name);
+ 	lesson.appendChild(pName);
+ 	
+ 	pRoom = $(document.createElement("p"));
+ 	pRoom.html(data.Subject.Rooms);
+ 	lesson.appendChild(pRoom);
+ 	
+ 	pText = $(document.createElement("p"));
+ 	pText.html(data.Subject.Description);
+ 	lesson.appendChild(pText);
+ 	
+ 	return lesson;
+ }
  
  function CreateFooter(currentDate)
  {
