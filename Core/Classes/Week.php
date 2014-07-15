@@ -9,7 +9,7 @@
 		private /*(int)*/ $from;
 		private /*(int)*/ $to;
 		private /*(array:Digikabu_Day)*/ $days;
-		
+	
 		  //
 		 // CONSTRUCTOR
 		//
