@@ -138,7 +138,13 @@
 	 	lesson.append(pName);
 	 	
 	 	pRoom = $(document.createElement("p"));
-	 	pRoom.html(data.Subject.Rooms);
+	 	rooms = "";
+	 	for(i = 0; i < data.Rooms.length; i++)
+	 	{
+	 		if (i > 0) { rooms += "/"; }
+	 		rooms += data.Rooms[i];
+	 	}
+	 	pRoom.html(rooms);
 	 	lesson.append(pRoom);
 	 	
 	 	pText = $(document.createElement("p"));
