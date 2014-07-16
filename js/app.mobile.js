@@ -281,6 +281,7 @@
 			CreateScheduleForDay(schedule[date]);
 			$.mobile.changePage("#schedule-"+date,{
 				reverse: direction,
+				transition: "slide"
 			});
 		}
 	}
