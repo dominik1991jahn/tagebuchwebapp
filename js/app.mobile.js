@@ -266,7 +266,9 @@
 		else
 		{
 			CreateScheduleForDay(schedule[date]);
-			$.mobile.changePage("#schedule-"+date);
+			$.mobile.changePage("#schedule-"+date,{
+				reverse: false,
+			});
 		}
 	}
 
