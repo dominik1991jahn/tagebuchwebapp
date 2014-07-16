@@ -126,8 +126,8 @@
 	 	teachers = "";
 	 	for(i = 0; i < data.Teachers.length; i++)
 	 	{
-	 		if (i > 1) { teachers += "/"; }
-	 		teachers += data.Teachers.Abbreviation;
+	 		if (i > 0) { teachers += "/"; }
+	 		teachers += data.Teachers[i].Teacher.Abbreviation;
 	 	}
 	 	
 	 	pTeach.html(teachers);
