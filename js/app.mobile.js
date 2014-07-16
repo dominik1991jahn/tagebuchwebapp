@@ -172,7 +172,7 @@
 			 			{
 			 				link = data.target.href.split('#');
 			 				link = link[1].substring(9);
-			 				switchToPage(link);
+			 				switchToPage(link,-1);
 			 				return false;
 			 			});
 			 			datnavbarprev.append(link);
@@ -192,7 +192,7 @@
 			 			{
 			 				link = data.target.href.split('#');
 			 				link = link[1].substring(9);
-			 				switchToPage(link);
+			 				switchToPage(link,1);
 			 				return false;
 			 			});
 	 					datnavbarnext.append(link);
@@ -257,7 +257,7 @@
 		return num;
 	}
 	
-	function switchToPage(date)
+	function switchToPage(date, direction)
 	{
 		if(!(date in schedule))
 		{
@@ -265,9 +265,16 @@
 		}
 		else
 		{
+			if(direction<0)
+			{
+				direction=true;
+			}
+			else{
+				direction=false;
+			}
 			CreateScheduleForDay(schedule[date]);
 			$.mobile.changePage("#schedule-"+date,{
-				reverse: false,
+				reverse: direction,
 			});
 		}
 	}
