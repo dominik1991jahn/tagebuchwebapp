@@ -45,7 +45,9 @@
 				// Weeks
 				$.each(response, function(key, value)
 				{
-					CreateScheduleForDay(value);
+					date = value.Date;
+					schedule[date]=value;
+					//CreateScheduleForDay(value);
 					//break; // REMOVE! Only for testing!
 				});
 			}
@@ -57,8 +59,6 @@
 	 */
 	function CreateScheduleForDay(data)
 	{
-		schedule[data.Date]=data;
-		
 		currentDate=new Date(data.Date);
 		
 		prevdate = new Date(currentDate.getTime()-86400000);
@@ -102,16 +102,6 @@
 		//alert($("body").html());
 		//alert(page.html());
 		$.mobile.changePage("#"+pageid);
-		
-		$(document).on( "swiperight", page, function() {
-			alert(page.attr('data-next'));
-			$.mobile.changePage("#"+page.attr('data-next'));
-		});
-		
-		$(document).on( "swipeleft", page, function() {
-			alert(page.attr('data-prev'));
-			$.mobile.changePage("#"+page.attr('data-prev'));
-		});
 	}
 	 
 	function CreateLesson(data)
@@ -176,6 +166,13 @@
 			 		datnavbarprev=$(document.createElement("li"));
 			 			link = $(document.createElement("a"));
 			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")");
+			 			link.on("click",function(data)
+			 			{
+			 				link = data.target.href.split('#');
+			 				link = link[1].substring(9);
+			 				switchToPage(link);
+			 				return false;
+			 			});
 			 			datnavbarprev.append(link);
 			 		datnavbarcurr=$(document.createElement("li"));
 			 			link = $(document.createElement("a"));
@@ -184,6 +181,13 @@
 			 		datnavbarnext=$(document.createElement("li"));
 			 			link = $(document.createElement("a"));
 			 			link.attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
+	 					link.on("click",function(data)
+			 			{
+			 				link = data.target.href.split('#');
+			 				link = link[1].substring(9);
+			 				switchToPage(link);
+			 				return false;
+			 			});
 	 					datnavbarnext.append(link);
 	 			datnavbarlist.append(datnavbarprev);
 	 			datnavbarlist.append(datnavbarcurr);
@@ -213,19 +217,11 @@
 		*/
 	}
 	
-	/*
-	 * Auto-Start
-	 */
-	
-	$(function(){ FillClassList();
-				  FillTeacherList();
-				  LoadScheduleDataForDate("bfi11a","2014-07-07"); });
-	
 	function DateToUTC(date)
 	{
 		utc = date.getUTCFullYear()+"-";
 		
-		month=date.getUTCMonth();
+		month=date.getUTCMonth()+1;
 		day=date.getUTCDate();
 		
 		if(month<10)
@@ -253,3 +249,25 @@
 		
 		return num;
 	}
+	
+	function switchToPage(date)
+	{
+		if(!(date in schedule))
+		{
+			alert(unescape("F%FCr dieses Datum sind keine Daten vorhanden!"));
+		}
+		
+		CreateScheduleForDay(schedule[date]);
+	}
+
+	
+	/*
+	 * Auto-Start
+	 */
+	
+	$(function(){
+		currentDate = DateToUTC(new Date());
+		LoadScheduleDataForDate("bfi11a",currentDate);
+		
+		switchToPage(currentDate);
+	});

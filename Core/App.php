@@ -5,6 +5,8 @@
 		{
 			header("Content-Type: application/json");
 			
+			date_default_timezone_set("Europe/Berlin");
+			
 			// Get the requested function
 			# HTTP-Verb (GET/POST/PUT/DELETE)
 			$httpMethod = $_SERVER["REQUEST_METHOD"];
