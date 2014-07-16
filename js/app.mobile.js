@@ -58,14 +58,23 @@
 	function CreateScheduleForDay(data)
 	{
 		schedule[data.Date]=data;
+		
 		currentDate=new Date(data.Date);
 		
-		pageid = "schedule-"+data.Date.replace(/-/g,'');
+		prevdate = new Date(currentDate.getTime()-86400000);
+	 	prevpage="schedule-"+DateToUTC(prevdate);
+	 	
+	 	nextdate = new Date(currentDate.getTime()+86400000);
+	 	nextpage="schedule-"+DateToUTC(nextdate);
+		
+		pageid = "schedule-"+DateToUTC(currentDate);//data.Date.replace(/-/g,'');
 		
 		page = document.createElement("div");
 		page = $(page);
 		
 		page.attr('data-role','page').attr('id',pageid);
+		page.attr('data-prev',prevpage);
+		page.attr('data-next',nextpage);
 		
 		header = document.createElement('div');
 		header = $(header);
@@ -93,6 +102,16 @@
 		//alert($("body").html());
 		//alert(page.html());
 		$.mobile.changePage("#"+pageid);
+		
+		$(document).on( "swiperight", page, function() {
+			alert(page.attr('data-next'));
+			$.mobile.changePage("#"+page.attr('data-next'));
+		});
+		
+		$(document).on( "swipeleft", page, function() {
+			alert(page.attr('data-prev'));
+			$.mobile.changePage("#"+page.attr('data-prev'));
+		});
 	}
 	 
 	function CreateLesson(data)
