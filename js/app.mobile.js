@@ -38,11 +38,11 @@
 	{
 		var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
 		
-		$.getJSON(
-			url,
-			function(response)
-			{
-				// Weeks
+		$.ajax({
+			type: "GET",
+			url: url,
+			dataType: 'json',
+			success: function(response) {
 				$.each(response, function(key, value)
 				{
 					date = value.Date;
@@ -50,8 +50,9 @@
 					//CreateScheduleForDay(value);
 					//break; // REMOVE! Only for testing!
 				});
-			}
-		)
+			},
+			async: false
+		});
 	}
 	
 	/*
@@ -101,7 +102,7 @@
 		page.appendTo($.mobile.pageContainer);
 		//alert($("body").html());
 		//alert(page.html());
-		$.mobile.changePage("#"+pageid);
+		
 	}
 	 
 	function CreateLesson(data)
@@ -128,6 +129,7 @@
 	 		if (i > 1) { teachers += "/"; }
 	 		teachers += data.Teachers.Abbreviation;
 	 	}
+	 	
 	 	pTeach.html(teachers);
 	 	lesson.append(pTeach);
 	 	
@@ -177,6 +179,11 @@
 			 		datnavbarcurr=$(document.createElement("li"));
 			 			link = $(document.createElement("a"));
 			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(currentDate.getDay()) + " (" + Zero(currentDate.getDate()) + "." + Zero((currentDate.getMonth()+1))  + ")");
+			 			link.attr("data-theme","yellow");
+			 			link.on("click",function(data)
+			 			{
+			 				return false;
+			 			});
 			 			datnavbarcurr.append(link);
 			 		datnavbarnext=$(document.createElement("li"));
 			 			link = $(document.createElement("a"));
@@ -256,8 +263,11 @@
 		{
 			alert(unescape("F%FCr dieses Datum sind keine Daten vorhanden!"));
 		}
-		
-		CreateScheduleForDay(schedule[date]);
+		else
+		{
+			CreateScheduleForDay(schedule[date]);
+			$.mobile.changePage("#schedule-"+date);
+		}
 	}
 
 	
