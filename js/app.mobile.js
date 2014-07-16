@@ -271,17 +271,22 @@
 		}
 		else
 		{
+			transition = "none";
+			
 			if(direction<0)
 			{
+				transition = "slide";
 				direction=true;
 			}
-			else{
+			else if(direction>0)
+			{
+				transition = "slide";
 				direction=false;
 			}
 			CreateScheduleForDay(schedule[date]);
 			$.mobile.changePage("#schedule-"+date,{
 				reverse: direction,
-				transition: "slide"
+				transition: transition
 			});
 		}
 	}
