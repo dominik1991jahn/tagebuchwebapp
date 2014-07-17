@@ -99,6 +99,10 @@
 		
 		for(p = 0; p < data.Periods.length; p++)
 		{
+			if (p == 2)
+			{
+				//lesson = Crea
+			}
 			lesson = CreateLesson(data.Periods[p]);
 			content.append(lesson)
 		}
