@@ -22,7 +22,7 @@
 			 */
 			 
 			$username = $_COOKIE["loginname"];
-			$password = $_COOKIE["password"];//base64_decode("cEhtaDI1bmE=");
+			$password = $_COOKIE["password"];
 			
 			// Establish a connection to the API-Server with the login credentials
 			$tunnel = new Tunnel($username, $password);
