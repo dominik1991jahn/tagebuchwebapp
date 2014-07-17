@@ -4,7 +4,7 @@
 		<RetrieveForClass>{Configuration:ServerURL}/timetable/{Class}/{Date}/7</RetrieveForClass>
 		<RetrieveForTeacher>{Configuration:ServerURL}/Schedule/Teachers/{Teacher}-{From}.xml</RetrieveForTeacher>	
 	</Schedule>
-	<RetrieveClassList>{Configuration:ServerURL}/Classes.xml</RetrieveClassList>
+	<RetrieveClassList>{Configuration:ServerURL}/classes/{Year}</RetrieveClassList>
 	<RetrieveTeacherListForClass>{Configuration:ServerURL}/Teacher/{Class}.xml</RetrieveTeacherListForClass>
 	<RetrieveTeacherListForTeachers>{Configuration:ServerURL}/Teacher/TeacherListForTeachers.xml</RetrieveTeacherListForTeachers>
 	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>

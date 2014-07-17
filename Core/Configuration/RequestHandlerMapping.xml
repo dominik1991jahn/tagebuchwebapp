@@ -2,7 +2,9 @@
 <RequestHandlerMapping>
 	<Request method="GET" url="/Login" handler="Tunnel.CheckLoginCredentials" />
 	
-	<Request method="GET" url="/Class" handler="Tunnel.GetClassList" />
+	<Request method="GET" url="/Classes/([0-9]{4,4})" handler="Tunnel.GetClassList">
+		<Field>Year</Field>
+	</Request>
 	
 	<Request method="GET" url="/Subject/([a-zA-Z0-9]+)" handler="Tunnel.GetSubjectsForClass">
 		<Field>Class</Field>
