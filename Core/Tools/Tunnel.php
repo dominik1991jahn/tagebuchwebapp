@@ -36,14 +36,14 @@
 			return json_encode(array("DataCorrect" => (bool) mt_rand(0,1)));
 		}
 		
-		public function GetClassList()
+		public function GetClassList($year)
 		{
-			$url = RequestMapping::GetURLForRequest("RetrieveClassList");
+			$url = RequestMapping::GetURLForRequest("RetrieveClassList", array("Year" => $year));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
 			
-			$xresponse = simplexml_load_string($response->ResponseBody);
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$classes = array();
 			

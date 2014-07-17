@@ -1,23 +1,23 @@
 	var schedule = new Array();
 	
-	function FillClassList()
+	function FillClassList(year, classlist)
 	{
-		var url = "request.php?/Class";
-		
+		var url = "request.php?/Classes/" + year;
+	
 		$.getJSON(
 			url,
 			function(response)
 			{
 				$.each(response, function(key, value)
 				{
-					$("#ClassList").append("<option>"+value.Name+"</option>");
+					classlist.append("<option>"+value.Name+"</option>");
 				});
 				
-				$("#ClassTeacherList").selectmenu('refresh');
+				classlist.selectmenu('refresh');
 			});
 	}
 	
-	function FillTeacherList()
+	function FillTeacherList(teacherlist)
 	{
 		var url = "request.php?/Teacher";
 		
@@ -27,10 +27,10 @@
 			{
 				$.each(response, function(key, value)
 				{
-					$("#TeacherList").append("<option value=\""+value.Abbreviation+"\">["+value.Abbreviation+"] "+value.Name+"</option>");
+					teacherlist.append("<option value=\""+value.Abbreviation+"\">["+value.Abbreviation+"] "+value.Name+"</option>");
 				});
 				
-				$("#ClassTeacherList").selectmenu('refresh');
+				teacherlist.selectmenu('refresh');
 			});
 	}
 	
@@ -218,26 +218,31 @@
 	 			datnavbarlist.append(datnavbarcurr);
 	 			datnavbarlist.append(datnavbarnext);
 	 		datnavbar.append(datnavbarlist);
-	 	footer.append(datnavbar);
-	 	
+	 		footer.append(datnavbar);
+	 		
+	 		datclasslist = footer.append("<div></div>");
+	 			datclasslist.css("text-align","center");
+	 			select = $(document.createElement("select"));
+	 			datclasslist.append(select);
+	 				select.attr("data-native-menu",false);
+	 				select.append("<option data-placeholder=\"true\">Klasse ausw&auml;hlen</option>");
+	 				groupClasses = select.append("<optgroup label=\"Klassen\"></optgroup>");
+	 				//groupTeachers = select.append("<optgroup label=\"Lehrer\"></optgroup>");
+	 		
+	 		select.selectmenu();
+	 		year = currentDate.getUTCFullYear();
+	 		if(currentDate.getMonth()+1 < 9)
+	 		{
+	 			year--;
+	 		}
+	 		
+	 		FillClassList(year, groupClasses);
+	 		//FillTeacherList(groupTeachers);
+	 		
 	 	return footer;
 	 	/*
-	 	<div data-role="footer" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#Previous" data-role="button" data-iconpos="left">Montag (30.06)</a></li>
-					<li><a href="#schedule-20140707">Dienstag (01.07)</a></li>
-					<li><a href="#Next" data-role="button" data-iconpos="right">Mittwoch (02.07)</a></li>
-				</ul>
-			</div>
-					
-			<div style="text-align:center">
-				<select data-native-menu="false" id="ClassTeacherList">
-					<option data-placeholder="true">Klasse oder Lehrer ausw&auml;hlen</option>
-					<optgroup id="ClassList" label="Klassen"></optgroup>
-					<optgroup id="TeacherList" label="Lehrer"></optgroup>
-				</select>
-			</div>
+	 	
+			
 		</div>
 		*/
 	}
