@@ -139,12 +139,13 @@
 	 		if (i > 0) { teachers += "/"; }
 	 		teachers += data.Teachers[i].Teacher.Abbreviation;
 	 	}
-	 	
 	 	pTeach.html(teachers);
+	 	pTeach.addClass("teacher");
 	 	lesson.append(pTeach);
 	 	
-	 	pName = $(document.createElement("p"));
+	 	pName = $(document.createElement("h3"));
 	 	pName.html(data.Subject.Name);
+	 	pName.addClass("lesson");
 	 	lesson.append(pName);
 	 	
 	 	pRoom = $(document.createElement("p"));
@@ -155,6 +156,7 @@
 	 		rooms += data.Rooms[i];
 	 	}
 	 	pRoom.html(rooms);
+	 	pRoom.addClass("room");
 	 	lesson.append(pRoom);
 	 	
 	 	//pText = $(document.createElement("p"));
