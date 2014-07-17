@@ -247,16 +247,15 @@
 				stream_context_set_option($streamContext, 'http', "header", $header);
 			}
 			
-			$stream = fopen($url, 'r', false, $streamContext);
+			$stream = @fopen($url, 'r', false, $streamContext);
 			
-			if(!$stream)
+			if($stream)
 			{
-				throw new HttpRequestFailedException();
+				$result = stream_get_contents($stream);
+				
+				$this->responsebody = $result;
 			}
 			
-			$result = stream_get_contents($stream);
-			
-			$this->responsebody = $result;
 			$this->responseheaders = self::HTTPResponseHeadersToArray($http_response_header);
 			
 			return true;

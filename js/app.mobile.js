@@ -34,7 +34,7 @@
 			});
 	}
 	
-	function LoadScheduleDataForDate(classcode, startdate)
+	function LoadScheduleDataForDate(classcode, startdate, async)
 	{
 		var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
 		
@@ -43,6 +43,25 @@
 			url: url,
 			dataType: 'json',
 			success: function(response) {
+				if("code" in response)
+				{
+					switch(response.code)
+					{
+						case "401":
+							
+							$.mobile.changePage("#login",{
+								reverse: direction,
+								transition: transition
+							});
+		
+							break;
+							
+						default: alert(response.message); break;
+					}
+					
+					return;
+				}
+				
 				$.each(response, function(key, value)
 				{
 					date = value.Date;
@@ -52,7 +71,7 @@
 					//break; // REMOVE! Only for testing!
 				});
 			},
-			async: false
+			async: async
 		});
 	}
 	
@@ -64,6 +83,7 @@
 		if(!("Date" in data))
 		{
 			alert("Fehler in CreateScheduleForDay(data)!");
+			return;
 		}
 		
 		currentDate=new Date(data.Date);
@@ -280,7 +300,7 @@
 		return num;
 	}
 	
-	function switchToPage(date, direction)
+	function switchToPage(date, direction, async)
 	{
 		if(!(date in schedule))
 		{
@@ -298,7 +318,7 @@
 			goToDate = DateToUTC(goToDate);
 			//alert("Load date from " + date + " + 7 Days");
 			
-			LoadScheduleDataForDate("bfi11a", goToDate);
+			LoadScheduleDataForDate("bfi11a", goToDate, true);
 		}
 		
 		transition = "none";
@@ -321,6 +341,15 @@
 			transition: transition
 		});
 	}
+	
+	function loginHandler()
+	{
+		loginname = $("#loginname").val();
+		password = $("#password").val();
+		
+		document.cookie = "loginname="+loginname;
+		document.cookie = "password="+password;
+	}
 
 	
 	/*
@@ -328,8 +357,10 @@
 	 */
 	
 	$(function(){
+		$("#loginform").on("submit", loginHandler);
+		
 		currentDate = DateToUTC(new Date());
-		LoadScheduleDataForDate("bfi11a",currentDate);
+		LoadScheduleDataForDate("bfi11a",currentDate,false);
 		
 		switchToPage(currentDate);
 		
@@ -338,8 +369,6 @@
 			nextPage = currPage.attr("data-next").substring(9);
 			switchToPage(nextPage,1);
 		});
-		
-		
 		
 		$(document).on("swiperight", function() {
 			currPage = $.mobile.activePage;
