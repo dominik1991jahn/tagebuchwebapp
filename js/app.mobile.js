@@ -147,9 +147,9 @@
 	 	pRoom.html(rooms);
 	 	lesson.append(pRoom);
 	 	
-	 	pText = $(document.createElement("p"));
-	 	pText.html(data.Subject.Information);
-	 	lesson.append(pText);
+	 	//pText = $(document.createElement("p"));
+	 	//pText.html(data.Subject.Information);
+	 	//lesson.append(pText);
 	 	
 	 	return lesson;
 	}
