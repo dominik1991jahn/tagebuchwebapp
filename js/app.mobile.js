@@ -301,4 +301,18 @@
 		LoadScheduleDataForDate("bfi11a",currentDate);
 		
 		switchToPage(currentDate);
+		
+		$(document).on("swipeleft", function() {
+			currPage = $.mobile.activePage;
+			prevPage = currPage.attr("data-prev").substring(9);
+			switchToPage(prevPage);
+		});
+		
+		
+		
+		$(document).on("swiperight", function() {
+			currPage = $.mobile.activePage;
+			nextPage = currPage.attr("data-next").substring(9);
+			switchToPage(nextPage);
+		});
 	});
