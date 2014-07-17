@@ -349,8 +349,17 @@
 		
 		document.cookie = "loginname="+loginname;
 		document.cookie = "password="+password;
+		
+		document.location = 'index.html';
 	}
 
+	function start()
+	{
+		currentDate = DateToUTC(new Date());
+		LoadScheduleDataForDate("bfi11a",currentDate,false);
+		
+		switchToPage(currentDate);
+	}
 	
 	/*
 	 * Auto-Start
@@ -359,10 +368,7 @@
 	$(function(){
 		$("#loginform").on("submit", loginHandler);
 		
-		currentDate = DateToUTC(new Date());
-		LoadScheduleDataForDate("bfi11a",currentDate,false);
-		
-		switchToPage(currentDate);
+		start();
 		
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
