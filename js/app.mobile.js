@@ -267,28 +267,37 @@
 	{
 		if(!(date in schedule))
 		{
-			alert(unescape("F%FCr dieses Datum sind keine Daten vorhanden!"));
-		}
-		else
-		{
-			transition = "none";
+			if((new Date(date)).getTime() < (new Date()).getTime())
+			{
+				date = new Date((new Date()).getTime() - (86400*1000*7));
+			}
+			else
+			{
+				date = new Date((new Date()).getTime() + (86400*1000));
+			}
 			
-			if(direction<0)
-			{
-				transition = "slide";
-				direction=true;
-			}
-			else if(direction>0)
-			{
-				transition = "slide";
-				direction=false;
-			}
-			CreateScheduleForDay(schedule[date]);
-			$.mobile.changePage("#schedule-"+date,{
-				reverse: direction,
-				transition: transition
-			});
+			date = DateToUTC(date);
+			
+			LoadScheduleDataForDate(date, "bfi11a");
 		}
+		
+		transition = "none";
+		
+		if(direction<0)
+		{
+			transition = "slide";
+			direction=true;
+		}
+		else if(direction>0)
+		{
+			transition = "slide";
+			direction=false;
+		}
+		CreateScheduleForDay(schedule[date]);
+		$.mobile.changePage("#schedule-"+date,{
+			reverse: direction,
+			transition: transition
+		});
 	}
 
 	
