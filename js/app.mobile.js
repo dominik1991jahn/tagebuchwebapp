@@ -46,6 +46,7 @@
 				$.each(response, function(key, value)
 				{
 					date = value.Date;
+					//alert("Received data for " + date);
 					schedule[date]=value;
 					//CreateScheduleForDay(value);
 					//break; // REMOVE! Only for testing!
@@ -60,6 +61,11 @@
 	 */
 	function CreateScheduleForDay(data)
 	{
+		if(!("Date" in data))
+		{
+			alert("Fehler in CreateScheduleForDay(data)!");
+		}
+		
 		currentDate=new Date(data.Date);
 		
 		prevdate = new Date(currentDate.getTime()-86400000);
@@ -88,6 +94,9 @@
 		content = $(content);
 		content.attr('data-role','content');
 		
+		headline = content.append('<h1></h1>');
+		headline.html(DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1));
+		
 		for(p = 0; p < data.Periods.length; p++)
 		{
 			lesson = CreateLesson(data.Periods[p]);
@@ -100,20 +109,17 @@
 		
 		page.page();
 		page.appendTo($.mobile.pageContainer);
-		//alert($("body").html());
-		//alert(page.html());
-		
 	}
 	 
 	function CreateLesson(data)
 	{
 	 	lesson = $(document.createElement("div"));
 	 	
-	 	if (data.Subject.Duration = 3)
+	 	if (data.Duration == 3)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray triple hr");
 	 	}
-	 	else if (data.Subject.Duration = 2)
+	 	else if (data.Duration == 2)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray double hr");
 	 	}
@@ -147,9 +153,9 @@
 	 	pRoom.html(rooms);
 	 	lesson.append(pRoom);
 	 	
-	 	pText = $(document.createElement("p"));
-	 	pText.html(data.Subject.Information);
-	 	lesson.append(pText);
+	 	//pText = $(document.createElement("p"));
+	 	//pText.html(data.Subject.Information);
+	 	//lesson.append(pText);
 	 	
 	 	return lesson;
 	}
@@ -251,7 +257,7 @@
 	
 	function DayOfWeekToName(day)
 	{
-		days = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+		days = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
 		
 		return days[day];
 	}
@@ -267,6 +273,7 @@
 	{
 		if(!(date in schedule))
 		{
+<<<<<<< HEAD
 			alert(unescape("F%FCr dieses Datum sind keine Daten vorhanden!"));
 		}
 		else
@@ -277,9 +284,17 @@
 			{
 				transition = "slide";
 				direction=true;
+=======
+			goToDate = new Date(date);
+			
+			if(goToDate.getTime() < (new Date()).getTime())
+			{
+				goToDate = new Date(goToDate.getTime() - (86400*1000*6));
+>>>>>>> 0956cc2ac08d5410f753a6ae6a9e131ba6c0c3dc
 			}
 			else if(direction>0)
 			{
+<<<<<<< HEAD
 				transition = "slide";
 				direction=false;
 			}
@@ -289,6 +304,36 @@
 				transition: transition
 			});
 		}
+=======
+				goToDate = new Date(goToDate.getTime());
+			}
+			
+			goToDate = DateToUTC(goToDate);
+			//alert("Load date from " + date + " + 7 Days");
+			
+			LoadScheduleDataForDate("bfi11a", goToDate);
+		}
+		
+		transition = "none";
+		
+		if(direction<0)
+		{
+			transition = "slide";
+			direction=true;
+		}
+		else if(direction>0)
+		{
+			transition = "slide";
+			direction=false;
+		}
+		
+		CreateScheduleForDay(schedule[date]);
+		
+		$.mobile.changePage("#schedule-"+date,{
+			reverse: direction,
+			transition: transition
+		});
+>>>>>>> 0956cc2ac08d5410f753a6ae6a9e131ba6c0c3dc
 	}
 
 	
@@ -301,4 +346,21 @@
 		LoadScheduleDataForDate("bfi11a",currentDate);
 		
 		switchToPage(currentDate);
+<<<<<<< HEAD
+=======
+		
+		$(document).on("swipeleft", function() {
+			currPage = $.mobile.activePage;
+			nextPage = currPage.attr("data-next").substring(9);
+			switchToPage(nextPage,1);
+		});
+		
+		
+		
+		$(document).on("swiperight", function() {
+			currPage = $.mobile.activePage;
+			prevPage = currPage.attr("data-prev").substring(9);
+			switchToPage(prevPage,-1);
+		});
+>>>>>>> 0956cc2ac08d5410f753a6ae6a9e131ba6c0c3dc
 	});
