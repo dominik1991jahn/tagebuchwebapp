@@ -109,20 +109,17 @@
 		
 		page.page();
 		page.appendTo($.mobile.pageContainer);
-		//alert($("body").html());
-		//alert(page.html());
-		
 	}
 	 
 	function CreateLesson(data)
 	{
 	 	lesson = $(document.createElement("div"));
 	 	
-	 	if (data.Subject.Duration = 3)
+	 	if (data.Duration == 3)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray triple hr");
 	 	}
-	 	else if (data.Subject.Duration = 2)
+	 	else if (data.Duration == 2)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray double hr");
 	 	}
