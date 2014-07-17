@@ -252,7 +252,6 @@
 			if($stream)
 			{
 				$result = stream_get_contents($stream);
-				
 				$this->responsebody = $result;
 			}
 			

@@ -56,7 +56,7 @@
 		
 							break;
 							
-						default: alert(response.message); break;
+						default: alert("Error [" + response.code + "]: " + response.message); break;
 					}
 					
 					return;
@@ -106,16 +106,31 @@
 		header = document.createElement('div');
 		header = $(header);
 		
-		header.attr('data-role','header').append('<h1>Digikabu.App</h1>');
+		header.attr('data-role','header').append('<h1>'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>');
+		header.attr('data-theme','b');
+		
+		header2 = document.createElement('div');
+		header2 = $(header2);
+		
+		header2.attr('data-role','header');
+		
+		navbar = $(document.createElement('div'));
+		navbar.attr("data-role","navbar");
+		header2.append(navbar);
+		
+		ullinks = $(document.createElement('ul'));
+		navbar.append(ullinks);
+		
+		ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
+		ullinks.append("<li><a href=\"#exams\" data-role=\"button\">Schulaufgaben</a></li>");
+		ullinks.append("<li><a href=\"#bla\" data-role=\"button\">Fehltage</a></li>");
+		navbar.navbar();
 		
 		footer = CreateFooter(currentDate);
 		
 		content = document.createElement('div');
 		content = $(content);
 		content.attr('data-role','content');
-		
-		headline = content.append('<h1></h1>');
-		headline.html(DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1));
 		
 		for(p = 0; p < data.Periods.length; p++)
 		{
@@ -128,6 +143,7 @@
 		}
 		
 		page.append(header);
+		page.append(header2);
 		page.append(content);
 		page.append(footer);
 		
@@ -179,6 +195,19 @@
 	 	pRoom.addClass("room");
 	 	lesson.append(pRoom);
 	 	
+	 	for(l = 0; l < data.Duration; l++)
+	 	{
+	 		h5Period = $(document.createElement("h5"));
+	 		h5Period.html((data.Start+l));
+	 		lesson.append(h5Period);
+	 		
+	 		if(l>0)
+	 		{
+	 			hr = $(document.createElement("hr"));
+		 		lesson.append(hr);
+		 	}
+	 	}
+	 	
 	 	//pText = $(document.createElement("p"));
 	 	//pText.html(data.Subject.Information);
 	 	//lesson.append(pText);
@@ -214,15 +243,6 @@
 			 				return false;
 			 			});
 			 			datnavbarprev.append(link);
-			 		datnavbarcurr=$(document.createElement("li"));
-			 			link = $(document.createElement("a"));
-			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(currentDate.getDay()) + " (" + Zero(currentDate.getDate()) + "." + Zero((currentDate.getMonth()+1))  + ")");
-			 			link.attr("data-theme","yellow");
-			 			link.on("click",function(data)
-			 			{
-			 				return false;
-			 			});
-			 			datnavbarcurr.append(link);
 			 		datnavbarnext=$(document.createElement("li"));
 			 			link = $(document.createElement("a"));
 			 			link.attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
@@ -235,7 +255,6 @@
 			 			});
 	 					datnavbarnext.append(link);
 	 			datnavbarlist.append(datnavbarprev);
-	 			datnavbarlist.append(datnavbarcurr);
 	 			datnavbarlist.append(datnavbarnext);
 	 		datnavbar.append(datnavbarlist);
 	 		footer.append(datnavbar);
@@ -346,9 +365,10 @@
 	{
 		loginname = $("#loginname").val();
 		password = $("#password").val();
+		expires = (new Date((new Date().getTime()+(30*86400000)))).toString();
 		
-		document.cookie = "loginname="+loginname;
-		document.cookie = "password="+password;
+		document.cookie = "loginname="+loginname+";expires = "+expires;
+		document.cookie = "password="+password+";expires = "+expires;
 		
 		document.location = 'index.html';
 	}
