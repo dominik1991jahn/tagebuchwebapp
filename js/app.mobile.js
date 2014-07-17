@@ -277,38 +277,14 @@
 	{
 		if(!(date in schedule))
 		{
-<<<<<<< HEAD
-			alert(unescape("F%FCr dieses Datum sind keine Daten vorhanden!"));
-		}
-		else
-		{
-			transition = "none";
-			
-			if(direction<0)
-			{
-				transition = "slide";
-				direction=true;
-=======
 			goToDate = new Date(date);
 			
 			if(goToDate.getTime() < (new Date()).getTime())
 			{
 				goToDate = new Date(goToDate.getTime() - (86400*1000*6));
->>>>>>> 0956cc2ac08d5410f753a6ae6a9e131ba6c0c3dc
 			}
-			else if(direction>0)
+			else
 			{
-<<<<<<< HEAD
-				transition = "slide";
-				direction=false;
-			}
-			CreateScheduleForDay(schedule[date]);
-			$.mobile.changePage("#schedule-"+date,{
-				reverse: direction,
-				transition: transition
-			});
-		}
-=======
 				goToDate = new Date(goToDate.getTime());
 			}
 			
@@ -337,7 +313,6 @@
 			reverse: direction,
 			transition: transition
 		});
->>>>>>> 0956cc2ac08d5410f753a6ae6a9e131ba6c0c3dc
 	}
 
 	
@@ -350,8 +325,6 @@
 		LoadScheduleDataForDate("bfi11a",currentDate);
 		
 		switchToPage(currentDate);
-<<<<<<< HEAD
-=======
 		
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
@@ -366,5 +339,4 @@
 			prevPage = currPage.attr("data-prev").substring(9);
 			switchToPage(prevPage,-1);
 		});
->>>>>>> 0956cc2ac08d5410f753a6ae6a9e131ba6c0c3dc
 	});
