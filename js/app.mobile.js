@@ -267,37 +267,28 @@
 	{
 		if(!(date in schedule))
 		{
-			if((new Date(date)).getTime() < (new Date()).getTime())
-			{
-				date = new Date((new Date()).getTime() - (86400*1000*7));
-			}
-			else
-			{
-				date = new Date((new Date()).getTime() + (86400*1000));
-			}
-			
-			date = DateToUTC(date);
-			
-			LoadScheduleDataForDate(date, "bfi11a");
+			alert(unescape("F%FCr dieses Datum sind keine Daten vorhanden!"));
 		}
-		
-		transition = "none";
-		
-		if(direction<0)
+		else
 		{
-			transition = "slide";
-			direction=true;
+			transition = "none";
+			
+			if(direction<0)
+			{
+				transition = "slide";
+				direction=true;
+			}
+			else if(direction>0)
+			{
+				transition = "slide";
+				direction=false;
+			}
+			CreateScheduleForDay(schedule[date]);
+			$.mobile.changePage("#schedule-"+date,{
+				reverse: direction,
+				transition: transition
+			});
 		}
-		else if(direction>0)
-		{
-			transition = "slide";
-			direction=false;
-		}
-		CreateScheduleForDay(schedule[date]);
-		$.mobile.changePage("#schedule-"+date,{
-			reverse: direction,
-			transition: transition
-		});
 	}
 
 	
@@ -310,18 +301,4 @@
 		LoadScheduleDataForDate("bfi11a",currentDate);
 		
 		switchToPage(currentDate);
-		
-		$(document).on("swipeleft", function() {
-			currPage = $.mobile.activePage;
-			nextPage = currPage.attr("data-next").substring(9);
-			switchToPage(nextPage);
-		});
-		
-		
-		
-		$(document).on("swiperight", function() {
-			currPage = $.mobile.activePage;
-			prevPage = currPage.attr("data-prev").substring(9);
-			switchToPage(prevPage);
-		});
 	});
