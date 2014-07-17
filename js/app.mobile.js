@@ -46,6 +46,7 @@
 				$.each(response, function(key, value)
 				{
 					date = value.Date;
+					//alert("Received data for " + date);
 					schedule[date]=value;
 					//CreateScheduleForDay(value);
 					//break; // REMOVE! Only for testing!
@@ -60,6 +61,11 @@
 	 */
 	function CreateScheduleForDay(data)
 	{
+		if(!("Date" in data))
+		{
+			alert("Fehler in CreateScheduleForDay(data)!");
+		}
+		
 		currentDate=new Date(data.Date);
 		
 		prevdate = new Date(currentDate.getTime()-86400000);
@@ -87,6 +93,9 @@
 		content = document.createElement('div');
 		content = $(content);
 		content.attr('data-role','content');
+		
+		headline = content.append('<h1></h1>');
+		headline.html(DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1));
 		
 		for(p = 0; p < data.Periods.length; p++)
 		{
@@ -251,7 +260,7 @@
 	
 	function DayOfWeekToName(day)
 	{
-		days = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+		days = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
 		
 		return days[day];
 	}
@@ -267,21 +276,21 @@
 	{
 		if(!(date in schedule))
 		{
-			if((new Date(date)).getTime() < (new Date()).getTime())
+			goToDate = new Date(date);
+			
+			if(goToDate.getTime() < (new Date()).getTime())
 			{
-				alert("-7 tage");
-				date = new Date((new Date()).getTime() - (86400*1000*7));
+				goToDate = new Date(goToDate.getTime() - (86400*1000*6));
 			}
 			else
 			{
-				alert("+1 tag");
-				date = new Date((new Date()).getTime() + (86400*1000));
+				goToDate = new Date(goToDate.getTime());
 			}
 			
-			date = DateToUTC(date);
-			alert(date);
+			goToDate = DateToUTC(goToDate);
+			//alert("Load date from " + date + " + 7 Days");
 			
-			LoadScheduleDataForDate(date, "bfi11a");
+			LoadScheduleDataForDate("bfi11a", goToDate);
 		}
 		
 		transition = "none";
