@@ -269,14 +269,17 @@
 		{
 			if((new Date(date)).getTime() < (new Date()).getTime())
 			{
+				alert("-7 tage");
 				date = new Date((new Date()).getTime() - (86400*1000*7));
 			}
 			else
 			{
+				alert("+1 tag");
 				date = new Date((new Date()).getTime() + (86400*1000));
 			}
 			
 			date = DateToUTC(date);
+			alert(date);
 			
 			LoadScheduleDataForDate(date, "bfi11a");
 		}
@@ -293,7 +296,9 @@
 			transition = "slide";
 			direction=false;
 		}
+		
 		CreateScheduleForDay(schedule[date]);
+		
 		$.mobile.changePage("#schedule-"+date,{
 			reverse: direction,
 			transition: transition
@@ -314,7 +319,7 @@
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
 			nextPage = currPage.attr("data-next").substring(9);
-			switchToPage(nextPage);
+			switchToPage(nextPage,1);
 		});
 		
 		
@@ -322,6 +327,6 @@
 		$(document).on("swiperight", function() {
 			currPage = $.mobile.activePage;
 			prevPage = currPage.attr("data-prev").substring(9);
-			switchToPage(prevPage);
+			switchToPage(prevPage,-1);
 		});
 	});
