@@ -173,6 +173,9 @@
 				case "ResponseHeaders":
 					return $this->GetResponseHeaders();
 					
+				case "HTTPStatusCode":
+					return $this->GetHTTPStatusCode();
+					
 				default:
 					throw new InvalidArgumentException("Field '".$field."' not defined");
 			}
@@ -254,7 +257,7 @@
 			$result = stream_get_contents($stream);
 			
 			$this->responsebody = $result;
-			$this->responseheaders = $http_response_header; // Do NOT ask me where this is from!!!
+			$this->responseheaders = self::HTTPResponseHeadersToArray($http_response_header);
 			
 			return true;
 		}
@@ -327,6 +330,14 @@
 			return $this->responseheaders;
 		}
 		
+		private function GetHTTPStatusCode()
+		{
+			if(is_null($this->responseheaders) || !array_key_exists("HTTPStatusCode",$this->responseheaders))
+				return null;
+				
+			return self::HTTPStatusCode($this->responseheaders["HTTPStatusCode"]);
+		}
+		
 		  //
 		 // FUNCTIONS
 		//
@@ -337,6 +348,29 @@
 				return true;
 			
 			return false;
+		}
+		
+		private static function HTTPResponseHeadersToArray($headers)
+		{
+			$result = array("HTTPStatusCode" => $headers[0]);
+
+			$items = count($headers);
+			for($h = 1; $h < $items; $h++)
+			{
+			  $header = explode(":",$headers[$h]);
+
+			  $field = trim($header[0]);
+			  $value = trim($header[1]);
+
+			  $result[$field] = $value;
+			}
+
+			return $result;
+		}
+
+		private static function HTTPStatusCode($string)
+		{
+			return (int) substr($string, 9,3);
 		}
 		
 		  //

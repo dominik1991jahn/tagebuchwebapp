@@ -43,6 +43,12 @@
 			
 			$request->SendRequest();
 			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
+			
 			$xresponse = simplexml_load_string($response->ResponseBody);
 			
 			$classes = array();
@@ -62,6 +68,12 @@
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
+			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
 			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
@@ -83,6 +95,12 @@
 			
 			$request->SendRequest();
 			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
+			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$teachers = array();
@@ -102,6 +120,12 @@
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
+			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
 			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
@@ -123,6 +147,12 @@
 			
 			$request->SendRequest();
 			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
+			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$days = array();
@@ -143,6 +173,12 @@
 			
 			$request->SendRequest();
 			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
+			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$weeks = array();
@@ -154,6 +190,22 @@
 			}
 			
 			print json_encode($weeks);
+		}
+		
+		private function HTTPError($code)
+		{
+			$message = null;
+			
+			switch($code)
+			{
+				case "400": $message = "Bad request"; break;
+				case "404": $message = "Resource not found"; break;
+				case "401": $message = "Unauthorized"; break;
+			}
+			
+			$data = array("code" => $code, "message" => "");
+			
+			return $data;
 		}
 	}
 ?>
