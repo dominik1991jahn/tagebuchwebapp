@@ -205,8 +205,11 @@
 	 	teachers = "";
 	 	for(i = 0; i < data.Teachers.length; i++)
 	 	{
-	 		if (i > 0) { teachers += "/"; }
-	 		teachers += data.Teachers[i].Teacher.Abbreviation;
+	 		if (data.Teachers[i].Status == "NORMAL")
+	 		{
+	 			if (i > 0) { teachers += "/"; }
+	 			teachers += data.Teachers[i].Teacher.Abbreviation;
+	 		}
 	 	}
 	 	pTeach.html(teachers);
 	 	pTeach.addClass("teacher");
