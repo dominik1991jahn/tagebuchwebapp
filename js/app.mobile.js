@@ -132,27 +132,34 @@
 		content = $(content);
 		content.attr('data-role','content');
 		
-		lNr = 0;
-		for(p = 0; p < data.Periods.length; p++)
+		if(data.Periods.length==0)
 		{
-			switch (lNr)
+			content.append("<h1 style=\"text-align:center\">Kein Unterricht an diesem Tag</h1>");
+		}
+		else
+		{
+			lNr = 0;
+			for(p = 0; p < data.Periods.length; p++)
 			{
-				case 2: lesson = CreateBreak(false);
-						content.append(lesson);
-						break;
-			
-				case 5: lesson = CreateBreak( true);
-		 				content.append(lesson);
-		 				break;
-		 				
-				case 7: lesson = CreateBreak(false);
-						content.append(lesson);
-						break;
+				switch (lNr)
+				{
+					case 2: lesson = CreateBreak(false);
+							content.append(lesson);
+							break;
+				
+					case 5: lesson = CreateBreak( true);
+			 				content.append(lesson);
+			 				break;
+			 				
+					case 7: lesson = CreateBreak(false);
+							content.append(lesson);
+							break;
+				}
+				
+				lesson = CreateLesson(data.Periods[p]);
+				content.append(lesson);
+				lNr += data.Periods[p].Duration;
 			}
-			
-			lesson = CreateLesson(data.Periods[p]);
-			content.append(lesson);
-			lNr += data.Periods[p].Duration;
 		}
 		
 		page.append(header);
@@ -394,7 +401,10 @@
 			direction=false;
 		}
 		
-		CreateScheduleForDay(schedule[date]);
+		if($("#schedule-"+date).length == 0)
+		{
+			CreateScheduleForDay(schedule[date]);
+		}
 		
 		$.mobile.changePage("#schedule-"+date,{
 			reverse: direction,
@@ -431,6 +441,28 @@
 		$("#loginform").on("submit", loginHandler);
 		
 		start();
+		
+		$(document).keydown(function(event) {
+			currPage = $.mobile.activePage;
+			goToPage = null;
+			direction = 0;
+			
+			if(event.which == 37)
+			{
+				goToPage = currPage.attr("data-prev").substring(9);
+				direction = -1;
+			}
+			else if(event.which == 39)
+			{
+				goToPage = currPage.attr("data-next").substring(9);
+				direction = +1;
+			}
+			
+			if(direction != 0)
+			{
+				switchToPage(goToPage,direction);
+			}
+		});
 		
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
