@@ -10,10 +10,10 @@
 			{
 				$.each(response, function(key, value)
 				{
-					classlist.append("<option>"+value.Name+"</option>");
+					classlist.append("<option value=\"c-"+value.Name+"\">"+value.Name+"</option>");
 				});
 				
-				classlist.selectmenu('refresh');
+				classlist.parent().selectmenu('refresh');
 			});
 	}
 	
@@ -47,7 +47,7 @@
 				{
 					switch(response.code)
 					{
-						case "401":
+						case 401:
 							
 							$.mobile.changePage("#login",{
 								reverse: direction,
@@ -308,7 +308,9 @@
 	 			datclasslist.append(select);
 	 				select.attr("data-native-menu",false);
 	 				select.append("<option data-placeholder=\"true\">Klasse ausw&auml;hlen</option>");
-	 				groupClasses = select.append("<optgroup label=\"Klassen\"></optgroup>");
+	 				groupClasses = $(document.createElement("optgroup"));
+	 				groupClasses.attr("label","Klassen");
+	 				select.append(groupClasses);
 	 				//groupTeachers = select.append("<optgroup label=\"Lehrer\"></optgroup>");
 	 		
 	 		select.selectmenu();
