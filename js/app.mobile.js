@@ -374,15 +374,20 @@
 		}
 		
 		transition = "none";
+		var1=true;
+		var2=true;
 		
 		if(direction<0)
 		{
 			transition = "slide";
+			//rechts nach links
 			direction=true;
+			var1=false;
 		}
 		else if(direction>0)
 		{
 			transition = "slide";
+			//links nach rechts
 			direction=false;
 		}
 		
@@ -391,7 +396,8 @@
 		$.mobile.changePage("#schedule-"+date,{
 			reverse: direction,
 			transition: transition
-		});
+		}//,var1,var2
+		);
 	}
 	
 	function loginHandler()
@@ -426,12 +432,19 @@
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
 			nextPage = currPage.attr("data-next").substring(9);
-			switchToPage(nextPage,1);
+			//if(nextPage.length>0)
+			{
+				switchToPage(nextPage,1);
+			}
 		});
 		
 		$(document).on("swiperight", function() {
 			currPage = $.mobile.activePage;
 			prevPage = currPage.attr("data-prev").substring(9);
-			switchToPage(prevPage,-1);
+			//if(prevPage.length>0)
+			{
+				switchToPage(prevPage,-1);
+			}
 		});
+
 	});
