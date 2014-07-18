@@ -132,14 +132,27 @@
 		content = $(content);
 		content.attr('data-role','content');
 		
+		lNr = 0;
 		for(p = 0; p < data.Periods.length; p++)
 		{
-			if (p == 2)
+			switch (lNr)
 			{
-				//lesson = Crea
+				case 2: lesson = CreateBreak(false);
+						content.append(lesson);
+						break;
+			
+				case 5: lesson = CreateBreak( true);
+		 				content.append(lesson);
+		 				break;
+		 				
+				case 7: lesson = CreateBreak(false);
+						content.append(lesson);
+						break;
 			}
+			
 			lesson = CreateLesson(data.Periods[p]);
-			content.append(lesson)
+			content.append(lesson);
+			lNr += data.Periods[p].Duration;
 		}
 		
 		page.append(header);
@@ -150,7 +163,27 @@
 		page.page();
 		page.appendTo($.mobile.pageContainer);
 	}
-	 
+	
+	function CreateBreak(isItALongBreak)
+	{
+		if (isItALongBreak)
+		{
+			longBreak = $(document.createElement("div"));
+			longBreak.attr("class", "breakLong");
+			
+			//h5Period = $(document.createElement("h5"));
+	 		//h5Period.html((lNr + 1));
+	 		//longBreak.append(h5Period);
+	 		
+			return longBreak;
+		}
+		else
+		{
+			shortBreak = $(document.createElement("div"));
+	 		shortBreak.attr("class", "breakShort");
+	 		return shortBreak;
+		}
+	} 
 	function CreateLesson(data)
 	{
 	 	lesson = $(document.createElement("div"));
