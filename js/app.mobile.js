@@ -1,4 +1,5 @@
 	var schedule = new Array();
+	var currentClass = null;
 	
 	function FillClassList(year, classlist)
 	{
@@ -10,10 +11,27 @@
 			{
 				$.each(response, function(key, value)
 				{
-					classlist.append("<option value=\"c-"+value.Name+"\">"+value.Name+"</option>");
+					//GetCookie("class")
+					option = $(document.createElement("option"));
+					option.attr("value","c-"+value.Name);
+					option.html(value.Name);
+					
+					if(value.Name.toLowerCase() == currentClass)
+					{
+						option.attr("selected",true);
+					}
+					
+					classlist.append(option);
 				});
 				
-				classlist.parent().selectmenu('refresh');
+				if(classlist.prop("tagName") == "SELECT")
+				{
+					classlist.selectmenu('refresh');
+				}
+				else
+				{
+					classlist.parent().selectmenu('refresh');
+				}
 			});
 	}
 	
@@ -34,10 +52,19 @@
 			});
 	}
 	
+	function ChangeCurrentClass()
+	{
+		var $this = $(this);
+		val = $this.val();
+		
+		currentClass = val.substring(2).toLowerCase();
+		start();
+		//alert(val);
+	}
+	
 	function LoadScheduleDataForDate(classcode, startdate, async)
 	{
 		var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
-		
 		$.ajax({
 			type: "GET",
 			url: url,
@@ -314,6 +341,8 @@
 	 				//groupTeachers = select.append("<optgroup label=\"Lehrer\"></optgroup>");
 	 		
 	 		select.selectmenu();
+	 		select.on('change', ChangeCurrentClass);
+	 		
 	 		year = currentDate.getUTCFullYear();
 	 		if(currentDate.getMonth()+1 < 9)
 	 		{
@@ -382,7 +411,7 @@
 			goToDate = DateToUTC(goToDate);
 			//alert("Load date from " + date + " + 7 Days");
 			
-			LoadScheduleDataForDate("bfi11a", goToDate, true);
+			LoadScheduleDataForDate(currentClass, goToDate, true);
 		}
 		
 		transition = "none";
@@ -425,14 +454,51 @@
 		document.cookie = "password="+password+";expires = "+expires;
 		
 		document.location = 'index.html';
+		
+		return false;
+	}
+	
+	function classSelectHandler()
+	{
+		selectedClass = $("#classList").val();
+		selectedClass = selectedClass.substring(2).toLowerCase();
+		
+		expires = (new Date((new Date().getTime()+(300*86400000)))).toString();
+		
+		document.cookie = "class="+selectedClass+";expires = "+expires;
+		
+		document.location = 'index.html';
+		
+		return false;
 	}
 
 	function start()
 	{
 		currentDate = DateToUTC(new Date());
-		LoadScheduleDataForDate("bfi11a",currentDate,false);
+		LoadScheduleDataForDate(currentClass,currentDate,false);
 		
 		switchToPage(currentDate);
+	}
+	
+	function GetCookie(cookieName)
+	{
+		cookies = document.cookie.split(";");
+		result = null;
+		
+		for(c=0;c<cookies.length;c++)
+		{
+			cookie = cookies[c].split("=");
+			
+			name = cookie[0].trim();
+			value = cookie[1].trim();
+			
+			if(name == cookieName)
+			{
+				result = value;
+			}
+		}
+		
+		return result;
 	}
 	
 	/*
@@ -441,30 +507,41 @@
 	
 	$(function(){
 		$("#loginform").on("submit", loginHandler);
+		$("#classselectform").on("submit", classSelectHandler);
 		
-		start();
-		
-		$(document).keydown(function(event) {
-			currPage = $.mobile.activePage;
-			goToPage = null;
-			direction = 0;
+		if(GetCookie("class") == null)
+		{
+			$.mobile.changePage("#SelectClass");
+			FillClassList(2013, $("#classList"));
+		}
+		else
+		{
+			currentClass = GetCookie("class");
 			
-			if(event.which == 37)
-			{
-				goToPage = currPage.attr("data-prev").substring(9);
-				direction = -1;
-			}
-			else if(event.which == 39)
-			{
-				goToPage = currPage.attr("data-next").substring(9);
-				direction = +1;
-			}
+			start();
 			
-			if(direction != 0)
-			{
-				switchToPage(goToPage,direction);
-			}
-		});
+			$(document).keydown(function(event) {
+				currPage = $.mobile.activePage;
+				goToPage = null;
+				direction = 0;
+				
+				if(event.which == 37)
+				{
+					goToPage = currPage.attr("data-prev").substring(9);
+					direction = -1;
+				}
+				else if(event.which == 39)
+				{
+					goToPage = currPage.attr("data-next").substring(9);
+					direction = +1;
+				}
+				
+				if(direction != 0)
+				{
+					switchToPage(goToPage,direction);
+				}
+			});
+		}
 		
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;

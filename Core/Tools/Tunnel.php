@@ -203,7 +203,7 @@
 				case "401": $message = "Unauthorized"; break;
 			}
 			
-			$data = array("code" => $code, "message" => "");
+			$data = array("code" => $code, "message" => $message);
 			
 			return $data;
 		}
