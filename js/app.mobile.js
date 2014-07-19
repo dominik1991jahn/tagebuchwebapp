@@ -72,6 +72,7 @@
 			success: function(response) {
 				if("code" in response)
 				{
+					alert(response.code);
 					switch(response.code)
 					{
 						case 401:
@@ -489,12 +490,15 @@
 		{
 			cookie = cookies[c].split("=");
 			
-			name = cookie[0].trim();
-			value = cookie[1].trim();
-			
-			if(name == cookieName)
+			if(cookie.length>1)
 			{
-				result = value;
+				cname = cookie[0].trim();
+				cvalue = cookie[1].trim();
+				
+				if(cname == cookieName)
+				{
+					result = cvalue;
+				}
 			}
 		}
 		
@@ -509,7 +513,11 @@
 		$("#loginform").on("submit", loginHandler);
 		$("#classselectform").on("submit", classSelectHandler);
 		
-		if(GetCookie("class") == null)
+		if(GetCookie("loginname") == null)
+		{
+			$.mobile.changePage("#login");
+		}
+		else if(GetCookie("class") == null)
 		{
 			$.mobile.changePage("#SelectClass");
 			FillClassList(2013, $("#classList"));
