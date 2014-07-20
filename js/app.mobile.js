@@ -65,6 +65,7 @@
 	function LoadScheduleDataForDate(classcode, startdate, async)
 	{
 		var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
+		
 		$.ajax({
 			type: "GET",
 			url: url,
@@ -92,9 +93,14 @@
 				
 				$.each(response, function(key, value)
 				{
+					if(!(currentClass in schedule))
+					{
+						schedule[currentClass] = new Array();
+					}
+					
 					date = value.Date;
 					//alert("Received data for " + date);
-					schedule[date]=value;
+					schedule[currentClass][date]=value;
 					//CreateScheduleForDay(value);
 					//break; // REMOVE! Only for testing!
 				});
@@ -117,12 +123,12 @@
 		currentDate=new Date(data.Date);
 		
 		prevdate = new Date(currentDate.getTime()-86400000);
-	 	prevpage="schedule-"+DateToUTC(prevdate);
+	 	prevpage="schedule-"+DateToUTC(prevdate)+"-"+currentClass;
 	 	
 	 	nextdate = new Date(currentDate.getTime()+86400000);
-	 	nextpage="schedule-"+DateToUTC(nextdate);
+	 	nextpage="schedule-"+DateToUTC(nextdate)+"-"+currentClass;
 		
-		pageid = "schedule-"+DateToUTC(currentDate);//data.Date.replace(/-/g,'');
+		pageid = "schedule-"+DateToUTC(currentDate)+"-"+currentClass;//data.Date.replace(/-/g,'');
 		
 		page = document.createElement("div");
 		page = $(page);
@@ -433,12 +439,12 @@
 			direction=false;
 		}
 		
-		if($("#schedule-"+date).length == 0)
+		if($("#schedule-"+date+"-"+currentClass).length == 0)
 		{
-			CreateScheduleForDay(schedule[date]);
+			CreateScheduleForDay(schedule[currentClass][date]);
 		}
 		
-		$.mobile.changePage("#schedule-"+date,{
+		$.mobile.changePage("#schedule-"+date+"-"+currentClass,{
 			reverse: direction,
 			transition: transition
 		}//,var1,var2
@@ -475,7 +481,17 @@
 
 	function start()
 	{
-		currentDate = DateToUTC(new Date());
+		/*hashDate = location.hash.substring(10,20);
+		alert(hashDate);
+		if(hashDate.length==0 || !Date.parse(hashDate))
+		{*/
+			currentDate = DateToUTC(new Date());
+		/*}
+		else
+		{
+			currentDate = hashDate;	
+		}*/
+		
 		LoadScheduleDataForDate(currentClass,currentDate,false);
 		
 		switchToPage(currentDate);
