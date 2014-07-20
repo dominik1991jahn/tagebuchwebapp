@@ -1,47 +1,71 @@
 	var schedule = new Array();
 	var currentClass = null;
+	var classList = new Array();
 	
-	function FillClassList(year, classlist)
+	function request(method, url, success, async)
 	{
-		var url = "request.php?/Classes/" + year;
+		if(typeof(async) == "undefined") { async = true; }
+		
+		$.ajax({
+			type: method.toUpperCase(),
+			url: url,
+			dataType: 'json',
+			beforeSend: function() {
+				$.mobile.loading('show');
+				alert("GET "+url);
+			},
+			complete: function() { $.mobile.loading('hide'); },
+			success: success,
+			async: async
+		});
+	}
 	
-		$.getJSON(
-			url,
-			function(response)
+	function FillClassList(year, htmlObject)
+	{
+		if(classList.length == 0)
+		{
+			url = "request.php?/Classes/" + year;
+		
+			success = function(response)
+						{
+							$.each(response, function(key, value)
+							{
+								classList.push(value.Name);
+							});
+						};
+						
+			request("GET",url,success,false);
+		}
+		
+		for(c=0;c<classList.length;c++)
+		{
+			option = $(document.createElement("option"));
+			option.attr("value","c-"+classList[c]);
+			option.html(classList[c]);
+								
+			if(classList[c].toLowerCase() == currentClass)
 			{
-				$.each(response, function(key, value)
-				{
-					//GetCookie("class")
-					option = $(document.createElement("option"));
-					option.attr("value","c-"+value.Name);
-					option.html(value.Name);
-					
-					if(value.Name.toLowerCase() == currentClass)
-					{
-						option.attr("selected",true);
-					}
-					
-					classlist.append(option);
-				});
-				
-				if(classlist.prop("tagName") == "SELECT")
-				{
-					classlist.selectmenu('refresh');
-				}
-				else
-				{
-					classlist.parent().selectmenu('refresh');
-				}
-			});
+				option.attr("selected",true);
+			}
+			
+			htmlObject.append(option);
+								
+			if(htmlObject.prop("tagName") == "SELECT")
+			{
+				htmlObject.selectmenu('refresh');
+			}
+			else
+			{
+				htmlObject.parent().selectmenu('refresh');
+			}
+		}
 	}
 	
 	function FillTeacherList(teacherlist)
 	{
 		var url = "request.php?/Teacher";
 		
-		$.getJSON(
-			url,
-			function(response)
+		success = function(response)
 			{
 				$.each(response, function(key, value)
 				{
@@ -49,7 +73,9 @@
 				});
 				
 				teacherlist.selectmenu('refresh');
-			});
+			};
+			
+		request("GET",url,success,true);
 	}
 	
 	function ChangeCurrentClass()
@@ -66,47 +92,40 @@
 	{
 		var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
 		
-		$.ajax({
-			type: "GET",
-			url: url,
-			dataType: 'json',
-			success: function(response) {
-				if("code" in response)
-				{
-					alert(response.code);
-					switch(response.code)
-					{
-						case 401:
-							
-							$.mobile.changePage("#login",{
-								reverse: direction,
-								transition: transition
-							});
-		
-							break;
-							
-						default: alert("Error [" + response.code + "]: " + response.message); break;
-					}
-					
-					return;
-				}
+		success = function(response) {
+						if("code" in response)
+						{
+							alert(response.code);
+							switch(response.code)
+							{
+								case 401:
+									
+									$.mobile.changePage("#login",{
+										reverse: direction,
+										transition: transition
+									});
 				
-				$.each(response, function(key, value)
-				{
-					if(!(currentClass in schedule))
-					{
-						schedule[currentClass] = new Array();
-					}
+									break;
+									
+								default: alert("Error [" + response.code + "]: " + response.message); break;
+							}
+							
+							return;
+						}
+						
+						$.each(response, function(key, value)
+						{
+							if(!(currentClass in schedule))
+							{
+								schedule[currentClass] = new Array();
+							}
+							
+							date = value.Date;
+							schedule[currentClass][date]=value;
+						});
+				};
 					
-					date = value.Date;
-					//alert("Received data for " + date);
-					schedule[currentClass][date]=value;
-					//CreateScheduleForDay(value);
-					//break; // REMOVE! Only for testing!
-				});
-			},
-			async: async
-		});
+		request("GET",url,success,false);
 	}
 	
 	/*
@@ -402,7 +421,7 @@
 	
 	function switchToPage(date, direction, async)
 	{
-		if(!(date in schedule))
+		if(!(date in schedule[currentClass]))
 		{
 			goToDate = new Date(date);
 			
@@ -482,20 +501,10 @@
 	function start()
 	{
 		startDate = new Date();
-		displayDate = new Date();
 		
 		while(startDate.getDay() != 1)
 		{
-			diff = 0;
-			if(startDate.getDay() == 0)
-			{
-				diff = 86400000;
-				displayDate = new Date(displayDate.getTime()+diff);
-			}
-			else
-			{
-				diff = -86400000;
-			}
+			diff = -86400000;
 			
 			startDate = new Date(startDate.getTime()+diff);
 		}
@@ -506,7 +515,7 @@
 		alert(hashDate);
 		if(hashDate.length==0 || !Date.parse(hashDate))
 		{*/
-		currentDate = DateToUTC(displayDate);
+		currentDate = DateToUTC(new Date());
 		/*}
 		else
 		{
