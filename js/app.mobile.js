@@ -481,18 +481,39 @@
 
 	function start()
 	{
+		startDate = new Date();
+		displayDate = new Date();
+		
+		while(startDate.getDay() != 1)
+		{
+			diff = 0;
+			if(startDate.getDay() == 0)
+			{
+				diff = 86400000;
+				displayDate = new Date(displayDate.getTime()+diff);
+			}
+			else
+			{
+				diff = -86400000;
+			}
+			
+			startDate = new Date(startDate.getTime()+diff);
+		}
+		startDate = DateToUTC(startDate);
+		
+		LoadScheduleDataForDate(currentClass,startDate,false);
 		/*hashDate = location.hash.substring(10,20);
 		alert(hashDate);
 		if(hashDate.length==0 || !Date.parse(hashDate))
 		{*/
-			currentDate = DateToUTC(new Date());
+		currentDate = DateToUTC(displayDate);
 		/*}
 		else
 		{
 			currentDate = hashDate;	
 		}*/
 		
-		LoadScheduleDataForDate(currentClass,currentDate,false);
+		
 		
 		switchToPage(currentDate);
 	}
