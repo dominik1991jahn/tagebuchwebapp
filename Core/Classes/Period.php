@@ -26,6 +26,7 @@
 		
 		public function Digikabu_Period()
 		{
+			$this->type = new Digikabu_PeriodType_Normal;
 			$this->teachers = array();
 			$this->rooms 	= array();
 		}
@@ -38,14 +39,15 @@
 		{
 			switch($name)
 			{
-				case "Date"		  : return $this->GetDate(		 ); break;
-				case "Subject"	  : return $this->GetSubject( 	 ); break;
-				case "Previous"	  : return $this->GetPrevious(	 ); break;
-				case "Next"		  : return $this->GetNext(		 ); break;
-				case "Start"	  : return $this->GetStart(	     );
-				case "Duration"	  : return $this->GetDuration(	 );
-				case "Teachers"	  : return $this->GetTeachers(	 );
-				case "Rooms"	  : return $this->GetRooms(		 );
+				case "Type"		  : return $this->GetType();
+				case "Date"		  : return $this->GetDate();
+				case "Subject"	  : return $this->GetSubject();
+				case "Previous"	  : return $this->GetPrevious();
+				case "Next"		  : return $this->GetNext();
+				case "Start"	  : return $this->GetStart();
+				case "Duration"	  : return $this->GetDuration();
+				case "Teachers"	  : return $this->GetTeachers();
+				case "Rooms"	  : return $this->GetRooms();
 				case "Information": return $this->GetInformation();
 			}
 		}
@@ -54,6 +56,7 @@
 		{
 			switch($name)
 			{
+				case "Type"		  : $this->setType(       $value); break;
 				case "Date"		  : $this->setDate(		  $value); break;
 				case "Subject"	  : $this->setSubject(	  $value); break;
 				case "Start"	  : $this->SetStart(	  $value); break;
@@ -90,6 +93,18 @@
 		  //
 		 // GetTERS / SETTERS
 		//
+		
+		# Type
+		
+		private function GetType()
+		{
+			return $this->type;
+		}
+		
+		private function SetType(Digikabu_PeriodType $value)
+		{
+			$this->type = $value;
+		}
 		
 		# Date
 		
@@ -205,6 +220,8 @@
 			
 			$nodes = $node->children();
 			
+			$type = new Digikabu_PeriodType_Normal;
+			
 			foreach($nodes as $childnode)
 			{
 				switch($childnode->getName())
@@ -257,10 +274,12 @@
 									$teachers[1] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
 									break;
 								case 2: 
+									$type = new Digikabu_PeriodType_Substitution;
 									$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
 									$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
 									break;
 								case 3:
+									$type = new Digikabu_PeriodType_Substitution;
 									$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
 									$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
 									break;
@@ -288,8 +307,65 @@
 						break;
 				}
 			}
+
+			$period->Type = $type;
 			
 			return $period;
+		}
+		
+		  //
+		 // CONSTANTS
+		//
+		
+		const TYPE_NORMAL = "NORMAL";
+		const TYPE_CANCELED = "CANCELED";
+		const TYPE_SUBSTITUTION = "SUBSTITUTION";
+	}
+	
+	abstract class Digikabu_PeriodType implements JSONSerializable
+	{
+		  //
+		 // ATTRIBUTES
+		//
+		
+		protected /*(int)*/ $type;
+		
+		  //
+		 // METHODS
+		//
+		
+		public function __toString()
+		{
+			return (string) $this->type;
+		}
+		
+		public function jsonSerialize()
+		{
+			return (string) $this;
+		}
+	}
+	
+	class Digikabu_PeriodType_Normal extends Digikabu_PeriodType
+	{
+		public function Digikabu_PeriodType_Normal()
+		{
+			$this->type = Digikabu_Period::TYPE_NORMAL;
+		}
+	}
+	
+	class Digikabu_PeriodType_Canceled extends Digikabu_PeriodType
+	{
+		public function Digikabu_PeriodType_Canceled()
+		{
+			$this->type = Digikabu_Period::TYPE_CANCELED;
+		}
+	}
+	
+	class Digikabu_PeriodType_Substitution extends Digikabu_PeriodType
+	{
+		public function Digikabu_PeriodType_Substitution()
+		{
+			$this->type = Digikabu_Period::TYPE_SUBSTITUTION;
 		}
 	}
 ?>
