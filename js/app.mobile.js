@@ -12,7 +12,7 @@
 			dataType: 'json',
 			beforeSend: function() {
 				$.mobile.loading('show');
-				alert("GET "+url);
+				//alert("GET "+url);
 			},
 			complete: function() { $.mobile.loading('hide'); },
 			success: success,
@@ -581,12 +581,12 @@
 				
 				if(event.which == 37)
 				{
-					goToPage = currPage.attr("data-prev").substring(9);
+					goToPage = currPage.attr("data-prev").substring(9,19);
 					direction = -1;
 				}
 				else if(event.which == 39)
 				{
-					goToPage = currPage.attr("data-next").substring(9);
+					goToPage = currPage.attr("data-next").substring(9,19);
 					direction = +1;
 				}
 				
@@ -599,7 +599,8 @@
 		
 		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
-			nextPage = currPage.attr("data-next").substring(9);
+			nextPage = currPage.attr("data-next").substring(9,19);
+			
 			//if(nextPage.length>0)
 			{
 				switchToPage(nextPage,1);
@@ -608,7 +609,7 @@
 		
 		$(document).on("swiperight", function() {
 			currPage = $.mobile.activePage;
-			prevPage = currPage.attr("data-prev").substring(9);
+			prevPage = currPage.attr("data-prev").substring(9,19);
 			//if(prevPage.length>0)
 			{
 				switchToPage(prevPage,-1);
