@@ -49,15 +49,15 @@
 			}
 			
 			htmlObject.append(option);
-								
-			if(htmlObject.prop("tagName") == "SELECT")
-			{
-				htmlObject.selectmenu('refresh');
-			}
-			else
-			{
-				htmlObject.parent().selectmenu('refresh');
-			}
+		}
+		
+		if(htmlObject.prop("tagName") == "SELECT")
+		{
+			htmlObject.selectmenu('refresh');
+		}
+		else
+		{
+			htmlObject.parent().selectmenu("refresh");
 		}
 	}
 	
@@ -357,17 +357,17 @@
 	 		
 	 		datclasslist = footer.append("<div></div>");
 	 			datclasslist.css("text-align","center");
-	 			select = $(document.createElement("select"));
-	 			datclasslist.append(select);
-	 				select.attr("data-native-menu",false);
-	 				select.append("<option data-placeholder=\"true\">Klasse ausw&auml;hlen</option>");
+	 			selectClass = $(document.createElement("select"));
+	 			datclasslist.append(selectClass);
+	 				selectClass.attr("data-native-menu",false);
+	 				selectClass.append("<option data-placeholder=\"true\">Klasse ausw&auml;hlen</option>");
 	 				groupClasses = $(document.createElement("optgroup"));
 	 				groupClasses.attr("label","Klassen");
-	 				select.append(groupClasses);
+	 				selectClass.append(groupClasses);
 	 				//groupTeachers = select.append("<optgroup label=\"Lehrer\"></optgroup>");
 	 		
-	 		select.selectmenu();
-	 		select.on('change', ChangeCurrentClass);
+	 		selectClass.selectmenu();
+	 		selectClass.on('change', ChangeCurrentClass);
 	 		
 	 		year = currentDate.getUTCFullYear();
 	 		if(currentDate.getMonth()+1 < 9)
@@ -377,7 +377,7 @@
 	 		
 	 		FillClassList(year, groupClasses);
 	 		//FillTeacherList(groupTeachers);
-	 		
+	 		//alert(selectClass.parent().html());
 	 	return footer;
 	 	/*
 	 	
