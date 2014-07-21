@@ -8,4 +8,5 @@
 	<RetrieveTeacherListForClass>{Configuration:ServerURL}/Teacher/{Class}.xml</RetrieveTeacherListForClass>
 	<RetrieveTeacherListForTeachers>{Configuration:ServerURL}/Teacher/TeacherListForTeachers.xml</RetrieveTeacherListForTeachers>
 	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>
+	<RetrieveClassEvents>{Configuration:ServerURL}/exams/{Class}/{Year}</RetrieveClassEvents>
 </RequestMapping>

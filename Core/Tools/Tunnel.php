@@ -192,6 +192,32 @@
 			print json_encode($weeks);
 		}
 		
+		public function GetEvents($class, $year)
+		{
+			$url = RequestMapping::GetURLForRequest("RetrieveClassEvents",array("Class"=>$class, "Year" => $year));
+			$request = $this->PassThroughTunnel("GET",$url);
+			
+			$request->SendRequest();
+			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}
+			
+			$xresponse = simplexml_load_string($request->ResponseBody);
+			
+			$events = array();
+			foreach($xresponse->children() as $xevent)
+			{
+				$event = Digikabu_Event::FromXMLNode($xevent);
+				
+				$events[] = $event;
+			}
+			
+			print json_encode($events);
+		}
+		
 		private function HTTPError($code)
 		{
 			$message = null;
