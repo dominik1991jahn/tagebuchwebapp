@@ -68,11 +68,30 @@
 			{
 				if (data.Periods.Start == 1 && data.Periods[i].Duration == 3)
 				{
-					lesson = CreateLesson(data.Periods[p]);
+					lesson = CreateLesson(data.Periods[p], 2); content.append(lesson);
+					
+					breakShort = CreateBreak(false); content.append(breakShort);
+					
+					lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
 				}
 				else if (data.Periods.Start == 2 && (data.Periods[i].Duration == 3 || data.Periods[i].Duration == 2))
 				{
-					lesson = CreateLesson(data.Periods[p]);
+					if (data.Periods[i].Duration == 3)
+					{
+						lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+					
+						breakShort = CreateBreak(false); content.append(breakShort);
+						
+						lesson = CreateLesson(data.Periods[p], 2); content.append(lesson);
+					}
+					else
+					{
+						lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+					
+						breakShort = CreateBreak(false); content.append(breakShort);
+						
+						lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+					}
 				}
 				else
 				{
@@ -129,15 +148,18 @@
 	} 
 	function CreateLesson(data, length)
 	{
-		if(typeof(length) == 'undefined') { length = 0; }
+		duration = 0;
+		
+		if (typeof(length) != 'undefined') { duration = 	   length; }
+		else 							   { duration = data.Duration; }
 		
 	 	lesson = $(document.createElement("div"));
 	 	
-	 	if (data.Duration - length == 3)
+	 	if (duration == 3)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray triple hr");
 	 	}
-	 	else if (data.Duration == 2)
+	 	else if (duration == 2)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray double hr");
 	 	}
