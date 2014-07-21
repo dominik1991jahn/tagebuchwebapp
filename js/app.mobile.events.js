@@ -51,6 +51,10 @@ function loadEvents()
 
 function FillEvents(currentClass, year)
 {
+	content = document.createElement('div');
+	content = $(content);
+	content.attr('data-role','content');
+	
 	if(classList.length == 0)
 	{
 		url = "request.php?/Events/" + currentClass + "/" + year;
@@ -59,17 +63,22 @@ function FillEvents(currentClass, year)
 					{
 						$.each(response, function(key, value)
 						{
-							eventSchedule = $(document.createElement("div"));
+							eventSchedule = $(document.createElement('div'));
+							eventSchedule.attr("class", "ui-body ui-body-gray single hr");
+							
+							
 						 	pDescription = $(document.createElement("p"));
 						 	
 						 	pDescription.html(value.description);
-						 	//pDexcription.addClass("teacher");
+						 	//pDescription.addClass("teacher");
 						 	eventSchedule.append(pDescription);
 						 	
 						 	pDate = $(document.createElement("p"));
 						 	pDate.html(value.date);
 						 	//pDate.addClass("lesson");
-						 	eventSchedule.append(pName);
+						 	eventSchedule.append(pDate);
+						 	
+						 	content.append(eventSchedule);	
 						});
 					};
 					
