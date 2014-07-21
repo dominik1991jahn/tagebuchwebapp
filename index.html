@@ -161,9 +161,25 @@
 			/*[data-role=page]{height: 100% !important; position:relative !important;}
 			[data-role=footer]{bottom:0; position:absolute !important; top: auto !important; width:100%;}
 			*/
+			
+			/*
+			 * Avoid text selection when swiping with the mouse
+			 */
+			*
+			{
+			  -moz-user-select: none;
+			  -khtml-user-select: none;
+			  -webkit-user-select: none;
+			  user-select: none;
+			}
 		</style>
 		
 		<script type="text/javascript" src="js/app.mobile.js"></script>
+		<script type="text/javascript" src="js/app.mobile.cookie.js"></script>
+		<script type="text/javascript" src="js/app.mobile.login.js"></script>
+		<script type="text/javascript" src="js/app.mobile.tools.js"></script>
+		<script type="text/javascript" src="js/app.mobile.schedule.js"></script>
+		<script type="text/javascript" src="js/app.mobile.autostart.js"></script>
 	</head>
 	<body id="body">
 		<div data-role="page" id="login">
