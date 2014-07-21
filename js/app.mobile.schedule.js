@@ -47,7 +47,7 @@
 		navbar.append(ullinks);
 		
 		ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
-		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",loadEvents);
+		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",function(){loadEvents()});
 		ullinks.append("<li><a href=\"#bla\" data-role=\"button\">Fehltage</a></li>");
 		navbar.navbar();
 		
@@ -157,6 +157,9 @@
 		else 							  { startVal = data.Start; }
 		
 	 	lesson = $(document.createElement("div"));
+	 	if 		(data.Type == 	    "NORMAL") { lesson.attr("data-theme", "GRAY"); }
+	 	else if (data.Type == "SUBSTITUTION") { lesson.attr("data-theme", "YELLOW"); }
+	 	else if (data.Type == 		"CANCEL") { lesson.attr("data-theme", "RED"); }
 	 	
 	 	if (duration == 3)
 	 	{
