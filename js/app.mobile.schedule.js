@@ -66,31 +66,31 @@
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
-				if (data.Periods.Start == 1 && data.Periods[i].Duration == 3)
+				if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
 				{
-					lesson = CreateLesson(data.Periods[p], 2); content.append(lesson);
+					lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
 					
 					breakShort = CreateBreak(false); content.append(breakShort);
 					
-					lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+					lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 				}
-				else if (data.Periods.Start == 2 && (data.Periods[i].Duration == 3 || data.Periods[i].Duration == 2))
+				else if (data.Periods[p].Start == 2 && (data.Periods[p].Duration >= 2))
 				{
-					if (data.Periods[i].Duration == 3)
+					if (data.Periods[p].Duration == 3)
 					{
-						lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
 					
 						breakShort = CreateBreak(false); content.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 2); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
 					}
 					else
 					{
-						lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
 					
 						breakShort = CreateBreak(false); content.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 1); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 					}
 				}
 				else
@@ -146,12 +146,15 @@
 	 		return shortBreak;
 		}
 	} 
-	function CreateLesson(data, length)
+	function CreateLesson(data, length, start)
 	{
-		duration = 0;
+		duration = 0; startVal = 0;
 		
 		if (typeof(length) != 'undefined') { duration = 	   length; }
 		else 							   { duration = data.Duration; }
+		
+		if (typeof(start) != 'undefined') { startVal =      start; }
+		else 							  { startVal = data.Start; }
 		
 	 	lesson = $(document.createElement("div"));
 	 	
@@ -198,10 +201,10 @@
 	 	pRoom.addClass("room");
 	 	lesson.append(pRoom);
 	 	
-	 	for(l = 0; l < data.Duration; l++)
+	 	for(l = 0; l < duration; l++)
 	 	{
 	 		h5Period = $(document.createElement("h5"));
-	 		h5Period.html((data.Start+l));
+	 		h5Period.html((startVal+l));
 	 		lesson.append(h5Period);
 	 		
 	 		if(l>0)
