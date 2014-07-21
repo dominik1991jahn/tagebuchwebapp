@@ -14,4 +14,6 @@ function loadEvents()
 	page.appendTo($.mobile.pageContainer);
 	
 	page.append("<h1>Termine</h1>");
+	
+	eventsLoaded = true;
 }

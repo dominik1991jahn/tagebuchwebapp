@@ -47,7 +47,7 @@
 		navbar.append(ullinks);
 		
 		ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
-		ullinks.append("<li><a href=\"#events\" onclick=\"loadEvents()\" data-role=\"button\">Termine</a></li>");
+		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",loadEvents);
 		ullinks.append("<li><a href=\"#bla\" data-role=\"button\">Fehltage</a></li>");
 		navbar.navbar();
 		
