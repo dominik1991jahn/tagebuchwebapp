@@ -66,15 +66,15 @@ function FillEvents(currentClass, year, htmlObject)
 						eventSchedule.attr("class", "ui-body ui-body-gray single hr");
 						
 						
-					 	pDescription = $(document.createElement("p"));
+					 	pDescription = $(document.createElement("h3"));
 					 	
-					 	pDescription.html(value.description);
-					 	//pDescription.addClass("teacher");
+					 	pDescription.html(value.Description);
+					 	pDescription.addClass("lesson");
 					 	eventSchedule.append(pDescription);
 					 	
 					 	pDate = $(document.createElement("p"));
-					 	pDate.html(value.date);
-					 	//pDate.addClass("lesson");
+					 	pDate.html(value.Date);
+					 	pDate.addClass("teacher");
 					 	eventSchedule.append(pDate);
 					 	
 					 	htmlObject.append(eventSchedule);	
