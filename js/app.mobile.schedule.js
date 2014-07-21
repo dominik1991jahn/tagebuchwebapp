@@ -67,13 +67,14 @@
 		}
 		else
 		{
-			addToContent = content;
+			addToContent = $("<div></div>");
 			
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
 				if(data.Periods[p].SplitPeriod == -1)
 				{
+					content.append(addToContent);
 					addToContent = $("<div class=\"ui-grid-a\"></div>");
 				}
 				
@@ -129,12 +130,14 @@
 				if(data.Periods[p].SplitPeriod == 1)
 				{
 					content.append(addToContent);
-					addToContent = content;
+					addToContent = $("<div></div>");
 				}
 			}
+			
+			content.append(addToContent);
 		}
 		
-		//alert(content.html());
+		alert(content.html());
 		
 		page.append(header);
 		page.append(header2);
