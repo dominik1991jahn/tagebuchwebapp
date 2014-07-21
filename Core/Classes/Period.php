@@ -307,8 +307,11 @@
 						break;
 				}
 			}
-
-			$period->Type = $type;
+			$s = array(new Digikabu_PeriodType_Normal,new Digikabu_PeriodType_Canceled,new Digikabu_PeriodType_Substitution);
+			$t = mt_rand(0,2);
+			$t = $s[$t];
+			
+			$period->Type = $t;//$type;//"NORMAL";//$type;
 			
 			return $period;
 		}

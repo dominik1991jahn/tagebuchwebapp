@@ -157,22 +157,23 @@
 		else 							  { startVal = data.Start; }
 		
 	 	lesson = $(document.createElement("div"));
-	 	if 		(data.Type == 	    "NORMAL") { lesson.attr("data-theme",   "gray"); }
-	 	else if (data.Type == "SUBSTITUTION") { lesson.attr("data-theme", "yellow"); }
-	 	else if (data.Type ==     "CANCELED") { lesson.attr("data-theme",    "red"); }
 	 	
 	 	if (duration == 3)
 	 	{
-	 		lesson.attr("class", "ui-body ui-body-gray triple hr");
+	 		lesson.attr("class", "ui-body ui-body triple hr");
 	 	}
 	 	else if (duration == 2)
 	 	{
-	 		lesson.attr("class", "ui-body ui-body-gray double hr");
+	 		lesson.attr("class", "ui-body ui-body double hr");
 	 	}
 	 	else
 	 	{
-	 		lesson.attr("class", "ui-body ui-body-gray single hr");
+	 		lesson.attr("class", "ui-body ui-body single hr");
 	 	}
+	 	
+	 	if 		(data.Type == 	    "NORMAL") { lesson.addClass("ui-body-gray"); }
+	 	else if (data.Type == "SUBSTITUTION") { lesson.addClass("ui-body-yellow"); }
+	 	else if (data.Type ==     "CANCELED") { lesson.addClass("ui-body-red"); }
 	 	
 	 	pTeach = $(document.createElement("p"));
 	 	teachers = "";
