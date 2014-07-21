@@ -45,32 +45,31 @@ function loadEvents()
 	
 	eventsLoaded = true;
 		
- 	eventSchedule = $(document.createElement("div"));
  	
- 	
- 	pDescription = $(document.createElement("p"));
- 	
- 	pDescription.html(teachers);
- 	pDescription.addClass("teacher");
- 	eventSchedule.append(pDescription);
- 	
- 	pName = $(document.createElement("h3"));
- 	pName.html(data.Subject.Name);
- 	pName.addClass("lesson");
- 	lesson.append(pName);
+
 }
 
-function FillEvents(class, year)
+function FillEvents(currentClass, year)
 {
 	if(classList.length == 0)
 	{
-		url = "request.php?/Events/" + class + "/" + year;
+		url = "request.php?/Events/" + currentClass + "/" + year;
 	
 		success = function(response)
 					{
 						$.each(response, function(key, value)
 						{
-							// Hier sind die Daten
+							eventSchedule = $(document.createElement("div"));
+						 	pDescription = $(document.createElement("p"));
+						 	
+						 	pDescription.html(value.description);
+						 	//pDexcription.addClass("teacher");
+						 	eventSchedule.append(pDescription);
+						 	
+						 	pDate = $(document.createElement("p"));
+						 	pDate.html(value.date);
+						 	//pDate.addClass("lesson");
+						 	eventSchedule.append(pName);
 						});
 					};
 					
