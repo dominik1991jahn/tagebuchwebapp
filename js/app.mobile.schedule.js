@@ -157,9 +157,9 @@
 		else 							  { startVal = data.Start; }
 		
 	 	lesson = $(document.createElement("div"));
-	 	if 		(data.Type == 	    "NORMAL") { lesson.attr("data-theme", "GRAY"); }
-	 	else if (data.Type == "SUBSTITUTION") { lesson.attr("data-theme", "YELLOW"); }
-	 	else if (data.Type == 		"CANCEL") { lesson.attr("data-theme", "RED"); }
+	 	if 		(data.Type == 	    "NORMAL") { lesson.attr("data-theme",   "gray"); }
+	 	else if (data.Type == "SUBSTITUTION") { lesson.attr("data-theme", "yellow"); }
+	 	else if (data.Type ==     "CANCELED") { lesson.attr("data-theme",    "red"); }
 	 	
 	 	if (duration == 3)
 	 	{
