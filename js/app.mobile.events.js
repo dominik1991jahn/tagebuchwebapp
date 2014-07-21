@@ -38,10 +38,15 @@ function loadEvents()
 	ullinks.append("<li><a href=\"#bla\" data-role=\"button\">Fehltage</a></li>");
 	navbar.navbar();
 
+	content = document.createElement('div');
+	content = $(content);
+	content.attr('data-role','content');
+	
 	page.append(header);
 	page.append(header2);
+	page.append(content);
 	
-	FillEvents(currentClass, 2013);
+	FillEvents(currentClass, 2013, content);
 	
 	eventsLoaded = true;
 		
@@ -49,39 +54,32 @@ function loadEvents()
 
 }
 
-function FillEvents(currentClass, year)
+function FillEvents(currentClass, year, htmlObject)
 {
-	content = document.createElement('div');
-	content = $(content);
-	content.attr('data-role','content');
+	url = "request.php?/Events/" + currentClass + "/" + year;
 	
-	if(classList.length == 0)
-	{
-		url = "request.php?/Events/" + currentClass + "/" + year;
-	
-		success = function(response)
+	success = function(response)
+				{
+					$.each(response, function(key, value)
 					{
-						$.each(response, function(key, value)
-						{
-							eventSchedule = $(document.createElement('div'));
-							eventSchedule.attr("class", "ui-body ui-body-gray single hr");
-							
-							
-						 	pDescription = $(document.createElement("p"));
-						 	
-						 	pDescription.html(value.description);
-						 	//pDescription.addClass("teacher");
-						 	eventSchedule.append(pDescription);
-						 	
-						 	pDate = $(document.createElement("p"));
-						 	pDate.html(value.date);
-						 	//pDate.addClass("lesson");
-						 	eventSchedule.append(pDate);
-						 	
-						 	content.append(eventSchedule);	
-						});
-					};
-					
-		request("GET",url,success,false);
-	}
+						eventSchedule = $(document.createElement('div'));
+						eventSchedule.attr("class", "ui-body ui-body-gray single hr");
+						
+						
+					 	pDescription = $(document.createElement("p"));
+					 	
+					 	pDescription.html(value.description);
+					 	//pDescription.addClass("teacher");
+					 	eventSchedule.append(pDescription);
+					 	
+					 	pDate = $(document.createElement("p"));
+					 	pDate.html(value.date);
+					 	//pDate.addClass("lesson");
+					 	eventSchedule.append(pDate);
+					 	
+					 	htmlObject.append(eventSchedule);	
+					});
+				};
+				
+	request("GET",url,success,false);
 }
