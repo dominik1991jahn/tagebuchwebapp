@@ -1,3 +1,12 @@
+function DateToPrettyDate(date)
+{
+	var output = DayOfWeekToName(date.getDay()) + ", ";
+	
+	output += Zero(date.getDate())+"."+Zero(date.getMonth()+1);
+	
+	return output;
+}
+
 function DateToUTC(date)
 	{
 		utc = date.getUTCFullYear()+"-";
