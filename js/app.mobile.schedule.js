@@ -47,7 +47,7 @@
 		navbar.append(ullinks);
 		
 		ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
-		ullinks.append("<li><a href=\"#exams\" data-role=\"button\">Schulaufgaben</a></li>");
+		ullinks.append("<li><a href=\"#events\" onclick=\"loadEvents()\" data-role=\"button\">Termine</a></li>");
 		ullinks.append("<li><a href=\"#bla\" data-role=\"button\">Fehltage</a></li>");
 		navbar.navbar();
 		
@@ -66,24 +66,35 @@
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
-				switch (lNr)
+				if (data.Periods.Start == 1 && data.Periods[i].Duration == 3)
 				{
-					case 2: lesson = CreateBreak(false);
-							content.append(lesson);
-							break;
-				
-					case 5: lesson = CreateBreak( true);
-			 				content.append(lesson);
-			 				break;
-			 				
-					case 7: lesson = CreateBreak(false);
-							content.append(lesson);
-							break;
+					lesson = CreateLesson(data.Periods[p]);
 				}
-				
-				lesson = CreateLesson(data.Periods[p]);
-				content.append(lesson);
-				lNr += data.Periods[p].Duration;
+				else if (data.Periods.Start == 2 && (data.Periods[i].Duration == 3 || data.Periods[i].Duration == 2))
+				{
+					lesson = CreateLesson(data.Periods[p]);
+				}
+				else
+				{
+					switch (lNr)
+					{
+						case 2: lesson = CreateBreak(false);
+								content.append(lesson);
+								break;
+					
+						case 5: lesson = CreateBreak( true);
+				 				content.append(lesson);
+				 				break;
+				 				
+						case 7: lesson = CreateBreak(false);
+								content.append(lesson);
+								break;
+					}
+					
+					lesson = CreateLesson(data.Periods[p]);
+					content.append(lesson);
+					lNr += data.Periods[p].Duration;
+				}
 			}
 		}
 		
@@ -116,11 +127,13 @@
 	 		return shortBreak;
 		}
 	} 
-	function CreateLesson(data)
+	function CreateLesson(data, length)
 	{
+		if(typeof(length) == 'undefined') { length = 0; }
+		
 	 	lesson = $(document.createElement("div"));
 	 	
-	 	if (data.Duration == 3)
+	 	if (data.Duration - length == 3)
 	 	{
 	 		lesson.attr("class", "ui-body ui-body-gray triple hr");
 	 	}
