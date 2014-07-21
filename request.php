@@ -10,6 +10,7 @@
 	include("Core/Classes/Room.php");
 	include("Core/Classes/Week.php");
 	include("Core/Classes/Day.php");
+	include("Core/Classes/Event.php");
 	
 	include("Core/Tools/HttpRequest.php");
 	include("Core/Tools/Configuration.php");
