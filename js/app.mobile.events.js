@@ -41,21 +41,38 @@ function loadEvents()
 	page.append(header);
 	page.append(header2);
 	
+	FillEvents(currentClass, 2013);
+	
 	eventsLoaded = true;
 		
- 	eventSchedule = $(document.createElement("div"));
  	
- 	
- 	pDescription = $(document.createElement("p"));
- 	
- 	pDescription.html(teachers);
- 	pDexcription.addClass("teacher");
- 	eventSchedule.append(pDescription);
- 	
- 	pName = $(document.createElement("h3"));
- 	pName.html(data.Subject.Name);
- 	pName.addClass("lesson");
- 	lesson.append(pName);
 
+}
 
+function FillEvents(currentClass, year)
+{
+	if(classList.length == 0)
+	{
+		url = "request.php?/Events/" + currentClass + "/" + year;
+	
+		success = function(response)
+					{
+						$.each(response, function(key, value)
+						{
+							eventSchedule = $(document.createElement("div"));
+						 	pDescription = $(document.createElement("p"));
+						 	
+						 	pDescription.html(value.description);
+						 	//pDexcription.addClass("teacher");
+						 	eventSchedule.append(pDescription);
+						 	
+						 	pDate = $(document.createElement("p"));
+						 	pDate.html(value.date);
+						 	//pDate.addClass("lesson");
+						 	eventSchedule.append(pName);
+						});
+					};
+					
+		request("GET",url,success,false);
+	}
 }
