@@ -31,7 +31,11 @@
 		header = document.createElement('div');
 		header = $(header);
 		
-		header.attr('data-role','header').append('<h1>'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>');
+		header.attr('data-role','header').append('<h1>'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>')
+			  .on("dblclick",function() {
+			  	gototoday = DateToUTC(new Date());
+			  	switchToPage(gototoday,-1);
+			  });
 		header.attr('data-theme','b');
 		
 		header2 = document.createElement('div');
