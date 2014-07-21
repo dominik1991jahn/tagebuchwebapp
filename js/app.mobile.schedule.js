@@ -67,34 +67,41 @@
 		}
 		else
 		{
+			addToContent = content;
+			
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
+				if(data.Periods[p].SplitPeriod == -1)
+				{
+					addToContent = $("<div class=\"ui-grid-a\"></div>");
+				}
+				
 				if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
 				{
-					lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
+					lesson = CreateLesson(data.Periods[p], 2, 1); addToContent.append(lesson);
 					
-					breakShort = CreateBreak(false); content.append(breakShort);
+					breakShort = CreateBreak(false); addToContent.append(breakShort);
 					
-					lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
+					lesson = CreateLesson(data.Periods[p], 1, 3); addToContent.append(lesson);
 				}
 				else if (data.Periods[p].Start == 2 && (data.Periods[p].Duration >= 2))
 				{
 					if (data.Periods[p].Duration == 3)
 					{
-						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); addToContent.append(lesson);
 					
-						breakShort = CreateBreak(false); content.append(breakShort);
+						breakShort = CreateBreak(false); addToContent.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 2, 3); addToContent.append(lesson);
 					}
 					else
 					{
-						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); addToContent.append(lesson);
 					
-						breakShort = CreateBreak(false); content.append(breakShort);
+						breakShort = CreateBreak(false); addToContent.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 3); addToContent.append(lesson);
 					}
 				}
 				else
@@ -102,24 +109,32 @@
 					switch (lNr)
 					{
 						case 2: lesson = CreateBreak(false);
-								content.append(lesson);
+								addToContent.append(lesson);
 								break;
 					
 						case 5: lesson = CreateBreak( true);
-				 				content.append(lesson);
+				 				addToContent.append(lesson);
 				 				break;
 				 				
 						case 7: lesson = CreateBreak(false);
-								content.append(lesson);
+								addToContent.append(lesson);
 								break;
 					}
 					
 					lesson = CreateLesson(data.Periods[p]);
-					content.append(lesson);
+					addToContent.append(lesson);
 					lNr += data.Periods[p].Duration;
+				}
+				
+				if(data.Periods[p].SplitPeriod == 1)
+				{
+					content.append(addToContent);
+					addToContent = content;
 				}
 			}
 		}
+		
+		//alert(content.html());
 		
 		page.append(header);
 		page.append(header2);
@@ -160,19 +175,19 @@
 		if (typeof(start) != 'undefined') { startVal =      start; }
 		else 							  { startVal = data.Start; }
 		
-	 	lesson = $(document.createElement("div"));
+		lesson = $(document.createElement("div"));
 	 	
 	 	if (duration == 3)
 	 	{
-	 		lesson.attr("class", "ui-body ui-body triple hr");
+	 		lesson.attr("class", "ui-body triple hr");
 	 	}
 	 	else if (duration == 2)
 	 	{
-	 		lesson.attr("class", "ui-body ui-body double hr");
+	 		lesson.attr("class", "ui-body double hr");
 	 	}
 	 	else
 	 	{
-	 		lesson.attr("class", "ui-body ui-body single hr");
+	 		lesson.attr("class", "ui-body single hr");
 	 	}
 	 	
 	 	if 		(data.Type == 	    "NORMAL") { lesson.addClass("ui-body-gray"); }
@@ -189,6 +204,16 @@
 	 			teachers += data.Teachers[i].Teacher.Abbreviation;
 	 		}
 	 	}
+	 	
+	 	if(data.SplitPeriod == -1)
+	 	{
+	 		lesson.addClass("ui-block-a");
+	 	}
+	 	else if(data.SplitPeriod == 1)
+	 	{
+	 		lesson.addClass("ui-block-b");
+	 	}
+	 	
 	 	pTeach.html(teachers);
 	 	pTeach.addClass("teacher");
 	 	lesson.append(pTeach);
