@@ -41,6 +41,8 @@ function loadEvents()
 	page.append(header);
 	page.append(header2);
 	
+	FillEvents(currentClass, 2013);
+	
 	eventsLoaded = true;
 		
  	eventSchedule = $(document.createElement("div"));
@@ -56,5 +58,22 @@ function loadEvents()
  	pName.html(data.Subject.Name);
  	pName.addClass("lesson");
  	lesson.append(pName);
- 
+}
+
+function FillEvents(class, year)
+{
+	if(classList.length == 0)
+	{
+		url = "request.php?/Events/" + class + "/" + year;
+	
+		success = function(response)
+					{
+						$.each(response, function(key, value)
+						{
+							// Hier sind die Daten
+						});
+					};
+					
+		request("GET",url,success,false);
+	}
 }
