@@ -740,7 +740,7 @@ html .ui-bar-red .ui-body-inherit,
 html .ui-body-red .ui-body-inherit,
 html body .ui-group-theme-red .ui-body-inherit,
 html .ui-panel-page-container-red {
-	background-color: #ff474c /*{d-body-background-color}*/;
+	background-color: #FF9497 /*{d-body-background-color}*/;
 	border-color: #dddddd /*{d-body-border}*/;
 	color: #333333 /*{d-body-color}*/;
 	text-shadow: 0 /*{d-body-shadow-x}*/ 1px /*{d-body-shadow-y}*/ 0 /*{d-body-shadow-radius}*/ #444 /*{d-body-shadow-color}*/;
