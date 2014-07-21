@@ -52,9 +52,9 @@ function loadEvents()
  	pDescription.addClass("teacher");
  	eventSchedule.append(pDescription);
  	
- 	pName = $(document.createElement("h3"));
- 	pName.html(data.Subject.Name);
- 	pName.addClass("lesson");
- 	lesson.append(pName);
+ 	pDate = $(document.createElement("p"));
+ 	pDate.html(data.Subject.Name);
+ 	pDate.addClass("lesson");
+ 	eventSchedule.append(pDate);
  
 }
