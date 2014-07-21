@@ -116,6 +116,28 @@
 				}
 				
 			}
+		
+			for($p = 0; $p < count($day->Periods); $p++)
+			{
+				$period = $day->Periods[$p];
+				$nextperiod = ($p+1 < count($day->Periods) ? $day->Periods[($p+1)] : null);
+				
+				if(!$nextperiod)
+				{
+					continue;
+				}
+				
+				#var_dump($period);
+				#var_dump($nextperiod);
+				
+				if($period->Start == $nextperiod->Start)
+				{
+					$day->periods[$p]->SplitPeriod = -1;
+					$day->periods[($p+1)]->SplitPeriod = 1;
+				}
+				
+				#echo "\n\n\n######################################################\n\n\n";
+			}
 			
 			return $day;
 		}
