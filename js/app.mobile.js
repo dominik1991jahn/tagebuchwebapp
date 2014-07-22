@@ -95,7 +95,6 @@
 		success = function(response) {
 						if("code" in response)
 						{
-							alert(response.code);
 							switch(response.code)
 							{
 								case 401:
