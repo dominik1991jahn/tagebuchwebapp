@@ -9,7 +9,8 @@
 		 // ATTRIBUTES
 		//
 		
-		private /*(int)*/ $date;
+		private /*(int)*/ $from;
+		private /*(int)*/ $to;
 		private /*(string)*/ $description;
 		
 		  //
@@ -28,7 +29,8 @@
 		{
 			switch($name)
 			{
-				case "Date"		  : return $this->GetDate();
+				case "From"		  : return $this->GetFrom();
+				case "To"		  : return $this->GetTo();
 				case "Description": return $this->GetDescription();
 			}
 		}
@@ -37,15 +39,17 @@
 		{
 			switch($name)
 			{
-				case "Date"		  : $this->SetDate(		  $value); break;
-				case "Description": $this->SetDescription(	  $value); break;
+				case "From"		  : $this->SetFrom($value); break;
+				case "To"		  : $this->SetTo($value); break;
+				case "Description": $this->SetDescription($value); break;
 			}
 		}
 		
 		public function jsonSerialize()
 		{
 			return array(
-				"Date"	      => date("Y-m-d",$this->Date),
+				"From"	      => date("Y-m-d",$this->From),
+				"To"	      => (!is_null($this->To) ? date("Y-m-d",$this->To) : null),
 				"Description"	  => $this->Description
 			);
 		}
@@ -54,16 +58,28 @@
 		 // GetTERS / SETTERS
 		//
 		
-		# Date
+		# From
 		
-		private function GetDate()
+		private function GetFrom()
 		{
-			return $this->date;
+			return $this->from;
 		}
 		
-		private function SetDate(/*(int)*/ $date)
+		private function SetFrom(/*(int)*/ $value)
 		{
-			$this->date = $date;
+			$this->from = $value;
+		}
+		
+		# To
+		
+		private function GetTo()
+		{
+			return $this->to;
+		}
+		
+		private function SetTo(/*(int)*/ $value)
+		{
+			$this->to = $value;
 		}
 		
 		# Description
@@ -90,7 +106,8 @@
 			$xmlAttributes = $node->attributes();
 			
 			$text = null;
-			$date = null;
+			$from = null;
+			$to = null;
 			
 			foreach($nodes as $node)
 			{
@@ -100,10 +117,11 @@
 				}
 			}
 			
-			$date = (isset($xmlAttributes["date"]) ? strtotime((string) $xmlAttributes["date"]) : null);
+			$from = (isset($xmlAttributes["date"]) ? strtotime((string) $xmlAttributes["date"]) : null);
 			
 			$event->Description = $text;
-			$event->Date = $date;
+			$event->From = $from;
+			$event->To = $to;
 			
 			return $event;
 		}

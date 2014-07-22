@@ -208,11 +208,20 @@
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$events = array();
+			$previousEvent = null;
 			foreach($xresponse->children() as $xevent)
 			{
 				$event = Digikabu_Event::FromXMLNode($xevent);
 				
-				$events[] = $event;
+				if(!is_null($previousEvent) && $event->Description == $previousEvent->Description)
+				{
+					$previousEvent->To = $event->From;
+				}
+				else
+				{
+					$events[] = $event;
+					$previousEvent = $event;
+				}
 			}
 			
 			print json_encode($events);
