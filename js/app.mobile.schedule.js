@@ -125,18 +125,16 @@
 								content.append(lesson);
 								break;
 					
-						case 5:
-							if(data.Periods[p].Start != 6)
-							{
-								lesson = CreateBreak(2);
-				 				content.append(lesson);
-				 			}
-				 			break;
+						case 5: if(data.Periods[p].Start != 6)
+								{
+									lesson = CreateBreak(2);
+					 				content.append(lesson);
+					 			}
+					 			break;
 				 				
-						case 7:
-							lesson = CreateBreak(3);
-				 			content.append(lesson);
-							break;
+						case 7: lesson = CreateBreak(3);
+				 				content.append(lesson);
+								break;
 					}
 					
 					lesson = CreateLesson(data.Periods[p]);
@@ -174,15 +172,15 @@
 		
 		if (duration == 3)
 	 	{
-	 		lesson.attr("class", "ui-body triple hr");
+	 		lesson.attr("class", "ui-body emptyLesson hr triple");
 	 	}
 	 	else if (duration == 2)
 	 	{
-	 		lesson.attr("class", "ui-body double hr");
+	 		lesson.attr("class", "ui-body emptyLesson hr double");
 	 	}
 	 	else
 	 	{
-	 		lesson.attr("class", "ui-body single hr");
+	 		lesson.attr("class", "ui-body emptyLesson hr single");
 	 	}
 	 	
 	 	for(l = 0; l < duration; l++)
