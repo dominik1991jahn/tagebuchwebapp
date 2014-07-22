@@ -54,8 +54,13 @@
 			div.hr
 			{
 				position: relative;
-				margin: 1px;
+				margin: 2px 0px 2px 0px;
 			}
+			
+			/*div.ui-grid-a div.hr
+			{
+				width:250px;
+			}*/
 			
 			div.hr h3
 			{
@@ -171,6 +176,27 @@
 				top: 160px;
 			}
 			
+			div.splitperiod
+			{
+				width: 47%;
+			}
+			
+			div.splitperiodLeft
+			{
+				float: left;
+			}
+			
+			div.splitperiodRight
+			{
+				float: right;
+				margin-top: -97px;
+			}
+			
+			div.splitperiodRight.double
+			{
+				margin-top: -177px;
+			}
+			
 			div.customPopup
 			{
 				padding:25px;
@@ -180,9 +206,8 @@
 				text-align: center;
 			}
 			
-			/*[data-role=page]{height: 100% !important; position:relative !important;}
-			[data-role=footer]{bottom:0; position:absolute !important; top: auto !important; width:100%;}
-			*/
+			.StickFooter [data-role=page]{height: 100% !important; position:relative !important;}
+			.StickFooter [data-role=footer]{bottom:0; position:absolute !important; top: auto !important; width:100%;}
 			
 			/*
 			 * Avoid text selection when swiping with the mouse
@@ -205,7 +230,24 @@
 		<script type="text/javascript" src="js/app.mobile.autostart.js"></script>
 	</head>
 	<body id="body">
-		<div data-role="page" id="login">
+		<div data-role="page" id="home" class="StickFooter">
+			<div data-role="header">
+				<h1>Digikabu.App</h1>
+			</div>
+			<div data-role="header" data-theme="b">
+				<h1>Wird geladen</h1>
+			</div>
+			
+			<div data-role="content">
+				<p>Das Digikabu ist gleich verf&uuml;gbar!</p>
+			</div>
+			
+			<div data-role="footer">
+				<h5>Version 0.1a</h5>
+			</div>
+		</div>
+		
+		<div data-role="page" id="login" class="StickFooter">
 			<div data-role="header">
 				<h1>Digikabu.App</h1>
 			</div>
@@ -231,7 +273,7 @@
 			</div>
 		</div>
 		
-		<div data-role="page" id="SelectClass">
+		<div data-role="page" id="SelectClass" class="StickFooter">
 			<div data-role="header">
 				<h1>Digikabu.App</h1>
 			</div>
@@ -242,7 +284,7 @@
 			<div data-role="content">
 				<form method="POST" action="#" id="classselectform">
 					<label for="classList"><strong>Klasse:</strong></label>
-					<select name="class" id="classList"></select>
+					<select name="class" id="classList" data-native-menu="false"></select>
 					<input type="submit" name="selectclass" value="Klasse ausw&auml;hlen" data-theme="b" />
 				</form>
 			</div>

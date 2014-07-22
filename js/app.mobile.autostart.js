@@ -78,18 +78,17 @@
 		startDate = DateToUTC(startDate);
 		
 		LoadScheduleDataForDate(currentClass,startDate,false);
-		/*hashDate = location.hash.substring(10,20);
-		alert(hashDate);
+		
+		hashDate = location.hash.substring(10,20);
+		//alert(hashDate);
 		if(hashDate.length==0 || !Date.parse(hashDate))
-		{*/
-		currentDate = DateToUTC(new Date());
-		/*}
+		{
+			currentDate = DateToUTC(new Date());
+		}
 		else
 		{
 			currentDate = hashDate;	
-		}*/
-		
-		
+		}
 		
 		switchToPage(currentDate);
 	}

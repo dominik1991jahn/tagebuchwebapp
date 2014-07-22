@@ -160,19 +160,19 @@
 		if (typeof(start) != 'undefined') { startVal =      start; }
 		else 							  { startVal = data.Start; }
 		
-	 	lesson = $(document.createElement("div"));
+		lesson = $(document.createElement("div"));
 	 	
 	 	if (duration == 3)
 	 	{
-	 		lesson.attr("class", "ui-body ui-body triple hr");
+	 		lesson.attr("class", "ui-body triple hr");
 	 	}
 	 	else if (duration == 2)
 	 	{
-	 		lesson.attr("class", "ui-body ui-body double hr");
+	 		lesson.attr("class", "ui-body double hr");
 	 	}
 	 	else
 	 	{
-	 		lesson.attr("class", "ui-body ui-body single hr");
+	 		lesson.attr("class", "ui-body single hr");
 	 	}
 	 	
 	 	if 		(data.Type == 	    "NORMAL") { lesson.addClass("ui-body-gray"); }
@@ -189,6 +189,16 @@
 	 			teachers += data.Teachers[i].Teacher.Abbreviation;
 	 		}
 	 	}
+	 	
+	 	if(data.SplitPeriod == -1)
+	 	{
+	 		lesson.addClass("splitperiod splitperiodLeft");
+	 	}
+	 	else if(data.SplitPeriod == 1)
+	 	{
+	 		lesson.addClass("splitperiod splitperiodRight");
+	 	}
+	 	
 	 	pTeach.html(teachers);
 	 	pTeach.addClass("teacher");
 	 	lesson.append(pTeach);

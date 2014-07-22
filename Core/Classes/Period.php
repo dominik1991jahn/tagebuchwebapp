@@ -16,6 +16,7 @@
 		private /*(array:Digikabu_TeacherStatus)*/ $teachers;
 		private /*(array:Digikabu_Room)*/ $rooms;
 		private /*(string)*/ $information;
+		private /*(int)*/ $splitperiod;
 		
 		private /*(Digikabu_Period)*/ $previous;
 		private /*(Digikabu_Period)*/ $next;
@@ -29,6 +30,7 @@
 			$this->type = new Digikabu_PeriodType_Normal;
 			$this->teachers = array();
 			$this->rooms 	= array();
+			$this->splitperiod = 0;
 		}
 		
 		  //
@@ -49,6 +51,7 @@
 				case "Teachers"	  : return $this->GetTeachers();
 				case "Rooms"	  : return $this->GetRooms();
 				case "Information": return $this->GetInformation();
+				case "SplitPeriod": return $this->GetSplitPeriod();
 			}
 		}
 		
@@ -64,6 +67,7 @@
 				case "Previous"   : $this->SetPrevious(	  $value); break;
 				case "Next"		  : $this->SetNext(		  $value); break;
 				case "Information": $this->SetInformation($value); break;
+				case "SplitPeriod": $this->SetSplitPeriod($value); break;
 			}
 		}
 		
@@ -86,7 +90,8 @@
 				"Duration"	  => $this->Duration,
 				"Teachers"	  => $this->Teachers,
 				"Rooms" 	  => $this->Rooms,
-				"Information" => $this->Information
+				"Information" => $this->Information,
+				"SplitPeriod" => $this->SplitPeriod
 			);
 		}
 		
@@ -209,6 +214,23 @@
 		private function SetInformation(/*(string)*/$information)
 		{
 			$this->information=$information;
+		}
+		
+		# SplitPeriod
+		
+		private function GetSplitPeriod()
+		{
+			return $this->splitperiod;
+		}
+		
+		private function SetSplitPeriod($value)
+		{
+			$value = (int) $value;
+			
+			if($value<0) $value = -1;
+			else if($value>0) $value = 1;
+			
+			$this->splitperiod = $value;
 		}
 		  //
 		 // FUNCTIONS
