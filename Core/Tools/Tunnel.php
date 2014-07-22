@@ -215,11 +215,11 @@
 			{
 				$event = Digikabu_Event::FromXMLNode($xevent);
 				
-				if($type == "past" && ($event->From <= $today && $event->To <= $today))
+				if($type == "past" && ($event->From > $today))
 				{
 					continue;
 				}
-				else if($type == "future" && ($event->From >= $today))
+				else if($type == "future" && ($event->From < $today))
 				{
 					continue;
 				}
