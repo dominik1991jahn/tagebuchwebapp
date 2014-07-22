@@ -71,38 +71,56 @@ function FillEvents(currentClass, year, mode)
 	
 	success = function(response)
 				{
-					$.each(response, function(key, value)
+					if(response.length == 0)
 					{
-						eventSchedule = $(document.createElement('div'));
-						eventSchedule.attr("class", "ui-body ui-body-gray single hr");
-						
-						
-					 	pDescription = $(document.createElement("h3"));
-					 	
-					 	pDescription.html(value.Description);
-					 	pDescription.addClass("lesson");
-					 	eventSchedule.append(pDescription);
-					 	
-					 	pDateFrom = $(document.createElement("p"));
-					 	pDateTo   = $(document.createElement("p"));
-					 	if(value.To == null)
-					 	{
-					 		pDateFrom.html(DateToPrettyDate(new Date(value.From)));
-					 		pDateFrom.addClass("teacher");
-					 	}
-					 	else
-					 	{
-					 		pDateFrom.html("von " + DateToPrettyDate(new Date(value.From)));
-					 		pDateFrom.addClass("teacher");
-					 		
-					 		pDateTo.html("bis " + DateToPrettyDate(new Date(value.To)));
-					 		pDateTo.addClass("room");
-					 	}
-					 	eventSchedule.append(pDateFrom);
-					 	eventSchedule.append(pDateTo);
 
-					 	$("#eventList").append(eventSchedule);	
-					});
+						pNoEvents = $(document.createElement("p"));
+						
+						if(mode == "future")
+						{
+							pNoEvents.html("Es sind keine zuk&uuml;nftigen Termine vorhanden");
+						}
+						else
+						{
+							pNoEvents.html("Es sind keine vergangenen Termine vorhanden");
+						}
+						$("#eventList").append(pNoEvents);
+					}
+					else
+					{
+						$.each(response, function(key, value)
+						{
+							eventSchedule = $(document.createElement('div'));
+							eventSchedule.attr("class", "ui-body ui-body-gray single hr");
+							
+							
+						 	pDescription = $(document.createElement("h3"));
+						 	
+						 	pDescription.html(value.Description);
+						 	pDescription.addClass("lesson");
+						 	eventSchedule.append(pDescription);
+						 	
+						 	pDateFrom = $(document.createElement("p"));
+						 	pDateTo   = $(document.createElement("p"));
+						 	if(value.To == null)
+						 	{
+						 		pDateFrom.html(DateToPrettyDate(new Date(value.From)));
+						 		pDateFrom.addClass("teacher");
+						 	}
+						 	else
+						 	{
+						 		pDateFrom.html("von " + DateToPrettyDate(new Date(value.From)));
+						 		pDateFrom.addClass("teacher");
+						 		
+						 		pDateTo.html("bis " + DateToPrettyDate(new Date(value.To)));
+						 		pDateTo.addClass("room");
+						 	}
+						 	eventSchedule.append(pDateFrom);
+						 	eventSchedule.append(pDateTo);
+	
+						 	$("#eventList").append(eventSchedule);	
+						});
+					}
 				};
 				
 	request("GET",url,success,false);
