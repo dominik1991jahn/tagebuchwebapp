@@ -38,6 +38,8 @@
 			  });
 		header.attr('data-theme','b');
 		
+		header.append("<a href=\"#settings\" data-icon=\"gear\" data-iconpos=\"notext\" data-role=\"button\" class=\"ui-btn-right\">Einstellungen</a>");
+		
 		header2 = document.createElement('div');
 		header2 = $(header2);
 		
