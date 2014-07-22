@@ -101,15 +101,15 @@
 				{
 					switch (lNr)
 					{
-						case 2: lesson = CreateBreak(false);
+						case 2: lesson = CreateBreak(1);
 								content.append(lesson);
 								break;
 					
-						case 5: lesson = CreateBreak( true);
+						case 5: lesson = CreateBreak(2);
 				 				content.append(lesson);
 				 				break;
 				 				
-						case 7: lesson = CreateBreak(false);
+						case 7: lesson = CreateBreak(3);
 								content.append(lesson);
 								break;
 					}
@@ -130,25 +130,16 @@
 		page.appendTo($.mobile.pageContainer);
 	}
 	
-	function CreateBreak(isItALongBreak)
+	function CreateBreak(BreakNr)
 	{
-		if (isItALongBreak)
+		Break = $(document.createElement("div"));
+		switch (BreakNr)
 		{
-			longBreak = $(document.createElement("div"));
-			longBreak.attr("class", "breakLong");
-			
-			//h5Period = $(document.createElement("h5"));
-	 		//h5Period.html((lNr + 1));
-	 		//longBreak.append(h5Period);
-	 		
-			return longBreak;
+			case 1: Break.attr("class", "breakNorm" ); break;
+			case 2: Break.attr("class", "breakLong" ); break;
+			case 3: Break.attr("class", "breakShort"); break;
 		}
-		else
-		{
-			shortBreak = $(document.createElement("div"));
-	 		shortBreak.attr("class", "breakShort");
-	 		return shortBreak;
-		}
+		return Break;
 	} 
 	function CreateLesson(data, length, start)
 	{
