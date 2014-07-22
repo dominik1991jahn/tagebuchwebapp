@@ -329,11 +329,11 @@
 						break;
 				}
 			}
-			$s = array(new Digikabu_PeriodType_Normal,new Digikabu_PeriodType_Canceled,new Digikabu_PeriodType_Substitution);
+			/*$s = array(new Digikabu_PeriodType_Normal,new Digikabu_PeriodType_Canceled,new Digikabu_PeriodType_Substitution);
 			$t = mt_rand(0,2);
-			$t = $s[$t];
+			$t = $s[$t];*/
 			
-			$period->Type = $t;//$type;//"NORMAL";//$type;
+			$period->Type = $type;//"NORMAL";//$type;
 			
 			return $period;
 		}

@@ -192,7 +192,7 @@
 			print json_encode($weeks);
 		}
 		
-		public function GetEvents($class, $year)
+		public function GetEvents($class, $year, $type)
 		{
 			$url = RequestMapping::GetURLForRequest("RetrieveClassEvents",array("Class"=>$class, "Year" => $year));
 			$request = $this->PassThroughTunnel("GET",$url);
@@ -207,11 +207,22 @@
 			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
+			$today = strtotime(date("Y-m-d")." 00:00:00");
+			
 			$events = array();
 			$previousEvent = null;
 			foreach($xresponse->children() as $xevent)
 			{
 				$event = Digikabu_Event::FromXMLNode($xevent);
+				
+				if($type == "past" && ($event->From <= $today && $event->To <= $today))
+				{
+					continue;
+				}
+				else if($type == "future" && ($event->From >= $today))
+				{
+					continue;
+				}
 				
 				if(!is_null($previousEvent) && $event->Description == $previousEvent->Description)
 				{
@@ -236,6 +247,7 @@
 				case "400": $message = "Bad request"; break;
 				case "404": $message = "Resource not found"; break;
 				case "401": $message = "Unauthorized"; break;
+				case "500": $message = "API-Server: Internal Server Error"; break;
 			}
 			
 			$data = array("code" => $code, "message" => $message);

@@ -72,12 +72,24 @@ function FillEvents(currentClass, year, htmlObject)
 					 	pDescription.addClass("lesson");
 					 	eventSchedule.append(pDescription);
 					 	
-					 	pDate = $(document.createElement("p"));
-					 	
-					 	pDate.html(DateToPrettyDate(new Date(value.Date)));
-					 	pDate.addClass("teacher");
-					 	eventSchedule.append(pDate);
-					 	
+					 	pDateFrom = $(document.createElement("p"));
+					 	pDateTo   = $(document.createElement("p"));
+					 	if(value.To == null)
+					 	{
+					 		pDateFrom.html(DateToPrettyDate(new Date(value.From)));
+					 		pDateFrom.addClass("teacher");
+					 	}
+					 	else
+					 	{
+					 		pDateFrom.html("von " + DateToPrettyDate(new Date(value.From)));
+					 		pDateFrom.addClass("teacher");
+					 		
+					 		pDateTo.html("bis " + DateToPrettyDate(new Date(value.To)));
+					 		pDateTo.addClass("room");
+					 	}
+					 	eventSchedule.append(pDateFrom);
+					 	eventSchedule.append(pDateTo);
+
 					 	htmlObject.append(eventSchedule);	
 					});
 				};

@@ -55,7 +55,7 @@
 		}
 		
 		  //
-		 // GetTERS / SETTERS
+		 // GETTERS / SETTERS
 		//
 		
 		# From

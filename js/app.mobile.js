@@ -95,19 +95,22 @@
 		success = function(response) {
 						if("code" in response)
 						{
-							alert(response.code);
 							switch(response.code)
 							{
 								case 401:
 									
-									$.mobile.changePage("#login",{
-										reverse: direction,
-										transition: transition
-									});
+									$.mobile.changePage("#login");
 				
 									break;
 									
-								default: alert("Error [" + response.code + "]: " + response.message); break;
+								default:
+									
+									$("#errorCode").html(response.code);
+									$("#errorMessage").html(response.message);
+									
+									$.mobile.changePage("#httperror");
+									
+									break;
 							}
 							
 							return;
