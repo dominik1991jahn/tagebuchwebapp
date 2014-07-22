@@ -74,7 +74,7 @@
 				endLastLesson = null;
 				lesson = null;
 				
-				if(p>0)
+				if(p>0 && data.Periods[p-1].Start != data.Periods[p].Start)
 				{
 					endLastLesson = data.Periods[p-1].Start + data.Periods[p-1].Duration;
 				}
