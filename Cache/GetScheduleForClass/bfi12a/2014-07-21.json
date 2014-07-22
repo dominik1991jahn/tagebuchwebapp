@@ -1,0 +1,331 @@
+[
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-21",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-22",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-23",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "SK",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "RK",
+                    "Description": null
+                },
+                "Start": 2,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "LEI",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "TFJAVA",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "DP",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "IK2",
+                    "Description": null
+                },
+                "Start": 9,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VIE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-24",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "MSE",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "E",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "RIER",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "TFBAN2",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "TFJAVA",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 3,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-25",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "IK1",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "WAG",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "IK3",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "MAT",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "TFCSHARP",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "MEIJ",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "103"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-26",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-27",
+        "Periods": [
+
+        ]
+    }
+]
