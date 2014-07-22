@@ -242,6 +242,26 @@
 			
 			print json_encode($events);
 		}
+
+		public function CheckPermissions()
+		{
+			/*$url = RequestMapping::GetURLForRequest("CheckPermissions");
+			$request = $this->PassThroughTunnel("GET",$url);
+			
+			$request->SendRequest();
+			
+			if($request->HTTPStatusCode <> 200)
+			{
+				print json_encode($this->HTTPError($request->HTTPStatusCode));
+				return;
+			}*/
+			
+			//$xresponse = simplexml_load_string($request->ResponseBody);
+			
+			$permission = false;
+			
+			print json_encode($permission);
+		}
 		
 		private function HTTPError($code)
 		{

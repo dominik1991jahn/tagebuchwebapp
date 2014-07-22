@@ -9,4 +9,5 @@
 	<RetrieveTeacherListForTeachers>{Configuration:ServerURL}/teachers</RetrieveTeacherListForTeachers>
 	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>
 	<RetrieveClassEvents>{Configuration:ServerURL}/exams/{Class}/{Year}</RetrieveClassEvents>
+	<CheckPermissions>{Configuration:ServerURL}/isTeacher</CheckPermissions>
 </RequestMapping>

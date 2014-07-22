@@ -289,9 +289,10 @@
 			
 			<div data-role="content">
 				<form method="POST" action="#" id="classselectform">
-					<label for="classList"><strong>Klasse:</strong></label>
-					<select name="class" id="classList" data-native-menu="false">
+					<select name="class" id="classSelection" data-native-menu="false">
 						<option data-placeholder="true">Klasse ausw&auml;hlen</option>
+						<optgroup id="classList" label="Klassen"></optgroup>
+						<optgroup id="teacherList" label="Lehrer"></optgroup>
 					</select>
 					<input type="submit" name="selectclass" value="Klasse ausw&auml;hlen" data-theme="b" />
 				</form>

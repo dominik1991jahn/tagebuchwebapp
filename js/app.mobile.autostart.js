@@ -14,10 +14,12 @@
 		{
 			$.mobile.changePage("#SelectClass");
 			FillClassList(2013, $("#classList"));
+			FillTeacherList($("#teacherList"));
 		}
 		else
 		{
 			currentClass = GetCookie("class");
+			currentDisplayMode = GetCookie("displaymode");
 			
 			currentDate = new Date();
 			currentYear = currentDate.getUTCFullYear();

@@ -31,4 +31,6 @@
 		<Field>Year</Field>
 		<Field>Type</Field>
 	</Request>
+	
+	<Request method="GET" url="/Permissions" handler="Tunnel.CheckPermissions" />
 </RequestHandlerMapping>

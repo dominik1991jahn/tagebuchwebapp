@@ -2,7 +2,7 @@ function DateToPrettyDate(date)
 {
 	var output = DayOfWeekToName(date.getDay()) + ", ";
 	
-	output += Zero(date.getDate())+"."+Zero(date.getMonth()+1);
+	output += Zero(date.getDate())+"."+Zero(date.getMonth()+1) + "." + date.getFullYear();
 	
 	return output;
 }
