@@ -396,10 +396,10 @@
 		
 		private function FromCache($path)
 		{
-			if(file_exists("Cache/".$path))
+			/*if(file_exists("Cache/".$path))
 			{
 				return file_get_contents("Cache/".$path);
-			}
+			}*/
 		}
 	}
 ?>
