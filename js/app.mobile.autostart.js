@@ -19,6 +19,13 @@
 		{
 			currentClass = GetCookie("class");
 			
+			currentDate = new Date();
+			currentYear = currentDate.getUTCFullYear();
+	 		if(currentDate.getMonth()+1 < 9)
+	 		{
+	 			currentYear--;
+	 		}
+			
 			start();
 			
 			$(document).keydown(function(event) {

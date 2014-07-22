@@ -1,5 +1,6 @@
 	var schedule = new Array();
 	var currentClass = null;
+	var currentYear = null;
 	var classList = new Array();
 	
 	function request(method, url, success, async)
