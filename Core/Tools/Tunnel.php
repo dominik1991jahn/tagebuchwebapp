@@ -326,20 +326,23 @@
 		
 		private function cache($data, $path)
 		{
-			$pathseg = explode("/",$path);
-			
-			if(count($pathseg)>1)
+			if(!file_exists($path))
 			{
-				$dir = "Cache/";
-				for($i=0;$i<count($pathseg)-1;$i++)
+				$pathseg = explode("/",$path);
+				
+				if(count($pathseg)>1)
 				{
-					$dir .= $pathseg[$i]."/";
-					
-					if(!is_dir($dir)) mkdir($dir);
+					$dir = "Cache/";
+					for($i=0;$i<count($pathseg)-1;$i++)
+					{
+						$dir .= $pathseg[$i]."/";
+						
+						if(!is_dir($dir)) mkdir($dir);
+					}
 				}
+				
+				file_put_contents("Cache/".$path.".json", $data);
 			}
-			
-			file_put_contents("Cache/".$path.".json", $data);
 		}
 	}
 ?>
