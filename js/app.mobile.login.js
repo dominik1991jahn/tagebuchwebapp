@@ -1,4 +1,4 @@
-function loginHandler()
+	function loginHandler()
 	{
 		loginname = $("#loginname").val();
 		password = $("#password").val();
@@ -29,4 +29,14 @@ function loginHandler()
 		document.location = 'index.html';
 		
 		return false;
+	}
+	
+	function logout()
+	{
+		document.cookie = "loginname=null;expires = Thu, 01 Jan 1970 00:00:01 GMT";
+		document.cookie = "password=null;expires = Thu, 01 Jan 1970 00:00:01 GMT";
+		document.cookie = "class=null;expires = Thu, 01 Jan 1970 00:00:01 GMT";
+		document.cookie = "displaymode=null;expires = Thu, 01 Jan 1970 00:00:01 GMT";
+		
+		document.location = 'index.html';
 	}

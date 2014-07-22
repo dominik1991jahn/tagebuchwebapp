@@ -71,8 +71,32 @@
 				switchToPage(prevPage,-1);
 			}
 		});
+		
+		$(window).on('hashchange', function() {
+		    hashChange();
+		});
 
 	});
+	
+	function hashChange()
+	{
+		hash = location.hash.substring(1);
+		
+		switch(hash)
+		{
+			case "settings":
+				
+				$.mobile.changePage("#Settings");
+				FillClassList(2013, $("#SettingsClassList"));
+				FillTeacherList($("#SettingsTeacherList"));
+			
+				break;
+				
+			case "events":
+			
+				break;
+		}
+	}
 	
 	function start()
 	{
