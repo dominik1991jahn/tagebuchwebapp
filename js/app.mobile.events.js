@@ -78,11 +78,11 @@ function FillEvents(currentClass, year, mode)
 						
 						if(mode == "future")
 						{
-							pNoEvents.html("Es sind keine zuk&uuml;nftigen Termine vorhanden");
+							pNoEvents.html("Es sind keine zuk&uuml;nftigen Termine vorhanden.");
 						}
 						else
 						{
-							pNoEvents.html("Es sind keine vergangenen Termine vorhanden");
+							pNoEvents.html("Es sind keine vergangenen Termine vorhanden.");
 						}
 						$("#eventList").append(pNoEvents);
 					}
