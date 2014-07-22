@@ -41,9 +41,9 @@ function loadEvents()
 	content = $(content);
 	content.attr('data-role','content');
 	
-	modeSwitcher = $("<div class=\"ui-grid-a\"></div>");
-	futureSwitch = $("<div class=\"ui-block-a\"></div>").append("<button data-role=\"button\">Aktuelle Termine</button>").on("click", function() { FillEvents(currentClass, currentYear, "future"); });
-	pastSwitch = $("<div class=\"ui-block-b\"></div>").append("<button data-role=\"button\">Vergangene Termine</button>").on("click", function() { FillEvents(currentClass, currentYear, "past"); });
+	modeSwitcher = $("<div data-role=\"controlgroup\" data-type=\"horizontal\"></div>");
+	futureSwitch = $("<button data-role=\"button\">Aktuelle Termine</button>").on("click", function() { FillEvents(currentClass, currentYear, "future"); });
+	pastSwitch = $("<button data-role=\"button\">Vergangene Termine</button>").on("click", function() { FillEvents(currentClass, currentYear, "past"); });
 	modeSwitcher.append(futureSwitch);
 	modeSwitcher.append(pastSwitch);
 	
