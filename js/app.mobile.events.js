@@ -41,22 +41,33 @@ function loadEvents()
 	content = $(content);
 	content.attr('data-role','content');
 	
+	modeSwitcher = $("<div class=\"ui-grid-a\"></div>");
+	futureSwitch = $("<div class=\"ui-block-a\"></div>").append("<button data-role=\"button\">Aktuelle Termine</button>").on("click", function() { FillEvents(currentClass, currentYear, "future"); });
+	pastSwitch = $("<div class=\"ui-block-b\"></div>").append("<button data-role=\"button\">Vergangene Termine</button>").on("click", function() { FillEvents(currentClass, currentYear, "past"); });
+	modeSwitcher.append(futureSwitch);
+	modeSwitcher.append(pastSwitch);
+	
+	content.append(modeSwitcher);
+	
+	events = $("<div id=\"eventList\"></div>");
+	
+	content.append(events);
+	
 	page.append(header);
 	page.append(header2);
 	page.append(content);
 	
-	FillEvents(currentClass, 2013, content);
+	FillEvents(currentClass, currentYear, "future");
 	page.page();
 	
 	eventsLoaded = true;
-		
- 	
-
 }
 
-function FillEvents(currentClass, year, htmlObject)
+function FillEvents(currentClass, year, mode)
 {
-	url = "request.php?/Events/" + currentClass + "/" + year;
+	url = "request.php?/Events/" + currentClass + "/" + year + "/" + mode;
+	
+	$("#eventList").empty();
 	
 	success = function(response)
 				{
@@ -72,13 +83,25 @@ function FillEvents(currentClass, year, htmlObject)
 					 	pDescription.addClass("lesson");
 					 	eventSchedule.append(pDescription);
 					 	
-					 	pDate = $(document.createElement("p"));
-					 	
-					 	pDate.html(DateToPrettyDate(new Date(value.Date)));
-					 	pDate.addClass("teacher");
-					 	eventSchedule.append(pDate);
-					 	
-					 	htmlObject.append(eventSchedule);	
+					 	pDateFrom = $(document.createElement("p"));
+					 	pDateTo   = $(document.createElement("p"));
+					 	if(value.To == null)
+					 	{
+					 		pDateFrom.html(DateToPrettyDate(new Date(value.From)));
+					 		pDateFrom.addClass("teacher");
+					 	}
+					 	else
+					 	{
+					 		pDateFrom.html("von " + DateToPrettyDate(new Date(value.From)));
+					 		pDateFrom.addClass("teacher");
+					 		
+					 		pDateTo.html("bis " + DateToPrettyDate(new Date(value.To)));
+					 		pDateTo.addClass("room");
+					 	}
+					 	eventSchedule.append(pDateFrom);
+					 	eventSchedule.append(pDateTo);
+
+					 	$("#eventList").append(eventSchedule);	
 					});
 				};
 				
