@@ -24,7 +24,7 @@
 		else
 		{
 			currentClass = GetCookie("class");
-			currentDisplayMode = GetCookie("displaymode");
+			currentDisplayMode = GetCookie("displaymode","class");
 			
 			currentDate = new Date();
 			currentYear = currentDate.getUTCFullYear();

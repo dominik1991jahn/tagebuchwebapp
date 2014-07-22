@@ -1,3 +1,5 @@
 php.ini
 test.php
 Cache
+Core/Configuration/Configuration.xml
+Cache

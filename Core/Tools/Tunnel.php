@@ -375,6 +375,7 @@
 		
 		private function cache($data, $path)
 		{
+			return;
 			if(!file_exists($path))
 			{
 				$pathseg = explode("/",$path);
