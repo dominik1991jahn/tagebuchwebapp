@@ -1,0 +1,736 @@
+[
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-21",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "C#",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 3,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "RIP",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "NGFH",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "MIH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "DVT",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VIE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "BWR2",
+                    "Description": null
+                },
+                "Start": 8,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "SPA",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "PHPP",
+                    "Description": null
+                },
+                "Start": 9,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "REII",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-22",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "SRPG",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "REII",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "SBWR",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "SSAP",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "BSP",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VIE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "KS",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "WAG",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "E",
+                    "Description": null
+                },
+                "Start": 9,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "SCHI",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "SKS",
+                    "Description": null
+                },
+                "Start": 10,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "WAG",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-23",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "PHPP",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "REII",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "DVT",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "RIC",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "BSP",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VIE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "E",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "SCHI",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "204"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "MSE",
+                    "Description": null
+                },
+                "Start": 8,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "MEIJ",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "DVT",
+                    "Description": null
+                },
+                "Start": 10,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "MEIJ",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-24",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "D",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "SC#",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "RIP",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "C#",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "RIP",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "NGFH",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "MIH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "WSK",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "WU-BWR",
+                    "Description": null
+                },
+                "Start": 8,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "BWR1",
+                    "Description": null
+                },
+                "Start": 9,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "DOTG",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "WU-BWR",
+                    "Description": null
+                },
+                "Start": 10,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-25",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "BWR2",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "SPA",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "PHPP",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "REII",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "WSK",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "FEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "WU-BAP",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 3,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "LEI",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "205"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-26",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-27",
+        "Periods": [
+
+        ]
+    }
+]

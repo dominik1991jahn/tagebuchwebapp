@@ -1,0 +1,368 @@
+[
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-21",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "FRW",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 3,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "020"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "RFC",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "162"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "E-fU",
+                    "Description": null
+                },
+                "Start": 6,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "216"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-22",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "FRW",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "020"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "E-fU",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "216"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "FRW",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "020"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "RFC",
+                    "Description": null
+                },
+                "Start": 6,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "162"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-23",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "GBWR",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "020"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "E-fU",
+                    "Description": null
+                },
+                "Start": 4,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "216"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-24",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "RFC",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "162"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "ATB",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "212"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "ATB",
+                    "Description": null
+                },
+                "Start": 10,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "212"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-25",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "ITab",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "162"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "RFC",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 1,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VOE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "162"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-26",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-27",
+        "Periods": [
+
+        ]
+    }
+]
