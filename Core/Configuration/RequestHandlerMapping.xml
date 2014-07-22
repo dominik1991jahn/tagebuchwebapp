@@ -26,8 +26,9 @@
 		<Field>From</Field>
 	</Request>
 	
-	<Request method="GET" url="/Events/([a-zA-Z0-9]+)/([0-9]{4,4})" handler="Tunnel.GetEvents">
+	<Request method="GET" url="/Events/([a-zA-Z0-9]+)/([0-9]{4,4})/(past|future)" handler="Tunnel.GetEvents">
 		<Field>Class</Field>
 		<Field>Year</Field>
+		<Field>Type</Field>
 	</Request>
 </RequestHandlerMapping>
