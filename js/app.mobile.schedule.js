@@ -67,41 +67,34 @@
 		}
 		else
 		{
-			addToContent = content;
-			
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
-				if(data.Periods[p].SplitPeriod == -1)
-				{
-					addToContent = $("<div class=\"ui-grid-a\"></div>");
-				}
-				
 				if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
 				{
-					lesson = CreateLesson(data.Periods[p], 2, 1); addToContent.append(lesson);
+					lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
 					
-					breakShort = CreateBreak(false); addToContent.append(breakShort);
+					breakShort = CreateBreak(false); content.append(breakShort);
 					
-					lesson = CreateLesson(data.Periods[p], 1, 3); addToContent.append(lesson);
+					lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 				}
 				else if (data.Periods[p].Start == 2 && (data.Periods[p].Duration >= 2))
 				{
 					if (data.Periods[p].Duration == 3)
 					{
-						lesson = CreateLesson(data.Periods[p], 1, 2); addToContent.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
 					
-						breakShort = CreateBreak(false); addToContent.append(breakShort);
+						breakShort = CreateBreak(false); content.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 2, 3); addToContent.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
 					}
 					else
 					{
-						lesson = CreateLesson(data.Periods[p], 1, 2); addToContent.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
 					
-						breakShort = CreateBreak(false); addToContent.append(breakShort);
+						breakShort = CreateBreak(false); content.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 1, 3); addToContent.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 					}
 				}
 				else
@@ -109,32 +102,24 @@
 					switch (lNr)
 					{
 						case 2: lesson = CreateBreak(false);
-								addToContent.append(lesson);
+								content.append(lesson);
 								break;
 					
 						case 5: lesson = CreateBreak( true);
-				 				addToContent.append(lesson);
+				 				content.append(lesson);
 				 				break;
 				 				
 						case 7: lesson = CreateBreak(false);
-								addToContent.append(lesson);
+								content.append(lesson);
 								break;
 					}
 					
 					lesson = CreateLesson(data.Periods[p]);
-					addToContent.append(lesson);
+					content.append(lesson);
 					lNr += data.Periods[p].Duration;
-				}
-				
-				if(data.Periods[p].SplitPeriod == 1)
-				{
-					content.append(addToContent);
-					addToContent = content;
 				}
 			}
 		}
-		
-		//alert(content.html());
 		
 		page.append(header);
 		page.append(header2);
@@ -207,11 +192,11 @@
 	 	
 	 	if(data.SplitPeriod == -1)
 	 	{
-	 		lesson.addClass("ui-block-a");
+	 		lesson.addClass("splitperiod splitperiodLeft");
 	 	}
 	 	else if(data.SplitPeriod == 1)
 	 	{
-	 		lesson.addClass("ui-block-b");
+	 		lesson.addClass("splitperiod splitperiodRight");
 	 	}
 	 	
 	 	pTeach.html(teachers);

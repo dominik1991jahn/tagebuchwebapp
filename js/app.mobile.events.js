@@ -12,7 +12,6 @@ function loadEvents()
 	
 	page = $("<div data-role=\"page\" id=\"events\"></div>");
 	
-	page.page();
 	page.appendTo($.mobile.pageContainer);
 	
 	header = document.createElement('div');
@@ -47,6 +46,7 @@ function loadEvents()
 	page.append(content);
 	
 	FillEvents(currentClass, 2013, content);
+	page.page();
 	
 	eventsLoaded = true;
 		
