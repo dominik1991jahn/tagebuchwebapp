@@ -59,7 +59,11 @@
 				$classes[] = $class;
 			}
 			
-			return json_encode($classes);
+			$response = json_encode($classes);
+			
+			$this->cache($response, "GetClassList/".$year);
+			
+			return $response;
 		}
 		
 		public function GetTeacherList()
@@ -90,7 +94,11 @@
 				}
 			}
 			
-			return json_encode($teachers);
+			$response = json_encode($teachers);
+			
+			$this->cache($response, "GetTeacherList");
+			
+			return $response;
 		}
 		
 		public function GetTeacherListForTeachers()
@@ -116,7 +124,11 @@
 				$teachers[] = $teacher;
 			}
 			
-			return json_encode($teachers);
+			$response = json_encode($teachers);
+			
+			$this->cache($response, "GetTeacherListForTeachers");
+			
+			return $response;
 		}
 		
 		public function GetSubjectListForClass($class)
@@ -142,7 +154,11 @@
 				$subjects[] = $subject;
 			}
 			
-			return json_encode($subjects);
+			$response = json_encode($subjects);
+			
+			$this->cache($response, "GetSubjectListForClass/".$class);
+			
+			return $response;
 		}
 		
 		public function GetScheduleForClass($class, $date)
@@ -168,7 +184,11 @@
 				$days[] = $day;
 			}
 			
-			print json_encode($days, JSON_PRETTY_PRINT);
+			$response = json_encode($days, JSON_PRETTY_PRINT);
+			
+			$this->cache($response, "GetScheduleForClass/".$class."/".$date);
+			
+			return $response;
 		}
 		
 		public function GetScheduleForTeacher($teacher, $date)
@@ -194,7 +214,11 @@
 				$days[] = $day;
 			}
 			
-			print json_encode($days, JSON_PRETTY_PRINT);
+			$response = json_encode($days, JSON_PRETTY_PRINT);
+			
+			$this->cache($response, "GetScheduleForTeacher/".$teacher."/".$date);
+			
+			return $response;
 		}
 		
 		public function GetEvents($class, $year, $type)
@@ -240,7 +264,11 @@
 				}
 			}
 			
-			print json_encode($events);
+			$response = json_encode($events, JSON_PRETTY_PRINT);
+			
+			$this->cache($response, "GetEvents/".$class."/".$year."/".$type);
+			
+			return $response;
 		}
 
 		public function CheckPermissions()
@@ -272,7 +300,11 @@
 				}
 			}
 			
-			print json_encode($permission);
+			$response = json_encode($permission, JSON_PRETTY_PRINT);
+			
+			$this->cache($response, "CheckPermission");
+			
+			return $response;
 		}
 		
 		private function HTTPError($code)
@@ -290,6 +322,24 @@
 			$data = array("code" => $code, "message" => $message);
 			
 			return $data;
+		}
+		
+		private function cache($data, $path)
+		{
+			$pathseg = explode("/",$path);
+			
+			if(count($pathseg)>1)
+			{
+				$dir = "Cache/";
+				for($i=0;$i<count($pathseg)-1;$i++)
+				{
+					$dir .= $pathseg[$i]."/";
+					
+					if(!is_dir($dir)) mkdir($dir);
+				}
+			}
+			
+			file_put_contents("Cache/".$path.".json", $data);
 		}
 	}
 ?>
