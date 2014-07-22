@@ -1,6 +1,7 @@
 	var schedule = new Array();
 	var currentClass = null;
 	var currentYear = null;
+	var currentDisplayMode = "class";
 	var classList = new Array();
 	
 	function request(method, url, success, async)
@@ -84,6 +85,11 @@
 		var $this = $(this);
 		val = $this.val();
 		
+		currentDisplayMode = "class";
+		
+		if(val.substring(0,0) == "t") currentDisplayMode = "teacher";
+		else if(val.substring(0,0) == "c") currentDisplayMode = "class";
+		alert(currentDisplayMode);
 		currentClass = val.substring(2).toLowerCase();
 		start();
 		//alert(val);
@@ -91,7 +97,14 @@
 	
 	function LoadScheduleDataForDate(classcode, startdate, async)
 	{
-		var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
+		if(currentDisplayMode == "class")
+		{
+			var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
+		}
+		else
+		{
+			var url = "request.php?/Schedule/Teacher/" + classcode + "-" + startdate;
+		}
 		
 		success = function(response) {
 						if("code" in response)

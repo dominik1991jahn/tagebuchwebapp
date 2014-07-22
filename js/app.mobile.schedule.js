@@ -86,7 +86,7 @@
 				{
 					lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
 					
-					breakShort = CreateBreak(false); content.append(breakShort);
+					breakShort = CreateBreak(1); content.append(breakShort);
 					
 					lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 				}
@@ -96,7 +96,7 @@
 					{
 						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
 					
-						breakShort = CreateBreak(false); content.append(breakShort);
+						breakShort = CreateBreak(1); content.append(breakShort);
 						
 						lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
 					}
@@ -104,7 +104,7 @@
 					{
 						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
 					
-						breakShort = CreateBreak(false); content.append(breakShort);
+						breakShort = CreateBreak(1); content.append(breakShort);
 						
 						lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 					}
@@ -133,6 +133,7 @@
 			}
 		}
 		
+		alert(content.html());
 		page.append(header);
 		page.append(header2);
 		page.append(content);
