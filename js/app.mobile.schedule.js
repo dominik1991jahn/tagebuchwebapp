@@ -71,6 +71,7 @@
 			for(p = 0; p < data.Periods.length; p++)
 			{
 				endLastLesson = null;
+				lesson = null;
 				
 				if(p>0)
 				{
@@ -128,8 +129,9 @@
 					
 					lesson = CreateLesson(data.Periods[p]);
 					content.append(lesson);
-					lNr += data.Periods[p].Duration;
 				}
+				
+				if(lesson != null) lNr += data.Periods[p].Duration;
 			}
 		}
 		
