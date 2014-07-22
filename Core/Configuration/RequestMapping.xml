@@ -5,8 +5,8 @@
 		<RetrieveForTeacher>{Configuration:ServerURL}/teacher-timetable/{Teacher}/{Date}/7</RetrieveForTeacher>	
 	</Schedule>
 	<RetrieveClassList>{Configuration:ServerURL}/classes/{Year}</RetrieveClassList>
-	<RetrieveTeacherListForClass>{Configuration:ServerURL}/Teacher/{Class}.xml</RetrieveTeacherListForClass>
-	<RetrieveTeacherListForTeachers>{Configuration:ServerURL}/Teacher/TeacherListForTeachers.xml</RetrieveTeacherListForTeachers>
+	<RetrieveTeacherListForClass>{Configuration:ServerURL}/teachers</RetrieveTeacherListForClass>
+	<RetrieveTeacherListForTeachers>{Configuration:ServerURL}/teachers</RetrieveTeacherListForTeachers>
 	<RetrieveSubjectListForClass>{Configuration:ServerURL}/Subject/{Class}.xml</RetrieveSubjectListForClass>
 	<RetrieveClassEvents>{Configuration:ServerURL}/exams/{Class}/{Year}</RetrieveClassEvents>
 </RequestMapping>

@@ -76,6 +76,13 @@
 		{
 			$teacher = new Digikabu_Teacher();
 			
+			$name = (string)$node;
+			
+			$teacher->Abbreviation=$name;
+			
+			return $teacher;
+			/*$teacher = new Digikabu_Teacher();
+			
 			$nodes = $node->children();
 			
 			foreach($nodes as $childnode)
@@ -93,7 +100,7 @@
 						break;
 				}
 			}		
-			return $teacher;
+			return $teacher;*/
 		}
 		public static function FromXMLNodeFromSchedule(SimpleXMLElement $node)
 		{

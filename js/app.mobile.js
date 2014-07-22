@@ -3,6 +3,7 @@
 	var currentYear = null;
 	var currentDisplayMode = "class";
 	var classList = new Array();
+	var teacherList = new Array();
 	
 	function request(method, url, success, async)
 	{
@@ -63,21 +64,43 @@
 		}
 	}
 	
-	function FillTeacherList(teacherlist)
+	function FillTeacherList(htmlObject)
 	{
-		var url = "request.php?/Teacher";
+		if(teacherList.length == 0)
+		{
+			url = "request.php?/Teacher";
 		
-		success = function(response)
+			success = function(response)
+						{
+							$.each(response, function(key, value)
+							{
+								teacherList.push(value.Abbreviation);
+							});
+						};
+						
+			request("GET",url,success,false);
+		}
+		
+		for(c=0;c<teacherList.length;c++)
+		{
+			option = $("<option value=\"t-"+teacherList[c]+"\">"+teacherList[c]+"</option>");
+								
+			if(teacherList[c].toLowerCase() == currentClass)
 			{
-				$.each(response, function(key, value)
-				{
-					teacherlist.append("<option value=\""+value.Abbreviation+"\">["+value.Abbreviation+"] "+value.Name+"</option>");
-				});
-				
-				teacherlist.selectmenu('refresh');
-			};
+				option.attr("selected",true);
+			}
 			
-		request("GET",url,success,true);
+			htmlObject.append(option);
+		}
+		
+		if(htmlObject.prop("tagName") == "SELECT")
+		{
+			htmlObject.selectmenu('refresh');
+		}
+		else
+		{
+			htmlObject.parent().selectmenu("refresh");
+		}
 	}
 	
 	function ChangeCurrentClass()

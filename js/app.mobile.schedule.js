@@ -133,7 +133,7 @@
 			}
 		}
 		
-		alert(content.html());
+		//alert(content.html());
 		page.append(header);
 		page.append(header2);
 		page.append(content);
@@ -321,14 +321,13 @@
 	 		
 	 		datclasslist = footer.append("<div></div>");
 	 			datclasslist.css("text-align","center");
-	 			selectClass = $(document.createElement("select"));
+	 			selectClass = $("<select data-native-menu=\"false\"></select>");
 	 			datclasslist.append(selectClass);
-	 				selectClass.attr("data-native-menu",false);
-	 				selectClass.append("<option data-placeholder=\"true\">Klasse ausw&auml;hlen</option>");
-	 				groupClasses = $(document.createElement("optgroup"));
-	 				groupClasses.attr("label","Klassen");
+	 				selectClass.append("<option data-placeholder=\"true\">Klasse oder Lehrer ausw&auml;hlen</option>");
+	 				groupClasses = $("<optgroup label=\"Klassen\"></optgroup>");
+	 				groupTeachers = $("<optgroup label=\"Lehrer\"></optgroup>");
 	 				selectClass.append(groupClasses);
-	 				//groupTeachers = select.append("<optgroup label=\"Lehrer\"></optgroup>");
+	 				selectClass.append(groupTeachers);
 	 		
 	 		selectClass.selectmenu();
 	 		selectClass.on('change', ChangeCurrentClass);
@@ -340,6 +339,7 @@
 	 		}
 	 		
 	 		FillClassList(year, groupClasses);
+	 		FillTeacherList(groupTeachers);
 	 		//FillTeacherList(groupTeachers);
 	 		//alert(selectClass.parent().html());
 	 	return footer;
