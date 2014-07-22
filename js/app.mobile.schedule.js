@@ -85,7 +85,7 @@
 				
 				if (endLastLesson != null && (endLastLesson != data.Periods[p].Start && data.Periods[p].Start != 7))
 				{
-					alert("Leer vor der " + data.Periods[p].Start +": " + endLastLesson);
+					lNr+=data.Periods[p].Start - endLastLesson;
 					lesson = CreateEmptyLesson(data.Periods[p].Start - endLastLesson, endLastLesson);
 					content.append(lesson);
 				}
@@ -125,13 +125,18 @@
 								content.append(lesson);
 								break;
 					
-						case 5: lesson = CreateBreak(2);
+						case 5:
+							if(data.Periods[p].Start != 6)
+							{
+								lesson = CreateBreak(2);
 				 				content.append(lesson);
-				 				break;
+				 			}
+				 			break;
 				 				
-						case 7: lesson = CreateBreak(3);
-								content.append(lesson);
-								break;
+						case 7:
+							lesson = CreateBreak(3);
+				 			content.append(lesson);
+							break;
 					}
 					
 					lesson = CreateLesson(data.Periods[p]);
@@ -142,7 +147,7 @@
 			}
 		}
 		
-		alert(content.html());
+		//alert(content.html());
 		page.append(header);
 		page.append(header2);
 		page.append(content);
