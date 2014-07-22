@@ -62,9 +62,9 @@
 			return json_encode($classes);
 		}
 		
-		public function GetTeacherList($class)
+		public function GetTeacherList()
 		{
-			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass", array("Class" => $class));
+			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
@@ -78,11 +78,16 @@
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$teachers = array();
-			
+			$names = array();
 			foreach ($xresponse->children()as $xteacher) 
 			{
 				$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
-				$teachers[] = $teacher;
+				
+				if(!in_array($teacher->Abbreviation, $names))
+				{
+					$teachers[] = $teacher;
+					$names[] = $teacher->Abbreviation;
+				}
 			}
 			
 			return json_encode($teachers);
