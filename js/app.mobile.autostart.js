@@ -89,6 +89,8 @@
 				$.mobile.changePage("#Settings");
 				FillClassList(2013, $("#SettingsClassList"));
 				FillTeacherList($("#SettingsTeacherList"));
+				
+				$("#settingsForm").on("submit", settingsHandler);
 			
 				break;
 				
