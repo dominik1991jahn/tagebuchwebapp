@@ -52,7 +52,6 @@
 		
 		ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
 		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",function(){loadEvents()});
-		ullinks.append("<li><a href=\"#bla\" data-role=\"button\">Fehltage</a></li>");
 		navbar.navbar();
 		
 		footer = CreateFooter(currentDate);
@@ -77,10 +76,16 @@
 				{
 					endLastLesson = data.Periods[p-1].Start + data.Periods[p-1].Duration;
 				}
-				
-				if ((!endLastLesson || endLastLesson != data.Periods[p].Start) && data.Periods[p].Start != 7)
+				else if(p == 0 && data.Periods[p].Start > 1)
 				{
+					endLastLesson = 1;
+				}
+				
+				if (endLastLesson != null && (endLastLesson != data.Periods[p].Start && data.Periods[p].Start != 7))
+				{
+					alert("Leer vor der " + data.Periods[p].Start +": " + endLastLesson);
 					lesson = CreateEmptyLesson(data.Periods[p].Start - endLastLesson, endLastLesson);
+					content.append(lesson);
 				}
 				
 				if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
@@ -135,7 +140,7 @@
 			}
 		}
 		
-		//alert(content.html());
+		alert(content.html());
 		page.append(header);
 		page.append(header2);
 		page.append(content);
