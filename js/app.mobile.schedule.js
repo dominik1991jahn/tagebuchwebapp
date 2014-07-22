@@ -70,7 +70,7 @@
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
-				endLastLesson = data.Periods[p-1].Start + data.Periods[p-1].Duration
+				endLastLesson = data.Periods[p].Start + data.Periods[p].Duration
 				if ((endLastLesson != data.Periods[p].Start) && data.Periods[p].Start != 7)
 				{
 					lesson = CreateEmptyLesson(data.Periods[p].Start - endLastLesson);
