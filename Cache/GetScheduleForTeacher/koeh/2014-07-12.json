@@ -1,0 +1,273 @@
+[
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-12",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-13",
+        "Periods": [
+
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-14",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "IKWWW",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BET",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "208"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-15",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "JAVA",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "208"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "JAVA",
+                    "Description": null
+                },
+                "Start": 7,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "208"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "JAVA",
+                    "Description": null
+                },
+                "Start": 9,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "209"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-16",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "C#P",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VIE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "202",
+                    "203"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-17",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "JAVA",
+                    "Description": null
+                },
+                "Start": 1,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "209"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            },
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "JAVA",
+                    "Description": null
+                },
+                "Start": 3,
+                "Duration": 3,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "BAR",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+                    "208"
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    },
+    {
+        "Type": "NORMAL",
+        "Date": "2014-07-18",
+        "Periods": [
+            {
+                "Type": "NORMAL",
+                "Subject": {
+                    "Name": "C#P",
+                    "Description": null
+                },
+                "Start": 5,
+                "Duration": 2,
+                "Teachers": [
+                    {
+                        "Teacher": {
+                            "Abbreviation": "VIE",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    },
+                    {
+                        "Teacher": {
+                            "Abbreviation": "KOEH",
+                            "Name": null
+                        },
+                        "Status": "NORMAL"
+                    }
+                ],
+                "Rooms": [
+
+                ],
+                "Information": "",
+                "SplitPeriod": 0
+            }
+        ]
+    }
+]
