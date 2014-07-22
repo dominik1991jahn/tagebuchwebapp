@@ -300,7 +300,7 @@
 	 	footer=$(document.createElement("div")); 	
 	 	footer.attr("data-role","footer").attr("data-position","fixed").css("text-align","center").attr("data-theme","b");
 	 	
-	 	linkprev = $("<a href=\"#"+prevID+"\" data-role=\"button\" data-icon=\"arrow-l\" data-iconpos=\"left\" class=\"ui-btn-left\" data-mini=\"true\">"+DayOfWeekToShortName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")</a>");
+	 	linkprev = $("<a href=\"#"+prevID+"\" data-role=\"button\" data-icon=\"arrow-l\" data-iconpos=\"left\" class=\"ui-btn-left\" data-mini=\"true\" data-inline=\"true\">"+DayOfWeekToShortName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")</a>");
 	 	linkprev.on("click",function(data)
 			 			{
 			 				link = data.target.href.split('#');
@@ -309,7 +309,7 @@
 			 				return false;
 			 			});
 			 			
-		linknext = $("<a href=\"#"+nextID+"\" data-role=\"button\" data-icon=\"arrow-r\" data-iconpos=\"right\" class=\"ui-btn-right\" data-mini=\"true\">"+DayOfWeekToShortName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")</a>");
+		linknext = $("<a href=\"#"+nextID+"\" data-role=\"button\" data-icon=\"arrow-r\" data-iconpos=\"right\" class=\"ui-btn-right\" data-mini=\"true\" data-inline=\"true\">"+DayOfWeekToShortName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")</a>");
 	 	linknext.on("click",function(data)
 			 			{
 			 				link = data.target.href.split('#');

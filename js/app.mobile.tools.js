@@ -35,7 +35,7 @@ function DateToUTC(date)
 	
 	function DayOfWeekToShortName(day)
 	{
-		days = ["Son","Mon","Die","Mit","Don","Fre","Sam"];
+		days = ["So","Mo","Di","Mi","Do","Fr","Sa"];
 		
 		return days[day];
 	}
