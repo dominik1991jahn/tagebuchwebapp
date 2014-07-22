@@ -38,6 +38,12 @@
 		
 		public function GetClassList($year)
 		{
+			$fromCache = $this->FromCache("GetClassList/".$year);
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("RetrieveClassList", array("Year" => $year));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -68,6 +74,12 @@
 		
 		public function GetTeacherList()
 		{
+			$fromCache = $this->FromCache("GetTeacherList");
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -103,6 +115,12 @@
 		
 		public function GetTeacherListForTeachers()
 		{
+			$fromCache = $this->FromCache("GetTeacherListForTeachers");
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForTeachers");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -133,6 +151,12 @@
 		
 		public function GetSubjectListForClass($class)
 		{
+			$fromCache = $this->FromCache("GetSubjectListForClass/".$class);
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("RetrieveSubjectListForClass",array("Class"=>$class));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -163,6 +187,13 @@
 		
 		public function GetScheduleForClass($class, $date)
 		{
+			$fromCache = $this->FromCache("GetScheduleForClass/".$class."/".$date);
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
+			
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "Date" => $date));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -193,6 +224,12 @@
 		
 		public function GetScheduleForTeacher($teacher, $date)
 		{
+			$fromCache = $this->FromCache("GetScheduleForTeacher/".$teacher."/".$date);
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>$teacher, "Date" => $date));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -223,6 +260,12 @@
 		
 		public function GetEvents($class, $year, $type)
 		{
+			$fromCache = $this->FromCache("GetEvents/".$class."/".$year."/".$type);
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("RetrieveClassEvents",array("Class"=>$class, "Year" => $year));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -273,6 +316,12 @@
 
 		public function CheckPermissions()
 		{
+			$fromCache = $this->FromCache("CheckPermissions");
+			if(!is_null($fromCache))
+			{
+				return $fromCache;
+			}
+			
 			$url = RequestMapping::GetURLForRequest("CheckPermissions");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -342,6 +391,14 @@
 				}
 				
 				file_put_contents("Cache/".$path.".json", $data);
+			}
+		}
+		
+		private function FromCache($path)
+		{
+			if(file_exists("Cache/".$path))
+			{
+				return file_get_contents("Cache/".$path);
 			}
 		}
 	}
