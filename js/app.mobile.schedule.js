@@ -70,61 +70,65 @@
 			lNr = 0;
 			for(p = 0; p < data.Periods.length; p++)
 			{
-				endLastLesson = data.Periods[p].Start + data.Periods[p].Duration
-				if ((endLastLesson != data.Periods[p].Start) && data.Periods[p].Start != 7)
+				endLastLesson = null;
+				
+				if(p>0)
 				{
-					lesson = CreateEmptyLesson(data.Periods[p].Start - endLastLesson);
+					endLastLesson = data.Periods[p-1].Start + data.Periods[p-1].Duration;
 				}
-				else
+				
+				if ((!endLastLesson || endLastLesson != data.Periods[p].Start) && data.Periods[p].Start != 7)
 				{
-					if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
+					lesson = CreateEmptyLesson(data.Periods[p].Start - endLastLesson, endLastLesson);
+				}
+				
+				if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
+				{
+					lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
+					
+					breakShort = CreateBreak(false); content.append(breakShort);
+					
+					lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
+				}
+				else if (data.Periods[p].Start == 2 && (data.Periods[p].Duration >= 2))
+				{
+					if (data.Periods[p].Duration == 3)
 					{
-						lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
+					
+						breakShort = CreateBreak(false); content.append(breakShort);
 						
+						lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
+					}
+					else
+					{
+						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
+					
 						breakShort = CreateBreak(false); content.append(breakShort);
 						
 						lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
 					}
-					else if (data.Periods[p].Start == 2 && (data.Periods[p].Duration >= 2))
+				}
+				else
+				{
+					switch (lNr)
 					{
-						if (data.Periods[p].Duration == 3)
-						{
-							lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
-						
-							breakShort = CreateBreak(false); content.append(breakShort);
-							
-							lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
-						}
-						else
-						{
-							lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
-						
-							breakShort = CreateBreak(false); content.append(breakShort);
-							
-							lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
-						}
+						case 2: lesson = CreateBreak(1);
+								content.append(lesson);
+								break;
+					
+						case 5: lesson = CreateBreak(2);
+				 				content.append(lesson);
+				 				break;
+				 				
+						case 7: lesson = CreateBreak(3);
+								content.append(lesson);
+								break;
 					}
-					else
-					{
-						switch (lNr)
-						{
-							case 2: lesson = CreateBreak(1);
-									content.append(lesson);
-									break;
-						
-							case 5: lesson = CreateBreak(2);
-					 				content.append(lesson);
-					 				break;
-					 				
-							case 7: lesson = CreateBreak(3);
-									content.append(lesson);
-									break;
-						}
-						
-						lesson = CreateLesson(data.Periods[p]);
-						content.append(lesson);
-						lNr += data.Periods[p].Duration;
-					}
+					
+					lesson = CreateLesson(data.Periods[p]);
+					content.append(lesson);
+					lNr += data.Periods[p].Duration;
 				}
 			}
 		}
@@ -149,7 +153,7 @@
 		}
 		return Break;
 	}
-	function CreateEmptyLesson(duration)
+	function CreateEmptyLesson(duration, startVal)
 	{
 		lesson = $(document.createElement("div"));
 		
@@ -164,6 +168,19 @@
 	 	else
 	 	{
 	 		lesson.attr("class", "ui-body single hr");
+	 	}
+	 	
+	 	for(l = 0; l < duration; l++)
+	 	{
+	 		h5Period = $(document.createElement("h5"));
+	 		h5Period.html((startVal+l));
+	 		lesson.append(h5Period);
+	 		
+	 		if(l>0)
+	 		{
+	 			hr = $(document.createElement("hr"));
+		 		lesson.append(hr);
+		 	}
 	 	}
 	 	
 		return lesson;
