@@ -110,9 +110,9 @@
 		
 		currentDisplayMode = "class";
 		
-		if(val.substring(0,0) == "t") currentDisplayMode = "teacher";
-		else if(val.substring(0,0) == "c") currentDisplayMode = "class";
-		alert(currentDisplayMode);
+		if(val.substring(0,1) == "t") currentDisplayMode = "teacher";
+		else if(val.substring(0,1) == "c") currentDisplayMode = "class";
+		
 		currentClass = val.substring(2).toLowerCase();
 		start();
 		//alert(val);
