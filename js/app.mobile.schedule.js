@@ -353,9 +353,13 @@
 	 		}
 	 		
 	 		FillClassList(year, groupClasses);
+	 		
+	 		if(isTeacher)
+	 		{
+	 			FillTeacherList(groupTeachers);
+	 		}
 	 		FillTeacherList(groupTeachers);
-	 		//FillTeacherList(groupTeachers);
-	 		//alert(selectClass.parent().html());
+	 		
 	 	return footer;
 	 	/*
 	 	

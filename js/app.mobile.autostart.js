@@ -3,6 +3,8 @@
 	 */
 	
 	$(function(){
+		checkPermission();
+		
 		$("#loginform").on("submit", loginHandler);
 		$("#classselectform").on("submit", classSelectHandler);
 		
@@ -14,7 +16,10 @@
 		{
 			$.mobile.changePage("#SelectClass");
 			FillClassList(2013, $("#classList"));
-			FillTeacherList($("#teacherList"));
+			if(isTeacher)
+			{
+				FillTeacherList($("#teacherList"));
+			}
 		}
 		else
 		{
@@ -88,7 +93,10 @@
 				
 				$.mobile.changePage("#Settings");
 				FillClassList(2013, $("#SettingsClassList"));
-				FillTeacherList($("#SettingsTeacherList"));
+				if(isTeacher)
+				{
+					FillTeacherList($("#SettingsTeacherList"));
+				}
 				
 				$("#settingsForm").on("submit", settingsHandler);
 			
@@ -126,4 +134,20 @@
 		}
 		
 		switchToPage(currentDate);
+	}
+	
+	function checkPermission()
+	{
+		if(!permissionChecked)
+		{
+			url = "request.php?/Permissions";
+		
+			success = function(response)
+						{
+							isTeacher = response;
+						};
+						
+			request("GET",url,success,false);
+		}
+		
 	}

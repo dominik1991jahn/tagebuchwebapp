@@ -245,7 +245,7 @@
 
 		public function CheckPermissions()
 		{
-			/*$url = RequestMapping::GetURLForRequest("CheckPermissions");
+			$url = RequestMapping::GetURLForRequest("CheckPermissions");
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
@@ -254,11 +254,23 @@
 			{
 				print json_encode($this->HTTPError($request->HTTPStatusCode));
 				return;
-			}*/
+			}
 			
-			//$xresponse = simplexml_load_string($request->ResponseBody);
+			$xresponse = simplexml_load_string($request->ResponseBody);
 			
 			$permission = false;
+			
+			foreach($xresponse->children() as $xNode)
+			{
+				switch($xNode->getName())
+				{
+					case "IsTeacher":
+						$permission = (string) $xNode;
+						$permission = ($permission == "true" ? true : false);
+						break;
+						
+				}
+			}
 			
 			print json_encode($permission);
 		}

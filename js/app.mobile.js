@@ -2,6 +2,8 @@
 	var currentClass = null;
 	var currentYear = null;
 	var currentDisplayMode = "class";
+	var isTeacher = false;
+	var permissionChecked = false;
 	var classList = new Array();
 	var teacherList = new Array();
 	
