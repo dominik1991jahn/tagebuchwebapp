@@ -311,12 +311,12 @@
 										break;
 									case 2: 
 										$periodType = new Digikabu_PeriodType_Substitution;
-										$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+										$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitute);
 										$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
 										break;
 									case 3:
 										$periodType = new Digikabu_PeriodType_Substitution;
-										$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+										$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitute);
 										$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
 										break;
 								}

@@ -97,7 +97,7 @@
 			{
 				case "NORMAL": return new Digikabu_TeacherStatus_Normal;
 				case "ABSENT": return new Digikabu_TeacherStatus_Absent;
-				case "SUBSTITUTION": return new Digikabu_TeacherStatus_Substitution;
+				case "SUBSTITUTE": return new Digikabu_TeacherStatus_Substitute;
 				default: throw new Exception("Invalid Teacher Status '".$name."'");
 			}
 		}
@@ -122,9 +122,9 @@
 		 // CONSTANTS
 		//
 		
-		const /*(int)*/ STATUS_NORMAL = "NORMAL";
-		const /*(int)*/ STATUS_SUBSTITUTION = "SUBSTITUTION";
-		const /*(int)*/ STATUS_ABSENT = "ABSENT";
+		const /*(string)*/ STATUS_NORMAL = "NORMAL";
+		const /*(string)*/ STATUS_ABSENT = "ABSENT";
+		const /*(string)*/ STATUS_SUBSTITUTE = "SUBSTITUTE";
 	}
 
 	abstract class Digikabu_TeacherStatus_Abstract implements JSONSerializable
@@ -158,19 +158,19 @@
 		}
 	}
 	
-	class Digikabu_TeacherStatus_Substitution extends Digikabu_TeacherStatus_Abstract
-	{
-		public function __construct()
-		{
-			$this->status = Digikabu_TeacherStatus::STATUS_SUBSTITUTION;
-		}
-	}
-	
 	class Digikabu_TeacherStatus_Absent extends Digikabu_TeacherStatus_Abstract
 	{
 		public function __construct()
 		{
 			$this->status = Digikabu_TeacherStatus::STATUS_ABSENT;
+		}
+	}
+	
+	class Digikabu_TeacherStatus_Substitute extends Digikabu_TeacherStatus_Abstract
+	{
+		public function __construct()
+		{
+			$this->status = Digikabu_TeacherStatus::STATUS_SUBSTITUTE;
 		}
 	}
 ?>
