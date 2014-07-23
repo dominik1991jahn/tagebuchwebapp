@@ -31,13 +31,25 @@
 		header = document.createElement('div');
 		header = $(header);
 		
-		header.attr('data-role','header').append('<h1>'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>')
+		header.attr('data-role','header').append('<h1 style=\"text-align:center\">'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>')
 			  .on("click",function() {
 			  	var $this = $(this);
 				$this.empty();
 				
-				datePicker = $("<input type=\"text\" data-role=\"date\" />").datepicker();
+				datePicker = $("<input type=\"text\" data-role=\"date\" data-mini=\"true\" data-theme=\"b\" id=\"datepicker\" value=\""+DateToGermanFormat(currentDate)+"\" style=\"text-align:center\" />");
+				datePicker.datepicker(
+					{
+						dateFormat: "dd.mm.yy",
+						showOtherMonths: true,
+						changeMonth:true,
+						onSelect: function(selectedDate, dpinst)
+						{
+							alert(selectedDate);
+						}
+					});
+				
 				$this.append(datePicker);
+				$this.trigger("create");
 			  });
 		header.attr('data-theme','b');
 		
