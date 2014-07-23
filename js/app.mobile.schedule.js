@@ -286,11 +286,18 @@
 	 	
 	 	pRoom = $(document.createElement("p"));
 	 	rooms = "";
+	 	
+	 	if(data.Class != "" && currentDisplayMode == "teacher")
+	 	{
+	 		rooms = data.Class + " @ ";
+	 	}
+	 	
 	 	for(i = 0; i < data.Rooms.length; i++)
 	 	{
 	 		if (i > 0) { rooms += "/"; }
 	 		rooms += data.Rooms[i];
 	 	}
+	 	
 	 	pRoom.html(rooms);
 	 	pRoom.addClass("room");
 	 	lesson.append(pRoom);
@@ -351,7 +358,6 @@
 				dialog.append(dBody);
 			
 			dialog.dialog({autoResize:true});
-			//alert(dialog.html());
 			
 			dialog.appendTo($.mobile.pageContainer);
 		}
