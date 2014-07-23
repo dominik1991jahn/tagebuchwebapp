@@ -278,6 +278,10 @@
 						$teachers = array();
 						$t = -1;
 						
+						$teachers_normal = 0;
+						$teachers_absent = 0;
+						$teachers_substitutes = 0;
+						
 						foreach($childnode->children() as $xteacher)
 						{
 							$t++;
@@ -286,13 +290,17 @@
 							{
 								if($t == 2)
 								{
-									$periodType = new Digikabu_PeriodType_Substitution;
+									//$periodType = new Digikabu_PeriodType_Substitution;
 									$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
+									$teachers_absent++;
+									$teachers_normal--;
 								}
 								else if($t == 3)
 								{
-									$periodType = new Digikabu_PeriodType_Substitution;
+									//$periodType = new Digikabu_PeriodType_Substitution;
 									$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
+									$teachers_absent++;
+									$teachers_normal--;
 								}
 							}
 							else
@@ -305,36 +313,39 @@
 								{
 									case 0:
 										$teachers[0] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+										$teachers_normal++;
 										break;
 									case 1:
 										$teachers[1] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+										$teachers_normal++;
 										break;
 									case 2: 
-										$periodType = new Digikabu_PeriodType_Substitution;
+										//$periodType = new Digikabu_PeriodType_Substitution;
 										$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitute);
 										$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
+										$teachers_substitutes++;
+										$teachers_absent++;
+										$teachers_normal--;
 										break;
 									case 3:
-										$periodType = new Digikabu_PeriodType_Substitution;
+										//$periodType = new Digikabu_PeriodType_Substitution;
 										$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitute);
 										$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
+										$teachers_substitutes++;
+										$teachers_absent++;
+										$teachers_normal--;
 										break;
 								}
 							}
 						}
 
-						
-						#var_dump($teachers);
-						if(
-							count($teachers) <= 2 &&
-							(
-								$teachers[0]->Status instanceof Digikabu_TeacherStatus_Absent &&
-								(!isset($teachers[1]) || $teachers[1]->Status instanceof Digikabu_TeacherStatus_Absent)
-							)
-						)
+						if(!$teachers_normal && !$teachers_substitutes)
 						{
-							
 							$periodType = new Digikabu_PeriodType_Canceled;
+						}
+						else if($teachers_substitutes)
+						{
+							$periodType = new Digikabu_PeriodType_Substitution;
 						}
 						
 						foreach($teachers as $teacher)

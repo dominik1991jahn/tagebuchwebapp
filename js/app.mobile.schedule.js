@@ -228,14 +228,22 @@
 	 	else if (data.Type ==     "CANCELED") { lesson.addClass("ui-body-red"); }
 	 	
 	 	pTeach = $(document.createElement("p"));
-	 	teachers = "";
+	 	ateachers = new Array();
 	 	for(i = 0; i < data.Teachers.length; i++)
 	 	{
-	 		if (data.Teachers[i].Status == "NORMAL")
+	 		if (data.Teachers[i].Status == "NORMAL" || data.Type == "CANCELED" || data.Teachers[i].Status == "SUBSTITUTE")
 	 		{
-	 			if (i > 0) { teachers += "/"; }
-	 			teachers += data.Teachers[i].Teacher.Abbreviation;
+	 			ateachers.push(data.Teachers[i]);
 	 		}
+	 	}
+	 	
+	 	teachers = "";
+	 	
+	 	for(t=0;t<ateachers.length;t++)
+	 	{
+	 		teachers += "<span class=\"teacher-"+ateachers[t].Status.toLowerCase()+"\">"+ateachers[t].Teacher.Abbreviation+"</span>";
+	 		
+	 		if(t+1 < ateachers.length) teachers += " / ";
 	 	}
 	 	
 	 	if(data.SplitPeriod == -1)
