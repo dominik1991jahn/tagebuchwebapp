@@ -315,7 +315,7 @@
 	{
 		dialog = $("<div data-role=\"dialog\" data-transition=\"slidedown\" data-close-btn=\"right\" id=\"lol\"></div>");
 		
-			dHeader = $("<div data-role=\"header\" style=\"text-align: center\"></div>");
+			dHeader = $("<div data-role=\"header\" style=\"text-align: center;autoResize:true\"></div>");
 				pLesson = $("<p></p>");
 				pLesson.html(data.Subject.Name);
 				pLesson.addClass("lesson");
