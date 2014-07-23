@@ -2,3 +2,4 @@ php.ini
 test.php
 Cache/
 Core/Configuration/Configuration.xml
+Core/Configuration/Cache.xml
