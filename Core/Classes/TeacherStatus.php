@@ -152,7 +152,7 @@
 	
 	class Digikabu_TeacherStatus_Normal extends Digikabu_TeacherStatus_Abstract
 	{
-		public function Digikabu_TeacherStatus_Normal()
+		public function __construct()
 		{
 			$this->status = Digikabu_TeacherStatus::STATUS_NORMAL;
 		}
@@ -160,7 +160,7 @@
 	
 	class Digikabu_TeacherStatus_Substitution extends Digikabu_TeacherStatus_Abstract
 	{
-		public function Digikabu_TeacherStatus_Substitution()
+		public function __construct()
 		{
 			$this->status = Digikabu_TeacherStatus::STATUS_SUBSTITUTION;
 		}
@@ -168,7 +168,7 @@
 	
 	class Digikabu_TeacherStatus_Absent extends Digikabu_TeacherStatus_Abstract
 	{
-		public function Digikabu_TeacherStatus_Absenr()
+		public function __construct()
 		{
 			$this->status = Digikabu_TeacherStatus::STATUS_ABSENT;
 		}

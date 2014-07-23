@@ -375,6 +375,7 @@
 		
 		private function cache($data, $path)
 		{
+			return;
 			if(!file_exists($path))
 			{
 				$pathseg = explode("/",$path);
@@ -396,10 +397,10 @@
 		
 		private function FromCache($path)
 		{
-			if(file_exists("Cache/".$path))
+			/*if(file_exists("Cache/".$path))
 			{
 				return file_get_contents("Cache/".$path);
-			}
+			}*/
 		}
 	}
 ?>

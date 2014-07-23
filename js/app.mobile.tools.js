@@ -33,6 +33,13 @@ function DateToUTC(date)
 		return days[day];
 	}
 	
+	function DayOfWeekToShortName(day)
+	{
+		days = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+		
+		return days[day];
+	}
+	
 	function Zero(num)
 	{
 		if(num < 10) num = "0"+num;

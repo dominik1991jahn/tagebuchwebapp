@@ -74,7 +74,7 @@
 				endLastLesson = null;
 				lesson = null;
 				
-				if(p>0)
+				if(p>0 && data.Periods[p-1].Start != data.Periods[p].Start)
 				{
 					endLastLesson = data.Periods[p-1].Start + data.Periods[p-1].Duration;
 				}
@@ -298,9 +298,53 @@
 	 	nextID="schedule-"+nextdate_id;
 	 	prevID="schedule-"+prevdate_id;
 	 	footer=$(document.createElement("div")); 	
-	 	footer.attr("data-role","footer").attr("data-position","fixed");
+	 	footer.attr("data-role","footer").attr("data-position","fixed").css("text-align","center").attr("data-theme","b");
 	 	
-		 	datnavbar=$(document.createElement("div"));	 	
+	 	linkprev = $("<a href=\"#"+prevID+"\" data-role=\"button\" data-icon=\"arrow-l\" data-iconpos=\"left\" class=\"ui-btn-left\" data-mini=\"true\" data-inline=\"true\">"+DayOfWeekToShortName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")</a>");
+	 	linkprev.on("click",function(data)
+			 			{
+			 				link = data.target.href.split('#');
+			 				link = link[1].substring(9);
+			 				switchToPage(link,-1);
+			 				return false;
+			 			});
+			 			
+		linknext = $("<a href=\"#"+nextID+"\" data-role=\"button\" data-icon=\"arrow-r\" data-iconpos=\"right\" class=\"ui-btn-right\" data-mini=\"true\" data-inline=\"true\">"+DayOfWeekToShortName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")</a>");
+	 	linknext.on("click",function(data)
+			 			{
+			 				link = data.target.href.split('#');
+			 				link = link[1].substring(9);
+			 				switchToPage(link,1);
+			 				return false;
+			 			});
+	 	
+	 	selectClass = $("<select data-native-menu=\"false\" data-theme=\"b\" data-inline=\"true\" data-mini=\"true\" style=\"\"></select>");
+	 		selectClass.append("<option data-placeholder=\"true\">Klasse oder Lehrer ausw&auml;hlen</option>");
+	 			groupClasses = $("<optgroup label=\"Klassen\"></optgroup>");
+	 			groupTeachers = $("<optgroup label=\"Lehrer\"></optgroup>");
+	 		selectClass.append(groupClasses);
+			selectClass.append(groupTeachers);
+	 		
+	 	footer.append(linkprev);
+	 	footer.append(selectClass);
+	 	footer.append(linknext);
+	 	
+ 		selectClass.selectmenu();
+ 		selectClass.on('change', ChangeCurrentClass);
+	 	
+	 	year = currentDate.getUTCFullYear();
+ 		if(currentDate.getMonth()+1 < 9)
+ 		{
+ 			year--;
+ 		}
+ 		
+ 		FillClassList(year, groupClasses);
+ 		
+ 		if(isTeacher)
+ 		{
+ 			FillTeacherList(groupTeachers);
+ 		}
+		 	/*datnavbar=$(document.createElement("div"));	 	
 		 	datnavbar.attr("data-role","navbar");
 		 	
 			 	datnavbarlist=$(document.createElement("ul"));
@@ -329,8 +373,9 @@
 	 			datnavbarlist.append(datnavbarprev);
 	 			datnavbarlist.append(datnavbarnext);
 	 		datnavbar.append(datnavbarlist);
-	 		footer.append(datnavbar);
+	 		footer.append(datnavbar);*/
 	 		
+	 		/*
 	 		datclasslist = footer.append("<div></div>");
 	 			datclasslist.css("text-align","center");
 	 			selectClass = $("<select data-native-menu=\"false\"></select>");
@@ -356,7 +401,7 @@
 	 		{
 	 			FillTeacherList(groupTeachers);
 	 		}
-	 		FillTeacherList(groupTeachers);
+	 		FillTeacherList(groupTeachers);*/
 	 		
 	 	return footer;
 	 	/*

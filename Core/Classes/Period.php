@@ -242,7 +242,7 @@
 			
 			$nodes = $node->children();
 			
-			$type = new Digikabu_PeriodType_Normal;
+			$periodType = new Digikabu_PeriodType_Normal;
 			
 			foreach($nodes as $childnode)
 			{
@@ -280,32 +280,61 @@
 						
 						foreach($childnode->children() as $xteacher)
 						{
-							
-							$teacher = Digikabu_Teacher::FromXMLNodeFromSchedule($xteacher);
-							
 							$t++;
 							
-							if ($teacher->Abbreviation == "admin") { continue; }
-							
-							switch ($t)
+							if((string)$xteacher == "")
 							{
-								case 0:
-									$teachers[0] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
-									break;
-								case 1:
-									$teachers[1] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
-									break;
-								case 2: 
-									$type = new Digikabu_PeriodType_Substitution;
-									$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+								if($t == 2)
+								{
+									$periodType = new Digikabu_PeriodType_Substitution;
 									$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
-									break;
-								case 3:
-									$type = new Digikabu_PeriodType_Substitution;
-									$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+								}
+								else if($t == 3)
+								{
+									$periodType = new Digikabu_PeriodType_Substitution;
 									$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
-									break;
+								}
 							}
+							else
+							{
+								$teacher = Digikabu_Teacher::FromXMLNodeFromSchedule($xteacher);
+								
+								if ($teacher->Abbreviation == "admin") { continue; }
+								
+								switch ($t)
+								{
+									case 0:
+										$teachers[0] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+										break;
+									case 1:
+										$teachers[1] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+										break;
+									case 2: 
+										$periodType = new Digikabu_PeriodType_Substitution;
+										$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+										$teachers[0]->Status = new Digikabu_TeacherStatus_Absent;
+										break;
+									case 3:
+										$periodType = new Digikabu_PeriodType_Substitution;
+										$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitution);
+										$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
+										break;
+								}
+							}
+						}
+
+						
+						#var_dump($teachers);
+						if(
+							count($teachers) <= 2 &&
+							(
+								$teachers[0]->Status instanceof Digikabu_TeacherStatus_Absent &&
+								(!isset($teachers[1]) || $teachers[1]->Status instanceof Digikabu_TeacherStatus_Absent)
+							)
+						)
+						{
+							
+							$periodType = new Digikabu_PeriodType_Canceled;
 						}
 						
 						foreach($teachers as $teacher)
@@ -333,7 +362,8 @@
 			$t = mt_rand(0,2);
 			$t = $s[$t];*/
 			
-			$period->Type = $type;//"NORMAL";//$type;
+			//var_dump($type);
+			$period->Type = $periodType;//"NORMAL";//$type;
 			
 			return $period;
 		}
@@ -372,7 +402,7 @@
 	
 	class Digikabu_PeriodType_Normal extends Digikabu_PeriodType
 	{
-		public function Digikabu_PeriodType_Normal()
+		public function __construct()
 		{
 			$this->type = Digikabu_Period::TYPE_NORMAL;
 		}
@@ -380,7 +410,7 @@
 	
 	class Digikabu_PeriodType_Canceled extends Digikabu_PeriodType
 	{
-		public function Digikabu_PeriodType_Canceled()
+		public function __construct()
 		{
 			$this->type = Digikabu_Period::TYPE_CANCELED;
 		}
@@ -388,7 +418,7 @@
 	
 	class Digikabu_PeriodType_Substitution extends Digikabu_PeriodType
 	{
-		public function Digikabu_PeriodType_Substitution()
+		public function __construct()
 		{
 			$this->type = Digikabu_Period::TYPE_SUBSTITUTION;
 		}

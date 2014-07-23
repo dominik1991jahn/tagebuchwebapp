@@ -1,4 +1,4 @@
-function GetCookie(cookieName)
+function GetCookie(cookieName, defaultValue)
 {
 	cookies = document.cookie.split(";");
 	result = null;
@@ -17,6 +17,11 @@ function GetCookie(cookieName)
 				result = cvalue;
 			}
 		}
+	}
+	
+	if(result == null && typeof(defaultValue) != "undefined")
+	{
+		result = defaultValue;
 	}
 	
 	return result;
