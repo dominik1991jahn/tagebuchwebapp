@@ -52,7 +52,7 @@ div.breakShort
 {
 	margin: 4px;
 	height: 10px;
-	background-image: url(img/schraffur11.png);
+	background-image: url(../img/schraffur11.png);
 	background-repeat: repeat;
 	background-position: bottom left;
 }
@@ -60,7 +60,7 @@ div.breakNorm
 {
 	margin: 4px;
 	height: 20px;
-	background-image: url(img/schraffur21.png);
+	background-image: url(../img/schraffur21.png);
 	background-repeat: repeat;
 	background-position: bottom left;
 }
@@ -68,7 +68,7 @@ div.breakLong
 {
 	margin: 4px;
 	height: 80px;
-	background-image: url(img/schraffur81.png);
+	background-image: url(../img/schraffur81.png);
 	background-repeat: repeat;
 	background-position: bottom left;
 }

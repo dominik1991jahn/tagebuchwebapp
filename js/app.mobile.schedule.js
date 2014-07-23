@@ -208,7 +208,8 @@
 		if (typeof(start) != 'undefined') { startVal =      start; }
 		else 							  { startVal = data.Start; }
 		
-		lesson = $(document.createElement("div"));
+		lesson = $("<div></div>");
+	 	lesson.on("click", function() { OpenDetailPopup(data); } );
 	 	
 	 	if (duration == 3)
 	 	{
@@ -293,6 +294,15 @@
 	 	//lesson.append(pText);
 	 	
 	 	return lesson;
+	}
+	
+	function OpenDetailPopup(data)
+	{
+		dialog = $("<div data-role=\"dialog\" id=\"lol\">lol</div>");
+		dialog.dialog();
+		
+		dialog.appendTo($.mobile.pageContainer);
+		$.mobile.changePage("#lol", {role:"dialog"});
 	}
 	 
 	function CreateFooter(currentDate)
