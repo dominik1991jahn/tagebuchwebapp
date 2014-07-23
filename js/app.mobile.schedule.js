@@ -298,8 +298,33 @@
 	
 	function OpenDetailPopup(data)
 	{
-		dialog = $("<div data-role=\"dialog\" id=\"lol\">lol</div>");
+		dialog = $("<div data-role=\"dialog\" data-transition=\"slidedown\" data-close-btn=\"right\" id=\"lol\"></div>");
+		
+			dHeader = $("<div data-role=\"header\" style=\"text-align: center\"></div>");
+				pLesson = $("<p></p>");
+				pLesson.html(data.Subject.Name);
+				pLesson.addClass("lesson");
+				dHeader.append(pLesson);
+			dialog.append(dHeader);
+			
+			dBody = $("<div data-role=\"content\" style=\"text-align: center\"></div>");
+				pTeach = $("<p></p>");
+					teachers = "";
+					for (i = 0; i < data.Teachers.length; i++)
+					{
+						if (i > 0) { teachers += "/"; }
+						teachers += "<span class=\"teacher-"+data.Teachers[i].Status.toLowerCase()+"\">"+data.Teachers[i].Teacher.Abbreviation+"</span>";
+					}
+				pTeach.html(teachers);
+				pTeach.addClass("teacher");
+				dBody.append(pTeach);
+				
+				//pText = $("<p></p>");
+				//pText.html(data.Subject.)
+			dialog.append(dBody);
+		
 		dialog.dialog();
+		alert(dialog.html());
 		
 		dialog.appendTo($.mobile.pageContainer);
 		$.mobile.changePage("#lol", {role:"dialog"});
