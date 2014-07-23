@@ -140,14 +140,14 @@
 	{
 		if(!permissionChecked)
 		{
-			url = "request.php?/Permissions";
+			url = "Permissions";
 		
 			success = function(response)
 						{
 							isTeacher = response;
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request.php?/",url,success,false);
 		}
 		
 	}

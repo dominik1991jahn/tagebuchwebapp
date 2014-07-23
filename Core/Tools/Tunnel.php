@@ -193,7 +193,6 @@
 				return $fromCache;
 			}
 			
-			
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "Date" => $date));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
@@ -204,6 +203,15 @@
 				print json_encode($this->HTTPError($request->HTTPStatusCode));
 				return;
 			}
+			
+			/*$controlsum = md5($request->ResponseBody);
+			$cacheparameters = array("class"=>$class,"date"=>$date);
+			//$cacheobject = new CacheObject(__METHOD__, $cacheparameters, $controlsum);
+			
+			if(Cache::GetInstance()->GetFromCache(__METHOD__, $cacheparameters, $controlsum))
+			{
+				print json_encode($this->HTTPError(304));
+			}*/
 			
 			$xresponse = simplexml_load_string($request->ResponseBody);
 			
@@ -217,7 +225,8 @@
 			
 			$response = json_encode($days, JSON_PRETTY_PRINT);
 			
-			$this->cache($response, "GetScheduleForClass/".$class."/".$date);
+			//$cacheobject = new CacheObject(__METHOD__, $cacheparameters, $controlsum);
+			//Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
 			
 			return $response;
 		}
@@ -351,7 +360,7 @@
 			
 			$response = json_encode($permission, JSON_PRETTY_PRINT);
 			
-			$this->cache($response, "CheckPermission");
+			$this->cache($response, "CheckPermissions");
 			
 			return $response;
 		}
@@ -362,6 +371,7 @@
 			
 			switch($code)
 			{
+				case "304": $message = "Not modified";
 				case "400": $message = "Bad request"; break;
 				case "404": $message = "Resource not found"; break;
 				case "401": $message = "Unauthorized"; break;
@@ -373,7 +383,7 @@
 			return $data;
 		}
 		
-		private function cache($data, $path)
+		/*private function cache($data, $path)
 		{
 			return;
 			if(!file_exists($path))
@@ -393,11 +403,11 @@
 				
 				file_put_contents("Cache/".$path.".json", $data);
 			}
-		}
+		}*/
 		
 		private function FromCache($path)
 		{
-			return;
+			//return;
 			if(file_exists("Cache/".$path.".json"))
 			{
 				return file_get_contents("Cache/".$path.".json");

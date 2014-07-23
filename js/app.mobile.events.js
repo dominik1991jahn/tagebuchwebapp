@@ -64,7 +64,7 @@ function loadEvents()
 
 function FillEvents(currentClass, year, mode)
 {
-	url = "request.php?/Events/" + currentClass + "/" + year + "/" + mode;
+	url = "Events/" + currentClass + "/" + year + "/" + mode;
 	
 	$("#eventList").empty();
 	
@@ -122,5 +122,5 @@ function FillEvents(currentClass, year, mode)
 					}
 				};
 				
-	request("GET",url,success,false);
+	request("GET","request.php?/",url,success,false);
 }

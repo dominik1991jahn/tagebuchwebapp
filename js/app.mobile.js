@@ -7,29 +7,48 @@
 	var classList = new Array();
 	var teacherList = new Array();
 	
-	function request(method, url, success, async)
+	function request(method, server, url, success, async, refresh)
 	{
 		if(typeof(async) == "undefined") { async = true; }
+		if(typeof(refresh) == "undefined") { refresh = false; }
 		
-		$.ajax({
-			type: method.toUpperCase(),
-			url: url,
-			dataType: 'json',
-			beforeSend: function() {
-				$.mobile.loading('show');
-				//alert("GET "+url);
-			},
-			complete: function() { $.mobile.loading('hide'); },
-			success: success,
-			async: async
-		});
+		var cacheURL = url;
+		var fromLocalStorage = localStorage.getItem(cacheURL);
+		
+		if(!fromLocalStorage || refresh)
+		{
+			//alert("Not cached: " + server+url);
+			$.ajax({
+				type: method.toUpperCase(),
+				url: server+url,
+				dataType: 'json',
+				beforeSend: function() {
+					$.mobile.loading('show');
+					//alert("GET "+url);
+				},
+				complete: function() { $.mobile.loading('hide'); },
+				success: function(response)
+				{
+					localStorage.setItem(cacheURL, JSON.stringify(response));
+					//alert("Added to Cache as "+cacheURL);
+					success(response);
+				},
+				async: async
+			});
+		}
+		else
+		{
+			//alert("Cached (from '"+cacheURL+"')");
+			//alert(cacheURL + ": " + fromLocalStorage);
+			success($.parseJSON(fromLocalStorage));
+		}
 	}
 	
 	function FillClassList(year, htmlObject)
 	{
 		if(classList.length == 0)
 		{
-			url = "request.php?/Classes/" + year;
+			url = "Classes/" + year;
 		
 			success = function(response)
 						{
@@ -39,7 +58,7 @@
 							});
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request.php?/",url,success,false);
 		}
 		
 		for(c=0;c<classList.length;c++)
@@ -70,7 +89,7 @@
 	{
 		if(teacherList.length == 0)
 		{
-			url = "request.php?/Teacher";
+			url = "Teacher";
 		
 			success = function(response)
 						{
@@ -80,7 +99,7 @@
 							});
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request.php?/",url,success,false);
 		}
 		
 		for(c=0;c<teacherList.length;c++)
@@ -124,11 +143,11 @@
 	{
 		if(currentDisplayMode == "class")
 		{
-			var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
+			var url = "Schedule/Class/" + classcode + "-" + startdate;
 		}
 		else
 		{
-			var url = "request.php?/Schedule/Teacher/" + classcode + "-" + startdate;
+			var url = "Schedule/Teacher/" + classcode + "-" + startdate;
 		}
 		
 		success = function(response) {
@@ -167,7 +186,7 @@
 						});
 				};
 					
-		request("GET",url,success,false);
+		request("GET","request.php?/",url,success,false);
 	}
 	
 	function switchToPage(date, direction, async)

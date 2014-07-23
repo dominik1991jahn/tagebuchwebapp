@@ -20,9 +20,9 @@
 			/*
 			 * Login Information
 			 */
-			 
-			$username = $_COOKIE["loginname"];
-			$password = $_COOKIE["password"];
+			
+			$username = (isset($_COOKIE["loginname"]) ? $_COOKIE["loginname"] : "guest");
+			$password = (isset($_COOKIE["password"]) ? $_COOKIE["password"] : "guest");
 			
 			// Establish a connection to the API-Server with the login credentials
 			$tunnel = new Tunnel($username, $password);

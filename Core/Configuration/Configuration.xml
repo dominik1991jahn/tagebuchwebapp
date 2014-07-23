@@ -2,8 +2,8 @@
 <Configuration>
 	<UserAgent>DigiKabu WebApp 0.1/a</UserAgent>
 	<LocalURL>/digikabu/tunnel</LocalURL>
-	<ServerURL>https://192.168.101.3/dmc_v1/api/index.php?</ServerURL>
-	<!--ServerURL>http://bszw.selfhost.bz:8888/api/v1</ServerURL-->
+	<!--ServerURL>https://192.168.101.3/dmc_v1/api/index.php?</ServerURL-->
+	<ServerURL>http://bszw.selfhost.bz:8888/api/v1</ServerURL>
 	
 	<FileMapping>
 		<RequestMapping>Core/Configuration/RequestMapping.xml</RequestMapping>
