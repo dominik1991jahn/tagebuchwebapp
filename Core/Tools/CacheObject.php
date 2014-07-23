@@ -85,7 +85,7 @@
 				$parameters[$parameter] = $value;
 			}
 			
-			return new Cache($method, $parameters, $controlsum);
+			return new CacheObject($method, $parameters, $controlsum);
 		}
 	}
 ?>

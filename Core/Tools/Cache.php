@@ -58,7 +58,7 @@
 			$xmlCache = simplexml_load_file("Core/Configuration/Cache.xml");
 			
 			$isAlreadyCached = false;
-			
+				
 			foreach($xmlCache->children() as $childnode)
 			{
 				if($childnode->getName() <> $cacheobject->Function)

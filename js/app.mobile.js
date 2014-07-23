@@ -6,18 +6,73 @@
 	var permissionChecked = false;
 	var classList = new Array();
 	var teacherList = new Array();
+	var isOffline = false;
 	
 	function request(method, server, url, success, async, refresh)
 	{
 		if(typeof(async) == "undefined") { async = true; }
 		if(typeof(refresh) == "undefined") { refresh = false; }
 		
+		var fromLocalStorage = null;
 		var cacheURL = url;
-		var fromLocalStorage = localStorage.getItem(cacheURL);
+		
+		if(!navigator.onLine)
+		{
+			/*
+			 * If the device is offline (Airplane Mode or no WiFi and no cellular reception)
+			 */
+			
+			DisplayOfflineMessage();
+			
+			fromLocalStorage = localStorage.getItem(cacheURL);
+			response = $.parseJSON(fromLocalStorage);
+			
+			success(response);
+		}
+		else
+		{
+			$.ajax({
+				type: method.toUpperCase(),
+				url: server+url,
+				dataType: 'json',
+				beforeSend: function() { $.mobile.loading('show'); },
+				complete: function() { $.mobile.loading('hide'); },
+				success: function(response)
+				{
+					fromLocalStorage = localStorage.getItem(cacheURL);
+					
+					/*
+					 * If nothing has changed we receive a 403-code
+					 */
+					if("code" in response && fromLocalStorage)
+					{
+						/*switch(response.code)
+						{
+							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
+							default: alert(response.code + ": "+response.message); break;
+						}*/
+						
+						response = $.parseJSON(fromLocalStorage);
+					}
+					else
+					{
+						//alert("We need new data for '"+url+"'");
+						localStorage.setItem(cacheURL, JSON.stringify(response));
+					}
+					
+					success(response);
+				},
+				async: async
+			});
+		}
+		
+		
+		
+		
+		/*var fromLocalStorage = localStorage.getItem(cacheURL);
 		
 		if(!fromLocalStorage || refresh)
 		{
-			//alert("Not cached: " + server+url);
 			$.ajax({
 				type: method.toUpperCase(),
 				url: server+url,
@@ -41,7 +96,7 @@
 			//alert("Cached (from '"+cacheURL+"')");
 			//alert(cacheURL + ": " + fromLocalStorage);
 			success($.parseJSON(fromLocalStorage));
-		}
+		}*/
 	}
 	
 	function FillClassList(year, htmlObject)
@@ -82,6 +137,15 @@
 		else
 		{
 			htmlObject.parent().selectmenu("refresh");
+		}
+	}
+	
+	function DisplayOfflineMessage()
+	{
+		if(!isOffline)
+		{
+			alert("You are offline!");
+			isOffline = true;
 		}
 	}
 	

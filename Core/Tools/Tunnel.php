@@ -188,45 +188,49 @@
 		public function GetScheduleForClass($class, $date)
 		{
 			$fromCache = $this->FromCache("GetScheduleForClass/".$class."/".$date);
+			
+			$cacheparameters = array("class"=>$class,"date"=>$date);
+			
 			if(!is_null($fromCache))
 			{
-				return $fromCache;
+				$response = $fromCache;
 			}
-			
-			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "Date" => $date));
-			$request = $this->PassThroughTunnel("GET",$url);
-			
-			$request->SendRequest();
-			
-			if($request->HTTPStatusCode <> 200)
+			else
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			/*$controlsum = md5($request->ResponseBody);
-			$cacheparameters = array("class"=>$class,"date"=>$date);
-			//$cacheobject = new CacheObject(__METHOD__, $cacheparameters, $controlsum);
-			
-			if(Cache::GetInstance()->GetFromCache(__METHOD__, $cacheparameters, $controlsum))
-			{
-				print json_encode($this->HTTPError(304));
-			}*/
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$days = array();
-			foreach($xresponse->children() as $xday)
-			{
-				$day = Digikabu_Day::FromXMLNode($xday);
 				
-				$days[] = $day;
+				$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "Date" => $date));
+				$request = $this->PassThroughTunnel("GET",$url);
+				
+				$request->SendRequest();
+				
+				if($request->HTTPStatusCode <> 200)
+				{
+					print json_encode($this->HTTPError($request->HTTPStatusCode));
+					return;
+				}
+				
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				$days = array();
+				foreach($xresponse->children() as $xday)
+				{
+					$day = Digikabu_Day::FromXMLNode($xday);
+					
+					$days[] = $day;
+				}
+				
+				$response = json_encode($days, JSON_PRETTY_PRINT);
 			}
 			
-			$response = json_encode($days, JSON_PRETTY_PRINT);
+			$controlsum = md5($response);
 			
-			//$cacheobject = new CacheObject(__METHOD__, $cacheparameters, $controlsum);
-			//Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
+			if(Cache::GetInstance()->GetFromCache(substr(__METHOD__,8), $cacheparameters, $controlsum))
+			{
+				return json_encode($this->HTTPError(304));
+			}
+			
+			$cacheobject = new CacheObject(substr(__METHOD__,8), $cacheparameters, $controlsum);	
+			Cache::GetInstance()->AddToCache($cacheobject, $response);
 			
 			return $response;
 		}
@@ -274,49 +278,51 @@
 			{
 				return $fromCache;
 			}
-			
-			$url = RequestMapping::GetURLForRequest("RetrieveClassEvents",array("Class"=>$class, "Year" => $year));
-			$request = $this->PassThroughTunnel("GET",$url);
-			
-			$request->SendRequest();
-			
-			if($request->HTTPStatusCode <> 200)
+			else
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$today = strtotime(date("Y-m-d")." 00:00:00");
-			
-			$events = array();
-			$previousEvent = null;
-			foreach($xresponse->children() as $xevent)
-			{
-				$event = Digikabu_Event::FromXMLNode($xevent);
+				$url = RequestMapping::GetURLForRequest("RetrieveClassEvents",array("Class"=>$class, "Year" => $year));
+				$request = $this->PassThroughTunnel("GET",$url);
 				
-				if($type == "past" && ($event->From > $today))
+				$request->SendRequest();
+				
+				if($request->HTTPStatusCode <> 200)
 				{
-					continue;
-				}
-				else if($type == "future" && ($event->From < $today))
-				{
-					continue;
+					print json_encode($this->HTTPError($request->HTTPStatusCode));
+					return;
 				}
 				
-				if(!is_null($previousEvent) && $event->Description == $previousEvent->Description)
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				$today = strtotime(date("Y-m-d")." 00:00:00");
+				
+				$events = array();
+				$previousEvent = null;
+				foreach($xresponse->children() as $xevent)
 				{
-					$previousEvent->To = $event->From;
+					$event = Digikabu_Event::FromXMLNode($xevent);
+					
+					if($type == "past" && ($event->From > $today))
+					{
+						continue;
+					}
+					else if($type == "future" && ($event->From < $today))
+					{
+						continue;
+					}
+					
+					if(!is_null($previousEvent) && $event->Description == $previousEvent->Description)
+					{
+						$previousEvent->To = $event->From;
+					}
+					else
+					{
+						$events[] = $event;
+						$previousEvent = $event;
+					}
 				}
-				else
-				{
-					$events[] = $event;
-					$previousEvent = $event;
-				}
+				
+				$response = json_encode($events, JSON_PRETTY_PRINT);
 			}
-			
-			$response = json_encode($events, JSON_PRETTY_PRINT);
 			
 			$this->cache($response, "GetEvents/".$class."/".$year."/".$type);
 			
@@ -371,7 +377,7 @@
 			
 			switch($code)
 			{
-				case "304": $message = "Not modified";
+				case "304": $message = "Not modified"; break;
 				case "400": $message = "Bad request"; break;
 				case "404": $message = "Resource not found"; break;
 				case "401": $message = "Unauthorized"; break;
