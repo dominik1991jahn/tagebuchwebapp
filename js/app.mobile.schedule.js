@@ -32,9 +32,12 @@
 		header = $(header);
 		
 		header.attr('data-role','header').append('<h1>'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>')
-			  .on("dblclick",function() {
-			  	gototoday = DateToUTC(new Date());
-			  	switchToPage(gototoday,-1);
+			  .on("click",function() {
+			  	var $this = $(this);
+				$this.empty();
+				
+				datePicker = $("<input type=\"text\" data-role=\"date\" />").datepicker();
+				$this.append(datePicker);
 			  });
 		header.attr('data-theme','b');
 		

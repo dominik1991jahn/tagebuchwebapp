@@ -17,6 +17,7 @@
 		private /*(array:Digikabu_Room)*/ $rooms;
 		private /*(string)*/ $information;
 		private /*(int)*/ $splitperiod;
+		private /*(string)*/ $class;
 		
 		private /*(Digikabu_Period)*/ $previous;
 		private /*(Digikabu_Period)*/ $next;
@@ -52,6 +53,7 @@
 				case "Rooms"	  : return $this->GetRooms();
 				case "Information": return $this->GetInformation();
 				case "SplitPeriod": return $this->GetSplitPeriod();
+				case "Class": return $this->GetClass();
 			}
 		}
 		
@@ -68,6 +70,7 @@
 				case "Next"		  : $this->SetNext(		  $value); break;
 				case "Information": $this->SetInformation($value); break;
 				case "SplitPeriod": $this->SetSplitPeriod($value); break;
+				case "Class": $this->SetClass($value); break;
 			}
 		}
 		
@@ -91,7 +94,8 @@
 				"Teachers"	  => $this->Teachers,
 				"Rooms" 	  => $this->Rooms,
 				"Information" => $this->Information,
-				"SplitPeriod" => $this->SplitPeriod
+				"SplitPeriod" => $this->SplitPeriod,
+				"Class" => $this->Class
 			);
 		}
 		
@@ -232,6 +236,19 @@
 			
 			$this->splitperiod = $value;
 		}
+		
+		# Class
+		
+		private function GetClass()
+		{
+			return $this->class;
+		}
+		
+		private function SetClass($value)
+		{
+			$this->class = $value;
+		}
+		
 		  //
 		 // FUNCTIONS
 		//
@@ -365,6 +382,13 @@
 							
 							$period->AddRoom($room);
 						}
+						
+						break;
+					
+					case "Class":
+						
+						$class = (string) $childnode;
+						$period->Class = $class;
 						
 						break;
 				}
