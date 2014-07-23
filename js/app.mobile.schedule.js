@@ -44,7 +44,11 @@
 						changeMonth:true,
 						onSelect: function(selectedDate, dpinst)
 						{
-							alert(selectedDate);
+							date = DateToUTC(GermanDateToDate(selectedDate));
+							
+							switchToPage(date, -1);
+							
+							alert($this.html());
 						}
 					});
 				

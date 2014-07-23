@@ -397,10 +397,10 @@
 		
 		private function FromCache($path)
 		{
-			/*if(file_exists("Cache/".$path))
+			if(file_exists("Cache/".$path.".json"))
 			{
-				return file_get_contents("Cache/".$path);
-			}*/
+				return file_get_contents("Cache/".$path.".json");
+			}
 		}
 	}
 ?>

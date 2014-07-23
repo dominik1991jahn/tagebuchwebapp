@@ -13,6 +13,19 @@ function DateToGermanFormat(date)
 	return result;
 }
 
+function GermanDateToDate(datestring)
+{
+	datestring = datestring.split(".");
+	
+	day = datestring[0];
+	month = datestring[1];
+	year = datestring[2];
+	
+	utc = year+"-"+month+"-"+day;
+	
+	return new Date(utc);
+}
+
 function DateToUTC(date)
 {
 	utc = date.getUTCFullYear()+"-";
