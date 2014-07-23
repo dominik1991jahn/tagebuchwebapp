@@ -397,6 +397,7 @@
 		
 		private function FromCache($path)
 		{
+			return;
 			if(file_exists("Cache/".$path.".json"))
 			{
 				return file_get_contents("Cache/".$path.".json");
