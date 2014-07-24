@@ -33,7 +33,7 @@
 		
 		public function GetClassList($year)
 		{
-			$fromCache = $this->FromCache("GetClassList/".$year);
+			$fromCache = null;# $this->FromCache("GetClassList/".$year);
 			$cacheparameters = array("year" => $year);
 			
 			if(!is_null($fromCache))
@@ -84,7 +84,7 @@
 		
 		public function GetTeacherList()
 		{
-			$fromCache = $this->FromCache("GetTeacherList");
+			$fromCache = null;# $this->FromCache("GetTeacherList");
 			$cacheparameters = array();
 			
 			if(!is_null($fromCache))
@@ -140,7 +140,7 @@
 		
 		public function GetTeacherListForTeachers()
 		{
-			$fromCache = $this->FromCache("GetTeacherListForTeachers");
+			$fromCache = null;# $this->FromCache("GetTeacherListForTeachers");
 			
 			$cacheparameters = array();
 			
@@ -192,7 +192,7 @@
 		
 		public function GetSubjectListForClass($class)
 		{
-			$fromCache = $this->FromCache("GetSubjectListForClass/".$class);
+			$fromCache = null;# $this->FromCache("GetSubjectListForClass/".$class);
 			
 			$cacheparameters = array("class" => $class);
 			
@@ -244,7 +244,7 @@
 		
 		public function GetScheduleForClass($class, $date)
 		{
-			$fromCache = $this->FromCache("GetScheduleForClass/".$class."/".$date);
+			$fromCache = null;# $this->FromCache("GetScheduleForClass/".$class."/".$date);
 			
 			$cacheparameters = array("class"=>$class,"date"=>$date);
 			
@@ -297,7 +297,7 @@
 		
 		public function GetScheduleForTeacher($teacher, $date)
 		{
-			$fromCache = $this->FromCache("GetScheduleForTeacher/".$teacher."/".$date);
+			$fromCache = null;# $this->FromCache("GetScheduleForTeacher/".$teacher."/".$date);
 			$cacheparameters = array("teacher" => $teacher, "date" => $date);
 			
 			if(!is_null($fromCache))
@@ -348,7 +348,7 @@
 		
 		public function GetEvents($class, $year, $type)
 		{
-			$fromCache = $this->FromCache("GetEvents/".$class."/".$year."/".$type);
+			$fromCache = null;# $this->FromCache("GetEvents/".$class."/".$year."/".$type);
 			$cacheparameters = array("class" => $class, "year" => $year, "type" => $type);
 			
 			if(!is_null($fromCache))
@@ -419,7 +419,7 @@
 
 		public function CheckPermissions()
 		{
-			$fromCache = $this->FromCache("CheckPermissions");
+			$fromCache = null;# $this->FromCache("CheckPermissions");
 			$cacheparameters = array();
 			
 			if(!is_null($fromCache))

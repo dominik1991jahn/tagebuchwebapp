@@ -36,7 +36,7 @@
 			
 			if(fromLocalStorage == null)
 			{
-				console.log("NO CACHE! for " + url);
+				//console.log("NO CACHE! for " + url);
 				headers = {"Cache-Control":"no-cache"};
 			}
 			$.ajax({
@@ -48,7 +48,7 @@
 				complete: function() { $.mobile.loading('hide'); },
 				success: function(response)
 				{
-					console.log("Cache: "+fromLocalStorage);
+					//console.log("Cache: "+fromLocalStorage);
 					/*
 					 * If nothing has changed we receive a 403-code
 					 */
@@ -59,12 +59,12 @@
 							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
 							default: alert(response.code + ": "+response.message); break;
 						}*/
-						console.log("From Cache: "+fromLocalStorage);
+						//console.log("From Cache: "+fromLocalStorage);
 						response = $.parseJSON(fromLocalStorage);
 					}
 					else
 					{
-						console.log("We need new data for '"+url+"': " + JSON.stringify(response));
+						//console.log("We need new data for '"+url+"': " + JSON.stringify(response));
 						localStorage.setItem(cacheURL, JSON.stringify(response));
 					}
 					

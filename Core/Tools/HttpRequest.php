@@ -246,7 +246,7 @@
 				
 				stream_context_set_option($streamContext, 'http', "header", $header);
 			}
-			
+			echo $url;
 			$stream = @fopen($url, 'r', false, $streamContext);
 			
 			if($stream)
@@ -255,7 +255,7 @@
 				$this->responsebody = $result;
 			}
 			
-			#if(isset($http_response_header))
+			if(isset($http_response_header))
 			{
 				$this->responseheaders = self::HTTPResponseHeadersToArray($http_response_header);
 			}
