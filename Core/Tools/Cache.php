@@ -91,6 +91,15 @@
 			file_put_contents("Cache/".$cacheobject->Identifier.".json", $data);
 		}
 		
+		public function GetCacheControl()
+		{
+			$headers = getallheaders();
+			
+			$cachecontrol = (isset($headers["Cache-Control"]) ? $headers["Cache-Control"] : null);
+			
+			return $cachecontrol;
+		}
+		
 		  //
 		 // VARIABLES
 		//

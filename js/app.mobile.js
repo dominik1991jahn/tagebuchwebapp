@@ -31,32 +31,40 @@
 		}
 		else
 		{
+			fromLocalStorage = localStorage.getItem(cacheURL);
+			headers = null;
+			
+			if(fromLocalStorage == null)
+			{
+				console.log("NO CACHE! for " + url);
+				headers = {"Cache-Control":"no-cache"};
+			}
 			$.ajax({
 				type: method.toUpperCase(),
 				url: server+url,
 				dataType: 'json',
+				headers: headers,
 				beforeSend: function() { $.mobile.loading('show'); },
 				complete: function() { $.mobile.loading('hide'); },
 				success: function(response)
 				{
-					fromLocalStorage = localStorage.getItem(cacheURL);
-					
+					console.log("Cache: "+fromLocalStorage);
 					/*
 					 * If nothing has changed we receive a 403-code
 					 */
-					if("code" in response && fromLocalStorage)
+					if("code" in response && fromLocalStorage != null)
 					{
 						/*switch(response.code)
 						{
 							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
 							default: alert(response.code + ": "+response.message); break;
 						}*/
-						
+						console.log("From Cache: "+fromLocalStorage);
 						response = $.parseJSON(fromLocalStorage);
 					}
 					else
 					{
-						//alert("We need new data for '"+url+"'");
+						console.log("We need new data for '"+url+"': " + JSON.stringify(response));
 						localStorage.setItem(cacheURL, JSON.stringify(response));
 					}
 					
@@ -65,38 +73,6 @@
 				async: async
 			});
 		}
-		
-		
-		
-		
-		/*var fromLocalStorage = localStorage.getItem(cacheURL);
-		
-		if(!fromLocalStorage || refresh)
-		{
-			$.ajax({
-				type: method.toUpperCase(),
-				url: server+url,
-				dataType: 'json',
-				beforeSend: function() {
-					$.mobile.loading('show');
-					//alert("GET "+url);
-				},
-				complete: function() { $.mobile.loading('hide'); },
-				success: function(response)
-				{
-					localStorage.setItem(cacheURL, JSON.stringify(response));
-					//alert("Added to Cache as "+cacheURL);
-					success(response);
-				},
-				async: async
-			});
-		}
-		else
-		{
-			//alert("Cached (from '"+cacheURL+"')");
-			//alert(cacheURL + ": " + fromLocalStorage);
-			success($.parseJSON(fromLocalStorage));
-		}*/
 	}
 	
 	function FillClassList(year, htmlObject)
