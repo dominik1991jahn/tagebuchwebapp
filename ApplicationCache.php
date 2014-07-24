@@ -4,11 +4,10 @@
 	header("Content-Type: text/cache-manifest");
 	
 	$files = array();
-	$files = array_merge(glob("js/*.*"),glob("css/*.*"),glob("img/*.*"),glob("img/icons-svg/*.*"));
-	$files[] = "index.html";
+	#$files = array_merge(glob("js/*.*"),glob("css/*.*"),glob("img/*.*"),glob("img/icons-svg/*.*"));
+	#$files[] = "index.html";
 	
 	$lastchange = 0;
-	#$lastchange = time();
 	
 	foreach($files as $file)
 	{
@@ -19,6 +18,8 @@
 			$lastchange = $modified;
 		}
 	}
+	
+	$lastchange = time();
 ?>
 CACHE MANIFEST
 

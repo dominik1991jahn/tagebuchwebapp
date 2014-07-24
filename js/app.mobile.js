@@ -25,9 +25,16 @@
 			DisplayOfflineMessage();
 			
 			fromLocalStorage = localStorage.getItem(cacheURL);
-			response = $.parseJSON(fromLocalStorage);
 			
-			success(response);
+			if(fromLocalStorage)
+			{
+				response = $.parseJSON(fromLocalStorage);
+				success(response);
+			}
+			else
+			{
+				alert("Sorry, du bist nicht online und hast keine Daten im Cache!");
+			}
 		}
 		else
 		{
@@ -36,7 +43,7 @@
 			
 			if(fromLocalStorage == null)
 			{
-				//console.log("NO CACHE! for " + url);
+				//alert("NO CACHE! for " + url);
 				headers = {"Cache-Control":"no-cache"};
 			}
 			$.ajax({
@@ -48,7 +55,7 @@
 				complete: function() { $.mobile.loading('hide'); },
 				success: function(response)
 				{
-					//console.log("Cache: "+fromLocalStorage);
+					//alert("Cache: "+fromLocalStorage);
 					/*
 					 * If nothing has changed we receive a 403-code
 					 */
@@ -59,12 +66,12 @@
 							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
 							default: alert(response.code + ": "+response.message); break;
 						}*/
-						//console.log("From Cache: "+fromLocalStorage);
+						//alert("From Cache: "+fromLocalStorage);
 						response = $.parseJSON(fromLocalStorage);
 					}
 					else
 					{
-						//console.log("We need new data for '"+url+"': " + JSON.stringify(response));
+						//alert("We need new data for '"+url+"': " + JSON.stringify(response));
 						localStorage.setItem(cacheURL, JSON.stringify(response));
 					}
 					
@@ -83,7 +90,7 @@
 		
 			success = function(response)
 						{
-							$.each(response, function(key, value)
+							$.each(response.data, function(key, value)
 							{
 								classList.push(value.Name);
 							});
@@ -133,7 +140,7 @@
 		
 			success = function(response)
 						{
-							$.each(response, function(key, value)
+							$.each(response.data, function(key, value)
 							{
 								teacherList.push(value.Abbreviation);
 							});
@@ -191,30 +198,22 @@
 		}
 		
 		success = function(response) {
-						if("code" in response)
+						//alert(response.code);
+						switch(response.code)
 						{
-							switch(response.code)
-							{
-								case 401:
-									
-									$.mobile.changePage("#login");
-				
-									break;
-									
-								default:
-									
-									$("#errorCode").html(response.code);
-									$("#errorMessage").html(response.message);
-									
-									$.mobile.changePage("#httperror");
-									
-									break;
-							}
-							
-							return;
+							case 200: break;
+							case 401: $.mobile.changePage("#login"); return;
+								
+							default:
+								
+								$("#errorCode").html(response.code);
+								$("#errorMessage").html(response.message);
+								
+								$.mobile.changePage("#httperror");
+								return;
 						}
 						
-						$.each(response, function(key, value)
+						$.each(response.data, function(key, value)
 						{
 							if(!(currentClass in schedule))
 							{
