@@ -89,7 +89,7 @@
 							});
 						};
 						
-			request("GET","request.php?/",url,success,false);
+			request("GET","request/",url,success,false);
 		}
 		
 		for(c=0;c<classList.length;c++)
@@ -139,7 +139,7 @@
 							});
 						};
 						
-			request("GET","request.php?/",url,success,false);
+			request("GET","request/",url,success,false);
 		}
 		
 		for(c=0;c<teacherList.length;c++)
@@ -226,7 +226,7 @@
 						});
 				};
 					
-		request("GET","request.php?/",url,success,false);
+		request("GET","request/",url,success,false);
 	}
 	
 	function switchToPage(date, direction, async)

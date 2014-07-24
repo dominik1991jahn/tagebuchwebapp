@@ -45,9 +45,9 @@
 				if(!ArrayTools::Equals($parameters, $cacheobject->Parameters)) continue;
 				if($controlsum <> $cacheobject->ControlSum) continue;
 				
-				$cacheFile = "Cache/".$cacheobject->Identifier.".json";
+				#$cacheFile = "Cache/".$cacheobject->Identifier.".json";
 				
-				return file_get_contents($cacheFile);
+				#return file_get_contents($cacheFile);
 				
 				break;
 			}
@@ -88,7 +88,7 @@
 			
 			$xmlCache->asXML("Core/Configuration/Cache.xml");
 			
-			file_put_contents("Cache/".$cacheobject->Identifier.".json", $data);
+			#file_put_contents("Cache/".$cacheobject->Identifier.".json", $data);
 		}
 		
 		public function GetCacheControl()

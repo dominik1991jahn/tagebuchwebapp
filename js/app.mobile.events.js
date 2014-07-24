@@ -122,5 +122,5 @@ function FillEvents(currentClass, year, mode)
 					}
 				};
 				
-	request("GET","request.php?/",url,success,false);
+	request("GET","request/",url,success,false);
 }
