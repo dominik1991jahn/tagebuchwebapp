@@ -90,8 +90,10 @@
 		
 			success = function(response)
 						{
+							//alert(response.code);
 							$.each(response.data, function(key, value)
 							{
+								//alert(value.Name);
 								classList.push(value.Name);
 							});
 						};
