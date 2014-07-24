@@ -17,6 +17,8 @@
 	include("Core/Tools/RequestMapping.php");
 	include("Core/Tools/RequestHandlerMapping.php");
 	include("Core/Tools/ArrayTools.php");
+	include("Core/Tools/Cache.php");
+	include("Core/Tools/CacheObject.php");
 	
 	include("Core/Tools/Tunnel.php");
 	

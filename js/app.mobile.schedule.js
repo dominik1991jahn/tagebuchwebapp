@@ -75,6 +75,8 @@
 		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",function(){loadEvents()});
 		navbar.navbar();
 		
+		header3 = $("<div data-role=\"header\" class=\"status offline\"><h5>Offline! Daten sind nicht auf dem aktuellsten Stand</h5></div>");
+		
 		footer = CreateFooter(currentDate);
 		
 		content = document.createElement('div');
@@ -167,6 +169,7 @@
 		//alert(content.html());
 		page.append(header);
 		page.append(header2);
+		page.append(header3);
 		page.append(content);
 		page.append(footer);
 		
@@ -286,11 +289,18 @@
 	 	
 	 	pRoom = $(document.createElement("p"));
 	 	rooms = "";
+	 	
+	 	if(data.Class != "" && currentDisplayMode == "teacher")
+	 	{
+	 		rooms = data.Class + " @ ";
+	 	}
+	 	
 	 	for(i = 0; i < data.Rooms.length; i++)
 	 	{
 	 		if (i > 0) { rooms += "/"; }
 	 		rooms += data.Rooms[i];
 	 	}
+	 	
 	 	pRoom.html(rooms);
 	 	pRoom.addClass("room");
 	 	lesson.append(pRoom);
@@ -350,7 +360,11 @@
 					dBody.append(pText);
 				dialog.append(dBody);
 			
+<<<<<<< HEAD
 			dialog.dialog();
+=======
+			dialog.dialog({autoResize:true});
+>>>>>>> f55f9d729f948ac60e85cc201659f7f7175f21dc
 			
 			dialog.appendTo($.mobile.pageContainer);
 		

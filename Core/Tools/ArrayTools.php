@@ -49,5 +49,33 @@
 			
 			return $result;
 		}
+		
+		public static function Equals($array1, $array2)
+		{
+			if(count($array1) <> count($array2))
+			{
+				return false;
+			}
+			
+			$keys = array_keys($array1);
+			
+			for($i = 0; $i < count($keys); $i++)
+			{
+				if(!array_key_exists($keys[$i], $array2))
+				{
+					return false;
+				}
+				
+				$value1 = $array1[$keys[$i]];
+				$value2 = $array2[$keys[$i]];
+				
+				if($value1 <> $value2)
+				{
+					return false;
+				}
+			}
+			
+			return true;
+		}
 	}
 ?>

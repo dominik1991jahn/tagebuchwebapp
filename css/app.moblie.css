@@ -1,3 +1,39 @@
+.status
+{
+	height: 20px !important;
+	padding: 0;
+}
+
+.status h5.ui-title
+{
+	font-size: 8pt !important;
+	text-shadow: none;
+	margin: 0;
+	padding: 0;
+	line-height: 20px;
+}
+
+.online
+{
+	background-color: #080 !important;
+}
+
+.offline
+{
+	background-color: #d00 !important;
+}
+
+.cache
+{
+	background-color: #f80 !important;
+}
+
+.status h5.ui-title
+{
+	color: #e7e7e7 !important;
+}
+}
+
 .single
 {
 	height: 80px;

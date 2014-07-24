@@ -6,30 +6,80 @@
 	var permissionChecked = false;
 	var classList = new Array();
 	var teacherList = new Array();
+	var isOffline = false;
 	
-	function request(method, url, success, async)
+	function request(method, server, url, success, async, refresh)
 	{
 		if(typeof(async) == "undefined") { async = true; }
+		if(typeof(refresh) == "undefined") { refresh = false; }
 		
-		$.ajax({
-			type: method.toUpperCase(),
-			url: url,
-			dataType: 'json',
-			beforeSend: function() {
-				$.mobile.loading('show');
-				//alert("GET "+url);
-			},
-			complete: function() { $.mobile.loading('hide'); },
-			success: success,
-			async: async
-		});
+		var fromLocalStorage = null;
+		var cacheURL = url;
+		
+		if(!navigator.onLine)
+		{
+			/*
+			 * If the device is offline (Airplane Mode or no WiFi and no cellular reception)
+			 */
+			
+			DisplayOfflineMessage();
+			
+			fromLocalStorage = localStorage.getItem(cacheURL);
+			response = $.parseJSON(fromLocalStorage);
+			
+			success(response);
+		}
+		else
+		{
+			fromLocalStorage = localStorage.getItem(cacheURL);
+			headers = null;
+			
+			if(fromLocalStorage == null)
+			{
+				console.log("NO CACHE! for " + url);
+				headers = {"Cache-Control":"no-cache"};
+			}
+			$.ajax({
+				type: method.toUpperCase(),
+				url: server+url,
+				dataType: 'json',
+				headers: headers,
+				beforeSend: function() { $.mobile.loading('show'); },
+				complete: function() { $.mobile.loading('hide'); },
+				success: function(response)
+				{
+					console.log("Cache: "+fromLocalStorage);
+					/*
+					 * If nothing has changed we receive a 403-code
+					 */
+					if("code" in response && fromLocalStorage != null)
+					{
+						/*switch(response.code)
+						{
+							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
+							default: alert(response.code + ": "+response.message); break;
+						}*/
+						console.log("From Cache: "+fromLocalStorage);
+						response = $.parseJSON(fromLocalStorage);
+					}
+					else
+					{
+						console.log("We need new data for '"+url+"': " + JSON.stringify(response));
+						localStorage.setItem(cacheURL, JSON.stringify(response));
+					}
+					
+					success(response);
+				},
+				async: async
+			});
+		}
 	}
 	
 	function FillClassList(year, htmlObject)
 	{
 		if(classList.length == 0)
 		{
-			url = "request.php?/Classes/" + year;
+			url = "Classes/" + year;
 		
 			success = function(response)
 						{
@@ -39,7 +89,7 @@
 							});
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request.php?/",url,success,false);
 		}
 		
 		for(c=0;c<classList.length;c++)
@@ -66,11 +116,20 @@
 		}
 	}
 	
+	function DisplayOfflineMessage()
+	{
+		if(!isOffline)
+		{
+			alert("You are offline!");
+			isOffline = true;
+		}
+	}
+	
 	function FillTeacherList(htmlObject)
 	{
 		if(teacherList.length == 0)
 		{
-			url = "request.php?/Teacher";
+			url = "Teacher";
 		
 			success = function(response)
 						{
@@ -80,7 +139,7 @@
 							});
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request.php?/",url,success,false);
 		}
 		
 		for(c=0;c<teacherList.length;c++)
@@ -124,11 +183,11 @@
 	{
 		if(currentDisplayMode == "class")
 		{
-			var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
+			var url = "Schedule/Class/" + classcode + "-" + startdate;
 		}
 		else
 		{
-			var url = "request.php?/Schedule/Teacher/" + classcode + "-" + startdate;
+			var url = "Schedule/Teacher/" + classcode + "-" + startdate;
 		}
 		
 		success = function(response) {
@@ -167,7 +226,7 @@
 						});
 				};
 					
-		request("GET",url,success,false);
+		request("GET","request.php?/",url,success,false);
 	}
 	
 	function switchToPage(date, direction, async)
