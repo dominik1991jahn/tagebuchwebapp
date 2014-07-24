@@ -246,7 +246,7 @@
 				
 				stream_context_set_option($streamContext, 'http', "header", $header);
 			}
-			echo $url;
+			
 			$stream = @fopen($url, 'r', false, $streamContext);
 			
 			if($stream)

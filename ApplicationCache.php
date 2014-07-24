@@ -1,4 +1,6 @@
 <?php
+	date_default_timezone_set("Europe/Berlin");
+	
 	header("Content-Type: text/cache-manifest");
 	
 	$files = array();
