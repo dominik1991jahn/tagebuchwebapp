@@ -231,7 +231,7 @@
 		else 							  { startVal = data.Start; }
 		
 		lesson = $("<div></div>");
-	 	lesson.on("click", function() { OpenDetailPopup(data, date); } );
+	 	lesson.on("click", function() { OpenDetailDialog(data, date); } );
 	 	
 	 	if (duration == 3)
 	 	{
@@ -327,7 +327,7 @@
 	
 	var loadedPopups = new Array();
 	
-	function OpenDetailPopup(data,date)
+	function OpenDetailDialog(data,date)
 	{
 		dialogid = "lesson-"+date+"-"+data.Subject.Name+"-"+data.Subject.Start+"-"+data.SplitPeriod;
 		
@@ -336,7 +336,7 @@
 			dialog = $("<div data-role=\"dialog\" data-transition=\"slidedown\" data-close-btn=\"right\" id=\""+dialogid+"\"></div>");
 			
 				dHeader = $("<div data-role=\"header\" style=\"text-align:center\"></div>");
-					pLesson = $("<p></p>");
+					pLesson = $("<h3></h3>");
 					pLesson.html(data.Subject.Name);
 					pLesson.addClass("lesson");
 					dHeader.append(pLesson);
@@ -360,9 +360,17 @@
 					dBody.append(pText);
 				dialog.append(dBody);
 			
+<<<<<<< HEAD
+			dialog.dialog();
+=======
 			dialog.dialog({autoResize:true});
+>>>>>>> f55f9d729f948ac60e85cc201659f7f7175f21dc
 			
 			dialog.appendTo($.mobile.pageContainer);
+		
+			$("#"+dialogid).bind("pagehide",function(){
+				$.mobile.changePage("#schedule-"+date+"-"+currentClass, {role:"page"});
+			});
 		}
 		
 		$.mobile.changePage("#"+dialogid, {role:"dialog"});
