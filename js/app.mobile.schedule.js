@@ -343,6 +343,7 @@
 				dialog.append(dHeader);
 				
 				dBody = $("<div data-role=\"content\" style=\"text-align:center\"></div>");
+				dBody.addClass("lessonDetails");
 					pTeach = $("<p></p>");
 						teachers = "";
 						for (i = 0; i < data.Teachers.length; i++)
@@ -354,10 +355,24 @@
 					pTeach.addClass("teacher");
 					dBody.append(pTeach);
 					
-					pText = $("<p style=\"border-top:dotted;border-width: 1px;\"></p>");
-					pText.html(data.Subject.Information);
-					pText.addClass("text");
-					dBody.append(pText);
+					pRoom = $("<p></p>");
+						rooms = "";
+						for(i = 0; i < data.Rooms.length; i++)
+					 	{
+					 		if (i > 0) { rooms += "/"; }
+					 		rooms += data.Rooms[i];
+					 	}
+					pRoom.html(rooms);
+					pRoom.addClass("room");
+					dBody.append(pRoom);
+					
+					if(data.Subject.Information != null)
+					{
+						pText = $("<p></p>");
+						pText.html(data.Subject.Information);
+						pText.addClass("text");
+						dBody.append(pText);
+					}
 				dialog.append(dBody);
 			
 			dialog.dialog({autoResize:true});
