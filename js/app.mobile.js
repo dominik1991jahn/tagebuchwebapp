@@ -24,7 +24,10 @@
 			
 			DisplayOfflineMessage();
 			
-			fromLocalStorage = localStorage.getItem(cacheURL);
+			if(LocalStorageAvailability())
+			{
+				fromLocalStorage = localStorage.getItem(cacheURL);
+			}
 			
 			if(fromLocalStorage)
 			{
@@ -38,7 +41,11 @@
 		}
 		else
 		{
-			fromLocalStorage = localStorage.getItem(cacheURL);
+			if(LocalStorageAvailability())
+			{
+				fromLocalStorage = localStorage.getItem(cacheURL);
+			}
+			
 			headers = null;
 			
 			if(fromLocalStorage == null)
@@ -59,7 +66,7 @@
 					{
 						response = $.parseJSON(fromLocalStorage);
 					}
-					else
+					else if(LocalStorageAvailability())
 					{
 						localStorage.setItem(cacheURL, JSON.stringify(response));
 					}
@@ -244,21 +251,16 @@
 		}
 		
 		transition = "none";
-		var1=true;
-		var2=true;
 		
 		if(direction<0)
 		{
 			transition = "slide";
-			//rechts nach links
-			direction=true;
-			var1=false;
+			direction=true; // <---
 		}
 		else if(direction>0)
 		{
 			transition = "slide";
-			//links nach rechts
-			direction=false;
+			direction=false; // --->
 		}
 		
 		if($("#schedule-"+date+"-"+currentClass).length == 0)
@@ -269,6 +271,19 @@
 		$.mobile.changePage("#schedule-"+date+"-"+currentClass,{
 			reverse: direction,
 			transition: transition
-		}//,var1,var2
-		);
+		});
+		
+		currentDate = new Date(date);
+		document.title = "Digikabu.App :: " + DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1);
 	}
+
+function LocalStorageAvailability()
+{
+	try {
+        localStorage.setItem("test", "test");
+        localStorage.removeItem("test");
+        return true;
+    } catch(e) {
+        return false;
+    }
+}

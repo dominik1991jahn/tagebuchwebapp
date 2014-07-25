@@ -70,7 +70,7 @@ function FillEvents(currentClass, year, mode)
 	
 	success = function(response)
 				{
-					if(response.length == 0)
+					if(response.data.length == 0)
 					{
 
 						pNoEvents = $(document.createElement("p"));
@@ -87,7 +87,7 @@ function FillEvents(currentClass, year, mode)
 					}
 					else
 					{
-						$.each(response, function(key, value)
+						$.each(response.data, function(key, value)
 						{
 							eventSchedule = $(document.createElement('div'));
 							eventSchedule.attr("class", "ui-body ui-body-gray single hr");

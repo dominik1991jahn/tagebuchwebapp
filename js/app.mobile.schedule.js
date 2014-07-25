@@ -11,32 +11,25 @@
 			return;
 		}
 		
-		currentDate=new Date(data.Date);
+		var currentDate=new Date(data.Date);
 		
-		prevdate = new Date(currentDate.getTime()-86400000);
-	 	prevpage="schedule-"+DateToUTC(prevdate)+"-"+currentClass;
+		var prevdate = new Date(currentDate.getTime()-86400000);
+	 	var prevpage="schedule-"+DateToUTC(prevdate)+"-"+currentClass;
 	 	
-	 	nextdate = new Date(currentDate.getTime()+86400000);
-	 	nextpage="schedule-"+DateToUTC(nextdate)+"-"+currentClass;
+	 	var nextdate = new Date(currentDate.getTime()+86400000);
+	 	var nextpage="schedule-"+DateToUTC(nextdate)+"-"+currentClass;
 		
-		pageid = "schedule-"+DateToUTC(currentDate)+"-"+currentClass;//data.Date.replace(/-/g,'');
+		var pageid = "schedule-"+DateToUTC(currentDate)+"-"+currentClass;//data.Date.replace(/-/g,'');
 		
-		page = document.createElement("div");
-		page = $(page);
+		var page = $("<div data-role=\"page\" id=\""+pageid+"\" data-next=\""+prevpage+"\" data-prev=\""+nextpage+"\"></div>");
 		
-		page.attr('data-role','page').attr('id',pageid);
-		page.attr('data-prev',prevpage);
-		page.attr('data-next',nextpage);
+		header = $("<div data-role=\"header\"><h1 id=\"header-"+pageid+"\" style=\"text-align:center\">"+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+"</h1>");
 		
-		header = document.createElement('div');
-		header = $(header);
-		
-		header.attr('data-role','header').append('<h1 style=\"text-align:center\">'+DayOfWeekToName(currentDate.getDay()) + ", " + Zero(currentDate.getDate()) + "."+Zero(currentDate.getMonth()+1)+'</h1>')
-			  .on("click",function() {
+		header.on("click",function() {
 			  	var $this = $(this);
 				$this.empty();
 				
-				datePicker = $("<input type=\"text\" data-role=\"date\" data-mini=\"true\" data-theme=\"b\" id=\"datepicker\" value=\""+DateToGermanFormat(currentDate)+"\" style=\"text-align:center\" />");
+				datePicker = $("<input type=\"text\" data-role=\"date\" data-mini=\"true\" data-theme=\"b\" id=\"datepicker-"+DateToUTC(currentDate)+"\" value=\""+DateToGermanFormat(currentDate)+"\" style=\"text-align:center\" />");
 				datePicker.datepicker(
 					{
 						dateFormat: "dd.mm.yy",
@@ -47,13 +40,13 @@
 							date = DateToUTC(GermanDateToDate(selectedDate));
 							
 							switchToPage(date, -1);
-							
-							alert($this.html());
 						}
 					});
 				
 				$this.append(datePicker);
 				$this.trigger("create");
+				
+				datePicker.datepicker("show");
 			  });
 		header.attr('data-theme','b');
 		
@@ -188,6 +181,7 @@
 		}
 		return Break;
 	}
+	
 	function CreateEmptyLesson(duration, startVal)
 	{
 		lesson = $(document.createElement("div"));

@@ -11,10 +11,12 @@
 		if(GetCookie("loginname") == null)
 		{
 			$.mobile.changePage("#login");
+			document.title = "Digikabu.App :: Anmelden";
 		}
 		else if(GetCookie("class") == null)
 		{
 			$.mobile.changePage("#SelectClass");
+			document.title = "Digikabu.App :: Klasse auswählen";
 			FillClassList(2013, $("#classList"));
 			if(isTeacher)
 			{

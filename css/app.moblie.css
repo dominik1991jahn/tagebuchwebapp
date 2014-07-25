@@ -266,13 +266,13 @@ div.customPopup *
 /*
  * Avoid text selection when swiping with the mouse
  */
-/**
+*:not(input,textarea)
 {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-}*/
+}
 
 @media (max-width: 400px)
 {
