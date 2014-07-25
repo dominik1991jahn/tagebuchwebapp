@@ -146,6 +146,39 @@ div.hr h3.lesson
 	padding: 5px;
 	overflow: hidden;
 }
+div.lessonDetails
+{
+	position: relative;
+	min-height: 100px;
+}
+div.lessonDetails p.teacher
+{
+	position: absolute;
+	left: 20px;
+	top: 5px;
+	display: inline;
+	font-size: 11pt;
+}
+div.lessonDetails p.room
+{
+	position: absolute;
+	right: 20px;
+	top: 5px;
+	display: inline;
+	font-size: 11pt;
+}
+div.lessonDetails p.text
+{
+	position: absolute;
+	left : 15px;
+	right: 15px;
+	top  : 35px;
+	display: inline;
+	padding: 5px;
+	overflow: hidden;
+	border-top:dotted;
+	border-width: 1px;
+}
 p.time
 {
 	position: absolute;
