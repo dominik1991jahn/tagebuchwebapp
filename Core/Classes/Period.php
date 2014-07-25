@@ -431,9 +431,55 @@
 			
 			$period->Type = $periodType;
 			
-			$starttime = 0;
-			$endtime = 0;
+			$starttime = 8*3600+30*60;
+			$stunde=45*60;
+			$pause=15*60;
 			
+			if($period->Start>1)
+				$starttime+=($period->Start-1)*$stunde;
+			if($period->Start==3)
+				$starttime+=$pause;
+			if($period->Start>=7)
+				$starttime+=$stunde;
+			
+			$endtime = $starttime+$period->Duration*$stunde;
+			
+			
+			if(($period->Start===1 && $period->Duration>=3) || ($period->Start===2 && $period->Duration>=2))
+			{
+				$endtime+=$pause;
+			}
+			
+			
+			
+			
+/*
+//Wenn 2. Stunde Pause einfügen werden
+if(start==2)
+{
+	for(int i=1; i<=duration;i++)
+	{
+		zeit+=stunde;
+	}
+	zeit+=pause;
+}
+//Wenn 5. Stunde vorbei soll Stunde+Mittagspause eingefügt werden
+else if(start==5)
+{
+	zeit+=stunde*2;
+}
+	
+//Stunden nach Duration gezählt aufrechnen
+for(int i=1; i<=duration;i++)
+{
+	//Wenn bei 3stündig die 2. Stunde erreicht, pause einrechnen
+	if(i==2)
+	{
+		zeit+=pause;
+	}
+	zeit+=stunde;
+}
+			 * */
 			$period->StartTime = $starttime;
 			$period->EndTime = $endtime;
 			
