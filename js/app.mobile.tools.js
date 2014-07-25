@@ -17,13 +17,22 @@ function GermanDateToDate(datestring)
 {
 	datestring = datestring.split(".");
 	
-	day = datestring[0];
+	day   = datestring[0];
 	month = datestring[1];
-	year = datestring[2];
+	year  = datestring[2];
 	
 	utc = year+"-"+month+"-"+day;
 	
 	return new Date(utc);
+}
+
+function SecToTime(seconds)
+{
+	hr  = seconds % 3600;
+	seconds -= hr * 3600;
+	min = seconds %   60;
+	
+	return hr.toString() + ":" + min.toString();
 }
 
 function DateToUTC(date)
