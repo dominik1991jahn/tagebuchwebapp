@@ -77,6 +77,9 @@
 					
 					success(response);
 				},
+				error: function(req, status, error) {
+					alert("Status: "+status+"\nError: "+error);
+				},
 				async: async
 			});
 		}

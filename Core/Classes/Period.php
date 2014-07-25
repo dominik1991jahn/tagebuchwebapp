@@ -18,6 +18,8 @@
 		private /*(string)*/ $information;
 		private /*(int)*/ $splitperiod;
 		private /*(string)*/ $class;
+		private /*(int)*/ $starttime;
+		private /*(int)*/ $endtime;
 		
 		private /*(Digikabu_Period)*/ $previous;
 		private /*(Digikabu_Period)*/ $next;
@@ -53,6 +55,8 @@
 				case "Rooms"	  : return $this->GetRooms();
 				case "Information": return $this->GetInformation();
 				case "SplitPeriod": return $this->GetSplitPeriod();
+				case "StartTime"  : return $this->GetStartTime();
+				case "EndTime"    : return $this->GetEndTime();
 				case "Class": return $this->GetClass();
 			}
 		}
@@ -70,6 +74,8 @@
 				case "Next"		  : $this->SetNext(		  $value); break;
 				case "Information": $this->SetInformation($value); break;
 				case "SplitPeriod": $this->SetSplitPeriod($value); break;
+				case "StartTime"  : $this->SetStartTime($value); break;
+				case "EndTime": $this->SetEndTime($value); break;
 				case "Class": $this->SetClass($value); break;
 			}
 		}
@@ -95,6 +101,8 @@
 				"Rooms" 	  => $this->Rooms,
 				"Information" => $this->Information,
 				"SplitPeriod" => $this->SplitPeriod,
+				"StartTime"   => $this->StartTime,
+				"EndTime"     => $this->EndTime,
 				"Class" => $this->Class
 			);
 		}
@@ -249,6 +257,30 @@
 			$this->class = $value;
 		}
 		
+		# StartTime
+		
+		private function GetStartTime()
+		{
+			return $this->starttime;
+		}
+		
+		private function SetStartTime($value)
+		{
+			$this->starttime = $value;
+		}
+		
+		# EndTime
+		
+		private function GetEndTime()
+		{
+			return $this->endtime;
+		}
+		
+		private function SetEndTime($value)
+		{
+			$this->endtime = $value;
+		}
+		
 		  //
 		 // FUNCTIONS
 		//
@@ -400,8 +432,13 @@
 			$t = mt_rand(0,2);
 			$t = $s[$t];*/
 			
+			$starttime = 0;
+			$endtime = 0;
+			
 			//var_dump($type);
 			$period->Type = $periodType;//"NORMAL";//$type;
+			$period->StartTime = $starttime;
+			$period->EndTime = $endtime;
 			
 			return $period;
 		}
