@@ -428,15 +428,12 @@
 						break;
 				}
 			}
-			/*$s = array(new Digikabu_PeriodType_Normal,new Digikabu_PeriodType_Canceled,new Digikabu_PeriodType_Substitution);
-			$t = mt_rand(0,2);
-			$t = $s[$t];*/
+			
+			$period->Type = $periodType;
 			
 			$starttime = 0;
 			$endtime = 0;
 			
-			//var_dump($type);
-			$period->Type = $periodType;//"NORMAL";//$type;
 			$period->StartTime = $starttime;
 			$period->EndTime = $endtime;
 			
