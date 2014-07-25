@@ -347,7 +347,10 @@
 									case 3:
 										//$periodType = new Digikabu_PeriodType_Substitution;
 										$teachers[3] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitute);
-										$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
+										if(isset($teachers[1]) && $teachers[1] instanceof Digikabu_Teacher)
+										{
+											$teachers[1]->Status = new Digikabu_TeacherStatus_Absent;
+										}
 										$teachers_substitutes++;
 										$teachers_absent++;
 										$teachers_normal--;

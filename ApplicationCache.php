@@ -1,0 +1,41 @@
+<?php
+	date_default_timezone_set("Europe/Berlin");
+	
+	header("Content-Type: text/cache-manifest");
+	
+	$files = array();
+	$files = array_merge(glob("js/*.*"),glob("css/*.*"),glob("img/*.*"),glob("img/icons-svg/*.*"));
+	$files[] = "index.html";
+	
+	$lastchange = 0;
+	
+	foreach($files as $file)
+	{
+		$modified = filemtime($file);
+		
+		if($lastchange < $modified)
+		{
+			$lastchange = $modified;
+		}
+	}
+	
+	#$lastchange = time();
+?>
+CACHE MANIFEST
+
+CACHE:
+<?php
+foreach($files as $file)
+{
+	echo $file."\n";
+}
+?>
+
+NETWORK:
+*
+
+<?php
+	//if anything has changed, add this comment:
+	//echo "#".$dateOfLastChange;
+	echo "#".date("Y-m-d H:i:s",$lastchange);
+?>

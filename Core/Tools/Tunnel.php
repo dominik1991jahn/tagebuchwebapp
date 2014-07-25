@@ -31,328 +31,435 @@
 			return $request;
 		}
 		
-		public function CheckLoginCredentials()
-		{
-			return json_encode(array("DataCorrect" => (bool) mt_rand(0,1)));
-		}
-		
 		public function GetClassList($year)
 		{
-			$fromCache = $this->FromCache("GetClassList/".$year);
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
 			$url = RequestMapping::GetURLForRequest("RetrieveClassList", array("Year" => $year));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
-			
-			if($request->HTTPStatusCode <> 200)
+				
+			if($request->HTTPStatusCode <> 401)
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
+				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
+				$cacheparameters = array("year" => $year);
+				$cachemethod = __FUNCTION__;
+				$cachecontrolsum = md5($request->ResponseBody);
+				
+				$notModified = false;
+				$requestNew = (substr(Cache::GetInstance()->GetCacheControl(),0,8) == "no-cache" ? true : false);
+				
+				$notModified = Cache::GetInstance()->CheckStatus($cachemethod, $cacheparameters, $cachecontrolsum);
+				
+				// We need to do this here so we can also check if the response is a valid XML-document
+				// If it's not, we fall back to the cached version
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
+				{
+					$response = json_encode($this->HTTPError(304));
+				}
+				else
+				{
+					if(!$xresponse)
+					{
+						$fromCache = Cache::GetInstance()->GetFromCache($cachemethod, $cacheparameters);
+						$xresponse = simplexml_load_string($fromCache);
+					}
+					
+					/*
+					 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+					 */
+				
+					$classes = array();
+					
+					foreach ($xresponse as $xclass) 
+					{
+						$class = Digikabu_Class::FromXMLNode($xclass);
+						$classes[] = $class;
+					}
+					
+					$response = json_encode(array("code" => 200, "data" => $classes), JSON_PRETTY_PRINT);
+					
+					$cacheobject = new CacheObject($cachemethod, $cacheparameters, $cachecontrolsum);
+					Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
+				}
 			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$classes = array();
-			
-			foreach ($xresponse as $xclass) 
+			else
 			{
-				$class = Digikabu_Class::FromXMLNode($xclass);
-				$classes[] = $class;
-			}
-			
-			$response = json_encode($classes);
-			
-			$this->cache($response, "GetClassList/".$year);
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
 			
 			return $response;
 		}
 		
 		public function GetTeacherList()
 		{
-			$fromCache = $this->FromCache("GetTeacherList");
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
 			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForClass");
 			$request = $this->PassThroughTunnel("GET",$url);
-			
-			$request->SendRequest();
-			
-			if($request->HTTPStatusCode <> 200)
-			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$teachers = array();
-			$names = array();
-			foreach ($xresponse->children()as $xteacher) 
-			{
-				$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
 				
-				if(!in_array($teacher->Abbreviation, $names))
+			$request->SendRequest();
+			if($request->HTTPStatusCode <> 401)
+			{
+				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
+				$cacheparameters = array();
+				$cachemethod = __FUNCTION__;
+				$cachecontrolsum = md5($request->ResponseBody);
+				
+				$notModified = false;
+				$requestNew = (substr(Cache::GetInstance()->GetCacheControl(),0,8) == "no-cache" ? true : false);
+				
+				$notModified = Cache::GetInstance()->CheckStatus($cachemethod, $cacheparameters, $cachecontrolsum);
+				
+				// We need to do this here so we can also check if the response is a valid XML-document
+				// If it's not, we fall back to the cached version
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
 				{
-					$teachers[] = $teacher;
-					$names[] = $teacher->Abbreviation;
+					$response = json_encode($this->HTTPError(304));
+				}
+				else
+				{
+					if(!$xresponse)
+					{
+						$fromCache = Cache::GetInstance()->GetFromCache($cachemethod, $cacheparameters);
+						$xresponse = simplexml_load_string($fromCache);
+					}
+					
+					/*
+					 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+					 */
+					$teachers = array();
+					$names = array();
+					foreach ($xresponse->children()as $xteacher) 
+					{
+						$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
+						
+						if(!in_array($teacher->Abbreviation, $names))
+						{
+							$teachers[] = $teacher;
+							$names[] = $teacher->Abbreviation;
+						}
+					}
+				
+					$response = json_encode(array("code" => 200, "data" => $teachers), JSON_PRETTY_PRINT);
+					
+					$cacheobject = new CacheObject($cachemethod, $cacheparameters, $cachecontrolsum);
+					Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
 				}
 			}
-			
-			$response = json_encode($teachers);
-			
-			$this->cache($response, "GetTeacherList");
+			else
+			{
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
 			
 			return $response;
 		}
-		
-		public function GetTeacherListForTeachers()
-		{
-			$fromCache = $this->FromCache("GetTeacherListForTeachers");
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
-			$url = RequestMapping::GetURLForRequest("RetrieveTeacherListForTeachers");
-			$request = $this->PassThroughTunnel("GET",$url);
-			
-			$request->SendRequest();
-			
-			if($request->HTTPStatusCode <> 200)
-			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$teachers = array();
-			
-			foreach ($xresponse->children()as $xteacher) 
-			{
-				$teacher = Digikabu_Teacher::FromXMLNode($xteacher);
-				$teachers[] = $teacher;
-			}
-			
-			$response = json_encode($teachers);
-			
-			$this->cache($response, "GetTeacherListForTeachers");
-			
-			return $response;
-		}
-		
+
 		public function GetSubjectListForClass($class)
 		{
-			$fromCache = $this->FromCache("GetSubjectListForClass/".$class);
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
 			$url = RequestMapping::GetURLForRequest("RetrieveSubjectListForClass",array("Class"=>$class));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
 			
-			if($request->HTTPStatusCode <> 200)
+			if($request->HTTPStatusCode <> 401)
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
+				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
+				$cacheparameters = array("class" => $class);
+				$cachemethod = __FUNCTION__;
+				$cachecontrolsum = md5($request->ResponseBody);
+				
+				$notModified = false;
+				$requestNew = (substr(Cache::GetInstance()->GetCacheControl(),0,8) == "no-cache" ? true : false);
+				
+				$notModified = Cache::GetInstance()->CheckStatus($cachemethod, $cacheparameters, $cachecontrolsum);
+				
+				// We need to do this here so we can also check if the response is a valid XML-document
+				// If it's not, we fall back to the cached version
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
+				{
+					$response = json_encode($this->HTTPError(304));
+				}
+				else
+				{
+					if(!$xresponse)
+					{
+						$fromCache = Cache::GetInstance()->GetFromCache($cachemethod, $cacheparameters);
+						$xresponse = simplexml_load_string($fromCache);
+					}
+					
+					/*
+					 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+					 */
+					$subjects = array();
+					
+					foreach ($xresponse->children()as $xsubject) 
+					{
+						$subject = Digikabu_Class::FromXMLNode($xsubject);
+						$subjects[] = $subject;
+					}
+					
+					$response = json_encode(array("code" => 200, "data" => $subjects), JSON_PRETTY_PRINT);
+					
+					$cacheobject = new CacheObject($cachemethod, $cacheparameters, $cachecontrolsum);
+					Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
+				}
 			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$subjects = array();
-			
-			foreach ($xresponse->children()as $xsubject) 
+			else
 			{
-				$subject = Digikabu_Class::FromXMLNode($xsubject);
-				$subjects[] = $subject;
-			}
-			
-			$response = json_encode($subjects);
-			
-			$this->cache($response, "GetSubjectListForClass/".$class);
-			
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
+		
 			return $response;
 		}
 		
 		public function GetScheduleForClass($class, $date)
 		{
-			$fromCache = $this->FromCache("GetScheduleForClass/".$class."/".$date);
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
+			$requestCode = 200;
 			
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForClass",array("Class"=>$class, "Date" => $date));
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
 			
-			if($request->HTTPStatusCode <> 200)
+			if($request->HTTPStatusCode <> 401)
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$days = array();
-			foreach($xresponse->children() as $xday)
-			{
-				$day = Digikabu_Day::FromXMLNode($xday);
+				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
+				$cacheparameters = array("class" => $class, "date" => $date);
+				$cachemethod = __FUNCTION__;
+				$cachecontrolsum = md5($request->ResponseBody);
 				
-				$days[] = $day;
+				$notModified = false;
+				$requestNew = (substr(Cache::GetInstance()->GetCacheControl(),0,8) == "no-cache" ? true : false);
+				
+				$notModified = Cache::GetInstance()->CheckStatus($cachemethod, $cacheparameters, $cachecontrolsum);
+				
+				// We need to do this here so we can also check if the response is a valid XML-document
+				// If it's not, we fall back to the cached version
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
+				{
+					$response = json_encode($this->HTTPError(304));
+				}
+				else
+				{
+					if(!$xresponse)
+					{
+						$fromCache = Cache::GetInstance()->GetFromCache($cachemethod, $cacheparameters);
+						$xresponse = simplexml_load_string($fromCache);
+					}
+					
+					/*
+					 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+					 */
+					$days = array();
+					foreach($xresponse->children() as $xday)
+					{
+						$day = Digikabu_Day::FromXMLNode($xday);
+						
+						$days[] = $day;
+					}
+					
+					$response = json_encode(array("code" => 200, "data" => $days), JSON_PRETTY_PRINT);
+					
+					$cacheobject = new CacheObject($cachemethod, $cacheparameters, $cachecontrolsum);
+					Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
+				}
 			}
-			
-			$response = json_encode($days, JSON_PRETTY_PRINT);
-			
-			$this->cache($response, "GetScheduleForClass/".$class."/".$date);
+			else
+			{
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
 			
 			return $response;
 		}
 		
 		public function GetScheduleForTeacher($teacher, $date)
 		{
-			$fromCache = $this->FromCache("GetScheduleForTeacher/".$teacher."/".$date);
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
 			$url = RequestMapping::GetURLForRequest("Schedule.RetrieveForTeacher",array("Teacher"=>$teacher, "Date" => $date));
 			$request = $this->PassThroughTunnel("GET",$url);
-			
+				
 			$request->SendRequest();
 			
-			if($request->HTTPStatusCode <> 200)
+			if($request->HTTPStatusCode <> 401)
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$days = array();
-			foreach($xresponse->children() as $xday)
-			{
-				$day = Digikabu_Day::FromXMLNode($xday);
+				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
+				$cacheparameters = array("teacher" => $teacher, "date" => $date);
+				$cachemethod = __FUNCTION__;
+				$cachecontrolsum = md5($request->ResponseBody);
 				
-				$days[] = $day;
+				$notModified = false;
+				$requestNew = (substr(Cache::GetInstance()->GetCacheControl(),0,8) == "no-cache" ? true : false);
+				
+				$notModified = Cache::GetInstance()->CheckStatus($cachemethod, $cacheparameters, $cachecontrolsum);
+				
+				// We need to do this here so we can also check if the response is a valid XML-document
+				// If it's not, we fall back to the cached version
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
+				{
+					$response = json_encode($this->HTTPError(304));
+				}
+				else
+				{
+					if(!$xresponse)
+					{
+						$fromCache = Cache::GetInstance()->GetFromCache($cachemethod, $cacheparameters);
+						$xresponse = simplexml_load_string($fromCache);
+					}
+					
+					/*
+					 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+					 */
+					$days = array();
+					foreach($xresponse->children() as $xday)
+					{
+						$day = Digikabu_Day::FromXMLNode($xday);
+						
+						$days[] = $day;
+					}
+					
+					$response = json_encode(array("code" => 200, "data" => $days), JSON_PRETTY_PRINT);
+					
+					$cacheobject = new CacheObject($cachemethod, $cacheparameters, $cachecontrolsum);
+					Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
+				}
 			}
-			
-			$response = json_encode($days, JSON_PRETTY_PRINT);
-			
-			$this->cache($response, "GetScheduleForTeacher/".$teacher."/".$date);
-			
+			else
+			{
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
+
 			return $response;
 		}
 		
 		public function GetEvents($class, $year, $type)
 		{
-			$fromCache = $this->FromCache("GetEvents/".$class."/".$year."/".$type);
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
 			$url = RequestMapping::GetURLForRequest("RetrieveClassEvents",array("Class"=>$class, "Year" => $year));
 			$request = $this->PassThroughTunnel("GET",$url);
-			
+				
 			$request->SendRequest();
 			
-			if($request->HTTPStatusCode <> 200)
+			if($request->HTTPStatusCode <> 401)
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$today = strtotime(date("Y-m-d")." 00:00:00");
-			
-			$events = array();
-			$previousEvent = null;
-			foreach($xresponse->children() as $xevent)
-			{
-				$event = Digikabu_Event::FromXMLNode($xevent);
+				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
+				$cacheparameters = array("class" => $class, "year" => $year, "type" => $type);
+				$cachemethod = __FUNCTION__;
+				$cachecontrolsum = md5($request->ResponseBody);
 				
-				if($type == "past" && ($event->From > $today))
-				{
-					continue;
-				}
-				else if($type == "future" && ($event->From < $today))
-				{
-					continue;
-				}
+				$notModified = false;
+				$requestNew = (substr(Cache::GetInstance()->GetCacheControl(),0,8) == "no-cache" ? true : false);
 				
-				if(!is_null($previousEvent) && $event->Description == $previousEvent->Description)
+				$notModified = Cache::GetInstance()->CheckStatus($cachemethod, $cacheparameters, $cachecontrolsum);
+				
+				// We need to do this here so we can also check if the response is a valid XML-document
+				// If it's not, we fall back to the cached version
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
 				{
-					$previousEvent->To = $event->From;
+					$response = json_encode($this->HTTPError(304));
 				}
 				else
 				{
-					$events[] = $event;
-					$previousEvent = $event;
+					if(!$xresponse)
+					{
+						$fromCache = Cache::GetInstance()->GetFromCache($cachemethod, $cacheparameters);
+						$xresponse = simplexml_load_string($fromCache);
+					}
+					
+					/*
+					 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+					 */
+					$today = strtotime(date("Y-m-d")." 00:00:00");
+					
+					$events = array();
+					$previousEvent = null;
+					foreach($xresponse->children() as $xevent)
+					{
+						$event = Digikabu_Event::FromXMLNode($xevent);
+						
+						if($type == "past" && ($event->From > $today))
+						{
+							continue;
+						}
+						else if($type == "future" && ($event->From < $today))
+						{
+							continue;
+						}
+						
+						if(!is_null($previousEvent) && $event->Description == $previousEvent->Description)
+						{
+							$previousEvent->To = $event->From;
+						}
+						else
+						{
+							$events[] = $event;
+							$previousEvent = $event;
+						}
+					}
+					
+					$response = json_encode(array("code" => 200, "data" => $events), JSON_PRETTY_PRINT);
+					
+					$cacheobject = new CacheObject($cachemethod, $cacheparameters, $cachecontrolsum);
+					Cache::GetInstance()->AddToCache($cacheobject, $request->ResponseBody);
 				}
 			}
-			
-			$response = json_encode($events, JSON_PRETTY_PRINT);
-			
-			$this->cache($response, "GetEvents/".$class."/".$year."/".$type);
-			
+			else
+			{
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
+
 			return $response;
 		}
 
 		public function CheckPermissions()
 		{
-			$fromCache = $this->FromCache("CheckPermissions");
-			if(!is_null($fromCache))
-			{
-				return $fromCache;
-			}
-			
 			$url = RequestMapping::GetURLForRequest("CheckPermissions");
 			$request = $this->PassThroughTunnel("GET",$url);
-			
+				
 			$request->SendRequest();
 			
-			if($request->HTTPStatusCode <> 200)
+			if($request->HTTPStatusCode <> 401)
 			{
-				print json_encode($this->HTTPError($request->HTTPStatusCode));
-				return;
-			}
-			
-			$xresponse = simplexml_load_string($request->ResponseBody);
-			
-			$permission = false;
-			
-			foreach($xresponse->children() as $xNode)
-			{
-				switch($xNode->getName())
+				$xresponse = simplexml_load_string($request->ResponseBody);
+				
+				/*
+				 * Either we requested a non-cached version, or the file has been updated since the last time they were requested
+				 */
+				$permission = false;
+				
+				foreach($xresponse->children() as $xNode)
 				{
-					case "IsTeacher":
-						$permission = (string) $xNode;
-						$permission = ($permission == "true" ? true : false);
-						break;
-						
+					switch($xNode->getName())
+					{
+						case "IsTeacher":
+							$permission = (string) $xNode;
+							$permission = ($permission == "true" ? true : false);
+							break;
+							
+					}
 				}
+				
+				$response = json_encode(array("code" => 200, "data" => $permission), JSON_PRETTY_PRINT);
 			}
-			
-			$response = json_encode($permission, JSON_PRETTY_PRINT);
-			
-			$this->cache($response, "CheckPermission");
-			
+			else
+			{
+				// If we get a 401, we won't access the cache!
+				$response = json_encode($this->HTTPError(401));
+			}	
+
 			return $response;
 		}
 		
@@ -362,6 +469,7 @@
 			
 			switch($code)
 			{
+				case "304": $message = "Not modified"; break;
 				case "400": $message = "Bad request"; break;
 				case "404": $message = "Resource not found"; break;
 				case "401": $message = "Unauthorized"; break;
@@ -371,36 +479,6 @@
 			$data = array("code" => $code, "message" => $message);
 			
 			return $data;
-		}
-		
-		private function cache($data, $path)
-		{
-			return;
-			if(!file_exists($path))
-			{
-				$pathseg = explode("/",$path);
-				
-				if(count($pathseg)>1)
-				{
-					$dir = "Cache/";
-					for($i=0;$i<count($pathseg)-1;$i++)
-					{
-						$dir .= $pathseg[$i]."/";
-						
-						if(!is_dir($dir)) mkdir($dir);
-					}
-				}
-				
-				file_put_contents("Cache/".$path.".json", $data);
-			}
-		}
-		
-		private function FromCache($path)
-		{
-			/*if(file_exists("Cache/".$path))
-			{
-				return file_get_contents("Cache/".$path);
-			}*/
 		}
 	}
 ?>

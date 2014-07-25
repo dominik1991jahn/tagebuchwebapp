@@ -44,7 +44,11 @@
 						changeMonth:true,
 						onSelect: function(selectedDate, dpinst)
 						{
-							alert(selectedDate);
+							date = DateToUTC(GermanDateToDate(selectedDate));
+							
+							switchToPage(date, -1);
+							
+							alert($this.html());
 						}
 					});
 				
@@ -70,6 +74,8 @@
 		ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
 		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",function(){loadEvents()});
 		navbar.navbar();
+		
+		header3 = $("<div data-role=\"header\" class=\"status offline\"><h5>Offline! Daten sind nicht auf dem aktuellsten Stand</h5></div>");
 		
 		footer = CreateFooter(currentDate);
 		
@@ -107,29 +113,29 @@
 				
 				if (data.Periods[p].Start == 1 && data.Periods[p].Duration == 3)
 				{
-					lesson = CreateLesson(data.Periods[p], 2, 1); content.append(lesson);
+					lesson = CreateLesson(data.Periods[p], data.Date, 2, 1); content.append(lesson);
 					
 					breakShort = CreateBreak(1); content.append(breakShort);
 					
-					lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
+					lesson = CreateLesson(data.Periods[p], data.Date, 1, 3); content.append(lesson);
 				}
 				else if (data.Periods[p].Start == 2 && (data.Periods[p].Duration >= 2))
 				{
 					if (data.Periods[p].Duration == 3)
 					{
-						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], data.Date, 1, 2); content.append(lesson);
 					
 						breakShort = CreateBreak(1); content.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 2, 3); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], data.Date, 2, 3); content.append(lesson);
 					}
 					else
 					{
-						lesson = CreateLesson(data.Periods[p], 1, 2); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], data.Date, 1, 2); content.append(lesson);
 					
 						breakShort = CreateBreak(1); content.append(breakShort);
 						
-						lesson = CreateLesson(data.Periods[p], 1, 3); content.append(lesson);
+						lesson = CreateLesson(data.Periods[p], data.Date, 1, 3); content.append(lesson);
 					}
 				}
 				else
@@ -152,7 +158,7 @@
 								break;
 					}
 					
-					lesson = CreateLesson(data.Periods[p]);
+					lesson = CreateLesson(data.Periods[p], data.Date);
 					content.append(lesson);
 				}
 				
@@ -163,6 +169,7 @@
 		//alert(content.html());
 		page.append(header);
 		page.append(header2);
+		page.append(header3);
 		page.append(content);
 		page.append(footer);
 		
@@ -213,7 +220,7 @@
 	 	
 		return lesson;
 	}
-	function CreateLesson(data, length, start)
+	function CreateLesson(data, date, length, start)
 	{
 		duration = 0; startVal = 0;
 		
@@ -224,7 +231,7 @@
 		else 							  { startVal = data.Start; }
 		
 		lesson = $("<div></div>");
-	 	lesson.on("click", function() { OpenDetailPopup(data); } );
+	 	lesson.on("click", function() { OpenDetailDialog(data, date); } );
 	 	
 	 	if (duration == 3)
 	 	{
@@ -282,11 +289,18 @@
 	 	
 	 	pRoom = $(document.createElement("p"));
 	 	rooms = "";
+	 	
+	 	if(data.Class != "" && currentDisplayMode == "teacher")
+	 	{
+	 		rooms = data.Class + " @ ";
+	 	}
+	 	
 	 	for(i = 0; i < data.Rooms.length; i++)
 	 	{
 	 		if (i > 0) { rooms += "/"; }
 	 		rooms += data.Rooms[i];
 	 	}
+	 	
 	 	pRoom.html(rooms);
 	 	pRoom.addClass("room");
 	 	lesson.append(pRoom);
@@ -311,38 +325,51 @@
 	 	return lesson;
 	}
 	
-	function OpenDetailPopup(data)
+	var loadedPopups = new Array();
+	
+	function OpenDetailDialog(data,date)
 	{
-		dialog = $("<div data-role=\"dialog\" data-transition=\"slidedown\" data-close-btn=\"right\" id=\"lol\"></div>");
+		dialogid = "lesson-"+date+"-"+data.Subject.Name+"-"+data.Subject.Start+"-"+data.SplitPeriod;
 		
-			dHeader = $("<div data-role=\"header\" style=\"text-align: center\"></div>");
-				pLesson = $("<p></p>");
-				pLesson.html(data.Subject.Name);
-				pLesson.addClass("lesson");
-				dHeader.append(pLesson);
-			dialog.append(dHeader);
+		if(!(dialogid in loadedPopups))
+		{
+			dialog = $("<div data-role=\"dialog\" data-transition=\"slidedown\" data-close-btn=\"right\" id=\""+dialogid+"\"></div>");
 			
-			dBody = $("<div data-role=\"content\" style=\"text-align: center\"></div>");
-				pTeach = $("<p></p>");
-					teachers = "";
-					for (i = 0; i < data.Teachers.length; i++)
-					{
-						if (i > 0) { teachers += "/"; }
-						teachers += "<span class=\"teacher-"+data.Teachers[i].Status.toLowerCase()+"\">"+data.Teachers[i].Teacher.Abbreviation+"</span>";
-					}
-				pTeach.html(teachers);
-				pTeach.addClass("teacher");
-				dBody.append(pTeach);
+				dHeader = $("<div data-role=\"header\" style=\"text-align:center\"></div>");
+					pLesson = $("<h3></h3>");
+					pLesson.html(data.Subject.Name);
+					pLesson.addClass("lesson");
+					dHeader.append(pLesson);
+				dialog.append(dHeader);
 				
-				//pText = $("<p></p>");
-				//pText.html(data.Subject.)
-			dialog.append(dBody);
+				dBody = $("<div data-role=\"content\" style=\"text-align:center\"></div>");
+					pTeach = $("<p></p>");
+						teachers = "";
+						for (i = 0; i < data.Teachers.length; i++)
+						{
+							if (i > 0) { teachers += " / "; }
+							teachers += "<span class=\"teacher-"+data.Teachers[i].Status.toLowerCase()+"\">"+data.Teachers[i].Teacher.Abbreviation+"</span>";
+						}
+					pTeach.html(teachers);
+					pTeach.addClass("teacher");
+					dBody.append(pTeach);
+					
+					pText = $("<p style=\"border-top:dotted;border-width: 1px;\"></p>");
+					pText.html(data.Subject.Information);
+					pText.addClass("text");
+					dBody.append(pText);
+				dialog.append(dBody);
+			
+			dialog.dialog({autoResize:true});
+			
+			dialog.appendTo($.mobile.pageContainer);
 		
-		dialog.dialog();
-		alert(dialog.html());
+			$("#"+dialogid).bind("pagehide",function(){
+				$.mobile.changePage("#schedule-"+date+"-"+currentClass, {role:"page"});
+			});
+		}
 		
-		dialog.appendTo($.mobile.pageContainer);
-		$.mobile.changePage("#lol", {role:"dialog"});
+		$.mobile.changePage("#"+dialogid, {role:"dialog"});
 	}
 	 
 	function CreateFooter(currentDate)
@@ -402,69 +429,6 @@
  		{
  			FillTeacherList(groupTeachers);
  		}
-		 	/*datnavbar=$(document.createElement("div"));	 	
-		 	datnavbar.attr("data-role","navbar");
-		 	
-			 	datnavbarlist=$(document.createElement("ul"));
-			 		datnavbarprev=$(document.createElement("li"));
-			 			link = $(document.createElement("a"));
-			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")");
-			 			link.on("click",function(data)
-			 			{
-			 				link = data.target.href.split('#');
-			 				link = link[1].substring(9);
-			 				switchToPage(link,-1);
-			 				return false;
-			 			});
-			 			datnavbarprev.append(link);
-			 		datnavbarnext=$(document.createElement("li"));
-			 			link = $(document.createElement("a"));
-			 			link.attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
-	 					link.on("click",function(data)
-			 			{
-			 				link = data.target.href.split('#');
-			 				link = link[1].substring(9);
-			 				switchToPage(link,1);
-			 				return false;
-			 			});
-	 					datnavbarnext.append(link);
-	 			datnavbarlist.append(datnavbarprev);
-	 			datnavbarlist.append(datnavbarnext);
-	 		datnavbar.append(datnavbarlist);
-	 		footer.append(datnavbar);*/
-	 		
-	 		/*
-	 		datclasslist = footer.append("<div></div>");
-	 			datclasslist.css("text-align","center");
-	 			selectClass = $("<select data-native-menu=\"false\"></select>");
-	 			datclasslist.append(selectClass);
-	 				selectClass.append("<option data-placeholder=\"true\">Klasse oder Lehrer ausw&auml;hlen</option>");
-	 				groupClasses = $("<optgroup label=\"Klassen\"></optgroup>");
-	 				groupTeachers = $("<optgroup label=\"Lehrer\"></optgroup>");
-	 				selectClass.append(groupClasses);
-	 				selectClass.append(groupTeachers);
-	 		
-	 		selectClass.selectmenu();
-	 		selectClass.on('change', ChangeCurrentClass);
-	 		
-	 		year = currentDate.getUTCFullYear();
-	 		if(currentDate.getMonth()+1 < 9)
-	 		{
-	 			year--;
-	 		}
-	 		
-	 		FillClassList(year, groupClasses);
-	 		
-	 		if(isTeacher)
-	 		{
-	 			FillTeacherList(groupTeachers);
-	 		}
-	 		FillTeacherList(groupTeachers);*/
-	 		
+ 		
 	 	return footer;
-	 	/*
-	 	
-			
-		</div>
-		*/
 	}

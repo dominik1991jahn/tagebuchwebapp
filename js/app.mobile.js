@@ -6,40 +6,99 @@
 	var permissionChecked = false;
 	var classList = new Array();
 	var teacherList = new Array();
+	var isOffline = false;
 	
-	function request(method, url, success, async)
+	function request(method, server, url, success, async, refresh)
 	{
 		if(typeof(async) == "undefined") { async = true; }
+		if(typeof(refresh) == "undefined") { refresh = false; }
 		
-		$.ajax({
-			type: method.toUpperCase(),
-			url: url,
-			dataType: 'json',
-			beforeSend: function() {
-				$.mobile.loading('show');
-				//alert("GET "+url);
-			},
-			complete: function() { $.mobile.loading('hide'); },
-			success: success,
-			async: async
-		});
+		var fromLocalStorage = null;
+		var cacheURL = url;
+		
+		if(!navigator.onLine)
+		{
+			/*
+			 * If the device is offline (Airplane Mode or no WiFi and no cellular reception)
+			 */
+			
+			DisplayOfflineMessage();
+			
+			fromLocalStorage = localStorage.getItem(cacheURL);
+			
+			if(fromLocalStorage)
+			{
+				response = $.parseJSON(fromLocalStorage);
+				success(response);
+			}
+			else
+			{
+				alert("Sorry, du bist nicht online und hast keine Daten im Cache!");
+			}
+		}
+		else
+		{
+			fromLocalStorage = localStorage.getItem(cacheURL);
+			headers = null;
+			
+			if(fromLocalStorage == null)
+			{
+				//alert("NO CACHE! for " + url);
+				headers = {"Cache-Control":"no-cache"};
+			}
+			$.ajax({
+				type: method.toUpperCase(),
+				url: server+url,
+				dataType: 'json',
+				headers: headers,
+				beforeSend: function() { $.mobile.loading('show'); },
+				complete: function() { $.mobile.loading('hide'); },
+				success: function(response)
+				{
+					//alert("Cache: "+fromLocalStorage);
+					/*
+					 * If nothing has changed we receive a 403-code
+					 */
+					if("code" in response && fromLocalStorage != null)
+					{
+						/*switch(response.code)
+						{
+							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
+							default: alert(response.code + ": "+response.message); break;
+						}*/
+						//alert("From Cache: "+fromLocalStorage);
+						response = $.parseJSON(fromLocalStorage);
+					}
+					else
+					{
+						//alert("We need new data for '"+url+"': " + JSON.stringify(response));
+						localStorage.setItem(cacheURL, JSON.stringify(response));
+					}
+					
+					success(response);
+				},
+				async: async
+			});
+		}
 	}
 	
 	function FillClassList(year, htmlObject)
 	{
 		if(classList.length == 0)
 		{
-			url = "request.php?/Classes/" + year;
+			url = "Classes/" + year;
 		
 			success = function(response)
 						{
-							$.each(response, function(key, value)
+							//alert(response.code);
+							$.each(response.data, function(key, value)
 							{
+								//alert(value.Name);
 								classList.push(value.Name);
 							});
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request/",url,success,false);
 		}
 		
 		for(c=0;c<classList.length;c++)
@@ -66,21 +125,30 @@
 		}
 	}
 	
+	function DisplayOfflineMessage()
+	{
+		if(!isOffline)
+		{
+			alert("You are offline!");
+			isOffline = true;
+		}
+	}
+	
 	function FillTeacherList(htmlObject)
 	{
 		if(teacherList.length == 0)
 		{
-			url = "request.php?/Teacher";
+			url = "Teacher";
 		
 			success = function(response)
 						{
-							$.each(response, function(key, value)
+							$.each(response.data, function(key, value)
 							{
 								teacherList.push(value.Abbreviation);
 							});
 						};
 						
-			request("GET",url,success,false);
+			request("GET","request/",url,success,false);
 		}
 		
 		for(c=0;c<teacherList.length;c++)
@@ -124,38 +192,30 @@
 	{
 		if(currentDisplayMode == "class")
 		{
-			var url = "request.php?/Schedule/Class/" + classcode + "-" + startdate;
+			var url = "Schedule/Class/" + classcode + "-" + startdate;
 		}
 		else
 		{
-			var url = "request.php?/Schedule/Teacher/" + classcode + "-" + startdate;
+			var url = "Schedule/Teacher/" + classcode + "-" + startdate;
 		}
 		
 		success = function(response) {
-						if("code" in response)
+						//alert(response.code);
+						switch(response.code)
 						{
-							switch(response.code)
-							{
-								case 401:
-									
-									$.mobile.changePage("#login");
-				
-									break;
-									
-								default:
-									
-									$("#errorCode").html(response.code);
-									$("#errorMessage").html(response.message);
-									
-									$.mobile.changePage("#httperror");
-									
-									break;
-							}
-							
-							return;
+							case 200: break;
+							case 401: $.mobile.changePage("#login"); return;
+								
+							default:
+								
+								$("#errorCode").html(response.code);
+								$("#errorMessage").html(response.message);
+								
+								$.mobile.changePage("#httperror");
+								return;
 						}
 						
-						$.each(response, function(key, value)
+						$.each(response.data, function(key, value)
 						{
 							if(!(currentClass in schedule))
 							{
@@ -167,7 +227,7 @@
 						});
 				};
 					
-		request("GET",url,success,false);
+		request("GET","request/",url,success,false);
 	}
 	
 	function switchToPage(date, direction, async)

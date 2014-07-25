@@ -6,8 +6,6 @@ var eventsLoaded = false;
 
 function loadEvents()
 {
-
-	
 	if(eventsLoaded) return true;
 	
 	page = $("<div data-role=\"page\" id=\"events\"></div>");
@@ -32,7 +30,9 @@ function loadEvents()
 	ullinks = $(document.createElement('ul'));
 	navbar.append(ullinks);
 	
-	ullinks.append("<li><a href=\"#"+pageid+"\" data-role=\"button\">Stundenplan</a></li>");
+	var scheduleid = "schedule-"+DateToUTC(currentDate)+"-"+currentClass;
+	
+	ullinks.append("<li><a href=\"#"+scheduleid+"\" data-role=\"button\">Stundenplan</a></li>");
 	ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",function(){loadEvents()});
 	navbar.navbar();
 
@@ -64,7 +64,7 @@ function loadEvents()
 
 function FillEvents(currentClass, year, mode)
 {
-	url = "request.php?/Events/" + currentClass + "/" + year + "/" + mode;
+	url = "Events/" + currentClass + "/" + year + "/" + mode;
 	
 	$("#eventList").empty();
 	
@@ -122,5 +122,5 @@ function FillEvents(currentClass, year, mode)
 					}
 				};
 				
-	request("GET",url,success,false);
+	request("GET","request/",url,success,false);
 }
