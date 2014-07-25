@@ -37,7 +37,7 @@
 			}
 		}
 		
-		public function GetFromCache($function, $parameters, $controlsum)
+		public function CheckStatus($function, $parameters, $controlsum)
 		{
 			foreach($this->cache as $cacheobject)
 			{
@@ -45,11 +45,25 @@
 				if(!ArrayTools::Equals($parameters, $cacheobject->Parameters)) continue;
 				if($controlsum <> $cacheobject->ControlSum) continue;
 				
-				$cacheFile = "Cache/".$cacheobject->Identifier.".json";
+				// Modified
+				return true;
+			}
+			
+			
+			// Not modified
+			return false;
+		}
+		
+		public function GetFromCache($function, $parameters)
+		{
+			foreach($this->cache as $cacheobject)
+			{
+				if($cacheobject->Function <> $function) continue;
+				if(!ArrayTools::Equals($parameters, $cacheobject->Parameters)) continue;
+				
+				$cacheFile = "Cache/".$cacheobject->Identifier;
 				
 				return file_get_contents($cacheFile);
-				
-				break;
 			}
 		}
 		
@@ -88,7 +102,22 @@
 			
 			$xmlCache->asXML("Core/Configuration/Cache.xml");
 			
-			file_put_contents("Cache/".$cacheobject->Identifier.".json", $data);
+			$path = $cacheobject->Identifier;
+			
+			$pathseg = explode("/",$path);
+				
+			if(count($pathseg)>1)
+			{
+				$dir = "Cache/";
+				for($i=0;$i<count($pathseg)-1;$i++)
+				{
+					$dir .= $pathseg[$i]."/";
+					
+					if(!is_dir($dir)) mkdir($dir);
+				}
+			}
+			
+			file_put_contents("Cache/".$cacheobject->Identifier, $data);
 		}
 		
 		public function GetCacheControl()

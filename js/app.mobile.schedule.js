@@ -360,8 +360,6 @@
 					dBody.append(pText);
 				dialog.append(dBody);
 			
-			dialog.dialog();
-			
 			dialog.dialog({autoResize:true});
 			
 			dialog.appendTo($.mobile.pageContainer);
@@ -431,69 +429,6 @@
  		{
  			FillTeacherList(groupTeachers);
  		}
-		 	/*datnavbar=$(document.createElement("div"));	 	
-		 	datnavbar.attr("data-role","navbar");
-		 	
-			 	datnavbarlist=$(document.createElement("ul"));
-			 		datnavbarprev=$(document.createElement("li"));
-			 			link = $(document.createElement("a"));
-			 			link.attr("href","#"+prevID).attr("data-role","button").html(DayOfWeekToName(prevdate.getDay()) + " (" + Zero(prevdate.getDate()) + "." + Zero((prevdate.getMonth()+1))  + ")");
-			 			link.on("click",function(data)
-			 			{
-			 				link = data.target.href.split('#');
-			 				link = link[1].substring(9);
-			 				switchToPage(link,-1);
-			 				return false;
-			 			});
-			 			datnavbarprev.append(link);
-			 		datnavbarnext=$(document.createElement("li"));
-			 			link = $(document.createElement("a"));
-			 			link.attr("href","#"+nextID).attr("data-role","button").html(DayOfWeekToName(nextdate.getDay()) + " (" + Zero(nextdate.getDate()) + "." + Zero((nextdate.getMonth()+1))  + ")");
-	 					link.on("click",function(data)
-			 			{
-			 				link = data.target.href.split('#');
-			 				link = link[1].substring(9);
-			 				switchToPage(link,1);
-			 				return false;
-			 			});
-	 					datnavbarnext.append(link);
-	 			datnavbarlist.append(datnavbarprev);
-	 			datnavbarlist.append(datnavbarnext);
-	 		datnavbar.append(datnavbarlist);
-	 		footer.append(datnavbar);*/
-	 		
-	 		/*
-	 		datclasslist = footer.append("<div></div>");
-	 			datclasslist.css("text-align","center");
-	 			selectClass = $("<select data-native-menu=\"false\"></select>");
-	 			datclasslist.append(selectClass);
-	 				selectClass.append("<option data-placeholder=\"true\">Klasse oder Lehrer ausw&auml;hlen</option>");
-	 				groupClasses = $("<optgroup label=\"Klassen\"></optgroup>");
-	 				groupTeachers = $("<optgroup label=\"Lehrer\"></optgroup>");
-	 				selectClass.append(groupClasses);
-	 				selectClass.append(groupTeachers);
-	 		
-	 		selectClass.selectmenu();
-	 		selectClass.on('change', ChangeCurrentClass);
-	 		
-	 		year = currentDate.getUTCFullYear();
-	 		if(currentDate.getMonth()+1 < 9)
-	 		{
-	 			year--;
-	 		}
-	 		
-	 		FillClassList(year, groupClasses);
-	 		
-	 		if(isTeacher)
-	 		{
-	 			FillTeacherList(groupTeachers);
-	 		}
-	 		FillTeacherList(groupTeachers);*/
-	 		
+ 		
 	 	return footer;
-	 	/*
-	 	
-			
-		</div>
-		*/
 	}

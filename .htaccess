@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^digikabu.cache$ ApplicationCache.php
+RewriteRule ^request/(.+)$ request.php?/$1

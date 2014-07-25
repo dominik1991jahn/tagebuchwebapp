@@ -21,7 +21,7 @@
 			$this->parameters = $parameters;
 			$this->controlsum = $controlsum;
 			
-			$identifier = $function."/".implode("/",$parameters);
+			$identifier = $function.(count($parameters) ? "/".implode("/",$parameters) : null);
 			
 			$this->identifier = $identifier;
 		}

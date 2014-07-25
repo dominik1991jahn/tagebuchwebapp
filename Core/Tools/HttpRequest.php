@@ -255,7 +255,7 @@
 				$this->responsebody = $result;
 			}
 			
-			#if(isset($http_response_header))
+			if(isset($http_response_header))
 			{
 				$this->responseheaders = self::HTTPResponseHeadersToArray($http_response_header);
 			}
