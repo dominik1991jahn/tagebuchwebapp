@@ -125,7 +125,7 @@
 			$headers = getallheaders();
 			
 			$cachecontrol = (isset($headers["Cache-Control"]) ? $headers["Cache-Control"] : null);
-			return "no-cache";
+			#return "no-cache";
 			return $cachecontrol;
 		}
 		

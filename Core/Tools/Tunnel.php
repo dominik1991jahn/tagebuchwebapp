@@ -37,7 +37,7 @@
 			$request = $this->PassThroughTunnel("GET",$url);
 			
 			$request->SendRequest();
-				
+			
 			if($request->HTTPStatusCode <> 401)
 			{
 				// If all went well or we get any error other than 401 (unauthorized), we check back with the cache
@@ -463,7 +463,7 @@
 			return $response;
 		}
 		
-		private function HTTPError($code)
+		public function HTTPError($code)
 		{
 			$message = null;
 			

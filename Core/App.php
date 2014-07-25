@@ -21,14 +21,21 @@
 			 * Login Information
 			 */
 			
-			$username = (isset($_COOKIE["loginname"]) ? $_COOKIE["loginname"] : "guest");
-			$password = (isset($_COOKIE["password"]) ? $_COOKIE["password"] : "guest");
+			$username = (isset($_COOKIE["loginname"]) ? $_COOKIE["loginname"] : null);
+			$password = (isset($_COOKIE["password"]) ? $_COOKIE["password"] : null);
 			
 			// Establish a connection to the API-Server with the login credentials
 			$tunnel = new Tunnel($username, $password);
 			
-			// Merge Request and Connection and perform the request
-			$response = $requestHandler->PerformRequest($tunnel);
+			if(!$username || !$password)
+			{
+				$response = json_encode($tunnel->HTTPError(401));
+			}
+			else
+			{
+				// Merge Request and Connection and perform the request
+				$response = $requestHandler->PerformRequest($tunnel);
+			}
 			
 			// Print to response
 			print $response;

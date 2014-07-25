@@ -55,23 +55,12 @@
 				complete: function() { $.mobile.loading('hide'); },
 				success: function(response)
 				{
-					//alert("Cache: "+fromLocalStorage);
-					/*
-					 * If nothing has changed we receive a 403-code
-					 */
 					if("code" in response && fromLocalStorage != null)
 					{
-						/*switch(response.code)
-						{
-							case 304:	alert("Nothing changed in '"+cacheURL+"'!"); break;
-							default: alert(response.code + ": "+response.message); break;
-						}*/
-						//alert("From Cache: "+fromLocalStorage);
 						response = $.parseJSON(fromLocalStorage);
 					}
 					else
 					{
-						//alert("We need new data for '"+url+"': " + JSON.stringify(response));
 						localStorage.setItem(cacheURL, JSON.stringify(response));
 					}
 					
