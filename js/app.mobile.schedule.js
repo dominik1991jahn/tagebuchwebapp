@@ -360,11 +360,9 @@
 					dBody.append(pText);
 				dialog.append(dBody);
 			
-<<<<<<< HEAD
 			dialog.dialog();
-=======
+			
 			dialog.dialog({autoResize:true});
->>>>>>> f55f9d729f948ac60e85cc201659f7f7175f21dc
 			
 			dialog.appendTo($.mobile.pageContainer);
 		
