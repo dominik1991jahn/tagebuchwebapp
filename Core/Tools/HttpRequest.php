@@ -31,6 +31,7 @@
 		public function HttpRequest()
 		{
 			$this->verb = "GET";
+			$this->headers = new HeaderData;
 			
 			switch(func_num_args())
 			{
