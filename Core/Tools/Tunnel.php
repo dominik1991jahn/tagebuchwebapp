@@ -364,6 +364,7 @@
 				
 				// We need to do this here so we can also check if the response is a valid XML-document
 				// If it's not, we fall back to the cached version
+				#var_dump($request);
 				$xresponse = simplexml_load_string($request->ResponseBody);
 				
 				if(!$requestNew && (!$xresponse || $request->HTTPStatusCode <> 200 || $notModified))
@@ -385,6 +386,7 @@
 					
 					$events = array();
 					$previousEvent = null;
+					#var_dump($xresponse);
 					foreach($xresponse->children() as $xevent)
 					{
 						$event = Digikabu_Event::FromXMLNode($xevent);
