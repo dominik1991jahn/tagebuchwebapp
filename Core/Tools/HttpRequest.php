@@ -203,17 +203,96 @@
 			}
 		}
 		
+		public function ReceiveCertificate()
+		{
+			/*$url = Configuration::GetConfigurationParameter("CertURL");
+			$context = stream_context_create(
+				array("ssl" => array(
+					"capture_peer_cert"=>true,
+					"allow_self_signed" => true)));
+			$errstr = null;
+			$socket = stream_socket_client($url, $errno,$errstr, 30, STREAM_CLIENT_CONNECT, $context);
+			$params = stream_context_get_params($socket);
+			var_dump($params["options"]["ssl"]["peer_certificate"]);
+			
+			$params["options"]["ssl"]["peer_certificate"]);
+			
+			echo "----";*/
+		}
+		
 		public function SendRequest()
 		{
+			$url = $this->url;
 			
-			$streamContext = stream_context_create();
+			if(!is_null($this->data))
+			{
+				$data = http_build_query($this->data->Parameters);
+				
+				if(strlen($data))
+				{
+					if($this->verb <> 'GET')
+					{
+						stream_context_set_option($streamContext, 'ssl', "content", $data);
+					}
+					else
+					{
+						$url .= '?'.$data;
+					}
+				}
+			}
 			
-			stream_context_set_option($streamContext, 'http', "method", $this->verb);
-			#stream_context_set_option($streamContext, 'http', "user_agent", $this->Headers["UserAgent"]);
-			stream_context_set_option($streamContext, 'http', "follow_location", true);
-			stream_context_set_option($streamContext, 'http', "max_redirects", 10);
-			stream_context_set_option($streamContext, 'http', "timeout", 15.0);
-			stream_context_set_option($streamContext, 'http', "ignore_errors", false);
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_URL, $url);
+			curl_setopt($curl, CURLOPT_VERBOSE, true);
+			curl_setopt($curl, CURLOPT_HEADER, true);
+			if(!is_null($this->headers))
+			{
+				$headers = array();
+				
+				foreach($this->headers->Headers as $name => $value)
+				{
+					$headers[] = $name.": ".$value;
+				}
+				
+				curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+			}
+			
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($curl, CURLOPT_ENCODING,"");
+			curl_setopt($curl, CURLOPT_CAINFO, getcwd()."/Core/Configuration/cert.pem");
+			
+			$response = curl_exec($curl);
+			$error = curl_error($curl);
+			$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+			
+			curl_close($curl);
+			
+			$header = substr($response,0,$header_size);
+			$body = substr($response, $header_size+3);
+			
+			$this->responsebody = $body;
+			
+			$this->responseheaders = self::cURLResponseHeadersToArray($header);
+			
+			return true;
+			/*$this->ReceiveCertificate();*/
+			
+			/*$streamContext = stream_context_create();
+			
+			stream_context_set_option($streamContext, 'ssl', "method", $this->verb);
+			#stream_context_set_option($streamContext, 'https', "user_agent", $this->Headers["UserAgent"]);
+			stream_context_set_option($streamContext, 'ssl', "follow_location", true);
+			stream_context_set_option($streamContext, 'ssl', "max_redirects", 10);
+			stream_context_set_option($streamContext, 'ssl', "timeout", 15.0);
+			stream_context_set_option($streamContext, 'ssl', "ignore_errors", false);
+			stream_context_set_option($streamContext, 'ssl', "verify_peer", true);
+			stream_context_set_option($streamContext, 'ssl', "cafile", "Core/Configuration/cert.pem");
+			stream_context_set_option($streamContext, 'ssl', "CN_MATCH", "selfhost.bz");
+			stream_context_set_option($streamContext, 'ssl', "allow_self_signed", true);
+			stream_context_set_option($streamContext, 'ssl', "ciphers", "HIGH:!SSLv2:!SSLv3");
+			#stream_context_set_option($streamContext, 'ssl', "capture_peer_cert", true);
 			
 			$url = $this->url;
 			
@@ -225,7 +304,7 @@
 				{
 					if($this->verb <> 'GET')
 					{
-						stream_context_set_option($streamContext, 'http', "content", $data);
+						stream_context_set_option($streamContext, 'ssl', "content", $data);
 					}
 					else
 					{
@@ -245,11 +324,12 @@
 					$header .= $name.": ".$value."\r\n";
 				}
 				
-				stream_context_set_option($streamContext, 'http', "header", $header);
+				stream_context_set_option($streamContext, 'ssl', "header", $header);
 			}
-			
+			var_dump($streamContext);
 			$stream = @fopen($url, 'r', false, $streamContext);
-			
+			var_dump($url);
+			var_dump($stream);
 			if($stream)
 			{
 				$result = stream_get_contents($stream);
@@ -261,7 +341,7 @@
 				$this->responseheaders = self::HTTPResponseHeadersToArray($http_response_header);
 			}
 			
-			return true;
+			return true;*/
 		}
 
 		public function SetAuthorization($authorization)
@@ -360,6 +440,27 @@
 			for($h = 1; $h < $items; $h++)
 			{
 			  $header = explode(":",$headers[$h]);
+
+			  $field = trim($header[0]);
+			  $value = trim($header[1]);
+
+			  $result[$field] = $value;
+			}
+
+			return $result;
+		}
+		
+		private static function cURLResponseHeadersToArray($headers)
+		{
+			$result = array();
+			
+			$lines = explode("\n",$headers);
+			
+			$result["HTTPStatusCode"] = trim($lines[0]);
+			
+			for($h = 1; $h < count($lines); $h++)
+			{
+			  $header = explode(":",$lines[$h]);
 
 			  $field = trim($header[0]);
 			  $value = trim($header[1]);

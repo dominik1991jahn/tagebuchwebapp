@@ -7,6 +7,7 @@
 	var classList = new Array();
 	var teacherList = new Array();
 	var isOffline = false;
+	var usingCache = false;
 	
 	function request(method, server, url, success, async, refresh)
 	{
@@ -15,14 +16,12 @@
 		
 		var fromLocalStorage = null;
 		var cacheURL = url;
-		
+		//alert(server+url);
 		if(!navigator.onLine)
 		{
 			/*
 			 * If the device is offline (Airplane Mode or no WiFi and no cellular reception)
 			 */
-			
-			DisplayOfflineMessage();
 			
 			if(LocalStorageAvailability())
 			{
@@ -38,9 +37,13 @@
 			{
 				alert("Sorry, du bist nicht online und hast keine Daten im Cache!");
 			}
+			
+			isOffline = true;
 		}
 		else
 		{
+			isOffline = false;
+			
 			if(LocalStorageAvailability())
 			{
 				fromLocalStorage = localStorage.getItem(cacheURL);
@@ -48,11 +51,25 @@
 			
 			headers = null;
 			
-			if(fromLocalStorage == null)
+			/*
+			 * ToDo: Load from cache, but offer update button
+			 * 
+			 * Offline: Red, use cache
+			 * Online, but loaded from cache: orange + update link
+			 * Online, fresh data: green
+			 */
+			
+			if(fromLocalStorage == null || refresh)
 			{
+				usingCache = false;
 				//alert("NO CACHE! for " + url);
 				headers = {"Cache-Control":"no-cache"};
 			}
+			else
+			{
+				usingCache = true;
+			}
+			
 			$.ajax({
 				type: method.toUpperCase(),
 				url: server+url,
@@ -126,11 +143,32 @@
 	
 	function DisplayOfflineMessage()
 	{
-		if(!isOffline)
+		if(isOffline)
 		{
-			alert("You are offline!");
-			isOffline = true;
+			$("div.status").removeClass("cache");
+			$("div.status").removeClass("online");
+			
+			$("div.status").addClass("offline");
+			$("#OfflineStatusMessage").html("Offline! Daten sind nicht auf dem aktuellsten Stand!");	
 		}
+		else if(isOffline && !usingCache)
+		{
+			$("div.status").removeClass("cache");
+			$("div.status").removeClass("offline");
+			
+			$("div.status").addClass("online");
+			$("#OfflineStatusMessage").html("Online! Daten wurden aktualisiert.");
+		}
+		else
+		{
+			$("div.status").removeClass("online");
+			$("div.status").removeClass("offline");
+			
+			$("div.status").addClass("cache");
+			$("#OfflineStatusMessage").html("Online! Daten aktualisieren.");
+		}
+		
+		
 	}
 	
 	function FillTeacherList(htmlObject)

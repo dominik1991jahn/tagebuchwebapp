@@ -11,12 +11,12 @@
 		if(GetCookie("loginname") == null)
 		{
 			$.mobile.changePage("#login");
-			document.title = "Digikabu.App :: Anmelden";
+			document.title = "digikabuwebapp :: Anmelden";
 		}
 		else if(GetCookie("class") == null)
 		{
 			$.mobile.changePage("#SelectClass");
-			document.title = "Digikabu.App :: Klasse auswählen";
+			document.title = "digikabuwebapp :: Klasse auswählen";
 			FillClassList(2013, $("#classList"));
 			if(isTeacher)
 			{
@@ -42,12 +42,12 @@
 				goToPage = null;
 				direction = 0;
 				
-				if(event.which == 37)
+				if(event.which == 39)
 				{
 					goToPage = currPage.attr("data-prev").substring(9,19);
 					direction = -1;
 				}
-				else if(event.which == 39)
+				else if(event.which == 37)
 				{
 					goToPage = currPage.attr("data-next").substring(9,19);
 					direction = +1;
@@ -60,7 +60,7 @@
 			});
 		}
 		
-		$(document).on("swipeleft", function() {
+		$(document).on("swiperight", function() {
 			currPage = $.mobile.activePage;
 			nextPage = currPage.attr("data-next").substring(9,19);
 			
@@ -70,7 +70,7 @@
 			}
 		});
 		
-		$(document).on("swiperight", function() {
+		$(document).on("swipeleft", function() {
 			currPage = $.mobile.activePage;
 			prevPage = currPage.attr("data-prev").substring(9,19);
 			//if(prevPage.length>0)
@@ -81,6 +81,16 @@
 		
 		$(window).on('hashchange', function() {
 		    hashChange();
+		});
+		
+		$(function() {
+			StatusChange();
+			
+			function StatusChange()
+			{
+				setTimeout(StatusChange,5000);
+				DisplayOfflineMessage();
+			}
 		});
 
 	});

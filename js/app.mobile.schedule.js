@@ -68,7 +68,12 @@
 		ullinks.append("<li><a href=\"#events\" data-role=\"button\">Termine</a></li>").on("click",function(){loadEvents()});
 		navbar.navbar();
 		
-		header3 = $("<div data-role=\"header\" class=\"status offline\"><h5>Offline! Daten sind nicht auf dem aktuellsten Stand</h5></div>");
+		
+		header3 = $("<div data-role=\"header\" class=\"status offline\"><h5 id=\"OfflineStatusMessage\">Offline! Daten sind nicht auf dem aktuellsten Stand!</h5></div>");
+		header3.on("click",function()
+		{
+			alert(currentDate);
+		});
 		
 		footer = CreateFooter(currentDate);
 		

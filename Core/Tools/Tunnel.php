@@ -430,7 +430,7 @@
 		{
 			$url = RequestMapping::GetURLForRequest("CheckPermissions");
 			$request = $this->PassThroughTunnel("GET",$url);
-				
+			
 			$request->SendRequest();
 			
 			if($request->HTTPStatusCode <> 401)
