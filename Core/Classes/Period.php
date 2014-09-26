@@ -361,13 +361,11 @@
 								switch ($t)
 								{
 									case 0:
-										$teachers[0] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
-										$teachers_normal++;
-										break;
 									case 1:
-										$teachers[1] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
+										$teachers[$t] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Normal);
 										$teachers_normal++;
 										break;
+										
 									case 2: 
 										//$periodType = new Digikabu_PeriodType_Substitution;
 										$teachers[2] = new Digikabu_TeacherStatus($teacher, new Digikabu_TeacherStatus_Substitute);
